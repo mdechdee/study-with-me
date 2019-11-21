@@ -1,6 +1,7 @@
 import React from 'react';
-import {Modal} from 'react-bootstrap'
-import {Button} from 'react-bootstrap'
+import {Modal} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
+import axios from 'axios';
 class UploadImage extends React.Component{
 	constructor(props) {
     super(props);
@@ -42,11 +43,12 @@ class UploadImage extends React.Component{
 
     return (
       <div>
+        {$imagePreview}
         <form onSubmit={this._handleSubmit}>
           <input type="file" onChange={this._handleImageChange} />
           <button type="submit" onClick={this._handleSubmit}>Upload Image</button>
         </form>
-        {$imagePreview}
+        
       </div>
     );
   }
