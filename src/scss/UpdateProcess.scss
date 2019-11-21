@@ -1,0 +1,32 @@
+$gray: #ccc;
+.image-upload{
+	text-align: center;
+}
+.hide_input{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  position: absolute;
+  background: rgba(150,225,150,0.5);
+  opacity: 0;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 400px;
+  z-index: 2;
+  &:hover{
+    cursor: pointer;
+  };
+}
+
+.file-fill{
+  position: relative;
+  background: url(../camera.jpg) no-repeat;
+  width: 434px;
+  height: 312px;
+  border-radius: .25rem;
+  margin-bottom: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+}

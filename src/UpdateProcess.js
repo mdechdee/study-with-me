@@ -1,7 +1,9 @@
+//https://dev.to/clintdev/simple-firebase-image-uploader-display-with-reactjs-3aoo
+//https://stackoverflow.com/questions/13955813/how-to-store-and-view-images-on-firebase
 import React from 'react';
 import {Modal} from 'react-bootstrap'
 import {Button} from 'react-bootstrap'
-import UploadImage from './UploadImage.js'
+import ImageUpload from './ImageUpload/index.js'
 class UpdateProcess extends React.Component{
 	constructor(props){
 		super(props);
@@ -24,14 +26,10 @@ class UpdateProcess extends React.Component{
 				<Button variant = "primary" onClick = {this.handleShow}> Update Process </Button>
 		        <Modal show={this.state.show} onHide={this.handleClose} size = 'xl'>
 		         	<Modal.Header closeButton>
-		            	<Modal.Title> Update progress {this.props.popup_id} </Modal.Title>
+		            	<Modal.Title> <h3>Update progress</h3> {this.props.popup_id} </Modal.Title>
 		          	</Modal.Header>
 		          	<Modal.Body>
-		            	<h4>Your work</h4>
-		            	<p>
-		              		Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-		            	</p>
-		            	<UploadImage/>
+		            	<ImageUpload/>
 		            	<h4>Popover in a modal</h4>
 		            	<p>
 			              	there is a{' '}

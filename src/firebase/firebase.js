@@ -15,6 +15,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+const storage = firebase.storage();
 const db = firebase.database();
 const auth = firebase.auth();
 const groupsRef = db.ref("groups")
@@ -22,6 +23,7 @@ const usersRef = db.ref("users")
 
 
 export {
+  storage,
   firebaseConfig,
   db,
   auth,
