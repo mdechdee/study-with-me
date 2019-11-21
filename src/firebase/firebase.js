@@ -24,7 +24,6 @@ const usersRef = db.ref("users")
 export {
   firebaseConfig,
   db,
-  storage,
   auth,
   groupsRef,
   usersRef,
