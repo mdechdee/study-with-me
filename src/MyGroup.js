@@ -18,10 +18,21 @@ class MyGroup extends React.Component {
 		db.ref('groups/study').once('value', (snapshot) => {
 			let val = snapshot.val();
 			this.setState({
-	        	intervalTime: val.interval,
-	        	startTime: this.state.currentTime,
-        		stopTime: this.state.currentTime + val.interval
-	    	})
+	        	intervalTime: val.interval
+	        })
+	        if(val.startTime == -1){
+	        	this.setState({
+		        	startTime: this.state.currentTime,
+	        		stopTime: this.state.currentTime + val.interval
+	    		})
+	        }
+	        else
+	        {
+	        	this.setState({
+		        	startTime: val.startTime,
+	        		stopTime: val.stopTime
+	    		})
+	        }
         })
 
 	}
@@ -30,7 +41,7 @@ class MyGroup extends React.Component {
         db.ref('/.info/serverTimeOffset').on('value', (data) => {
 	    	this.setState({	
 				offset : data.val(),
-				currentTime: this.state.offset + Date.now()
+				currentTime: data.val() + Date.now()
 			})
 	  	});
 	}
@@ -63,13 +74,15 @@ class MyGroup extends React.Component {
 		}, 100)
 		
 	}
-
+				//<div> {new Date(this.state.currentTime).getMilliseconds()} </div>
+				//<div> {new Date(this.state.startTime).getMilliseconds()} </div>
+				//<div> {new Date(this.state.stopTime).getMilliseconds()} </div>
 	render(){
 		return(
 			<div>
-				<div> {new Date(this.state.currentTime).getSeconds()} </div>
-				<div> {new Date(this.state.startTime).getSeconds()} </div>
-				<div> {new Date(this.state.stopTime).getSeconds()} </div>
+				<div> {this.state.currentTime} </div>
+				<div> {this.state.startTime} </div>
+				<div> {this.state.stopTime} </div>
 				<div> {this.state.intervalTime} </div>
 			</div>
 		);
