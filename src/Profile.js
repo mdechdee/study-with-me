@@ -10,7 +10,7 @@ class Profile extends React.Component {
 				a
 				aa
 				aaa
-				<UpdateProcess/>
+				<UpdateProcess />
 			</div>
 		);
 	}

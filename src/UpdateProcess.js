@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal} from 'react-bootstrap'
 import {Button} from 'react-bootstrap'
-
+import UploadImage from './UploadImage.js'
 class UpdateProcess extends React.Component{
 	constructor(props){
 		super(props);
@@ -22,17 +22,16 @@ class UpdateProcess extends React.Component{
 		return(
 			<div>
 				<Button variant = "primary" onClick = {this.handleShow}> Update Process </Button>
-		        <Modal show={this.state.show} onHide={this.handleClose} >
+		        <Modal show={this.state.show} onHide={this.handleClose} size = 'xl'>
 		         	<Modal.Header closeButton>
 		            	<Modal.Title> Update progress {this.props.popup_id} </Modal.Title>
 		          	</Modal.Header>
 		          	<Modal.Body>
 		            	<h4>Your work</h4>
-		            	//attach picture
 		            	<p>
 		              		Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
 		            	</p>
-
+		            	<UploadImage/>
 		            	<h4>Popover in a modal</h4>
 		            	<p>
 			              	there is a{' '}
