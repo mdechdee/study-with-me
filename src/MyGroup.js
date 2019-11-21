@@ -38,7 +38,7 @@ class MyGroup extends React.Component {
 	}
 	// Fetch current server's time
 	fetchCurrentTime(){
-        db.ref('/.info/serverTimeOffset').on('value', (data) => {
+        db.ref('/.info/serverTimeOffset').once('value', (data) => {
 	    	this.setState({	
 				offset : data.val(),
 				currentTime: data.val() + Date.now()
