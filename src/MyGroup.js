@@ -38,7 +38,7 @@ class MyGroup extends React.Component {
 	}
 	// Fetch current server's time
 	fetchCurrentTime(){
-        db.ref('/.info/serverTimeOffset').once('value', (data) => {
+        db.ref('/.info/serverTimeOffset').on('value', (data) => {
 	    	this.setState({	
 				offset : data.val(),
 				currentTime: data.val() + Date.now()
@@ -64,8 +64,12 @@ class MyGroup extends React.Component {
 	}
 
 	componentDidMount(){
+		//First, store current time to match server's time
 		this.fetchCurrentTime()
+		//Next, store start&stop time for the group
 		this.fetchGroupData()
+		//Countdown every 100ms to update local current time
+		//and c
 		setInterval(() => {
 			this.setState({	
 				currentTime : this.state.offset + Date.now()

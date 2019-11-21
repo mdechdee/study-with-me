@@ -8,11 +8,12 @@ $background: white;
 //@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald:400,700&display=swap');
 
 /* Font */
-$defaultfont: 'OpenSans',sans-serif;
-$boldfont: 'OpenSans-Bold', sans-serif;
-$semiboldfont: 'OpenSans-SemiBold', sans-serif;
-$titlefont: 'Oswald', sans-serif;
-$titleboldfont: 'Oswald-Bold', sans-serif;
+
+$defaultfont: OpenSans;
+$boldfont: OpenSans-Bold;
+$semiboldfont: 'OpenSans-SemiBold';
+$titlefont: Oswald;
+$titleboldfont: Oswald-Bold;
 
 
 :export { primary: $primary; }
