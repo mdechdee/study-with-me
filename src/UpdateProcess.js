@@ -36,6 +36,8 @@ class UpdateProcess extends React.Component{
 		            	<ProgressDescription/>
 		          	</Modal.Body>
 		        </Modal>
+		        //update on database
+		        
       		</div>
 		);
 	}
