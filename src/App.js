@@ -47,7 +47,7 @@ const Page = (auth) => {
   if(auth.authUser){
     return(
       <Switch>
-        <Route exact path='/' />
+        <Route exact path='/find_group' />
         <Route path='/find_group' component={FindGroups} />
         <Route path='/my_group' component={MyGroup} />
         <Route path='/profile'  component={Profile} />
