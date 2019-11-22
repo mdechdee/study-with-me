@@ -20,7 +20,7 @@ class MyGroup extends React.Component {
 			this.setState({
 	        	intervalTime: val.interval
 	        })
-	        if(val.startTime == -1){
+	        if(val.startTime === -1){
 	        	this.setState({
 		        	startTime: this.state.currentTime,
 	        		stopTime: this.state.currentTime + val.interval
@@ -57,6 +57,7 @@ class MyGroup extends React.Component {
 	}
 
 	checkTimeUp(){
+		console.log(this.state.currentTime, this.state.stopTime)
 		if(this.state.currentTime > this.state.stopTime){
 			this.pushNewStartTime()
 			console.log("Time's up!")
