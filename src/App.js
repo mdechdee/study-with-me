@@ -50,6 +50,7 @@ const Page = (auth) => {
         <Route path='/find_group' component={FindGroups} />
         <Route path='/my_group' component={MyGroup} />
         <Route path='/profile'  component={Profile} />
+        <Route path='/login' component={Signin} />
         <Route component={Unmatched} />
       </Switch>
     );
@@ -62,7 +63,7 @@ const Page = (auth) => {
         <Route exact path='/' />
         <Route path='/login' component={Signin} />
         <Route render = {() => (
-            <Redirect to='/login' />
+            <Redirect to='/' />
         )}/>
       </Switch>
     );

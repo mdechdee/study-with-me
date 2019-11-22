@@ -11,7 +11,7 @@ class FindGroups extends React.Component {
   	};
 
 	fetchGroupsData(){
-		db.ref(`groups`).on('value',(snapshot) => {
+		db.ref(`groups`).once('value',(snapshot) => {
 			let val = snapshot.val();
 			Object.keys(val).forEach((item) => {
           		this.setState({groups: [...this.state.groups, item]});
@@ -22,7 +22,6 @@ class FindGroups extends React.Component {
 	}
 
 	componentDidMount(){
-		console.log("HI")
 		this.fetchGroupsData()
 	}
 
@@ -37,7 +36,7 @@ class FindGroups extends React.Component {
 
 	render(){
 		return(
-			<Scrollbars style={{ width: 500, height: 300 }}>
+			<Scrollbars style={{ width: 500, height: 200 }}>
         		{this.showAllGroups()}
       		</Scrollbars>
 		);

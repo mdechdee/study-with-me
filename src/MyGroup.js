@@ -10,7 +10,9 @@ class MyGroup extends React.Component {
 			stopTime: Date.now() + 100000,
 			currentTime : Date.now(),
 			intervalTime: 0,
+			intervalNum: 0,
 			offset: 0,
+			stopwatchID: 0,
 		};
 	}
 	//Fetch group start/stop/interval time (Now start with current time)
@@ -18,13 +20,16 @@ class MyGroup extends React.Component {
 		db.ref('groups/study').once('value', (snapshot) => {
 			let val = snapshot.val();
 			this.setState({
-	        	intervalTime: val.interval
+	        	intervalTime: val.intervalTime,
+	        	intervalNum: val.intervalNum
 	        })
 	        if(val.startTime === -1){
 	        	this.setState({
 		        	startTime: this.state.currentTime,
-	        		stopTime: this.state.currentTime + val.interval
+	        		stopTime: this.state.currentTime + val.intervalTime
 	    		})
+	    		db.ref("groups/study/startTime").set(this.state.startTime)
+				db.ref("groups/study/stopTime").set(this.state.stopTime)
 	        }
 	        else
 	        {
@@ -50,14 +55,16 @@ class MyGroup extends React.Component {
 	pushNewStartTime(){
 		this.setState({
 	        startTime: this.state.startTime + this.state.intervalTime,
-        	stopTime: this.state.stopTime + this.state.intervalTime
+        	stopTime: this.state.stopTime + this.state.intervalTime,
+        	intervalNum: this.state.intervalNum+1
         })
 		db.ref("groups/study/startTime").set(this.state.startTime)
 		db.ref("groups/study/stopTime").set(this.state.stopTime)
+		db.ref("groups/study/intervalNum").set(this.state.intervalNum)
+
 	}
 
 	checkTimeUp(){
-		console.log(this.state.currentTime, this.state.stopTime)
 		if(this.state.currentTime > this.state.stopTime){
 			this.pushNewStartTime()
 			console.log("Time's up!")
@@ -71,13 +78,16 @@ class MyGroup extends React.Component {
 		this.fetchGroupData()
 		//Countdown every 100ms to update local current time
 		//and c
-		setInterval(() => {
+		let stopwatch = setInterval(() => {
 			this.setState({	
 				currentTime : this.state.offset + Date.now()
 			})
 			this.checkTimeUp()
 		}, 100)
-		
+		this.setState({stopwatchID: stopwatch})
+	}
+	componentWillUnmount(){
+		clearInterval(this.state.stopwatchID)
 	}
 				//<div> {new Date(this.state.currentTime).getMilliseconds()} </div>
 				//<div> {new Date(this.state.startTime).getMilliseconds()} </div>
