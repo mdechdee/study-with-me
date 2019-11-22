@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import {Modal} from 'react-bootstrap';
-import {Button} from 'react-bootstrap';
 import UpdateProcess from'./UpdateProcess.js';
 
 class Profile extends React.Component {

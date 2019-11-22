@@ -57,11 +57,19 @@ class ImageUpload extends Component {
     return (
       <div className="image-upload">
         <br/>
-        <div className="file-fill">
-          {this.checkImage()}
-          <input type="file" onChange={this.handleChange} className="hide_input"/>
+        <div className="align image">
+          <img
+            src={this.state.url || "https://via.placeholder.com/400x300"}
+            alt="Uploaded Images"
+            height="300"
+            width="400"
+          />
         </div>
-          <div className="progress-bar">
+        <div className="btn">
+          <span>File: </span>
+          <input type="file" onChange={this.handleChange} />
+        </div>
+        <div className="progress-bar">
           <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.progress+'%'} />
         </div>
         <br />

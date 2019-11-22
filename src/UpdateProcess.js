@@ -3,7 +3,10 @@
 import React from 'react';
 import {Modal} from 'react-bootstrap'
 import {Button} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
 import ImageUpload from './ImageUpload/index.js'
+import ProgressDescription from './ProgressDescription.js'
+import './scss/UpdateProcess.scss'
 class UpdateProcess extends React.Component{
 	constructor(props){
 		super(props);
@@ -30,30 +33,8 @@ class UpdateProcess extends React.Component{
 		          	</Modal.Header>
 		          	<Modal.Body>
 		            	<ImageUpload/>
-		            	<h4>Popover in a modal</h4>
-		            	<p>
-			              	there is a{' '}
-			              	here
-			            </p>
-
-		            	<h4>Tooltips in a modal</h4>
-		            	<p>
-		              		there is a{' '}
-		              		here
-		            	</p>  
-
-		           	 	<hr />
-
-		            	<h4>Overflowing text to show scroll behavior</h4>
-		            	<p>
-		              		Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-		              		dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-		              		ac consectetur ac, vestibulum at eros.
-		            	</p>
+		            	<ProgressDescription/>
 		          	</Modal.Body>
-		          	<Modal.Footer>
-		            	<Button onClick={this.handleClose}>Close</Button>
-		          	</Modal.Footer>
 		        </Modal>
       		</div>
 		);
