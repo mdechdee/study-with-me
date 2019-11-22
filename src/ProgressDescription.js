@@ -3,6 +3,7 @@
 import React from 'react';
 import {Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
+import {db} from './firebase/firebase.js';
 import './scss/UpdateProcess.scss'
 class ProgressDescription extends React.Component{
 	constructor(props){
@@ -11,7 +12,8 @@ class ProgressDescription extends React.Component{
 		this.goal_description_change=this.goal_description_change.bind(this)
 		this.state = {
 			progress_description:"",
-			goal_description:""
+			goal_description:"",
+			uid:props.uid
 		};
 	}
 	progress_description_change(e){
@@ -19,6 +21,17 @@ class ProgressDescription extends React.Component{
 	}
 	goal_description_change(e){
 		this.setState({goal_description: e.target.value})
+	}
+	handleUpload(e){
+		e.preventDefault();
+		const uploadProgress = db.ref(`users/${this.uid}/progress`).putString(this.state.progress_description);
+		const uploadGoal = db.ref(`users/${this.uid}/goal`).putString(this.state.goal_description);
+		uploadProgress.then((snapshot)=>{
+			console.log("progress uploaded.");
+		});
+		uploadGoal.then((snapshot)=>{
+			console.log("progress uploaded.");
+		});
 	}
 	render(){
 		return(
@@ -35,7 +48,7 @@ class ProgressDescription extends React.Component{
 					    <Form.Label><h5>My next goal</h5></Form.Label>
 					    <Form.Control onChange={this.goal_description_change}/>
 					 </Form.Group>
-				  	<Button variant="primary" type="submit">
+				  	<Button variant="primary" type="submit" onClick = {this.handleUpload}>
 				   	 	Submit
 				  	</Button>
 				</Form>

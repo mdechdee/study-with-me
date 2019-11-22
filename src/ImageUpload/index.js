@@ -3,6 +3,7 @@ import {storage} from '../firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap'
 import '../scss/UpdateProcess.scss';
+import AuthContext from '../authentication/AuthContext';
 
 class ImageUpload extends Component {
   constructor(props) {
@@ -12,7 +13,10 @@ class ImageUpload extends Component {
       url: "",
       progress: 0,
       status:"info",
-      show:""
+      show:"",
+      //how to set uid?
+      uid: props.uid,
+      //interval: ""
     };
   }
 
@@ -27,6 +31,7 @@ class ImageUpload extends Component {
 
   handleUpload = () => {
     const { image } = this.state;
+    //const uploadTask = storage.ref(`images/${this.state.uid}/${this.state.interval}`).put(image);
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
@@ -77,10 +82,9 @@ class ImageUpload extends Component {
           <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.show} />
         </div>
         <br />
-      
         <Button variant = "outline-primary"
-          onClick={this.handleUpload}
-          className="waves-effect waves-light btn"
+              onClick={this.handleUpload}
+              className="waves-effect waves-light btn"
         >
           Upload
         </Button>

@@ -6,6 +6,7 @@ import {Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
 import ImageUpload from './ImageUpload/index.js'
 import ProgressDescription from './ProgressDescription.js'
+import AuthContext from './authentication/AuthContext';
 import './scss/UpdateProcess.scss'
 class UpdateProcess extends React.Component{
 	constructor(props){
@@ -32,8 +33,16 @@ class UpdateProcess extends React.Component{
 		            	<Modal.Title> <h3>Update progress</h3> {this.props.popup_id} </Modal.Title>
 		          	</Modal.Header>
 		          	<Modal.Body>
-		            	<ImageUpload/>
-		            	<ProgressDescription/>
+		          	<AuthContext.Consumer>
+			          	{ auth => {
+			          		return(
+			          			<div className="componentToUpdate">
+				            		<ImageUpload uid={auth.uid}/>
+		            				<ProgressDescription uid = {auth.uid}/>
+		            			</div>
+		            		);}
+			        	}
+			        </AuthContext.Consumer>
 		          	</Modal.Body>
 		        </Modal>
 		        //update on database
