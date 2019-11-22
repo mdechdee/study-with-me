@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from 'react-bootstrap'
+import {Row, Col, Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
 
 class CreateGroupDescription extends React.Component{
@@ -42,40 +42,103 @@ class CreateGroupDescription extends React.Component{
 	render(){
 		return(
 			<div>
-				<Form>
-				  	<Form.Group controlId="group-name">
-					    <Form.Label><h6>Name :</h6></Form.Label>
-					    <Form.Control onChange={this.group_name_change} />
-				  	</Form.Group>
+				<Row>
+					<Col xs={3}> Name: </Col>
+					<Col xs={8}>
+						<Form>
+						  	<Form.Group controlId="group-name">
+							    <Form.Control onChange={this.group_name_change} />
+						  	</Form.Group>
+						</Form>
+					</Col>
+				</Row>
 
-				  	<Form.Group controlId="group-start-date">
-					    <Form.Label><h6>Start Date :</h6></Form.Label>
-					    <Form.Control onChange={this.group_start_date_change}/>
-					 </Form.Group>
+				<Row>
+					<Col xs={3}> Start Date: </Col>
+					<Col xs={8}>
+						<Form>
+							<Form.Group controlId="group-start-date">
+								<Form.Control type="date" onChange={this.group_start_date_change}/>
+					 		</Form.Group>
+						</Form>
+					</Col>
+				</Row>
 
-					 <Form.Group controlId="group-time">
-						 <Form.Label><h6>Time :</h6></Form.Label>
-						 <Form.Control onChange={this.group_time_change} />
-					 </Form.Group>
+				<Row>
+					<Col xs={3}> Time: </Col>
+					<Col xs={4}>
+						<Form>
+								<Form.Group controlId="group-time">
+		 						 	<Form.Control onChange={this.group_time_change} />
+		 					 	</Form.Group>
+						</Form>
+					</Col>
+					<Col xs={4}>
+						<Form.Control as="select">
+							<option>minutes</option>
+							<option>hours</option>
+							<option>days</option>
+						</Form.Control>
+					</Col>
+				</Row>
 
-					 <Form.Group controlId="group-interval">
-						 <Form.Label><h6>Interval :</h6></Form.Label>
-						 <Form.Control onChange={this.group_interval_change} />
-						 <Form.Text className="text-muted">
-								 *Time units can be only minutes, hours and days, e.g. 1 minute, 10 days
-						 </Form.Text>
-					 </Form.Group>
+				<Row>
+					<Col xs={3}> Interval: </Col>
+					<Col xs={4}>
+						<Form>
+								<Form.Group controlId="group-interval">
+		 						 	<Form.Control onChange={this.group_interval_change} />
+		 					 	</Form.Group>
+						</Form>
+					</Col>
+					<Col xs={4}>
+						<Form.Control as="select">
+							<option>minutes</option>
+							<option>hours</option>
+							<option>days</option>
+						</Form.Control>
+					</Col>
+				</Row>
 
-					 <Form.Group controlId="group-total-time">
-						 <Form.Label><h6>Total Time :</h6></Form.Label>
-						 <Form.Control onChange={this.group_total_time_change} />
-						 <Form.Text className="text-muted">
-								 *Time units can be only minutes, hours and days, e.g. 1 minute, 10 days
-						 </Form.Text>
-					 </Form.Group>
+				<Row>
+					<Col xs={{offset: 3}}>
+						<Form.Text className="text-muted">
+								*Time units can only be minutes, hours and days,
+						</Form.Text>
+						<Form.Text className="text-muted">
+								e.g. 1 minute, 10 days
+						</Form.Text>
+					</Col>
+				</Row>
 
+				<Row>
+					<Col xs={3}> Total Time: </Col>
+					<Col xs={4}>
+						<Form>
+								<Form.Group controlId="group-total-time">
+		 						 	<Form.Control onChange={this.group_total_time_change} />
+		 					 	</Form.Group>
+						</Form>
+					</Col>
+					<Col xs={4}>
+						<Form.Control as="select">
+							<option>minutes</option>
+							<option>hours</option>
+							<option>days</option>
+						</Form.Control>
+					</Col>
+				</Row>
 
-				</Form>
+				<Row>
+					<Col xs={{offset: 3}}>
+						<Form.Text className="text-muted">
+								*Time units can only be minutes, hours and days,
+						</Form.Text>
+						<Form.Text className="text-muted">
+								e.g. 1 minute, 10 days
+						</Form.Text>
+					</Col>
+				</Row>
 	  	</div>
 		);
 	}

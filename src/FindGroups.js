@@ -14,18 +14,10 @@ class FindGroups extends React.Component {
 				</div>
 				<div>
 					<Row>
-						<Col>
-						NAME
-						</Col>
-						<Col>
-						START AT
-						</Col>
-						<Col>
-						TIME
-						</Col>
-						<Col>
-						MEMBER
-						</Col>
+						<Col>NAME</Col>
+						<Col>START AT</Col>
+						<Col>TIME</Col>
+						<Col>MEMBER</Col>
 					</Row>
 				</div>
 
