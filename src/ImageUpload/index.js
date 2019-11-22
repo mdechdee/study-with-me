@@ -11,7 +11,8 @@ class ImageUpload extends Component {
       image: null,
       url: "",
       progress: 0,
-      status:"info"
+      status:"info",
+      show:""
     };
   }
 
@@ -19,6 +20,8 @@ class ImageUpload extends Component {
     if (e.target.files[0]) {
       const image = e.target.files[0];
       this.setState(() => ({ image }));
+      this.setState({status:"info"});
+      this.setState({show:"0%"});
     }
   };
 
@@ -29,12 +32,13 @@ class ImageUpload extends Component {
       "state_changed",
       snapshot => {
         // progress function ...
-        const progress = Math.round(
+        const progress_current = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        this.setState({ progress });
-        if(progress==100){
-          this.setState({status: "success"})
+        this.setState({ progress: progress_current});
+        this.setState({ show: progress_current+"%"});
+        if(progress_current==100){
+          this.setState({status: "success",show:"success"});
         }
       },
       error => {
@@ -70,7 +74,7 @@ class ImageUpload extends Component {
           <input type="file" onChange={this.handleChange} />
         </div>
         <div className="progress-bar">
-          <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.progress+'%'} />
+          <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.show} />
         </div>
         <br />
       
