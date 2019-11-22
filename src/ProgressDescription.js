@@ -10,6 +10,7 @@ class ProgressDescription extends React.Component{
 		super(props);
 		this.progress_description_change=this.progress_description_change.bind(this)
 		this.goal_description_change=this.goal_description_change.bind(this)
+		this.handleUpload = this.handleUpload.bind(this)
 		this.state = {
 			progress_description:"",
 			goal_description:"",
@@ -24,13 +25,14 @@ class ProgressDescription extends React.Component{
 	}
 	handleUpload(e){
 		e.preventDefault();
-		const uploadProgress = db.ref(`users/${this.uid}/progress`).putString(this.state.progress_description);
-		const uploadGoal = db.ref(`users/${this.uid}/goal`).putString(this.state.goal_description);
-		uploadProgress.then((snapshot)=>{
+		const { uid } = this.state;
+		const ref = db.ref(`groups/study/people/${uid}`)
+		// Bug here can't read propety uid
+		const uploadProgress = ref.child(`progress`).putString(this.state.progress_description).then(function(snapshot){
 			console.log("progress uploaded.");
 		});
-		uploadGoal.then((snapshot)=>{
-			console.log("progress uploaded.");
+		const uploadGoal = ref.child(`goal`).putString(this.state.goal_description).then(function(snapshot){
+			console.log("goal uploaded.");
 		});
 	}
 	render(){

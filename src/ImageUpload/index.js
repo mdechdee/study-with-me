@@ -15,7 +15,7 @@ class ImageUpload extends Component {
       status:"info",
       show:"",
       //how to set uid?
-      uid: props.uid,
+      uid: props.uid
       //interval: ""
     };
   }
