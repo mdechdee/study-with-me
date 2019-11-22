@@ -1,27 +1,40 @@
 import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-
+import {Modal, Button} from 'react-bootstrap'
+import CreateGroupDescription from'./CreateGroupDescription.js';
 
 class CreateGroup extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
 
-	render(){
-		return(
-
-			<div>
-				<div>
-				Groups in SWM
-				</div>
-
-        <div>
-
-
-
-				</div>
-
-			</div>
-		);
-	}
+    this.state = {
+      show: false
+    };
+  }
+  handleClose(){
+    this.setState({show: false});
+  }
+  handleShow(){
+    this.setState({show: true});
+  }
+  render(){
+    return(
+      <div>
+        <Button onClick = {this.handleShow}> Create a group </Button>
+          <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title> <h3>Create a group</h3> {this.props.popup_id} </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <CreateGroupDescription/>
+              <Button> Create </Button>
+              <Button onClick = {this.handleClose}> Cancel </Button>
+            </Modal.Body>
+          </Modal>
+      </div>
+    );
+  }
 }
 
 export default CreateGroup;

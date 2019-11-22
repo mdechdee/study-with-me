@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-
+import { Scrollbars } from 'react-custom-scrollbars';
+import CreateGroup from'./CreateGroup.js';
 
 class FindGroups extends React.Component {
 
@@ -27,19 +27,27 @@ class FindGroups extends React.Component {
 						MEMBER
 						</Col>
 					</Row>
-					<Row>
-					</Row>
+				</div>
 
+				<div>
+					<Scrollbars style={{ width: 400, height: 400 }}>
+						<p> Hello </p>
+						<p> Hello </p>
+						<p> Hello </p>
+						<p> Hello </p>
+						<p> Hello </p>
+						<p> Hello </p>
+						<p> Hello </p>
+						<p> Hello </p>
+						<p> Hello </p>
+						<p> Hello </p>
+						<p> Hello </p>
+						<p> Hello </p>
+					</Scrollbars>
+				</div>
 
-					<div>
-						<Row>
-							<Col>
-								<Link to='/CreateGroup'>
-									<Button>Create a group</Button>
-								</Link>
-							</Col>
-						</Row>
-					</div>
+				<div>
+					<CreateGroup />
 				</div>
 
 
