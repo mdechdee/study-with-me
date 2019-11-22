@@ -14,11 +14,11 @@ class FindGroups extends React.Component {
 		db.ref(`groups`).once('value',(snapshot) => {
 			let val = snapshot.val();
 			Object.keys(val).forEach((item) => {
-          		this.setState({groups: [...this.state.groups, item]});
-        	})
-        	console.log(this.state.groups)
+      	this.setState({groups: [...this.state.groups, item]});
+      })
+
 		})
-		
+
 	}
 
 	componentDidMount(){
@@ -29,7 +29,7 @@ class FindGroups extends React.Component {
 		let groupsComponent = []
 		for(let i = 0;i<this.state.groups.length;i++){
 			//replace paragraph with a cool component!
-			groupsComponent.push(<p>{this.state.groups[i]} </p>); 
+			groupsComponent.push(<p key={i}> {this.state.groups[i]} </p>);
 		}
 		return groupsComponent
 	}
@@ -37,8 +37,8 @@ class FindGroups extends React.Component {
 	render(){
 		return(
 			<Scrollbars style={{ width: 500, height: 200 }}>
-        		{this.showAllGroups()}
-      		</Scrollbars>
+      	{this.showAllGroups()}
+      </Scrollbars>
 		);
 	}
 }
