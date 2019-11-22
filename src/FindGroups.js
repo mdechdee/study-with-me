@@ -2,9 +2,17 @@ import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 import CreateGroup from'./CreateGroup.js';
+import { db } from './firebase/firebase.js';
 
 class FindGroups extends React.Component {
-
+	constructor(props){
+	    super(props);
+	    this.state = {
+	        loading: null,
+	        groups: [],
+	    }
+	}
+	  
 	render(){
 		return(
 
@@ -44,8 +52,32 @@ class FindGroups extends React.Component {
 
 
 			</div>
-		);
+		)}
+	
+	fetchGroupsData(){
+		db.ref(`groups`).once('value',(snapshot) => {
+			let val = snapshot.val();
+			Object.keys(val).forEach((item) => {
+      	this.setState({groups: [...this.state.groups, item]});
+      })
+
+		})
+
 	}
+
+	componentDidMount(){
+		this.fetchGroupsData()
+	}
+
+	showAllGroups(){
+		let groupsComponent = []
+		for(let i = 0;i<this.state.groups.length;i++){
+			//replace paragraph with a cool component!
+			groupsComponent.push(<p key={i}> {this.state.groups[i]} </p>);
+		}
+		return groupsComponent
+	}
+
 }
 
 export default FindGroups;

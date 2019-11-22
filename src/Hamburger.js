@@ -8,14 +8,22 @@ class Hamburger extends React.Component {
     this.state = {
       open: false,
     }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(){
+    console.log("OOH!")
+    this.setState({
+      open: false,
+    })
   }
 
   render(){
     return (
       <Menu>
-        <NavLink exact to="/find_group" className="menu-item" >Find Groups</NavLink>
-        <NavLink exact to="/my_group" className="menu-item" >My Group</NavLink>
-        <NavLink exact to="/profile" className="menu-item" >Profile</NavLink>
+        <NavLink onClick={() => this.handleClick} exact to="/find_group">Find Groups</NavLink>
+        <NavLink onClick={() =>this.handleClick} exact to="/my_group">My Group</NavLink>
+        <NavLink onClick={() =>this.handleClick} exact to="/profile">Profile</NavLink>
       </Menu>
     );
   };
