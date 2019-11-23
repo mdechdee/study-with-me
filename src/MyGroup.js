@@ -10,7 +10,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 function makePersonalCard(props){
 	return(
 		<div>
-			<Carousel uid={props.rank}/>
+			<Carousel props = {props}/>
 			{props.rank}
 		</div>
 	)
@@ -35,6 +35,7 @@ class MyGroup extends React.Component {
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
 	}
+	// bring data from database 
 	collectPeople(){
 		db.ref('groups/study/people').once('value',(snapshot) =>{
 			this.setState({
@@ -42,21 +43,23 @@ class MyGroup extends React.Component {
 			})
 		})
 	}
+	// map uid to number and count total number of people
 	countPeople(){
-		//it doesn't work
-		Array.from(this.state.people).map((person)=>{
-			console.log("A");
-			this.setState({mapPeopleWithNumber: Object.assign({},this.state.mapPeopleWithNumber,{[this.state.totalPeople]: person.uid})}) //asynchronous
-			this.setState({totalPeople: this.state.totalPeople+1})
-			}
-		);
+		let num = 0;
+		let temp = {};
+		Object.keys(this.state.people).forEach(function (person){
+			temp[num]=person;
+		    num=num+1;
+		});
+		this.setState({mapPeopleWithNumber:temp});
+		this.setState({totalPeople:num});
+
 	}
 	handleLeft(){
 		if (this.state.rank>0) this.setState({rank:this.state.rank-1})
 	}
 	handleRight(){
-		if (this.state.rank<this.state.totalPeople) this.setState({rank:this.state.rank+1})
-		console.log(this.state);
+		if (this.state.rank<this.state.totalPeople-1) this.setState({rank:this.state.rank+1})
 	}
 	//Fetch group start/stop/interval time (Now start with current time)
 	fetchGroupData(){
@@ -99,7 +102,9 @@ class MyGroup extends React.Component {
 
 	componentWillMount(){
 		this.collectPeople();
-		setTimeout(function(){this.countPeople()}.bind(this),1000)
+		setTimeout(function(){
+			this.countPeople()
+			}.bind(this),1000)
 	}
 
 	componentDidMount(){
