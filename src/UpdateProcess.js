@@ -15,11 +15,12 @@ class UpdateProcess extends React.Component{
 		this.handleClose = this.handleClose.bind(this);
 
 		this.state = {
-			show: false
+			show: false,
+			status: false
 		};
 	}
 	handleClose(){
-		this.setState({ show: false});
+		this.setState({ show: false, status: true});
 	}
 	handleShow(){
 		this.setState({show : true});
@@ -27,26 +28,26 @@ class UpdateProcess extends React.Component{
 	render(){
 		return(
 			<div>
-				<Button variant = "primary" onClick = {this.handleShow}> Update Process </Button>
-		        <Modal show={this.state.show} onHide={this.handleClose} dialogClassName="modal-90w" centered>
-		         	<Modal.Header closeButton>
-		            	<Modal.Title> <h3>Update progress</h3> {this.props.popup_id} </Modal.Title>
-		          	</Modal.Header>
-		          	<Modal.Body>
-		          	<AuthContext.Consumer>
-			          	{ auth => {
-			          		return(
-			          			<div className="componentToUpdate">
-				            		<ImageUpload uid={auth.uid}/>
-		            				<ProgressDescription uid = {auth.uid}/>
-		            			</div>
-		            		);}
-			        	}
-			        </AuthContext.Consumer>
-		          	</Modal.Body>
-		        </Modal>
-		        //update on database
-		        
+				<AuthContext.Consumer>
+		          	{ auth => {
+		          		return(
+  							<div>
+  								<Button variant = "primary" onClick = {this.handleShow} disabled={this.state.status}> Update Process </Button>
+  								<Modal show={this.state.show} onHide={this.handleClose} dialogClassName="modal-90w" centered>
+						         	<Modal.Header closeButton>
+						            	<Modal.Title> <h3>Update progress</h3> {this.props.popup_id} </Modal.Title>
+						          	</Modal.Header>
+						          	<Modal.Body>
+					          			<div className="componentToUpdate">
+						            		<ImageUpload uid={auth.uid}/>
+				            				<ProgressDescription uid = {auth.uid} setStatus = {this.handleClose}/>
+				            			</div>
+						          	</Modal.Body>
+						        </Modal>
+						    </div>
+					    );}
+		          	}
+			    </AuthContext.Consumer>
       		</div>
 		);
 	}

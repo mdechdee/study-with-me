@@ -15,7 +15,8 @@ class ImageUpload extends Component {
       status:"info",
       show:"",
       //how to set uid?
-      uid: props.uid
+      uid: props.uid,
+      interval:"1"
       //interval: ""
     };
   }
@@ -31,8 +32,8 @@ class ImageUpload extends Component {
 
   handleUpload = () => {
     const { image } = this.state;
-    //const uploadTask = storage.ref(`images/${this.state.uid}/${this.state.interval}`).put(image);
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const { uid } = this.state;
+    const uploadTask = storage.ref(`images/${uid}/${this.state.interval}/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
       snapshot => {
