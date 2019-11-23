@@ -5,11 +5,9 @@ import CreateGroupDescription from'./CreateGroupDescription.js';
 class CreateGroup extends React.Component {
   constructor(props){
     super(props);
-    this.handleShow = this.handleShow.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-    this.state = {
-      show: false
-    };
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.state = {show: false};
   }
 
   handleClose(){
@@ -30,6 +28,7 @@ class CreateGroup extends React.Component {
             </Modal.Header>
             <Modal.Body>
               <CreateGroupDescription/>
+
             </Modal.Body>
           </Modal>
       </div>

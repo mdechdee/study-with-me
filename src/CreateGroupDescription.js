@@ -1,21 +1,21 @@
 import React from 'react';
 import {Row, Col, Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
-import DateTimePicker from 'react-datetime-picker';
+import {db} from './firebase/firebase.js'
 
 class CreateGroupDescription extends React.Component{
 	constructor(props){
 		super(props);
 		this.group_name_change=this.group_name_change.bind(this)
 		this.group_start_date_change=this.group_start_date_change.bind(this)
-		this.group_start_time_change=this.group_start_time_change.bind(this)
+		this.group_time_change=this.group_time_change.bind(this)
 		this.group_interval_change=this.group_interval_change.bind(this)
 		this.group_total_time_change=this.group_total_time_change.bind(this)
-
+		this.writeToDatabase = this.writeToDatabase.bind(this)
 		this.state = {
 			group_name:"",
 			group_start_date:"",
-			group_start_time:"",
+			group_time:"",
 			group_interval:"",
 			group_total_time:"",
 		};
@@ -31,6 +31,7 @@ class CreateGroupDescription extends React.Component{
 
 	group_start_time_change(e){
 		this.setState({group_time: e.target.value})
+		console.log(this.state.group_time)
 	}
 
 	group_interval_change(e){
@@ -39,6 +40,18 @@ class CreateGroupDescription extends React.Component{
 
 	group_total_time_change(e){
 		this.setState({group_total_time: e.target.value})
+	}
+
+	writeToDatabase() {
+	    var newRef = db.ref('groups').push();
+	    newRef.set(
+	    {
+				'name': 'new_group',
+	      'startTime': 0,
+				'stopTime': 0,
+				'intervalTime': 0,
+				'intervalNum': 0
+			})
 	}
 
 	render(){
@@ -58,9 +71,9 @@ class CreateGroupDescription extends React.Component{
 				<Row>
 					<Col xs={3}> Start Date: </Col>
 					<Col xs={8}>
-						<Form>
-							<Form.Group controlId="group-start-date">
-								<Form.Control type="date" onChange={this.group_start_date_change}/>
+						 <Form>
+						 	<Form.Group controlId="group-start-date">
+						 		<Form.Control type="date" onChange={this.group_start_date_change}/>
 					 		</Form.Group>
 						</Form>
 					</Col>
@@ -68,11 +81,11 @@ class CreateGroupDescription extends React.Component{
 
 				<Row>
 					<Col xs={3}> Start Time: </Col>
-					<Col xs={8}>
+					<Col xs={4}>
 						<Form>
-							<Form.Group controlId="group-start-time">
-								<Form.Control type="time" onChange={this.group_start_time_change}/>
-					 		</Form.Group>
+								<Form.Group controlId="group-time">
+		 						 	<Form.Control type="time" onChange={this.group_time_change} />
+		 					 	</Form.Group>
 						</Form>
 					</Col>
 				</Row>
@@ -82,7 +95,7 @@ class CreateGroupDescription extends React.Component{
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-interval">
-		 						 	<Form.Control type="number" min="1" pattern="\d*" step="1" onChange={this.group_interval_change} />
+		 						 	<Form.Control type="number" min="1" step="1" onChange={this.group_interval_change} />
 		 					 	</Form.Group>
 						</Form>
 					</Col>
@@ -111,7 +124,7 @@ class CreateGroupDescription extends React.Component{
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-total-time">
-		 						 	<Form.Control type="number" min="1" step="1" onChange={this.group_total_time_change} />
+		 						 	<Form.Control type="date-time" onChange={this.group_total_time_change} />
 		 					 	</Form.Group>
 						</Form>
 					</Col>
@@ -134,9 +147,7 @@ class CreateGroupDescription extends React.Component{
 						</Form.Text>
 					</Col>
 				</Row>
-
-				<Button variant="warning" offset={100}> Create </Button>
-				<Button variant="danger" offset={100} onClick={this.handleClose}> Cancel </Button>
+				<Button variant="warning" offset={100} onClick={this.writeToDatabase}> Create </Button>
 	  	</div>
 		);
 	}
