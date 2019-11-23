@@ -78,13 +78,17 @@ class MyGroup extends React.Component {
 				</div>
 				<div>
 					<p>Progress</p>
-					<FontAwesomeIcon icon='chevron-circle-left'/>
 					<p>-username</p>
-					<button><FontAwesomeIcon icon='chevron-circle-left'/>Prev</button>
+					<button><FontAwesomeIcon icon='chevron-circle-left'/></button>
 					<img src={progress} width="300" height ="150"/>
-					<button><FontAwesomeIcon icon='chevron-circle-left'/>Next</button>
-					<button><FontAwesomeIcon icon='chevron-circle-left'/>Cheer</button>
-					<button><FontAwesomeIcon icon='chevron-circle-left'/>Star</button>
+					<button><FontAwesomeIcon icon='chevron-circle-right'/></button>
+				</div>
+				<div>
+					<button><FontAwesomeIcon icon='comment'/></button>
+					<button><FontAwesomeIcon icon='star'/></button>
+				</div>
+				<div>
+					<button> Join Group </button>
 				</div>
 			</div>
 		);
