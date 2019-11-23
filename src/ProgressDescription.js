@@ -30,7 +30,7 @@ class ProgressDescription extends React.Component{
 		e.preventDefault();
 		const { uid } = this.state;
 		const userRef = db.ref(`groups/study/people/${uid}`);
-		const uploadProgress = userRef.child(`${this.state.interval}`).set({'progress': this.state.progress_description,'goal': this.state.goal_description})
+		const uploadProgress = userRef.child(`${this.state.interval}`).set({'progress': this.state.progress_description,'goal': this.state.goal_description,'largeSmile':0,'smile':0,'love':0,'like':0});
 		this.state.setStatus();
 	}
 	render(){
