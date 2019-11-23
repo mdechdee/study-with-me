@@ -6,6 +6,8 @@ import {Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
 import ImageUpload from './ImageUpload/index.js'
 import ProgressDescription from './ProgressDescription.js'
+import AuthContext from './authentication/AuthContext';
+import TimerContext from './TimerContext.js'
 import './scss/UpdateProcess.scss'
 class UpdateProcess extends React.Component{
 	constructor(props){
@@ -26,16 +28,37 @@ class UpdateProcess extends React.Component{
 	render(){
 		return(
 			<div>
-				<Button variant = "primary" onClick = {this.handleShow}> Update Process </Button>
-		        <Modal show={this.state.show} onHide={this.handleClose} size = 'xl'>
-		         	<Modal.Header closeButton>
-		            	<Modal.Title> <h3>Update progress</h3> {this.props.popup_id} </Modal.Title>
-		          	</Modal.Header>
-		          	<Modal.Body>
-		            	<ImageUpload/>
-		            	<ProgressDescription/>
-		          	</Modal.Body>
-		        </Modal>
+				<AuthContext.Consumer>
+		          	{ auth => {
+		          		return(
+  							<div>
+  								<Button variant = "primary" onClick = {this.handleShow}> Update Process </Button>
+  								<Modal dialogClassName = 'custom-dialog' show={this.state.show} onHide={this.handleClose} centered>
+						         	<Modal.Header closeButton>
+						            	<Modal.Title> <h3>Update progress</h3> {this.props.popup_id} </Modal.Title>
+						          	</Modal.Header>
+						          	<Modal.Body>
+					          				<TimerContext.Consumer>
+									          	{ timer => {
+									          		return(
+									          			<div className="componentToUpdate">
+										          			<ImageUpload 
+										          				uid={auth.uid} 
+										          				interval={timer.intervalNum}/>
+					            							<ProgressDescription 
+					            								uid = {auth.uid} 
+					            								interval = {timer.intervalNum}
+					            								setStatus = {this.handleClose}/>
+					            						</div>
+									          		);}
+									          	}
+									          </TimerContext.Consumer>
+						          	</Modal.Body>
+						        </Modal>
+						    </div>
+					    );}
+		          	}
+			    </AuthContext.Consumer>
       		</div>
 		);
 	}
