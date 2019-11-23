@@ -17,7 +17,7 @@ class ProfileImage extends Component {
     };
     console.log("a");
     storage
-      .ref("images/${uid}")
+      .ref(`images/${this.state.uid}`)
       .child("profile.jpg")
       .getDownloadURL()
       .then(url => {
