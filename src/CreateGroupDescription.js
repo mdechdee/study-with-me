@@ -63,7 +63,7 @@ class CreateGroupDescription extends React.Component{
 		console.log(e);
 		var [y, m, d] = e.split("-");
 		var [h, n] = f.split(":");
-		var date = new Date(y, m[1]-1, d);
+		var date = new Date(y, m-1, d);
 		var s = (((parseInt(h)*60)+parseInt(n))*60000);
 		console.log(date.getTime());
 		console.log(s);
