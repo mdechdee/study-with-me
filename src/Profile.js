@@ -10,33 +10,35 @@ import Cheer from './Cheer'
 class Profile extends React.Component {
 	render(){
 		return(
-			<div className="body">
+			<div className="profile">
 				<br/>
 				<h2>Profile</h2>
-				<Scrollbars style={{ width: 400, height: 700 }}>
-					<AuthContext.Consumer>{
-						auth => {
-							console.log(auth.email+""+auth.uid)
-							return(
-								<div>
-									<ProfileImage uid={auth.uid} />
-									<ShowInformation uid={auth.uid}/>
-									<TimerContext.Consumer>{
-										timer => {
-											return(
-												<div>
-													<Cheer uid={auth.uid} interval = {timer.intervalNum}/>
-												</div>
-											);
+				<div className="profile-info">
+					<Scrollbars style={{ width: 400, height: 700}}>
+						<AuthContext.Consumer>{
+							auth => {
+								console.log(auth.email+""+auth.uid)
+								return(
+									<div>
+										<ProfileImage uid={auth.uid} />
+										<ShowInformation uid={auth.uid}/>
+										<TimerContext.Consumer>{
+											timer => {
+												return(
+													<div>
+														<Cheer uid={auth.uid} interval = {timer.intervalNum}/>
+													</div>
+												);
+											}
 										}
-									}
-									</TimerContext.Consumer>
-								</div>
-							);
+										</TimerContext.Consumer>
+									</div>
+								);
+							}
 						}
-					}
-					</AuthContext.Consumer>
-				</Scrollbars>
+						</AuthContext.Consumer>
+					</Scrollbars>
+				</div>
 				<UpdateProgress/>
 			</div>
 		);
