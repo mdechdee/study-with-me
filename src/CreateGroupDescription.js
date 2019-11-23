@@ -60,13 +60,10 @@ class CreateGroupDescription extends React.Component{
 	}
 
 	dateToNum(e, f) {
-		console.log(e);
 		var [y, m, d] = e.split("-");
 		var [h, n] = f.split(":");
 		var date = new Date(y, m-1, d);
 		var s = (((parseInt(h)*60)+parseInt(n))*60000);
-		console.log(date.getTime());
-		console.log(s);
 		var t = date.getTime()+s;
 		return(t)
 	}
@@ -79,10 +76,22 @@ class CreateGroupDescription extends React.Component{
 			newRef.set(
 	    {
 				'name': this.state.group_name,
+				'baseStartDate': this.state.group_start_date,
+				'baseStartTime': this.state.group_start_time,
+				'baseStopTime': startTime + totalTime,
+
+				'totalTime': this.state.group_total_time,
+				'totalTimeUnit': this.state.unit_total_time,
+
+				'interval': this.state.group_interval,
+				'intervalUnit': this.state.unit_interval,
+				'roundNum': totalTime/intervalTime,
+
 	      'startTime': startTime,
 				'stopTime': startTime + intervalTime,
 				'intervalTime': intervalTime,
-				'intervalNum': 0
+				'intervalNum': 0,
+				'peopleNum': 1
 			})
 	}
 
