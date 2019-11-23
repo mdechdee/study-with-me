@@ -14,7 +14,11 @@ import TimerContext from './TimerContext.js';
 import Signin from './authentication/Signin.js';
 import withAuthentication from './authentication/WithAuthentication.js';
 import withTimer from './WithTimer.js';
-
+import { library } from '@fortawesome/fontawesome-svg-core';
+//import { fas } from '@fortawesome/free-solid-svg-icons';
+//import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faChevronCircleLeft,faChevronCircleRight,faComment,faStar } from '@fortawesome/free-solid-svg-icons';
+library.add(faChevronCircleLeft,faChevronCircleRight,faComment,faStar);
 class App extends React.Component{
   render() {
     return(
