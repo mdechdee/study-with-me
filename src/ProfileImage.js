@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import {storage} from './firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
-import {Button} from 'react-bootstrap'
+import {Button} from 'react-bootstrap';
 import './scss/UpdateProcess.scss';
-
 class ProfileImage extends Component {
   constructor(props) {
     super(props);
@@ -89,12 +88,14 @@ class ProfileImage extends Component {
             <input type="file" name="ccc" onChange={this.handleChange} />
           </div>
           <br/>
+
           
         </div>
         <div className="progress-bar">
           <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.show} />
         </div>
         <br />
+
         <Button variant = "outline-primary"
               onClick={this.handleUpload}
               className="waves-effect waves-light btn"

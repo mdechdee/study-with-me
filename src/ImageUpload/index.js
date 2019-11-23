@@ -33,7 +33,7 @@ class ImageUpload extends Component {
   handleUpload = () => {
     const { image } = this.state;
     const { uid } = this.state;
-    const uploadTask = storage.ref(`images/${uid}/${this.state.interval}/${image.name}`).put(image);
+    const uploadTask = storage.ref(`images/${uid}/${this.state.interval}/work.jpg`).put(image);
     uploadTask.on(
       "state_changed",
       snapshot => {
@@ -55,7 +55,7 @@ class ImageUpload extends Component {
         // complete function ...
         storage
           .ref(`images/${uid}/${this.state.interval}`)
-          .child(image.name)
+          .child("work.jpg")
           .getDownloadURL()
           .then(url => {
             this.setState({ url });
@@ -69,10 +69,10 @@ class ImageUpload extends Component {
         <br/>
         <div className="align image">
           <img
-            src={this.state.url || "https://via.placeholder.com/400x300"}
+            src={this.state.url || "https://via.placeholder.com/200x300"}
             alt="Uploaded Images"
-            height="300"
-            width="400"
+            height="200"
+            width="300"
           />
         </div>
         <div className="btn">

@@ -33,7 +33,7 @@ class UpdateProcess extends React.Component{
 		          		return(
   							<div>
   								<Button variant = "primary" onClick = {this.handleShow}> Update Process </Button>
-  								<Modal show={this.state.show} onHide={this.handleClose} centered size="sm">
+  								<Modal dialogClassName = 'custom-dialog' show={this.state.show} onHide={this.handleClose} centered>
 						         	<Modal.Header closeButton>
 						            	<Modal.Title> <h3>Update progress</h3> {this.props.popup_id} </Modal.Title>
 						          	</Modal.Header>

@@ -5,6 +5,7 @@ import TimerContext from './TimerContext.js'
 import ProfileImage from './ProfileImage'
 import Information from './Information'
 import './scss/_base.scss'
+import Cheer from './Cheer'
 class Profile extends React.Component {
 	render(){
 		return(
@@ -23,9 +24,7 @@ class Profile extends React.Component {
 					}
 				}
 				</AuthContext.Consumer>
-				<br/>
-				<br/>
-				<UpdateProcess />
+				<Cheer/>
 			</div>
 		);
 	}
