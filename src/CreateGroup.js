@@ -25,7 +25,7 @@ class CreateGroup extends React.Component {
             </Modal.Header>
             <Modal.Body>
               <CreateGroupDescription/>
-              <Button variant="warning" offset={100}> Create </Button>
+              
               <Button variant="danger" offset={100} onClick={this.handleClose}> Cancel </Button>
             </Modal.Body>
           </Modal>
