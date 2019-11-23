@@ -12,7 +12,7 @@ class FindGroups extends React.Component {
 	        groups: [],
 	    }
 	}
-	  
+
 	render(){
 		return(
 
@@ -53,7 +53,7 @@ class FindGroups extends React.Component {
 
 			</div>
 		)}
-	
+
 	fetchGroupsData(){
 		db.ref(`groups`).once('value',(snapshot) => {
 			let val = snapshot.val();

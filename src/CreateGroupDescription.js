@@ -69,16 +69,9 @@ class CreateGroupDescription extends React.Component{
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-time">
-		 						 	<Form.Control onChange={this.group_time_change} />
+		 						 	<Form.Control type="time" onChange={this.group_time_change} />
 		 					 	</Form.Group>
 						</Form>
-					</Col>
-					<Col xs={4}>
-						<Form.Control as="select">
-							<option>minutes</option>
-							<option>hours</option>
-							<option>days</option>
-						</Form.Control>
 					</Col>
 				</Row>
 
@@ -87,7 +80,7 @@ class CreateGroupDescription extends React.Component{
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-interval">
-		 						 	<Form.Control onChange={this.group_interval_change} />
+		 						 	<Form.Control type="number" onChange={this.group_interval_change} />
 		 					 	</Form.Group>
 						</Form>
 					</Col>
@@ -116,7 +109,7 @@ class CreateGroupDescription extends React.Component{
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-total-time">
-		 						 	<Form.Control onChange={this.group_total_time_change} />
+		 						 	<Form.Control type="number" onChange={this.group_total_time_change} />
 		 					 	</Form.Group>
 						</Form>
 					</Col>
