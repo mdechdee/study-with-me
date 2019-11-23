@@ -1,6 +1,7 @@
 import React from 'react';
 import {Row, Col, Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
+import {DatePicker} from 'react-datepicker'
 
 class CreateGroupDescription extends React.Component{
 	constructor(props){
@@ -15,9 +16,16 @@ class CreateGroupDescription extends React.Component{
 			group_start_date:"",
 			group_time:"",
 			group_interval:"",
-			group_total_time:""
+			group_total_time:"",
+			startDate: new Date()
 		};
 	}
+
+	handleChange = date => {
+    this.setState({
+      startDate: date
+    });
+  };
 
 	group_name_change(e){
 		this.setState({group_name: e.target.value})
@@ -57,11 +65,17 @@ class CreateGroupDescription extends React.Component{
 				<Row>
 					<Col xs={3}> Start Date: </Col>
 					<Col xs={8}>
-						<Form>
-							<Form.Group controlId="group-start-date">
-								<Form.Control type="date" onChange={this.group_start_date_change}/>
-					 		</Form.Group>
-						</Form>
+						// <Form>
+						// 	<Form.Group controlId="group-start-date">
+						// 		<Form.Control type="date" onChange={this.group_start_date_change}/>
+					 	// 	</Form.Group>
+						// </Form>
+						<DatePicker
+						  selected={this.state.date}
+						  onChange={this.handleChange}
+						  showTimeSelect
+						  dateFormat="Pp"
+						/>
 					</Col>
 				</Row>
 
@@ -81,7 +95,7 @@ class CreateGroupDescription extends React.Component{
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-interval">
-		 						 	<Form.Control type="number" onChange={this.group_interval_change} />
+		 						 	<Form.Control type="number" min="1" step="1" onChange={this.group_interval_change} />
 		 					 	</Form.Group>
 						</Form>
 					</Col>
@@ -110,7 +124,7 @@ class CreateGroupDescription extends React.Component{
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-total-time">
-		 						 	<Form.Control type="number" onChange={this.group_total_time_change} />
+		 						 	<Form.Control type="number" min="1" step="1" onChange={this.group_total_time_change} />
 		 					 	</Form.Group>
 						</Form>
 					</Col>
