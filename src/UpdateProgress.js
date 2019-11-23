@@ -4,12 +4,12 @@ import React from 'react';
 import {Modal} from 'react-bootstrap'
 import {Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
-import ImageUpload from './ImageUpload/index.js'
+import ProgressImage from './ProgressImage.js'
 import ProgressDescription from './ProgressDescription.js'
 import AuthContext from './authentication/AuthContext';
 import TimerContext from './TimerContext.js'
-import './scss/UpdateProcess.scss'
-class UpdateProcess extends React.Component{
+import './scss/UpdateProgress.scss'
+class UpdateProgress extends React.Component{
 	constructor(props){
 		super(props);
 		this.handleShow = this.handleShow.bind(this);
@@ -42,7 +42,7 @@ class UpdateProcess extends React.Component{
 									          	{ timer => {
 									          		return(
 									          			<div className="componentToUpdate">
-										          			<ImageUpload 
+										          			<ProgressImage 
 										          				uid={auth.uid} 
 										          				interval={timer.intervalNum}/>
 					            							<ProgressDescription 
@@ -65,4 +65,4 @@ class UpdateProcess extends React.Component{
 }
 
 
-export default UpdateProcess;
+export default UpdateProgress;

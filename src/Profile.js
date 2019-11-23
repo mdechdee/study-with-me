@@ -1,5 +1,5 @@
 import React from 'react';
-import UpdateProcess from'./UpdateProcess.js';
+import UpdateProgress from'./UpdateProgress.js';
 import AuthContext from './authentication/AuthContext'
 import TimerContext from './TimerContext.js'
 import ProfileImage from './ProfileImage'
@@ -34,6 +34,7 @@ class Profile extends React.Component {
 					}
 				}
 				</AuthContext.Consumer>
+				<UpdateProgress/>
 			</div>
 		);
 	}

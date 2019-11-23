@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import {storage} from '../firebase/firebase.js';
+import {storage} from './firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap'
-import '../scss/UpdateProcess.scss';
-import AuthContext from '../authentication/AuthContext';
-import TimerContext from '../TimerContext.js'
+import './scss/UpdateProgress.scss';
+import AuthContext from './authentication/AuthContext';
+import TimerContext from './TimerContext.js'
 
-class ImageUpload extends Component {
+class ProgressImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -96,4 +96,4 @@ class ImageUpload extends Component {
   }
 }
 
-export default ImageUpload;
+export default ProgressImage;

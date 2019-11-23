@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {storage} from './firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
-import './scss/UpdateProcess.scss';
+import './scss/UpdateProgress.scss';
 class ProfileImage extends Component {
   constructor(props) {
     super(props);
