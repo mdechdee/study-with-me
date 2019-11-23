@@ -3,7 +3,6 @@ import { db } from './firebase/firebase.js';
 import TimerContext from './TimerContext.js'
 import AuthContext from './authentication/AuthContext.js'
 
-
 const withTimer = (Component) =>
 	class WithTimer extends React.Component {
 		constructor(props){

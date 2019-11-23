@@ -63,14 +63,13 @@ const Page = (auth) => {
     console.log('no user')
     return(
       <Switch>
-        <Route exact path='/' />
         <Route path='/login' component={Signin} />
         <Route render = {() => (
-            <Redirect to='/' />
+            <Redirect to='/login' />
         )}/>
       </Switch>
     );
   }
 }
 
-export default withAuthentication(withTimer(App));
+export default withRouter(withTimer(withAuthentication(App)));
