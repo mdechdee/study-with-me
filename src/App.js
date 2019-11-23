@@ -9,31 +9,33 @@ import Profile from './Profile.js';
 import FindGroups from './FindGroups.js';
 import MyGroup from './MyGroup.js';
 import Unmatched from './Unmatched.js';
-import AuthContext from './authentication/AuthContext';
+import AuthContext from './authentication/AuthContext.js';
+import TimerContext from './TimerContext.js';
 import Signin from './authentication/Signin.js';
 import withAuthentication from './authentication/WithAuthentication.js';
+import withTimer from './WithTimer.js';
 
 class App extends React.Component{
-  render() { 
+  render() {
     return(
       <Container fluid className>
         <Row className='justify-content-sm-center outer-wrap'>
-          <AuthContext.Consumer>
-            {
-              auth => {
-                return(
-                  <Col xs={12} sm={8} md={6} lg={4} className='page-wrap'>
-                    <div className='horizontal-div-above' style= {{background :base_styles.primary, zIndex: '1'}}>
-                       <Hamburger/>
-                       <div className='title'>Study With Me</div>
-                    </div> 
-                    <div className='horizontal-div-above' style = {{zIndex: '-2'}}/>
-                    <Page authUser = {auth}/>
-                    <div className='horizontal-div-below'/>
-                  </Col>
-                );
+          <AuthContext.Consumer>{ auth => { return(
+              <TimerContext.Consumer>{ timer => { return(
+                    <Col xs={12} sm={8} md={6} lg={4} className='page-wrap'>
+                      <div className='horizontal-div-above' style= {{background :base_styles.primary, zIndex: '1'}}>
+                         <Hamburger/>
+                         <div className='title'>Study With Me</div>
+                      </div>
+                      <div className='horizontal-div-above' style = {{zIndex: '-2'}}/>
+                      <Page authUser = {auth} timer={timer}/>
+                      <div className='horizontal-div-below'/>
+                    </Col>
+                  )}
               }
-            }
+              </TimerContext.Consumer>
+              )}
+          }
           </AuthContext.Consumer>
         </Row>
       </Container>
@@ -42,14 +44,14 @@ class App extends React.Component{
 }
 
 const Page = (auth) => {
-  console.log(auth.authUser)
   if(auth.authUser){
     return(
       <Switch>
-        <Route exact path='/' />
+        <Route exact path='/find_group' />
         <Route path='/find_group' component={FindGroups} />
         <Route path='/my_group' component={MyGroup} />
         <Route path='/profile'  component={Profile} />
+        <Route path='/login' component={Signin} />
         <Route component={Unmatched} />
       </Switch>
     );
@@ -62,11 +64,11 @@ const Page = (auth) => {
         <Route exact path='/' />
         <Route path='/login' component={Signin} />
         <Route render = {() => (
-            <Redirect to='/login' />
+            <Redirect to='/' />
         )}/>
       </Switch>
     );
   }
 }
 
-export default withAuthentication(App);
+export default withAuthentication(withTimer(App));
