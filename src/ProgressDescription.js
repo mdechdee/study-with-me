@@ -5,6 +5,7 @@ import {Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
 import {db} from './firebase/firebase.js';
 import './scss/UpdateProcess.scss'
+import TimerContext from './TimerContext.js'
 class ProgressDescription extends React.Component{
 	constructor(props){
 		super(props);
@@ -15,7 +16,7 @@ class ProgressDescription extends React.Component{
 			progress_description:"",
 			goal_description:"",
 			uid:props.uid,
-			interval:"1",
+			interval:props.interval,
 			setStatus:props.setStatus
 		};
 	}
@@ -29,7 +30,6 @@ class ProgressDescription extends React.Component{
 		e.preventDefault();
 		const { uid } = this.state;
 		const userRef = db.ref(`groups/study/people/${uid}`);
-		// Bug here can't read propety uid
 		const uploadProgress = userRef.child(`${this.state.interval}`).set({'progress': this.state.progress_description,'goal': this.state.goal_description})
 		this.state.setStatus();
 	}

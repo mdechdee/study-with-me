@@ -1,24 +1,30 @@
 import React, { Component } from "react";
-import {storage} from '../firebase/firebase.js';
+import {storage} from './firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap'
-import '../scss/UpdateProcess.scss';
-import AuthContext from '../authentication/AuthContext';
-import TimerContext from '../TimerContext.js'
+import './scss/UpdateProcess.scss';
 
-class ImageUpload extends Component {
+class ProfileImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: null,
       url: "",
-      progress: 0,
-      status:"info",
-      show:"",
       uid: props.uid,
-      interval:props.interval
-      //interval: ""
+      show: "",
+      image: null,
+      status:"info",
+      progress: 0
     };
+    console.log("a");
+    storage
+      .ref("images/${uid}")
+      .child("profile.jpg")
+      .getDownloadURL()
+      .then(url => {
+        this.setState({ url });
+      }).catch( error =>{
+          this.setState({url:"https://via.placeholder.com/300x200"})
+      });
   }
 
   handleChange = e => {
@@ -33,7 +39,7 @@ class ImageUpload extends Component {
   handleUpload = () => {
     const { image } = this.state;
     const { uid } = this.state;
-    const uploadTask = storage.ref(`images/${uid}/${this.state.interval}/${image.name}`).put(image);
+    const uploadTask = storage.ref(`images/${uid}/profile.jpg`).put(image);
     uploadTask.on(
       "state_changed",
       snapshot => {
@@ -54,11 +60,13 @@ class ImageUpload extends Component {
       () => {
         // complete function ...
         storage
-          .ref(`images/${uid}/${this.state.interval}`)
-          .child(image.name)
+          .ref(`images/${uid}`)
+          .child("profile.jpg")
           .getDownloadURL()
           .then(url => {
             this.setState({ url });
+          }).catch( error =>{
+            console.log(error);
           });
       }
     );
@@ -69,15 +77,17 @@ class ImageUpload extends Component {
         <br/>
         <div className="align image">
           <img
-            src={this.state.url || "https://via.placeholder.com/400x300"}
-            alt="Uploaded Images"
-            height="300"
-            width="400"
+            src={this.state.url}
+            alt="Profile Image"
+            height="200"
+            width="300"
           />
         </div>
         <div className="btn">
-          <span>File: </span>
-          <input type="file" onChange={this.handleChange} />
+          Change picture here {":  "}
+          <input type="file" name="ccc" onChange={this.handleChange} />
+          <br/>
+          
         </div>
         <div className="progress-bar">
           <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.show} />
@@ -96,4 +106,4 @@ class ImageUpload extends Component {
   }
 }
 
-export default ImageUpload;
+export default ProfileImage;

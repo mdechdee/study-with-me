@@ -70,7 +70,6 @@ const withTimer = (Component) =>
 			if(this.state.currentTime > this.state.stopTime){
 				this.pushNewStartTime()
 				console.log("Time's up!, "+this.state.intervalNum +" intervals passed")
-				this.state.doWhenTimesUp()
 			}
 		}
 

@@ -1,6 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import UpdateProcess from'./UpdateProcess.js';
 import AuthContext from './authentication/AuthContext'
+import TimerContext from './TimerContext.js'
+import ProfileImage from './ProfileImage'
+import Information from './Information'
 class Profile extends React.Component {
 	render(){
 		return(
@@ -8,13 +11,17 @@ class Profile extends React.Component {
 				<AuthContext.Consumer>{
 					auth => {
 						console.log(auth.email+""+auth.uid)
+						return(
+							<div>
+								<ProfileImage uid={auth.uid} />
+								<Information uid={auth.uid}/>
+							</div>
+						);
 					}
 				}
 				</AuthContext.Consumer>
-				//-------------------------Profile-----------------------
-
-
-				//-------------------------UpdateProcess-----------------
+				<br/>
+				<br/>
 				<UpdateProcess />
 			</div>
 		);

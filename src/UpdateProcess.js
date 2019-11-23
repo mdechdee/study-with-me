@@ -7,6 +7,7 @@ import {Form} from 'react-bootstrap'
 import ImageUpload from './ImageUpload/index.js'
 import ProgressDescription from './ProgressDescription.js'
 import AuthContext from './authentication/AuthContext';
+import TimerContext from './TimerContext.js'
 import './scss/UpdateProcess.scss'
 class UpdateProcess extends React.Component{
 	constructor(props){
@@ -15,12 +16,11 @@ class UpdateProcess extends React.Component{
 		this.handleClose = this.handleClose.bind(this);
 
 		this.state = {
-			show: false,
-			status: false
+			show: false
 		};
 	}
 	handleClose(){
-		this.setState({ show: false, status: true});
+		this.setState({ show: false});
 	}
 	handleShow(){
 		this.setState({show : true});
@@ -32,16 +32,27 @@ class UpdateProcess extends React.Component{
 		          	{ auth => {
 		          		return(
   							<div>
-  								<Button variant = "primary" onClick = {this.handleShow} disabled={this.state.status}> Update Process </Button>
-  								<Modal show={this.state.show} onHide={this.handleClose} dialogClassName="modal-90w" centered>
+  								<Button variant = "primary" onClick = {this.handleShow}> Update Process </Button>
+  								<Modal show={this.state.show} onHide={this.handleClose} centered size="sm">
 						         	<Modal.Header closeButton>
 						            	<Modal.Title> <h3>Update progress</h3> {this.props.popup_id} </Modal.Title>
 						          	</Modal.Header>
 						          	<Modal.Body>
-					          			<div className="componentToUpdate">
-						            		<ImageUpload uid={auth.uid}/>
-				            				<ProgressDescription uid = {auth.uid} setStatus = {this.handleClose}/>
-				            			</div>
+					          				<TimerContext.Consumer>
+									          	{ timer => {
+									          		return(
+									          			<div className="componentToUpdate">
+										          			<ImageUpload 
+										          				uid={auth.uid} 
+										          				interval={timer.intervalNum}/>
+					            							<ProgressDescription 
+					            								uid = {auth.uid} 
+					            								interval = {timer.intervalNum}
+					            								setStatus = {this.handleClose}/>
+					            						</div>
+									          		);}
+									          	}
+									          </TimerContext.Consumer>
 						          	</Modal.Body>
 						        </Modal>
 						    </div>
