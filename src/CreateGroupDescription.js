@@ -11,25 +11,15 @@ class CreateGroupDescription extends React.Component{
 		this.group_start_time_change=this.group_start_time_change.bind(this)
 		this.group_interval_change=this.group_interval_change.bind(this)
 		this.group_total_time_change=this.group_total_time_change.bind(this)
-		this.handleShow = this.handleShow.bind(this)
-    this.handleClose = this.handleClose.bind(this)
+
 		this.state = {
 			group_name:"",
 			group_start_date:"",
 			group_start_time:"",
 			group_interval:"",
 			group_total_time:"",
-			show: false
 		};
 	}
-
-	handleClose(){
-    this.setState({show: false});
-  }
-
-  handleShow(){
-    this.setState({show: true});
-  }
 
 	group_name_change(e){
 		this.setState({group_name: e.target.value})
@@ -39,7 +29,7 @@ class CreateGroupDescription extends React.Component{
 		this.setState({group_start_date: e.target.value})
 	}
 
-	group_time_change(e){
+	group_start_time_change(e){
 		this.setState({group_time: e.target.value})
 	}
 

@@ -5,7 +5,19 @@ import CreateGroupDescription from'./CreateGroupDescription.js';
 class CreateGroup extends React.Component {
   constructor(props){
     super(props);
-    
+    this.handleShow = this.handleShow.bind(this)
+    this.handleClose = this.handleClose.bind(this)
+    this.state = {
+      show: false
+    };
+  }
+
+  handleClose(){
+    this.setState({show: false});
+  }
+
+  handleShow(){
+    this.setState({show: true});
   }
 
   render(){
