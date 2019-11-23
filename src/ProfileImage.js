@@ -84,8 +84,10 @@ class ProfileImage extends Component {
           />
         </div>
         <div className="btn">
-          Change picture here {":  "}
-          <input type="file" name="ccc" onChange={this.handleChange} />
+          <h5>Change picture here {":  "}</h5>
+          <div className="file-box">
+            <input type="file" name="ccc" onChange={this.handleChange} />
+          </div>
           <br/>
           
         </div>
