@@ -9,9 +9,13 @@ import Profile from './Profile.js';
 import FindGroups from './FindGroups.js';
 import MyGroup from './MyGroup.js';
 import Unmatched from './Unmatched.js';
-
+import { library } from '@fortawesome/fontawesome-svg-core';
+//import { fas } from '@fortawesome/free-solid-svg-icons';
+//import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
+library.add(faChevronCircleLeft);
 class App extends React.Component{
-  render() { 
+  render() {
     return(
       <Container fluid className>
         <Row className='justify-content-sm-center outer-wrap'>
@@ -19,7 +23,7 @@ class App extends React.Component{
             <div className='horizontal-div-above' style= {{background :base_styles.primary}}>
                <Hamburger/>
                <div className='title'>Study With Me</div>
-            </div> 
+            </div>
             <div className='horizontal-div-above'>
 
             </div>
@@ -27,7 +31,7 @@ class App extends React.Component{
             <div className='horizontal-div-below'>
 
             </div>
-            
+
           </Col>
         </Row>
       </Container>

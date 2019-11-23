@@ -1,6 +1,8 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
 import { db } from './firebase/firebase.js';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import progress from './camera.jpg';
 class MyGroup extends React.Component {
 
 	constructor(props){
@@ -28,7 +30,7 @@ class MyGroup extends React.Component {
 	// Fetch current server's time
 	fetchCurrentTime(){
         db.ref('/.info/serverTimeOffset').on('value', (data) => {
-	    	this.setState({	
+	    	this.setState({
 				offset : data.val(),
 				currentTime: this.state.offset + Date.now()
 			})
@@ -56,12 +58,12 @@ class MyGroup extends React.Component {
 		this.fetchCurrentTime()
 		this.fetchGroupData()
 		setInterval(() => {
-			this.setState({	
+			this.setState({
 				currentTime : this.state.offset + Date.now()
 			})
 			this.checkTimeUp()
 		}, 100)
-		
+
 	}
 
 	render(){
@@ -71,6 +73,19 @@ class MyGroup extends React.Component {
 				<div> {new Date(this.state.startTime).getSeconds()} </div>
 				<div> {new Date(this.state.stopTime).getSeconds()} </div>
 				<div> {this.state.intervalTime} </div>
+				<div>
+					Group: Study Marathon
+				</div>
+				<div>
+					<p>Progress</p>
+					<FontAwesomeIcon icon='chevron-circle-left'/>
+					<p>-username</p>
+					<button><FontAwesomeIcon icon='chevron-circle-left'/>Prev</button>
+					<img src={progress} width="300" height ="150"/>
+					<button><FontAwesomeIcon icon='chevron-circle-left'/>Next</button>
+					<button><FontAwesomeIcon icon='chevron-circle-left'/>Cheer</button>
+					<button><FontAwesomeIcon icon='chevron-circle-left'/>Star</button>
+				</div>
 			</div>
 		);
 	}
