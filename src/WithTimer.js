@@ -80,6 +80,7 @@ const withTimer = (Component) =>
 			//Next, store start&stop time for the group
 			this.fetchGroupData()
 			//Countdown every 100ms to update local current time
+			console.log(this.props.auth)
 			let stopwatch = setInterval(() => {
 				this.setState({
 					currentTime : this.state.offset + Date.now()
@@ -98,7 +99,7 @@ const withTimer = (Component) =>
 		render(){
 			return(
 				<AuthContext.Consumer>{ auth => { return(
-					<TimerContext.Provider value={this.state}>
+					<TimerContext.Provider auth={auth} value={this.state}>
 						<Component {...this.props} />
 					</TimerContext.Provider>
 				)}}

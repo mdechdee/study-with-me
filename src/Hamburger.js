@@ -12,7 +12,6 @@ class Hamburger extends React.Component {
   }
 
   handleClick(){
-    console.log("OOH!")
     this.setState({
       open: false,
     })
@@ -24,6 +23,7 @@ class Hamburger extends React.Component {
         <NavLink onClick={() => this.handleClick} exact to="/find_group">Find Groups</NavLink>
         <NavLink onClick={() =>this.handleClick} exact to="/my_group">My Group</NavLink>
         <NavLink onClick={() =>this.handleClick} exact to="/profile">Profile</NavLink>
+        <NavLink onClick={() =>this.handleClick} exact to="/logout">Logout</NavLink>
       </Menu>
     );
   };
