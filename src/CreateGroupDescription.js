@@ -60,10 +60,12 @@ class CreateGroupDescription extends React.Component{
 	}
 
 	dateToNum(e, f) {
-		var [d, m, y] = e.split("-");
+		console.log(e);
+		var [y, m, d] = e.split("-");
 		var [h, n] = f.split(":");
-		var date = new Date(d, m[1]-1, y);
-		var s = (((h*60)+n)*60000);
+		var date = new Date(y, m[1]-1, d);
+		var s = (((parseInt(h)*60)+parseInt(n))*60000);
+		console.log(date.getTime());
 		console.log(s);
 		var t = date.getTime()+s;
 		return(t)
@@ -78,9 +80,9 @@ class CreateGroupDescription extends React.Component{
 	    {
 				'name': this.state.group_name,
 	      'startTime': startTime,
-				'stopTime': startTime + totalTime,
+				'stopTime': startTime + intervalTime,
 				'intervalTime': intervalTime,
-				'intervalNum': totalTime / intervalTime
+				'intervalNum': 0
 			})
 	}
 
@@ -111,7 +113,7 @@ class CreateGroupDescription extends React.Component{
 
 				<Row>
 					<Col xs={3}> Start Time: </Col>
-					<Col xs={4}>
+					<Col xs={8}>
 						<Form>
 								<Form.Group controlId="group-time">
 		 						 	<Form.Control type="time" onChange={this.group_start_time_change} />
