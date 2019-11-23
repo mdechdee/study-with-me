@@ -29,6 +29,7 @@ class CreateGroupDescription extends React.Component{
 
 	group_time_change(e){
 		this.setState({group_time: e.target.value})
+		console.log(this.state.group_time)
 	}
 
 	group_interval_change(e){
@@ -65,7 +66,7 @@ class CreateGroupDescription extends React.Component{
 				</Row>
 
 				<Row>
-					<Col xs={3}> Time: </Col>
+					<Col xs={3}> Start Time: </Col>
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-time">

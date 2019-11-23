@@ -13,12 +13,33 @@ class FindGroups extends React.Component {
 	    }
 	}
 
-	render(){
-		return(
+	fetchGroupsData(){
+		db.ref(`groups`).once('value',(snapshot) => {
+			let val = snapshot.val();
+			Object.keys(val).forEach((item) => {
+				this.setState({groups: [...this.state.groups, item]});
+			})
+		})
+	}
 
+	componentDidMount(){
+		this.fetchGroupsData()
+	}
+
+	showAllGroups(){
+		let groupsComponent = []
+		for(let i = 0;i<this.state.groups.length;i++){
+			//replace paragraph with a cool component!
+			groupsComponent.push(<p key={i}> {this.state.groups[i]} </p>);
+		}
+		return groupsComponent
+	}
+
+	render() {
+		return(
 			<div>
 				<div>
-				Groups in SWM
+					Groups in SWM
 				</div>
 				<div>
 					<Row>
@@ -54,29 +75,6 @@ class FindGroups extends React.Component {
 			</div>
 		)}
 
-	fetchGroupsData(){
-		db.ref(`groups`).once('value',(snapshot) => {
-			let val = snapshot.val();
-			Object.keys(val).forEach((item) => {
-      	this.setState({groups: [...this.state.groups, item]});
-      })
-
-		})
-
-	}
-
-	componentDidMount(){
-		this.fetchGroupsData()
-	}
-
-	showAllGroups(){
-		let groupsComponent = []
-		for(let i = 0;i<this.state.groups.length;i++){
-			//replace paragraph with a cool component!
-			groupsComponent.push(<p key={i}> {this.state.groups[i]} </p>);
-		}
-		return groupsComponent
-	}
 
 }
 
