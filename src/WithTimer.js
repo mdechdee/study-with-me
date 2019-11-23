@@ -1,6 +1,7 @@
 import React from 'react';
 import { db } from './firebase/firebase.js';
 import TimerContext from './TimerContext.js'
+import AuthContext from './authentication/AuthContext.js'
 
 
 const withTimer = (Component) =>
@@ -96,9 +97,12 @@ const withTimer = (Component) =>
 					//<div> {new Date(this.state.stopTime).getMilliseconds()} </div>
 		render(){
 			return(
-				<TimerContext.Provider value={this.state}>
-					<Component {...this.props} />
-				</TimerContext.Provider>
+				<AuthContext.Consumer>{ auth => { return(
+					<TimerContext.Provider value={this.state}>
+						<Component {...this.props} />
+					</TimerContext.Provider>
+				)}}
+				</AuthContext.Consumer>
 			);
 		}
 	}
