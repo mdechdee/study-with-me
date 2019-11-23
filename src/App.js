@@ -51,7 +51,7 @@ const Page = (auth) => {
         <Route path='/find_group' component={FindGroups} />
         <Route path='/my_group' component={MyGroup} />
         <Route path='/profile'  component={Profile} />
-        <Route path='/login' component={Signin} />
+        <Route path='/login' render={() => (<Redirect to='/' />)}/>
         <Route component={Unmatched} />
       </Switch>
     );
@@ -61,14 +61,13 @@ const Page = (auth) => {
     console.log('no user')
     return(
       <Switch>
-        <Route exact path='/' />
         <Route path='/login' component={Signin} />
         <Route render = {() => (
-            <Redirect to='/' />
+            <Redirect to='/login' />
         )}/>
       </Switch>
     );
   }
 }
 
-export default withAuthentication(withTimer(App));
+export default withRouter(withTimer(withAuthentication(App)));
