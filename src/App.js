@@ -44,7 +44,7 @@ class App extends React.Component{
 }
 
 const Page = (auth) => {
-  if(!auth.authUser){
+  if(auth.authUser){
     return(
       <Switch>
         <Route exact path='/' />
