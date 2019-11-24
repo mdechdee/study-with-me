@@ -4,16 +4,15 @@ import AuthContext from './authentication/AuthContext'
 import TimerContext from './TimerContext.js'
 import ProfileImage from './ProfileImage'
 import ShowInformation from './ShowInformation'
+import './scss/_base.scss'
 import { Scrollbars } from 'react-custom-scrollbars';
 import Cheer from './Cheer'
-import './scss/Profile.scss'
-
 class Profile extends React.Component {
 	render(){
 		return(
 			<div className="profile">
 				<br/>
-				<div className="prof-title"> Profile </div>
+				<h2>Profile</h2>
 				<div className="profile-info">
 					<Scrollbars style={{ width: 400, height: 700}}>
 						<AuthContext.Consumer>{

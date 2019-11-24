@@ -6,81 +6,21 @@ $lightgray: #eeeeee;
 $background: white;
 
 //@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald:400,700&display=swap');
-//https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap
-
-@font-face {
-  font-family: 'Oswald-Extra-Light';
-  font-style: normal;
-  font-weight: 200;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/oswald/v29/TK3iWkUHHAIjg752GT8G.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Oswald-Light';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/oswald/v29/TK3iWkUHHAIjg752GT8G.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Oswald-Regular';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/oswald/v29/TK3iWkUHHAIjg752GT8G.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Oswald-Medium';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/oswald/v29/TK3iWkUHHAIjg752GT8G.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Oswald-Semi-Bold';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/oswald/v29/TK3iWkUHHAIjg752GT8G.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Oswald-Bold';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/oswald/v29/TK3iWkUHHAIjg752GT8G.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 
 /* Font */
-// $defaultfont: 'Oswald-Extra-Light';
-// $boldfont: 'OpenSans-Bold';
-// $semiboldfont: 'OpenSans-SemiBold';
-// $titlefont: 'Oswald';
-// $titleboldfont: 'Oswald-Bold';
-$f1: 'Oswald-Extra-Light';
-$f2: 'Oswald-Light';
-$f3: 'Oswald-Regular';
-$f4: 'Oswald-Medium';
-$f5: 'Oswald-Semi-Bold';
-$f6: 'Oswald-Bold';
+
+$defaultfont: OpenSans;
+$boldfont: OpenSans-Bold;
+$semiboldfont: 'OpenSans-SemiBold';
+$titlefont: Oswald;
+$titleboldfont: Oswald-Bold;
 
 
 :export { primary: $primary; }
 
 /* page class */
 body {
-  font-family: 'Open Sans';
+  font-family: $defaultfont;
 }
 
 .outer-wrap {
@@ -149,8 +89,7 @@ body {
 .title{
   margin: auto;
   height: 40px; /*requires explicit height*/
-  font-family: $f3;
-  font-weight: 400;
+  font-family: $titleboldfont;
   font-size: 1.6pc;
   color: white;
 }

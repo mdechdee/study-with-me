@@ -30,21 +30,21 @@ class MyComponent extends React.Component {
 			<Container>
 				<Row className='group-row'>
 
-					<Col xs sm md lg xl={3}>
-						<Row><div className='group-name' onClick={this.handleShow}> {this.props.one.name} </div></Row>
+					<Col sm={3}>
+						<Row><div className='group-name'  onClick={this.handleShow}> {this.props.one.name} </div></Row>
 					</Col>
 
-					<Col xs sm md lg xl={3} className=" group-column">
+					<Col xs={3} sm={3} className=" group-column">
 						<Row><div className='group-info'> {this.props.one.baseStartDate} </div></Row>
 						<Row><div className='group-info'> {this.props.one.baseStartTime} </div></Row>
 					</Col>
 
-					<Col xs sm md lg xl={3} className="group-column">
+					<Col xs={3} sm={3} className="group-column">
 						<Row><div className='group-info'> {this.props.one.totalTime} {this.props.one.totalTimeUnit} </div></Row>
 						<Row><div className='group-info'> ({this.props.one.interval} {this.props.one.intervalUnit} x {this.props.one.roundNum}) </div></Row>
 					</Col>
 
-					<Col xs sm md lg xl={3} className="group-column">
+					<Col xs={3} sm={3} className="group-column">
 						<div className='group-info'> {this.props.one.peopleNum} </div>
 					</Col>
 

@@ -1,10 +1,7 @@
 import React from 'react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import {ToastContainer, toast} from 'react-toastify';
 import { auth } from '../firebase';
-import '../scss/Signin.scss';
-
 
 const INITIAL_STATE = {
   email: '',
@@ -29,13 +26,9 @@ class Signin extends React.Component {
       .catch(error => {
         this.setState({ error });
         if (email === '' || password === '')
-          toast('Please fill in email and password.', {
-            position: toast.POSITION.TOP_CENTER
-      		});
+          console.log('please fill in email and password')
         else
-          toast('Wrong email or password.', {
-      			position: toast.POSITION.TOP_CENTER
-      		});
+          console.log('wrong email or password')
       });
 
       event.preventDefault();
@@ -50,7 +43,7 @@ class Signin extends React.Component {
     return(
       <div style = {{margin: 'auto'}}>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group className='signin form-wrapper form-font'>
+          <Form.Group className='signin form-wrapper'>
             <Form.Control
               type="email" placeholder="email@example.com"
               name="email" value={email}
@@ -61,7 +54,7 @@ class Signin extends React.Component {
               name="password" value={password}
               onChange={this.handleChange}
             />
-            <Button variant='warning' className='login-button' type='submit'>Login</Button>
+            <Button variant='yellow' type='submit'>Login</Button>
           </Form.Group>
         </Form>
       </div>
