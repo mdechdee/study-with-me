@@ -1,6 +1,8 @@
 import React from 'react';
 import {Row, Col, Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {db} from './firebase/firebase.js'
 
 class CreateGroupDescription extends React.Component{
@@ -14,6 +16,9 @@ class CreateGroupDescription extends React.Component{
 		this.unit_interval_change=this.unit_interval_change.bind(this)
 		this.unit_total_time_change=this.unit_total_time_change.bind(this)
 		this.writeToDatabase = this.writeToDatabase.bind(this)
+		this.handleClick = this.handleClick.bind(this)
+		this.fillAll = this.fillAll.bind(this)
+		this.fillTime = this.fillTime.bind(this)
 		this.state = {
 			group_name:"",
 			group_start_date:"",
@@ -24,6 +29,7 @@ class CreateGroupDescription extends React.Component{
 			unit_total_time:"minutes"
 		};
 	}
+
 
 	group_name_change(e){
 		this.setState({group_name: e.target.value})
@@ -53,12 +59,14 @@ class CreateGroupDescription extends React.Component{
 		this.setState({unit_total_time: e.target.value})
 	}
 
+	// time interval (minutes, hours, days) into milliseconds
 	timeToNum(e, f) {
-		if (f=="minutes") { return(e*60*1000) }
-		else if (f=="hours") { return(e*1000*60*60) }
+		if (f==="minutes") { return(e*60*1000) }
+		else if (f==="hours") { return(e*1000*60*60) }
 		else { return(e*1000*60*60*24) }
 	}
 
+	// date and time into milliseconds w.r.t. to 1970
 	dateToNum(e, f) {
 		var [y, m, d] = e.split("-");
 		var [h, n] = f.split(":");
@@ -68,8 +76,56 @@ class CreateGroupDescription extends React.Component{
 		return(t)
 	}
 
+	handleClick() {
+		if(this.isEmpty()) { this.fillAll() }
+		else if(this.isCorrectFormat()) {
+			this.writeToDatabase();
+			this.props.handleClose();
+		}
+		else { this.fillTime()}
+	}
+
+	// check if at least one of the forms is empty
+	isEmpty() {
+		return(this.state.group_name==="" ||
+		this.state.group_start_date==="" ||
+		this.state.group_start_time==="" ||
+		this.state.group_interval==="" ||
+		this.state.group_total_time==="")
+	}
+
+	// check if the interval is not more than total time
+	isCorrectFormat() {
+		var a = this.state.unit_interval;
+		var b = this.state.unit_total_time;
+		var c = this.state.group_interval;
+		var d = this.state.group_total_time;
+		if((a===b && c>d) ||
+		(a==="minutes" && b==="hours" && c>d*60) ||
+		(a==="minutes" && b==="days" && c>d*60*24) ||
+		(a==="hours" && b==="days" && c>d*24) ||
+		(a!=="minutes" && b==="minutes") ||
+		(a==="days" && b!=="days")) {
+			return false
+		}
+		return true
+	}
+
+	fillAll() {
+		toast("Please fill out all necessary information.", {
+			position: toast.POSITION.TOP_CENTER
+		});
+	}
+
+	fillTime() {
+		toast("Please fill out correct interval and total time.", {
+			position: toast.POSITION.TOP_CENTER
+		});
+	}
+
 	writeToDatabase() {
-	    var newRef = db.ref('groups').push();
+			console.log("hello");
+			var newRef = db.ref('groups').push();
 			var startTime = this.dateToNum(this.state.group_start_date, this.state.group_start_time);
 			var intervalTime = this.timeToNum(this.state.group_interval, this.state.unit_interval);
 			var totalTime = this.timeToNum(this.state.group_total_time, this.state.unit_total_time);
@@ -188,8 +244,12 @@ class CreateGroupDescription extends React.Component{
 						</Form.Text>
 					</Col>
 				</Row>
-				<Button variant="warning" offset={100} onClick={this.writeToDatabase}> Create </Button>
-				<Button variant="danger" offset={100} onClick={this.handleClose}> Cancel </Button>
+
+				<Button variant="warning" offset={100}
+				onClick={this.handleClick}> Create </Button>
+
+				<Button variant="danger" offset={100}
+				onClick={this.props.handleClose}> Cancel </Button>
 	  	</div>
 		);
 	}
