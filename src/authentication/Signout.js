@@ -8,10 +8,11 @@ class Signout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      auth: this.props.authUser,
+      auth: this.props.auth,
       redirect: false,
     };
   }
+
 
   componentDidMount(){
     if(!this.state.auth){
@@ -22,14 +23,9 @@ class Signout extends React.Component {
   }
 
   handleSignOut () {
-    this.state.auth
+    auth
       .doSignOut()
-      .then(() => {
-        this.props.history.push('/login');
-      })
-      .catch(error => {
-        console.log(error)
-      });
+
   }
 
   render(){
