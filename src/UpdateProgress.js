@@ -9,6 +9,7 @@ import ProgressDescription from './ProgressDescription.js'
 import AuthContext from './authentication/AuthContext';
 import TimerContext from './TimerContext.js'
 import './scss/UpdateProgress.scss'
+import { Scrollbars } from 'react-custom-scrollbars';
 class UpdateProgress extends React.Component{
 	constructor(props){
 		super(props);
@@ -37,6 +38,7 @@ class UpdateProgress extends React.Component{
 						         	<Modal.Header closeButton>
 						            	<Modal.Title> <h3>Update progress</h3> {this.props.popup_id} </Modal.Title>
 						          	</Modal.Header>
+						          	<Scrollbars style={{ width: 400, height: 700 }}>
 						          	<Modal.Body>
 					          				<TimerContext.Consumer>
 									          	{ timer => {
@@ -54,6 +56,7 @@ class UpdateProgress extends React.Component{
 									          	}
 									          </TimerContext.Consumer>
 						          	</Modal.Body>
+						          	</Scrollbars>
 						        </Modal>
 						    </div>
 					    );}
