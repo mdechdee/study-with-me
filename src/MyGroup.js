@@ -26,13 +26,24 @@ class MyGroup extends React.Component {
 			people: null,
 			mapPeopleWithNumber: null,
 			isLoaded: false,
-			isDone:false
+			isDone:false,
+			groupName:""
 		};
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
 	}
 	// bring data from database
-
+	fetchGroupName(){
+		console.log("uid");
+		console.log(this.props);
+		db.ref(`users/${this.props.uid}`).once('value',(snapshot) =>{
+			console.log("fetchGroupName");
+			console.log(snapshot.val());
+			this.setState({
+				groupName: snapshot.val()
+			})
+		})
+	}
 	collectPeople(){
 		db.ref('groups/study/people').once('value',(snapshot) =>{
 			this.setState({
@@ -101,6 +112,7 @@ class MyGroup extends React.Component {
 	componentDidMount(){
 		this.fetchCurrentTime()
 		this.fetchGroupData()
+		this.fetchGroupName()
 		setInterval(() => {
 			this.setState({
 				currentTime : this.state.offset + Date.now()
@@ -124,7 +136,7 @@ class MyGroup extends React.Component {
 					<div> {new Date(this.state.stopTime).getSeconds()} </div>
 					<div> {this.state.intervalTime} </div>
 					<div>
-						Group: Study Marathon
+						Group: {this.state.groupName}
 					</div>
 					<div className="member-progress">
 						<p>Progress</p>
