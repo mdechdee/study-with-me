@@ -3,6 +3,8 @@ import {Button} from 'react-bootstrap';
 import { db } from './firebase/firebase.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import progress from './camera.jpg';
+import JoinGroup from './JoinGroup.js';
+import AllMember from './AllMember.js';
 class MyGroup extends React.Component {
 
 	constructor(props){
@@ -69,16 +71,13 @@ class MyGroup extends React.Component {
 	render(){
 		return(
 			<div>
-				<div> {new Date(this.state.currentTime).getSeconds()} </div>
-				<div> {new Date(this.state.startTime).getSeconds()} </div>
-				<div> {new Date(this.state.stopTime).getSeconds()} </div>
-				<div> {this.state.intervalTime} </div>
 				<div>
 					Group: Study Marathon
 				</div>
 				<div>
-					<p>Progress</p>
-					<p>-username</p>
+					<p>Progress:</p>
+					<p>Username:</p>
+					<p>Goal:</p>
 					<button><FontAwesomeIcon icon='chevron-circle-left'/></button>
 					<img src={progress} width="300" height ="150"/>
 					<button><FontAwesomeIcon icon='chevron-circle-right'/></button>
@@ -88,8 +87,15 @@ class MyGroup extends React.Component {
 					<button><FontAwesomeIcon icon='star'/></button>
 				</div>
 				<div>
-					<button> Join Group </button>
+					<JoinGroup/>
 				</div>
+				<div>
+					My<FontAwesomeIcon icon='comment'/>:<button><FontAwesomeIcon icon='search'/></button>
+				</div>
+				<div>
+					<p>My<FontAwesomeIcon icon='star'/>:</p>
+				</div>
+			<AllMember/>
 			</div>
 		);
 	}
