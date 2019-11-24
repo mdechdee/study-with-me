@@ -11,6 +11,7 @@ class FindGroups extends React.Component {
 	    this.state = {
 	        loading: null,
 	        groups: [],
+					usergroup: "",
 	    }
 	}
 
@@ -24,20 +25,31 @@ class FindGroups extends React.Component {
 		})
 	}
 
+	checkUserGroup()
+	{
+		let userHasGroup = true
+		db.ref(`users/${this.props.uid}`).once('value').then(snapshot => {
+			let a = snapshot.val()
+			console.log(a.group)
+			this.setState({usergroup: a.group})
+		});
+	}
+
 	componentDidMount(){
 		this.fetchGroupsData()
+		this.checkUserGroup()
 	}
 
 	showAllGroups(){
 		let groupsComponent = []
 		for(let i=0; i<this.state.groups.length; i+=1){
-
 				groupsComponent.push(<MyComponent one={this.state.groups[i]} key={i}> </MyComponent>);
 		}
 		return groupsComponent
 	}
 
 	render() {
+
 		return(
 			<div>
 				<div>Groups in SWM</div>
@@ -57,7 +69,7 @@ class FindGroups extends React.Component {
 				</div>
 
 				<div>
-					<CreateGroup />
+					<CreateGroup disabled={this.state.usergroup !== ""} uid={this.props.uid}/>
 				</div>
 
 			</div>

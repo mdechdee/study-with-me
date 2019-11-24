@@ -7,6 +7,7 @@ import AuthContext from './AuthContext.js';
 class Signout extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props.auth)
     this.state = {
       auth: this.props.auth,
       redirect: false,

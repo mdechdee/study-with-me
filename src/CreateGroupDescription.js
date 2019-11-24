@@ -70,6 +70,9 @@ class CreateGroupDescription extends React.Component{
 
 	writeToDatabase() {
 	    var newRef = db.ref('groups').push();
+			var people = {
+				{this.props.uid: 1}
+			}
 			var startTime = this.dateToNum(this.state.group_start_date, this.state.group_start_time);
 			var intervalTime = this.timeToNum(this.state.group_interval, this.state.unit_interval);
 			var totalTime = this.timeToNum(this.state.group_total_time, this.state.unit_total_time);
@@ -91,7 +94,8 @@ class CreateGroupDescription extends React.Component{
 				'stopTime': startTime + intervalTime,
 				'intervalTime': intervalTime,
 				'intervalNum': 0,
-				'peopleNum': 1
+				'peopleNum': 1,
+				'people': people
 			})
 	}
 
