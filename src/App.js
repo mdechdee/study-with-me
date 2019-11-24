@@ -56,7 +56,7 @@ const Page = (auth) => {
               <Redirect to='/find_group' />
           )}/>
         <Route path='/find_group' render={(routeProps) => (<FindGroups uid = {auth.auth.uid} {...routeProps} />)} />
-          <Route path='/my_group' component={MyGroup} />
+          <Route path='/my_group' render={(routeProps) => (<MyGroup uid = {auth.auth.uid} {...routeProps} />)} />
           <Route path='/profile'  component={Profile} />
           <Route path='/logout' render={() => (<Signout auth/>)}/>
           <Route  path='/login' render = {() => (
