@@ -8,12 +8,20 @@ import JoinGroup from'./JoinGroup.js';
 class MyComponent extends React.Component {
 	constructor(props) {
 		super(props);
+		this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+		this.state = {
+      show: false,
+    };
 	}
 
-	handleClick() {
-		// var userRef = db.ref(`users/${this.props.uid}`);
-		// <JoinGroup />
-	}
+	handleClose(){
+    this.setState({show: false});
+  }
+
+  handleShow(){
+    this.setState({show: true});
+  }
 
 	render() {
 		return(
@@ -21,7 +29,7 @@ class MyComponent extends React.Component {
 				<Row className='group-row'>
 
 					<Col sm={3}>
-						<Row><div className='group-name' onClick={this.handleClick}>{this.props.one.name} </div></Row>
+						<Row><div className='group-name' onClick={this.handleShow}> {this.props.one.name} </div></Row>
 					</Col>
 
 					<Col sm={3}>
@@ -38,6 +46,7 @@ class MyComponent extends React.Component {
 						<Row><div className='group-info'> {this.props.one.peopleNum} </div></Row>
 					</Col>
 
+					<JoinGroup uid={this.props.uid} show={this.state.show} handleClose={this.handleClose} name={this.props.one.name}/>
 				</Row>
 			</div>
 		)}
