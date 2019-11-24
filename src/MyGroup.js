@@ -28,15 +28,22 @@ class MyGroup extends React.Component {
 			people: null,
 			mapPeopleWithNumber: null,
 			isLoaded: false,
-			isDone:false
+			isDone:false,
+			usergroup:''
 		};
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
 	}
 	// bring data from database
-
+	checkUserGroup(){
+		db.ref(`users/${this.props.uid}`).on('value', (snapshot) => {
+			let a = snapshot.val()
+			console.log(a.group)
+			this.setState({usergroup: a.group})
+		});
+	}
 	collectPeople(){
-		db.ref('groups/study/people').once('value',(snapshot) =>{
+		db.ref('groups/'+ this.state.usergroup +'/people').once('value',(snapshot) =>{
 			this.setState({
 				people: snapshot.val()
 			})
@@ -64,7 +71,7 @@ class MyGroup extends React.Component {
 	}
 	//Fetch group start/stop/interval time (Now start with current time)
 	fetchGroupData(){
-		db.ref('groups/study').once('value', (snapshot) => {
+		db.ref('groups/'+this.state.usergroup).once('value', (snapshot) => {
 			let val = snapshot.val();
 			this.setState({
 	        	intervalTime: val.interval,
@@ -90,8 +97,8 @@ class MyGroup extends React.Component {
 	        startTime: this.state.startTime + this.state.intervalTime,
         	stopTime: this.state.stopTime + this.state.intervalTime
         })
-		db.ref("groups/study/startTime").set(this.state.startTime)
-		db.ref("groups/study/stopTime").set(this.state.stopTime)
+		db.ref("groups/"+this.state.usergroup+"/startTime").set(this.state.startTime)
+		db.ref("groups/"+this.state.usergroup+"/stopTime").set(this.state.stopTime)
 	}
 
 	checkTimeUp(){
@@ -101,6 +108,7 @@ class MyGroup extends React.Component {
 		}
 	}
 	componentDidMount(){
+		this.checkUserGroup()
 		this.fetchCurrentTime()
 		this.fetchGroupData()
 		setInterval(() => {
@@ -122,7 +130,7 @@ class MyGroup extends React.Component {
 			<div>
 				<Scrollbars style={{ width: 600, height: 500}}>
 					<div>
-						Group: Study Marathon
+						Group: this.state.usergroup
 					</div>
 					<div className="member-progress">
 						<p>Progress</p>
