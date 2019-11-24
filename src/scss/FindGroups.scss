@@ -29,6 +29,7 @@ $titleboldfont: Oswald-Bold;
   font-family: $defaultfont;
   color: black;
   height: 30px; /*requires explicit height*/
+  margin: 10px 0px;
   font-size: 1pc;
   text-align: middle;
 }
@@ -53,4 +54,11 @@ $titleboldfont: Oswald-Bold;
   height: 25px; /*requires explicit height*/
   font-size: 1pc;
   text-align: middle;
+}
+
+.group-list{
+  border: 5px solid yellow;
+  width: 470px;
+  margin-left: 10px;
+  padding-left: 30px;
 }

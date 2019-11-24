@@ -50,8 +50,8 @@ class FindGroups extends React.Component {
 					</Row>
 				</div>
 
-				<div>
-					<Scrollbars style={{ width: 500, height: 350 }}>
+				<div className ="group-list">
+					<Scrollbars style={{ width: 500, height: 400 }}>
 						{this.showAllGroups()}
 					</Scrollbars>
 				</div>
