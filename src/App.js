@@ -14,6 +14,7 @@ import TimerContext from './TimerContext.js';
 import Signin from './authentication/Signin.js';
 import withAuthentication from './authentication/WithAuthentication.js';
 import withTimer from './WithTimer.js';
+import { ToastContainer, toast } from 'react-toastify';
 
 class App extends React.Component{
   render() {
@@ -38,6 +39,7 @@ class App extends React.Component{
           }
           </AuthContext.Consumer>
         </Row>
+        <ToastContainer />
       </Container>
     );
   }
