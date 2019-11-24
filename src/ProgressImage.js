@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import {storage} from '../firebase/firebase.js';
+import {storage} from './firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap'
-import '../scss/UpdateProcess.scss';
+import './scss/UpdateProgress.scss';
+import AuthContext from './authentication/AuthContext';
+import TimerContext from './TimerContext.js'
 
-class ImageUpload extends Component {
+class ProgressImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +14,10 @@ class ImageUpload extends Component {
       url: "",
       progress: 0,
       status:"info",
-      show:""
+      show:"",
+      uid: props.uid,
+      interval:props.interval
+      //interval: ""
     };
   }
 
@@ -27,7 +32,8 @@ class ImageUpload extends Component {
 
   handleUpload = () => {
     const { image } = this.state;
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const { uid } = this.state;
+    const uploadTask = storage.ref(`images/${uid}/${this.state.interval}/work.jpg`).put(image);
     uploadTask.on(
       "state_changed",
       snapshot => {
@@ -48,8 +54,8 @@ class ImageUpload extends Component {
       () => {
         // complete function ...
         storage
-          .ref("images")
-          .child(image.name)
+          .ref(`images/${uid}/${this.state.interval}`)
+          .child("work.jpg")
           .getDownloadURL()
           .then(url => {
             this.setState({ url });
@@ -63,10 +69,10 @@ class ImageUpload extends Component {
         <br/>
         <div className="align image">
           <img
-            src={this.state.url || "https://via.placeholder.com/400x300"}
+            src={this.state.url || "https://via.placeholder.com/200x300"}
             alt="Uploaded Images"
-            height="300"
-            width="400"
+            height="200"
+            width="300"
           />
         </div>
         <div className="btn">
@@ -77,10 +83,9 @@ class ImageUpload extends Component {
           <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.show} />
         </div>
         <br />
-      
         <Button variant = "outline-primary"
-          onClick={this.handleUpload}
-          className="waves-effect waves-light btn"
+              onClick={this.handleUpload}
+              className="waves-effect waves-light btn"
         >
           Upload
         </Button>
@@ -91,4 +96,4 @@ class ImageUpload extends Component {
   }
 }
 
-export default ImageUpload;
+export default ProgressImage;
