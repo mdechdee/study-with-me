@@ -6,23 +6,8 @@ $semiboldfont: 'OpenSans-SemiBold';
 $titlefont: Oswald;
 $titleboldfont: Oswald-Bold;
 
-.find-title{
-  border-radius: 10px;
-  margin: 20px 20px;
-  height: 50px; /*requires explicit height*/
-  font-family: $titleboldfont;
-  font-size: 2pc;
-  text-align: left;
-  color: black;
-}
-
-.find-outer-wrap{
+.box-wrap{
   margin: 10px 10px;
-}
-
-.row-line {
-  border-bottom: 2px solid grey;
-  border-top: 2px solid grey;
 }
 
 .col-title{
@@ -33,18 +18,20 @@ $titleboldfont: Oswald-Bold;
   text-align: middle;
 }
 
-.group-row {
-  margin: 10px 10px;
-}
-
 .group-name{
   font-family: $defaultfont;
   color: white;
-  width: 50px;
-  height: 50px; /*requires explicit height*/
+  width: 80%;
+  height: 80%;
   font-size: 1pc;
   text-align: middle;
   background-color: gray;
+  box-sizing: border-box;
+}
+
+.group-column{
+  align-content: center;
+  align-items: center;
 }
 
 .group-info{
@@ -53,4 +40,38 @@ $titleboldfont: Oswald-Bold;
   height: 25px; /*requires explicit height*/
   font-size: 1pc;
   text-align: middle;
+  position: relative;
+}
+
+.create-group-button{
+  position: absolute;
+  right: 5%;
+  bottom: 8%;
+}
+
+.find-title{
+  border-radius: 10px;
+  height: 50px; /*requires explicit height*/
+  font-family: $titleboldfont;
+  font-size: 2pc;
+  text-align: left;
+  color: black;
+  margin: 10px;
+}
+
+.find-outer-wrap{
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.scroll{
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.scroll-content{
+  flex: 1;
 }
