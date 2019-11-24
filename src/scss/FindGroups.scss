@@ -1,56 +1,73 @@
-$gray: #ccc;
+@import '_base.scss';
 
-$defaultfont: OpenSans;
-$boldfont: OpenSans-Bold;
-$semiboldfont: 'OpenSans-SemiBold';
-$titlefont: Oswald;
-$titleboldfont: Oswald-Bold;
-
-.find-title{
-  border-radius: 10px;
-  margin: 20px 20px;
-  height: 50px; /*requires explicit height*/
-  font-family: $titleboldfont;
-  font-size: 2pc;
-  text-align: left;
-  color: black;
-}
-
-.find-outer-wrap{
+.box-wrap{
   margin: 10px 10px;
-}
-
-.row-line {
-  border-bottom: 2px solid grey;
-  border-top: 2px solid grey;
 }
 
 .col-title{
-  font-family: $defaultfont;
+  font-family: $f1;
   color: black;
   height: 30px; /*requires explicit height*/
-  font-size: 1pc;
+  font-size: 0.8pc;
   text-align: middle;
-}
-
-.group-row {
-  margin: 10px 10px;
 }
 
 .group-name{
-  font-family: $defaultfont;
+  font-family: $f1;
   color: white;
-  width: 50px;
-  height: 50px; /*requires explicit height*/
+  width: 80%;
+  height: 100%;
   font-size: 1pc;
   text-align: middle;
   background-color: gray;
+  box-sizing: border-box;
+}
+
+.group-column{
+  align-content: center;
+  align-items: center;
 }
 
 .group-info{
-  font-family: $defaultfont;
+  font-family: $f2;
   color: black;
   height: 25px; /*requires explicit height*/
   font-size: 1pc;
   text-align: middle;
+  position: relative;
+}
+
+.create-group-button{
+  font-family: $f3;
+  font-size: 1pc;
+  position: absolute;
+  right: 5%;
+  bottom: 8%;
+}
+
+.find-title{
+  border-radius: 10px;
+  height: 50px; /*requires explicit height*/
+  font-family: $f3;
+  font-size: 2pc;
+  text-align: left;
+  color: black;
+  margin: 10px;
+}
+
+.find-outer-wrap{
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.scroll{
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.scroll-content{
+  flex: 1;
 }

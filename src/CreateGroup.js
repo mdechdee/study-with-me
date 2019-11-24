@@ -23,11 +23,11 @@ class CreateGroup extends React.Component {
 
   render(){
     return(
-      <div>
-        <Button variant="warning" size="lg" style={{width:'40%', float:'right'}}
+      <React.Fragment>
+        <Button variant="warning" size="lg"
         disabled={this.props.disabled}
         onClick={this.handleShow}> Create a group </Button>
-        
+
           <Modal size="sm" show={this.state.show} onHide={this.handleClose}>
             <Modal.Header closeButton>
               <Modal.Title> <h3>Create a group</h3> {this.props.popup_id} </Modal.Title>
@@ -36,7 +36,7 @@ class CreateGroup extends React.Component {
               <CreateGroupDescription uid={this.props.uid} handleClose={this.handleClose}/>
             </Modal.Body>
           </Modal>
-      </div>
+      </React.Fragment>
     );
   }
 }

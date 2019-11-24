@@ -98,8 +98,8 @@ class CreateGroupDescription extends React.Component{
 	isCorrectFormat() {
 		var a = this.state.unit_interval;
 		var b = this.state.unit_total_time;
-		var c = this.state.group_interval;
-		var d = this.state.group_total_time;
+		var c = parseInt(this.state.group_interval);
+		var d = parseInt(this.state.group_total_time);
 		if((a===b && c>d) ||
 		(a==="minutes" && b==="hours" && c>d*60) ||
 		(a==="minutes" && b==="days" && c>d*60*24) ||

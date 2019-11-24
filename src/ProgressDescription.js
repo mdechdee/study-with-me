@@ -5,7 +5,7 @@ import {Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
 import {db} from './firebase/firebase.js';
 import './scss/UpdateProgress.scss'
-import TimerContext from './TimerContext.js'
+
 class ProgressDescription extends React.Component{
 	constructor(props){
 		super(props);

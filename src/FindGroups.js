@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 import CreateGroup from'./CreateGroup.js';
 import MyComponent from './MyComponent.js'
@@ -44,7 +44,7 @@ class FindGroups extends React.Component {
 	showAllGroups(){
 		let groupsComponent = []
 		for(let i=0; i<this.state.groups.length; i+=1){
-				groupsComponent.push(<MyComponent one={this.state.groups[i]} uid={this.props.uid} key={i}> </MyComponent>);
+				groupsComponent.push(<MyComponent one={this.state.groups[i]} uid={this.props.uid} usergroup={this.state.usergroup} key={i}> </MyComponent>);
 		}
 		return groupsComponent
 	}
@@ -52,28 +52,29 @@ class FindGroups extends React.Component {
 	render() {
 
 		return(
-			<div>
+			<React.Fragment>
 				<div className="find-title">Groups in SWM</div>
-				<div className="find-outer-wrap">
+				<Container className="find-outer-wrap">
 					<Row className="row-line">
-						<Col sm={3}><div className="col-title">NAME</div></Col>
-						<Col sm={3}><div className="col-title">START AT</div></Col>
-						<Col sm={3}><div className="col-title">TIME</div></Col>
-						<Col sm={3}><div className="col-title">MEMBER</div></Col>
+						<Col xs={3} sm={3} md={3} lg={3} xl={3}><div className="col-title">NAME</div></Col>
+						<Col xs={3} sm={3} md={3} lg={3} xl={3}><div className="col-title">START AT</div></Col>
+						<Col xs={3} sm={3} md={3} lg={3} xl={3}><div className="col-title">TIME</div></Col>
+						<Col xs={3} sm={3} md={3} lg={3} xl={3}><div className="col-title">MEMBER</div></Col>
 					</Row>
-				</div>
+				</Container>
 
-				<div>
-					<Scrollbars style={{ width: 500, height: 350 }}>
+					<Scrollbars horizontal={false}
+						className="scroll"
+						contentClassName="scroll-content"
+						>
 						{this.showAllGroups()}
 					</Scrollbars>
-				</div>
 
-				<div>
+				<div className="create-group-button">
 					<CreateGroup disabled={this.state.usergroup !== ""} uid={this.props.uid}/>
 				</div>
 
-			</div>
+			</React.Fragment>
 		)}
 
 

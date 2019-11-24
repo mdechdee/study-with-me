@@ -1,8 +1,9 @@
 import React from 'react';
 import {storage,db} from './firebase/firebase.js';
 import {Form} from 'react-bootstrap';
-import {Button,Col,Row} from 'react-bootstrap';
+import {Button,Col,Row,Container} from 'react-bootstrap';
 import './scss/Profile.scss';
+
 class ShowInformation extends React.Component {
 	constructor(props) {
 	    super(props);
@@ -49,22 +50,21 @@ class ShowInformation extends React.Component {
 		return(
 			<div className="information">
 				<Form>
-					<Form.Group controlId="name">
-						<div className="name">
-							<Row className="name">
-								<Form.Label column sm ="4">Name</Form.Label>
-								<Col sm="7">
-						    		<Form.Control type="name" placeholder={this.state.name||"Name"} onChange={this.handleChange}/>
-							    	<Form.Text className="text-muted">
-							      		This name is displayed in public.
-							    	</Form.Text>
-							    </Col>
-						    </Row>
-					    </div>
-				  	</Form.Group>
-				  	<Button variant="primary" type="submit" onClick={this.handleUpdate}>
-				    	Save changes
-				  	</Button>
+						<Container>
+							<Row>
+								<Col xs = {3}sm md lg xl ><div>Name</div></Col>
+								<Col xs = {9}sm md lg xl >
+					    		<Form.Control type="name" placeholder={this.state.name||"Name"} onChange={this.handleChange}/>
+									<Form.Text className="text-muted">
+						      		This name is displayed in public.
+						    	</Form.Text>
+						    </Col>
+							</Row>
+					  </Container>
+
+					<Button variant="primary" type="submit" onClick={this.handleUpdate}>
+				    Save changes
+				  </Button>
 				</Form>
 			</div>
 		);

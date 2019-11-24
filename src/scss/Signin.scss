@@ -1,0 +1,17 @@
+@import '_base.scss';
+
+.form-font{
+  font-family: $f3;
+  font-size: 1pc;
+  width: 300px;
+}
+
+.login-button{
+  font-family: $f3;
+  font-size: 1.6pc !important;
+  position: absolute;
+  height: 8%;
+  width: 20%;
+  right: 40%;
+  bottom: 40%;
+}
