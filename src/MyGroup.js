@@ -87,7 +87,7 @@ class MyGroup extends React.Component {
 					<button><FontAwesomeIcon icon='star'/></button>
 				</div>
 				<div>
-					<JoinGroup/>
+					<JoinGroup uid=this.props.uid/>
 				</div>
 				<div>
 					My <FontAwesomeIcon icon='comment'/>:<button><FontAwesomeIcon icon='search'/></button>

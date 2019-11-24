@@ -10,12 +10,25 @@ class Hamburger extends React.Component {
     }
   }
 
+  closeMenu (){
+    this.setState({
+      open: false,
+    })
+  }
+
+  handleStateChange(state){
+    this.setState({
+      open: state.open,
+    })
+  }
+
   render(){
     return (
-      <Menu>
-        <NavLink exact to="/find_group" className="menu-item" >Find Groups</NavLink>
-        <NavLink exact to="/my_group" className="menu-item" >My Group</NavLink>
-        <NavLink exact to="/profile" className="menu-item" >Profile</NavLink>
+      <Menu isOpen={this.state.open} onStateChange={(state) => this.handleStateChange(state)}>
+        <NavLink onClick={() => this.closeMenu()} exact to="/find_group">Find Groups</NavLink>
+        <NavLink onClick={() => this.closeMenu()} exact to="/my_group">My Group</NavLink>
+        <NavLink onClick={() => this.closeMenu()} exact to="/profile">Profile</NavLink>
+        <NavLink onClick={() => this.closeMenu()} exact to="/logout">Logout</NavLink>
       </Menu>
     );
   };

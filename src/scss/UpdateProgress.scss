@@ -19,14 +19,21 @@ $gray: #ccc;
   };
 }
 
-.file-fill{
-  position: relative;
-  background: url(../camera.jpg) no-repeat;
-  width: 434px;
-  height: 312px;
-  border-radius: .25rem;
-  margin-bottom: 10px;
-  overflow: hidden;
-  cursor: pointer;
+.progress-custom{
+  background-color: yellow;
+}
+
+.modal-90w{
+  max-height: calc(100vh - 100px);
+  max-width: calc(100vw - 200px);
+  overflow-y: auto;
+  top: 0%;
+}
+
+.file-box{
   text-align: center;
+}
+
+.custom-dialog{
+  max-width: 33% !important;
 }
