@@ -12,6 +12,7 @@ import Unmatched from './Unmatched.js';
 import AuthContext from './authentication/AuthContext.js';
 import TimerContext from './TimerContext.js';
 import Signin from './authentication/Signin.js';
+import Signout from './authentication/Signout.js';
 import withAuthentication from './authentication/WithAuthentication.js';
 import withTimer from './WithTimer.js';
 
@@ -47,11 +48,12 @@ const Page = (auth) => {
   if(auth.authUser){
     return(
       <Switch>
-        <Route exact path='/' />
+        <Route exact path='/' component={FindGroups} />
         <Route path='/find_group' component={FindGroups} />
         <Route path='/my_group' component={MyGroup} />
         <Route path='/profile'  component={Profile} />
-        <Route path='/login' render={() => (<Redirect to='/' />)}/>
+        <Route path='/login' component={Signin} />
+        <Route path='/logout' component={Signout} auth={auth.authUser}/>
         <Route component={Unmatched} />
       </Switch>
     );
