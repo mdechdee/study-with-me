@@ -23,7 +23,7 @@ class JoinGroup extends React.Component {
 
   handleSubmit(event) {
     var peopleRef =  db.ref('groups/study/people');
-    var newMemberRef = peopleRef.child('${this.props.uid}');
+    var newMemberRef = peopleRef.child(`${this.props.uid}`);
     newMemberRef.set({
       goal: this.state.goal,
       numberLargeSmile: 0,
