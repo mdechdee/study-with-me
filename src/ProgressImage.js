@@ -54,7 +54,7 @@ class ProgressImage extends Component {
       () => {
         // complete function ...
         storage
-          .ref(`images/${uid}`)
+          .ref(`images/${uid}/`)
           .child(`work`+`${this.state.interval}`+`.jpg`)
           .getDownloadURL()
           .then(url => {
