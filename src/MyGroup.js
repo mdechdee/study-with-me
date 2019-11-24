@@ -4,8 +4,6 @@ import { db } from './firebase/firebase.js';
 import TimerContext from './TimerContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import progress from './camera.jpg';
-import JoinGroup from './JoinGroup.js';
-import AllMember from './AllMember.js';
 import Carousel from './Carousel.js';
 import UpdateProgress from './UpdateProgress.js';
 import { Scrollbars } from 'react-custom-scrollbars';
