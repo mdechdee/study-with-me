@@ -30,8 +30,7 @@ class CreateGroup extends React.Component {
               <Modal.Title> <h3>Create a group</h3> {this.props.popup_id} </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <CreateGroupDescription uid={this.props.uid}/>
-
+              <CreateGroupDescription uid={this.props.uid} handleClose={this.handleClose}/>
             </Modal.Body>
           </Modal>
       </div>
