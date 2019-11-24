@@ -20,8 +20,10 @@ class MyComponent extends React.Component {
   }
 
   handleShow(){
+		if(this.props.usergroup == ""){
+
     this.setState({show: true});
-  }
+  }}
 
 	render() {
 		return(
@@ -29,7 +31,7 @@ class MyComponent extends React.Component {
 				<Row className='group-row'>
 
 					<Col sm={3}>
-						<Row><div className='group-name' onClick={this.handleShow}> {this.props.one.name} </div></Row>
+						<Row><div className='group-name'  onClick={this.handleShow}> {this.props.one.name} </div></Row>
 					</Col>
 
 					<Col xs={3} sm={3} className=" group-column">
