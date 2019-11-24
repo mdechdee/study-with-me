@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, Button} from 'react-bootstrap'
 import CreateGroupDescription from'./CreateGroupDescription.js';
-import './scss/FindGroups.scss';
+import { db } from './firebase/firebase.js';
 
 class CreateGroup extends React.Component {
   constructor(props){
@@ -21,8 +21,8 @@ class CreateGroup extends React.Component {
 
   render(){
     return(
-      <div className="button-create-group">
-        <Button variant="warning" size="lg" style={{width:'40%', float:'right'}}
+      <React.Fragment>
+        <Button variant="warning" size="lg"
         disabled={this.props.disabled}
         onClick={this.handleShow}> Create a group </Button>
           <Modal size="sm" show={this.state.show} onHide={this.handleClose}>
@@ -31,10 +31,9 @@ class CreateGroup extends React.Component {
             </Modal.Header>
             <Modal.Body>
               <CreateGroupDescription handleClose={this.handleClose} />
-
             </Modal.Body>
           </Modal>
-      </div>
+      </React.Fragment>
     );
   }
 }

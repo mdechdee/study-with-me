@@ -17,7 +17,6 @@ import withAuthentication from './authentication/WithAuthentication.js';
 import withTimer from './WithTimer.js';
 import { ToastContainer, toast } from 'react-toastify';
 import { library } from '@fortawesome/fontawesome-svg-core';
-
 //import { fas } from '@fortawesome/free-solid-svg-icons';
 //import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faChevronCircleLeft,faChevronCircleRight,faComment,faStar } from '@fortawesome/free-solid-svg-icons';
@@ -47,11 +46,12 @@ class App extends React.Component{
 const Page = (auth) => {
   return(
     <Col xs={12} sm={8} md={6} lg={4} className='page-wrap'>
-      <div className='horizontal-div-above' style= {{background :base_styles.primary, zIndex: '1'}}>
+      <div className='horizontal-div-above' style= {{background :base_styles.primary}}>
          <Hamburger/>
          <div className='title'>Study With Me</div>
       </div>
-      <div className='horizontal-div-above' style = {{zIndex: '-2'}}/>
+      <div className='horizontal-div-mid' />
+      <div className='div-content'>
       <Switch>
           <Route exact path='/' render = {() => (
               <Redirect to='/find_group' />
@@ -64,11 +64,11 @@ const Page = (auth) => {
               <Redirect to='/find_group' />
           )}/>
       </Switch>
+      </div>
       <div className='horizontal-div-below'/>
     </Col>
   );
 }
-
 
 const UnAuthPage = () => {
   return(
@@ -76,12 +76,14 @@ const UnAuthPage = () => {
       <div className='horizontal-div-above' style= {{background :base_styles.primary, zIndex: '1'}}>
          <div className='title'>Study With Me</div>
       </div>
-      <Switch>
-        <Route path='/login' component={Signin} />
-        <Route render = {() => (
-            <Redirect to='/login' />
-        )}/>
-      </Switch>
+      <div className='div-content'>
+        <Switch>
+          <Route path='/login' component={Signin} />
+          <Route render = {() => (
+              <Redirect to='/login' />
+          )}/>
+        </Switch>
+      </div>
       <div className='horizontal-div-below' style= {{background :base_styles.primary, zIndex: '1'}}/>
     </Col>
   );

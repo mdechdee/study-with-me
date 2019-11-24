@@ -98,8 +98,8 @@ class CreateGroupDescription extends React.Component{
 	isCorrectFormat() {
 		var a = this.state.unit_interval;
 		var b = this.state.unit_total_time;
-		var c = this.state.group_interval;
-		var d = this.state.group_total_time;
+		var c = parseInt(this.state.group_interval);
+		var d = parseInt(this.state.group_total_time);
 		if((a===b && c>d) ||
 		(a==="minutes" && b==="hours" && c>d*60) ||
 		(a==="minutes" && b==="days" && c>d*60*24) ||
@@ -124,8 +124,9 @@ class CreateGroupDescription extends React.Component{
 	}
 
 	writeToDatabase() {
-			console.log("hello");
-			var newRef = db.ref('groups').push();
+	    var newRef = db.ref('groups/'+this.state.group_name);
+			var people = []
+			people[this.props.uid] = 1
 			var startTime = this.dateToNum(this.state.group_start_date, this.state.group_start_time);
 			var intervalTime = this.timeToNum(this.state.group_interval, this.state.unit_interval);
 			var totalTime = this.timeToNum(this.state.group_total_time, this.state.unit_total_time);
@@ -148,6 +149,10 @@ class CreateGroupDescription extends React.Component{
 				'intervalTime': intervalTime,
 				'intervalNum': 0,
 				'peopleNum': 1
+			})
+			var userRef = db.ref(`users/${this.props.uid}`);
+			userRef.update({
+				'group': this.state.group_name
 			})
 	}
 
