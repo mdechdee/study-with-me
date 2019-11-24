@@ -11,7 +11,8 @@ class JoinGroup extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       show: false,
-      goal:''
+      goal:'',
+      peopleKey:''
     };
   }
 
@@ -22,11 +23,13 @@ class JoinGroup extends React.Component {
 
   handleSubmit(event) {
     var peopleRef =  db.ref('groups/study/people');
-    var newMemberRef = peopleRef.push();
+    var newMemberRef = peopleRef.child('${this.props.uid}');
     newMemberRef.set({
-      Goal: this.state.goal,
-      StarCount: 0,
-      CheerCount: 0
+      goal: this.state.goal,
+      numberLargeSmile: 0,
+      numberSmile: 0,
+      numberLike: 0,
+      numberLove:0
     });
 
     alert('Goal: ' + this.state.goal);
