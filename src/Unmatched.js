@@ -4,7 +4,7 @@ class Unmatched extends React.Component {
 	render(){
 		return(
 
-			<div> d </div>
+			<div> 404 </div>
 		);
 	}
 }

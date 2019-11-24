@@ -19,28 +19,21 @@ import { ToastContainer, toast } from 'react-toastify';
 import { library } from '@fortawesome/fontawesome-svg-core';
 //import { fas } from '@fortawesome/free-solid-svg-icons';
 //import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faChevronCircleLeft,faChevronCircleRight,faComment,faStar } from '@fortawesome/free-solid-svg-icons';
-library.add(faChevronCircleLeft,faChevronCircleRight,faComment,faStar);
+import { faChevronCircleLeft,faChevronCircleRight,faComment,faStar,faSearch } from '@fortawesome/free-solid-svg-icons';
+library.add(faChevronCircleLeft,faChevronCircleRight,faComment,faStar,faSearch);
 class App extends React.Component{
   render() {
     return(
       <Container fluid className>
         <Row className='justify-content-sm-center outer-wrap'>
-          <AuthContext.Consumer>{ auth => { return(
-              <TimerContext.Consumer>{ timer => { return(
-                    <Col xs={12} sm={8} md={6} lg={4} className='page-wrap'>
-                      <div className='horizontal-div-above' style= {{background :base_styles.primary, zIndex: '1'}}>
-                         <Hamburger/>
-                         <div className='title'>Study With Me</div>
-                      </div>
-                      <div className='horizontal-div-user' style = {{zIndex: '-2'}}/>
-                      <Page authUser = {auth} timer={timer}/>
-                      <div className='horizontal-div-below'/>
-                    </Col>
-                  )}
+          <AuthContext.Consumer>
+          { auth => {
+              if(auth)
+                return(<Page auth={auth}/>)
+              else {
+                return(<UnAuthPage/>)
               }
-              </TimerContext.Consumer>
-            )}
+            }
           }
           </AuthContext.Consumer>
         </Row>
@@ -51,31 +44,45 @@ class App extends React.Component{
 }
 
 const Page = (auth) => {
-  if(auth.authUser){
-    return(
+  return(
+    <Col xs={12} sm={8} md={6} lg={4} className='page-wrap'>
+      <div className='horizontal-div-above' style= {{background :base_styles.primary, zIndex: '1'}}>
+         <Hamburger/>
+         <div className='title'>Study With Me</div>
+      </div>
+      <div className='horizontal-div-above' style = {{zIndex: '-2'}}/>
       <Switch>
-        <Route exact path='/' component={FindGroups} />
-        <Route path='/find_group' component={FindGroups} />
-        <Route path='/my_group' component={MyGroup} />
-        <Route path='/profile'  component={Profile} />
-        <Route path='/login' component={Signin} />
-        <Route path='/logout' component={Signout} auth={auth.authUser}/>
-        <Route component={Unmatched} />
+          <Route exact path='/' render = {() => (
+              <Redirect to='/find_group' />
+          )}/>
+        <Route path='/find_group' render={(routeProps) => (<FindGroups uid = {auth.auth.uid} {...routeProps} />)} />
+          <Route path='/my_group' component={MyGroup} />
+          <Route path='/profile'  component={Profile} />
+          <Route path='/logout' render={() => (<Signout auth/>)}/>
+          <Route  path='/login' render = {() => (
+              <Redirect to='/find_group' />
+          )}/>
       </Switch>
-    );
-  }
-  else
-  {
-    console.log('no user')
-    return(
+      <div className='horizontal-div-below'/>
+    </Col>
+  );
+}
+
+const UnAuthPage = () => {
+  return(
+    <Col xs={12} sm={8} md={6} lg={4} className='page-wrap'>
+      <div className='horizontal-div-above' style= {{background :base_styles.primary, zIndex: '1'}}>
+         <div className='title'>Study With Me</div>
+      </div>
       <Switch>
         <Route path='/login' component={Signin} />
         <Route render = {() => (
             <Redirect to='/login' />
         )}/>
       </Switch>
-    );
-  }
+      <div className='horizontal-div-below' style= {{background :base_styles.primary, zIndex: '1'}}/>
+    </Col>
+  );
 }
 
-export default withRouter(withTimer(withAuthentication(App)));
+export default withTimer(withAuthentication(App));
