@@ -9,6 +9,8 @@ const withTimer = (Component) =>
 		constructor(props){
 			super(props);
 			this.state = {
+				uid: null,
+				group: null,
 				startTime :  Date.now(),
 				stopTime: Date.now() + 100000,
 				currentTime : Date.now(),
@@ -20,29 +22,20 @@ const withTimer = (Component) =>
 		}
 		//Fetch group start/stop/interval time (Now start with current time)
 		fetchGroupData(){
-			db.ref('groups/study').once('value', (snapshot) => {
-				let val = snapshot.val();
-				this.setState({
-        	intervalTime: val.intervalTime,
-        	intervalNum: val.intervalNum
-        })
-				if(val.startTime === -1){
+			console.log(this.state.uid)
+			db.ref(`users/${this.state.uid}/group`).once('value', (snap) =>{
+				let _group = snap.val();
+				db.ref(`groups/${_group}`).once('value', (snapshot) => {
+					let val = snapshot.val();
 					this.setState({
-				  	startTime: this.state.currentTime,
-						stopTime: this.state.currentTime + val.intervalTime
-				})
-				db.ref("groups/study/startTime").set(this.state.startTime)
-				db.ref("groups/study/stopTime").set(this.state.stopTime)
-				}
-				else
-				{
-					this.setState({
-				  	startTime: val.startTime,
-						stopTime: val.stopTime
+						intervalTime: val.intervalTime,
+						intervalNum: val.intervalNum,
+						startTime: val.startTime,
+						stopTime: val.stopTime,
+						group: _group
 					})
-				}
+				})
 			})
-
 		}
 		// Fetch current server's time
 		fetchCurrentTime(){
@@ -61,9 +54,9 @@ const withTimer = (Component) =>
 	        	stopTime: this.state.stopTime + this.state.intervalTime,
 	        	intervalNum: this.state.intervalNum+1
 	        })
-			db.ref("groups/study/startTime").set(this.state.startTime)
-			db.ref("groups/study/stopTime").set(this.state.stopTime)
-			db.ref("groups/study/intervalNum").set(this.state.intervalNum)
+			db.ref(`groups/${this.state.group}/startTime`).set(this.state.startTime)
+			db.ref(`groups/${this.state.group}/stopTime`).set(this.state.stopTime)
+			db.ref(`groups/${this.state.group}/intervalNum`).set(this.state.intervalNum)
 
 		}
 
@@ -74,14 +67,13 @@ const withTimer = (Component) =>
 			}
 		}
 
-		componentDidMount(){
+		setupTimer(){
 			//First, store current time to match server's time
 			this.fetchCurrentTime()
 			//Next, store start&stop time for the group
 			this.fetchGroupData()
 			//Countdown every 100ms to update local current time
 
-			console.log(this.props.auth)
 			let stopwatch = setInterval(() => {
 				this.setState({
 					currentTime : this.state.offset + Date.now()
@@ -91,17 +83,34 @@ const withTimer = (Component) =>
 			this.setState({stopwatchID: stopwatch})
 		}
 
-		componentWillUnmount(){
-			clearInterval(this.state.stopwatchID)
+		setAuth(UserAuth){
+			if(UserAuth === null)
+				return
+			if (UserAuth.uid !== this.state.uid)
+			{
+				this.setState({uid: UserAuth.uid}, () => {
+					this.setupTimer()
+					clearInterval(this.state.stopwatch)
+				});
+
+			}
+
 		}
 					//<div> {new Date(this.state.currentTime).getMilliseconds()} </div>
 					//<div> {new Date(this.state.startTime).getMilliseconds()} </div>
 					//<div> {new Date(this.state.stopTime).getMilliseconds()} </div>
 		render(){
 			return(
-					<TimerContext.Provider value={this.state}>
-						<Component {...this.props} />
-					</TimerContext.Provider>
+				<TimerContext.Provider value={this.state}>
+					<AuthContext.Consumer>
+					{
+						auth => {
+							this.setAuth(auth)
+							return(<Component {...this.props} />)
+						}
+					}
+					</AuthContext.Consumer>
+				</TimerContext.Provider>
 			);
 		}
 	}
