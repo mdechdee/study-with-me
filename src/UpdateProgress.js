@@ -33,7 +33,7 @@ class UpdateProgress extends React.Component{
 		          	{ auth => {
 		          		return(
   							<div>
-  								<Button variant = "primary" onClick = {this.handleShow}> Update Process </Button>
+  								<Button variant = "primary" onClick = {this.handleShow}> Update Progress </Button>
   								<Modal dialogClassName = 'custom-dialog' show={this.state.show} onHide={this.handleClose} centered>
 						         	<Modal.Header closeButton>
 						            	<Modal.Title> <h3>Update progress</h3> {this.props.popup_id} </Modal.Title>

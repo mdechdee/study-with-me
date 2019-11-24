@@ -17,7 +17,8 @@ $titleboldfont: Oswald-Bold;
 }
 
 .find-outer-wrap{
-  margin: 10px 10px;
+  margin: 0px 0px;
+  background-color: #F2F2F2;
 }
 
 .row-line {
@@ -28,10 +29,11 @@ $titleboldfont: Oswald-Bold;
 .col-title{
   font-family: $defaultfont;
   color: black;
-  height: 30px; /*requires explicit height*/
+  height: 20px; /*requires explicit height*/
   margin: 10px 0px;
   font-size: 1pc;
   text-align: middle;
+  border-left: 2px solid grey;
 }
 
 .group-row {
@@ -56,9 +58,30 @@ $titleboldfont: Oswald-Bold;
   text-align: middle;
 }
 
-.group-list{
+.group-component{
   border: 5px solid yellow;
-  width: 470px;
+  width: 50vw;
+  height: 40vh;
   margin-left: 10px;
   padding-left: 30px;
+}
+
+.group-list{
+  background-color: #FFF8F7;
+  margin-left: 0px;
+  padding-left: 10px;
+  width: 50vw;
+}
+
+.each-group-row{
+  height:75px;
+  width:600px; 
+  margin-bottom: 10px;
+  border: 2px solid grey;
+}
+
+.button-create-group{
+  position: relative;
+  right: 50px;
+  top: 0.5vh;
 }

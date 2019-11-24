@@ -9,6 +9,7 @@ import UpdateProgress from './UpdateProgress.js';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { Container, Row, Col } from 'react-bootstrap';
 import { MDBContainer, MDBCarousel ,MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+import './scss/MyGroup.scss';
 
 class MyGroup extends React.Component {
 
@@ -129,40 +130,66 @@ class MyGroup extends React.Component {
 	render(){
 		console.log("This is from myGroup");
 		return(
-			<div>
-				<Scrollbars style={{ width: 600, height: 500}}>
-					<div> Group: {this.state.groupName} </div>
-					<div> {new Date(this.state.currentTime).getSeconds()} </div>
-					<div> {new Date(this.state.startTime).getSeconds()} </div>
-					<div> {new Date(this.state.stopTime).getSeconds()} </div>
-					<div> {this.state.intervalTime} </div>
-					<div>
-					      
-					</div>
-					<div className="member-progress">
-						<p><h3>Progress</h3></p>
-						<Container>
-							<Col>
-						        <Row md={4}><button onClick={this.handleLeft}><FontAwesomeIcon icon='chevron-circle-left'/></button></Row>
-						    </Col>
-						    <Col>
-						        <Row md={4}>
-						        	<div className="card">
-									    {this.state.isLoaded ? (
-									    	<Carousel props={this.state}/>
-									    	) : (
-									        <p> loading </p>
-									    )}
-								    </div>
-								</Row>
-							</Col>
-							<Col>
-						        <Row md={4}><button onClick={this.handleRight}><FontAwesomeIcon icon='chevron-circle-right'/></button></Row>
-						    </Col>
-					    </Container>
-					</div>
-				<UpdateProgress />
-				</Scrollbars>
+			<div className="my-group">
+				<div className="title-my-group">
+					<div> <h3>Group: {this.state.groupName}</h3> </div>
+					<Row className="time">
+						<Col className="time-col">
+							<Row className="time-row">
+								<div>Time</div>
+							</Row>
+							<Row className="time-row">
+								<div> {new Date(this.state.currentTime).getSeconds()} </div>
+							</Row>
+						</Col>
+						<Col className="time-col">
+							<Row className="time-row">
+								<div>Start time</div>
+							</Row>
+							<Row className="time-row">
+								<div> {new Date(this.state.startTime).getSeconds()} </div>
+							</Row>
+						</Col>
+						<Col className="time-col">
+							<Row className="time-row">
+								<div>End time</div>
+							</Row>
+							<Row className="time-row">
+								<div> {new Date(this.state.stopTime).getSeconds()} </div>
+							</Row>
+						</Col>
+						<Col className="time-col">
+							<Row className="time-row">
+								Interval
+							</Row>
+							<Row className="time-row">
+								<div> {this.state.intervalTime} </div>
+							</Row>
+						</Col>
+					</Row>
+				</div>
+				<div className="member-progress">
+					<Row>
+						<Col className="button-slide">
+					        <button onClick={this.handleLeft}><FontAwesomeIcon icon='chevron-circle-left'/></button>
+					    </Col>
+					    <Col>
+				        	<div className="card">
+							    {this.state.isLoaded ? (
+							    	<Carousel props={this.state}/>
+							    	) : (
+							        <p> loading </p>
+							    )}
+						    </div>
+						</Col>
+						<Col className="button-slide">
+					        <button onClick={this.handleRight}><FontAwesomeIcon icon='chevron-circle-right'/></button>
+					    </Col>
+				    </Row>
+				</div>
+				<div className="update-progress">
+					<UpdateProgress />
+				</div>
 			</div>
 		);
 	}

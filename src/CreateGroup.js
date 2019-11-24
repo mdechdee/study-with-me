@@ -1,6 +1,7 @@
 import React from 'react';
 import {Modal, Button} from 'react-bootstrap'
 import CreateGroupDescription from'./CreateGroupDescription.js';
+import './scss/FindGroups.scss';
 
 class CreateGroup extends React.Component {
   constructor(props){
@@ -20,7 +21,7 @@ class CreateGroup extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className="button-create-group">
         <Button variant="warning" size="lg" style={{width:'40%', float:'right'}}
         disabled={this.props.disabled}
         onClick={this.handleShow}> Create a group </Button>
