@@ -28,7 +28,7 @@ class FindGroups extends React.Component {
 	checkUserGroup()
 	{
 		let userHasGroup = true
-		db.ref(`users/${this.props.uid}`).once('value').then(snapshot => {
+		db.ref(`users/${this.props.uid}`).on('value', (snapshot) => {
 			let a = snapshot.val()
 			console.log(a.group)
 			this.setState({usergroup: a.group})
