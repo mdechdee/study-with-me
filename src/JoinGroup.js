@@ -47,7 +47,7 @@ class JoinGroup extends React.Component {
   render(){
     return(
       <div>
-          <Modal size="sm" show={this.props.show} onHide={this.props.handleClose}>
+          <Modal show={this.props.show} onHide={this.props.handleClose}>
             <Modal.Header closeButton>
               <Modal.Title> <h3>Join Group</h3> {this.props.popup_id} </Modal.Title>
             </Modal.Header>
