@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 // import Moment from 'moment';
 import './scss/FindGroups.scss';
 import {db} from './firebase/firebase.js'
+import JoinGroup from'./JoinGroup.js';
 
 class MyComponent extends React.Component {
 	constructor(props) {
@@ -10,8 +11,8 @@ class MyComponent extends React.Component {
 	}
 
 	handleClick() {
-		var userRef = db.ref(`users/${this.props.uid}`);
-		
+		// var userRef = db.ref(`users/${this.props.uid}`);
+		// <JoinGroup />
 	}
 
 	render() {
