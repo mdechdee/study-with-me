@@ -5,6 +5,7 @@ import TimerContext from './TimerContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import progress from './camera.jpg';
 import Carousel from './Carousel.js';
+import UpdateProgress from './UpdateProgress.js';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { Container, Row, Col } from 'react-bootstrap';
 import { MDBContainer, MDBCarousel ,MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
@@ -30,7 +31,7 @@ class MyGroup extends React.Component {
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
 	}
-	// bring data from database 
+	// bring data from database
 
 	collectPeople(){
 		db.ref('groups/study/people').once('value',(snapshot) =>{
@@ -117,7 +118,7 @@ class MyGroup extends React.Component {
 		console.log("This is from myGroup");
 		return(
 			<div>
-				<Scrollbars style={{ width: 400, height: 700}}>
+				<Scrollbars style={{ width: 600, height: 500}}>
 					<div> {new Date(this.state.currentTime).getSeconds()} </div>
 					<div> {new Date(this.state.startTime).getSeconds()} </div>
 					<div> {new Date(this.state.stopTime).getSeconds()} </div>
@@ -147,6 +148,7 @@ class MyGroup extends React.Component {
 						    </Col>
 					    </Container>
 					</div>
+				<UpdateProgress />
 				</Scrollbars>
 			</div>
 		);
