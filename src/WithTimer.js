@@ -99,16 +99,9 @@ const withTimer = (Component) =>
 					//<div> {new Date(this.state.stopTime).getMilliseconds()} </div>
 		render(){
 			return(
-
-				<TimerContext.Provider value={this.state}>
-					<Component {...this.props} />
-				</TimerContext.Provider>
-				<AuthContext.Consumer>{ auth => { return(
-					<TimerContext.Provider auth={auth} value={this.state}>
+					<TimerContext.Provider value={this.state}>
 						<Component {...this.props} />
 					</TimerContext.Provider>
-				)}}
-				</AuthContext.Consumer>
 			);
 		}
 	}
