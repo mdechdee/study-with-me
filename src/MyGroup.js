@@ -40,7 +40,7 @@ class MyGroup extends React.Component {
 			console.log("fetchGroupName");
 			console.log(snapshot.val());
 			this.setState({
-				groupName: snapshot.val()
+				groupName: snapshot.val().group
 			})
 		})
 	}
@@ -131,15 +131,16 @@ class MyGroup extends React.Component {
 		return(
 			<div>
 				<Scrollbars style={{ width: 600, height: 500}}>
+					<div> Group: {this.state.groupName} </div>
 					<div> {new Date(this.state.currentTime).getSeconds()} </div>
 					<div> {new Date(this.state.startTime).getSeconds()} </div>
 					<div> {new Date(this.state.stopTime).getSeconds()} </div>
 					<div> {this.state.intervalTime} </div>
 					<div>
-						Group: {this.state.groupName}
+					      
 					</div>
 					<div className="member-progress">
-						<p>Progress</p>
+						<p><h3>Progress</h3></p>
 						<Container>
 							<Col>
 						        <Row md={4}><button onClick={this.handleLeft}><FontAwesomeIcon icon='chevron-circle-left'/></button></Row>
