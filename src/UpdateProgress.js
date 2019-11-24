@@ -44,11 +44,11 @@ class UpdateProgress extends React.Component{
 									          	{ timer => {
 									          		return(
 									          			<div className="componentToUpdate">
-										          			<ProgressImage 
-										          				uid={auth.uid} 
+										          			<ProgressImage
+										          				uid={auth.uid}
 										          				interval={timer.intervalNum}/>
-					            							<ProgressDescription 
-					            								uid = {auth.uid} 
+					            							<ProgressDescription
+					            								uid = {auth.uid}
 					            								interval = {timer.intervalNum}
 					            								setStatus = {this.handleClose}/>
 					            						</div>
