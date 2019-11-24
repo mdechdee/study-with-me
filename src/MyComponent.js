@@ -1,6 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap';
 // import Moment from 'moment';
+import './scss/FindGroups.scss';
 
 class MyComponent extends React.Component {
 	constructor(props) {
@@ -10,23 +11,24 @@ class MyComponent extends React.Component {
 	render() {
 		return(
 			<div>
-				<Row className='justify-content-sm-center'>
-					<Col>
-						<Row className='justify-content-sm-center'> {this.props.one.name} </Row>
+				<Row className='group-row'>
+				
+					<Col sm={3}>
+						<Row><div className='group-name'> {this.props.one.name} </div></Row>
 					</Col>
 
-					<Col>
-						<Row className='justify-content-sm-center'> {this.props.one.baseStartDate} </Row>
-						<Row className='justify-content-sm-center'> {this.props.one.baseStartTime} </Row>
+					<Col sm={3}>
+						<Row><div className='group-info'> {this.props.one.baseStartDate} </div></Row>
+						<Row><div className='group-info'> {this.props.one.baseStartTime} </div></Row>
 					</Col>
 
-					<Col>
-						<Row className='justify-content-sm-center'> {this.props.one.totalTime} {this.props.one.totalTimeUnit} </Row>
-						<Row className='justify-content-sm-center'> ({this.props.one.interval} {this.props.one.intervalUnit} x {this.props.one.roundNum}) </Row>
+					<Col sm={3}>
+						<Row><div className='group-info'> {this.props.one.totalTime} {this.props.one.totalTimeUnit} </div></Row>
+						<Row><div className='group-info'> ({this.props.one.interval} {this.props.one.intervalUnit} x {this.props.one.roundNum}) </div></Row>
 					</Col>
 
-					<Col>
-						<Row className='justify-content-sm-center'> {this.props.one.peopleNum} </Row>
+					<Col sm={2}>
+						<Row><div className='group-info'> {this.props.one.peopleNum} </div></Row>
 					</Col>
 
 				</Row>

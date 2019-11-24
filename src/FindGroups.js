@@ -2,9 +2,10 @@ import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 import CreateGroup from'./CreateGroup.js';
-//import ShowAllGroups from'./ShowAllGroups.js';
-import { db } from './firebase/firebase.js';
 import MyComponent from './MyComponent.js'
+import { db } from './firebase/firebase.js';
+import './scss/FindGroups.scss';
+
 class FindGroups extends React.Component {
 	constructor(props){
 	    super(props);
@@ -52,18 +53,18 @@ class FindGroups extends React.Component {
 
 		return(
 			<div>
-				<div>Groups in SWM</div>
-				<div>
-					<Row>
-						<Col>NAME</Col>
-						<Col>START AT</Col>
-						<Col>TIME</Col>
-						<Col>MEMBER</Col>
+				<div className="find-title">Groups in SWM</div>
+				<div className="find-outer-wrap">
+					<Row className="row-line">
+						<Col sm={3}><div className="col-title">NAME</div></Col>
+						<Col sm={3}><div className="col-title">START AT</div></Col>
+						<Col sm={3}><div className="col-title">TIME</div></Col>
+						<Col sm={3}><div className="col-title">MEMBER</div></Col>
 					</Row>
 				</div>
 
 				<div>
-					<Scrollbars style={{ width: 500, height: 400 }}>
+					<Scrollbars style={{ width: 500, height: 350 }}>
 						{this.showAllGroups()}
 					</Scrollbars>
 				</div>
