@@ -57,6 +57,7 @@ class MyGroup extends React.Component {
 	countPeople(){
 		let num = 0;
 		let temp = {};
+		console.log(this.state);
 		Object.keys(this.state.people).forEach(function (person){
 			temp[num]=person;
 		    num=num+1;
