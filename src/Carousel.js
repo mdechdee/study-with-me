@@ -15,7 +15,8 @@ class Carousel extends React.Component{
       interval:0,
       info: null,
       isReady: false,
-      name: ""
+      name: "",
+      groupName:this.props.props.groupName
     }
   }
 
@@ -33,13 +34,13 @@ class Carousel extends React.Component{
     var interval = null;
     var temp = null;
     var self=this;
-    db.ref(`groups/study/people`).child(`/${this.state.uid}`).orderByKey().limitToLast(1).once('value',function(snapshot){
-      snapshot.forEach((childSnapshot) =>{
-        console.log("childsnapshot")
-        console.log(childSnapshot.key)
-        console.log(childSnapshot.val())
-        interval = childSnapshot.key;
-        temp = childSnapshot.val();
+    /*db.ref(`groups/${this.state.groupName}/people`).child(`/${this.state.uid}`).orderByKey().limitToLast(1).once('value',function(snapshot){
+          snapshot.forEach((childSnapshot) =>{
+          console.log("childsnapshot")
+          console.log(childSnapshot.key)
+          console.log(childSnapshot.val())
+          interval = childSnapshot.key;
+          temp = childSnapshot.val();
         self.setState({interval: interval});
         self.setState({info: temp})
         self.setState({progress: temp["progress"]})
@@ -48,8 +49,16 @@ class Carousel extends React.Component{
         self.getUrl(interval);
         self.setState({isReady: true})
       })
+    })*/ //in case every child has interval
+    db.ref(`groups/Hello/people`).child(`/${this.state.uid}`).once('value',function(snapshot){
+      console.log("option2");
+      console.log(snapshot.val())
+      console.log(snapshot.key);
+      self.setState({goal: snapshot.val().goal})
+      self.setState({progress: snapshot.val().progress})
+      self.setState({isReady:true})
     })
-  db.ref("users").child(`/${this.state.uid}`).once('value',function(snapshot){
+    db.ref("users").child(`/${this.state.uid}`).once('value',function(snapshot){
       var value = snapshot.val();
       console.log("111");
       self.setState({name:value["name"]});
@@ -66,13 +75,18 @@ class Carousel extends React.Component{
           <MDBCardBody>
             <MDBCardTitle>{this.state.name}</MDBCardTitle>
             <MDBCardText>
-              My progress: {this.state.progress}
+              {this.state.progress ? (
+                  "My progress" + this.state.progress
+                  ) : (
+                  ""
+              )}
+              
               <br/>
               My goal: {this.state.goal}
             </MDBCardText>
             <div>
                 {this.state.isReady ? (
-                  <Cheer uid={this.state.uid} interval = {this.state.interval}/>
+                  <Cheer groupName={this.state.groupName} uid={this.state.uid} interval = {this.state.interval}/>
                   ) : (
                     <p> loading </p>
                 )}

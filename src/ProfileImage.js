@@ -3,6 +3,7 @@ import {storage} from './firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import './scss/UpdateProgress.scss';
+
 class ProfileImage extends Component {
   constructor(props) {
     super(props);
@@ -83,13 +84,13 @@ class ProfileImage extends Component {
           />
         </div>
         <div className="btn">
-          <h5>Change picture here {":  "}</h5>
+          <div update-title>Change picture here {":  "}</div>
           <div className="file-box">
             <input type="file" name="ccc" onChange={this.handleChange} />
           </div>
           <br/>
 
-          
+
         </div>
         <div className="progress-bar">
           <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.show} />
