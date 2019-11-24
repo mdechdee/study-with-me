@@ -90,10 +90,10 @@ class MyGroup extends React.Component {
 					<JoinGroup/>
 				</div>
 				<div>
-					My<FontAwesomeIcon icon='comment'/>:<button><FontAwesomeIcon icon='search'/></button>
+					My <FontAwesomeIcon icon='comment'/>:<button><FontAwesomeIcon icon='search'/></button>
 				</div>
 				<div>
-					<p>My<FontAwesomeIcon icon='star'/>:</p>
+					<p>My <FontAwesomeIcon icon='star'/>:</p>
 				</div>
 			<AllMember/>
 			</div>
