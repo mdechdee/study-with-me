@@ -1,0 +1,17 @@
+$gray: #ccc;
+
+.file-fill{
+  position: relative;
+  background: url(../camera.jpg) no-repeat;
+  width: 434px;
+  height: 312px;
+  border-radius: .25rem;
+  margin-bottom: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+}
+
+.progress-custom{
+  background-color: yellow;
+}
