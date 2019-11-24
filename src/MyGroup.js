@@ -28,7 +28,8 @@ class MyGroup extends React.Component {
 			mapPeopleWithNumber: null,
 			isLoaded: false,
 			isDone:false,
-			groupName:""
+			groupName:"",
+			isInGroup:false
 		};
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
@@ -46,7 +47,7 @@ class MyGroup extends React.Component {
 		})
 	}
 	collectPeople(){
-		db.ref('groups/study/people').once('value',(snapshot) =>{
+		db.ref(`groups/${this.state.groupName}/people`).once('value',(snapshot) =>{
 			this.setState({
 				people: snapshot.val()
 			})
@@ -121,10 +122,13 @@ class MyGroup extends React.Component {
 			this.checkTimeUp()
 		}, 100)
 		//Boss part
-		this.collectPeople();
+		this.fetchGroupName();
+		setTimeout(function(){
+			this.collectPeople()
+			}.bind(this),1000);
 		setTimeout(function(){
 			this.countPeople()
-			}.bind(this),1000);
+			}.bind(this),2000);
 	}
 
 	render(){

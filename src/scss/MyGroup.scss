@@ -25,18 +25,19 @@ $titleboldfont: Oswald-Bold;
 	position:relative;
 	text-align:center;
 	background-color: #FFF8F7;
-  	padding-top: 1.5vh;
+  	padding-top: 10px;
   	margin: 2px;
-  	height: 72%;
+  	height: 100%;
   	width: 100%;
 }
 .update-progress{
 	position:relative;
+	padding-top:10px;
 }
 
 .button-slide{
 	position: absolute;
-	top:25vh;
+	top:240px;
 	font-size: 3rem;
 }
 .time{

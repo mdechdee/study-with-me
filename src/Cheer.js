@@ -17,7 +17,6 @@ class Cheer extends React.Component{
 			uid: props.uid,
 			interval: props.interval,
 			disable: false,
-			Ref: db.ref(`groups/study/people/${props.uid}`),
 			numberLargeSmile: 0,
 			numberSmile: 0,
 			numberLike: 0,
@@ -27,47 +26,76 @@ class Cheer extends React.Component{
 		this.handleSmile = this.handleSmile.bind(this);
 		this.handleLike = this.handleLike.bind(this);
 		this.handleLove = this.handleLove.bind(this);
+		
+	}
+	handleLargeSmile(){
+		this.setState({numberLargeSmile: this.state.numberLargeSmile+1})
+		console.log(this.state.numberLargeSmile+"A");
+		db.ref(`groups/${this.props.groupName}/people/`).child(`${this.props.uid}`).set(
+			{numberLargeSmile: this.state.numberLargeSmile,
+			numberSmile: this.state.numberSmile,
+			numberLike: this.state.numberLike,
+			numberLove: this.state.numberLove
+			});
+		console.log(this.state);
+	}
+	handleSmile(){
+		this.setState({numberSmile: this.state.numberSmile+1})
+		console.log(this.state.numberSmile+"B");
+		db.ref(`groups/${this.props.groupName}/people/`).child(`${this.props.uid}`).set(
+			{numberLargeSmile: this.state.numberLargeSmile,
+			numberSmile: this.state.numberSmile,
+			numberLike: this.state.numberLike,
+			numberLove: this.state.numberLove	
+			});
+		console.log(this.state);
+	}
+	handleLike(){
+		this.setState({numberLike: this.state.numberLike+1})
+		console.log(this.state.numberLike+"C");
+		db.ref(`groups/${this.props.groupName}/people/`).child(`${this.props.uid}`).set(
+			{numberLargeSmile: this.state.numberLargeSmile,
+			numberSmile: this.state.numberSmile,
+			numberLike: this.state.numberLike,
+			numberLove: this.state.numberLove
+		});
+		console.log(this.state);
+	}
+	handleLove(){
+		this.setState({numberLove: this.state.numberLove+1})
+		console.log(this.state.numberLove+"D");
+		db.ref(`groups/${this.props.groupName}/people/`).child(`${this.props.uid}`).set(
+		{
+			numberLargeSmile: this.state.numberLargeSmile,
+			numberSmile: this.state.numberSmile,
+			numberLike: this.state.numberLike,
+			numberLove: this.state.numberLove
+		})
+		console.log(this.state);
+	}
+	componentDidMount(){
 		var numberLargeSmile = 0;
 		var numberSmile = 0;
 		var numberLike = 0;
 		var numberLove = 0;
-		this.state.Ref.on('value', function(snapshot) {
-			numberLargeSmile = (snapshot.val() && snapshot.val().largeSmile)|| 0;
-			numberSmile = (snapshot.val() && snapshot.val().smile)|| 0;
-			numberLike = (snapshot.val() && snapshot.val().like)|| 0;
-			numberLove = (snapshot.val() && snapshot.val().love)|| 0;
+		var self=this;
+		db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`).once('value', function(snapshot) {
+			numberLargeSmile = (snapshot.val() && snapshot.val().numberlargeSmile)|| 0;
+			numberSmile = (snapshot.val() && snapshot.val().numberSmile)|| 0;
+			numberLike = (snapshot.val() && snapshot.val().numberLike)|| 0;
+			numberLove = (snapshot.val() && snapshot.val().numberLove)|| 0;
 			console.log("------------------");
 			console.log("LargeSmile = "+ numberLargeSmile);
 			console.log("Smile = "+ numberSmile);
 			console.log("Like = "+ numberLike);
 			console.log("Love = "+ numberLove);
 			console.log("------------------");
+			self.setState({numberLargeSmile: numberLargeSmile,
+				numberSmile: numberSmile,
+				numberLike: numberLike,
+				numberLove: numberLove
+			});
 		});
-		this.setState({numberLargeSmile: numberLargeSmile,
-			numberSmile: numberSmile,
-			numberLike: numberLike,
-			numberLove: numberLove
-		});
-	}
-	handleLargeSmile(){
-		this.setState({numberLargeSmile: this.state.numberLargeSmile+1})
-		console.log(this.state.numberLargeSmile+"A");
-		this.state.Ref.child(`${this.state.interval}`).set({numberLargeSmile: this.state.numberLargeSmile});
-	}
-	handleSmile(){
-		this.setState({numberSmile: this.state.numberSmile+1})
-		console.log(this.state.numberSmile+"B");
-		this.state.Ref.child(`${this.state.interval}`).set({numberSmile: this.state.numberSmile});
-	}
-	handleLike(){
-		this.setState({numberLike: this.state.numberLike+1})
-		console.log(this.state.numberLike+"C");
-		this.state.Ref.child(`${this.state.interval}`).set({numberLike: this.state.numberLike});
-	}
-	handleLove(){
-		this.setState({numberLove: this.state.numberLove+1})
-		console.log(this.state.numberLove+"D");
-		this.state.Ref.child(`${this.state.interval}`).set({numberLove: this.state.numberLove});
 	}
 	render(){
 		return(
