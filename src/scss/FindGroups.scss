@@ -6,48 +6,32 @@ $semiboldfont: 'OpenSans-SemiBold';
 $titlefont: Oswald;
 $titleboldfont: Oswald-Bold;
 
-.find-title{
-  border-radius: 10px;
-  margin: 20px 20px;
-  height: 50px; /*requires explicit height*/
-  font-family: $titleboldfont;
-  font-size: 2pc;
-  text-align: left;
-  color: black;
-}
-
-.find-outer-wrap{
-  margin: 0px 0px;
-  background-color: #F2F2F2;
-}
-
-.row-line {
-  border-bottom: 2px solid grey;
-  border-top: 2px solid grey;
+.box-wrap{
+  margin: 10px 10px;
 }
 
 .col-title{
   font-family: $defaultfont;
   color: black;
-  height: 20px; /*requires explicit height*/
-  margin: 10px 0px;
+  height: 30px; /*requires explicit height*/
   font-size: 1pc;
   text-align: middle;
-  border-left: 2px solid grey;
-}
-
-.group-row {
-  margin: 10px 10px;
 }
 
 .group-name{
   font-family: $defaultfont;
   color: white;
-  width: 50px;
-  height: 50px; /*requires explicit height*/
+  width: 80%;
+  height: 80%;
   font-size: 1pc;
   text-align: middle;
   background-color: gray;
+  box-sizing: border-box;
+}
+
+.group-column{
+  align-content: center;
+  align-items: center;
 }
 
 .group-info{
@@ -56,32 +40,38 @@ $titleboldfont: Oswald-Bold;
   height: 25px; /*requires explicit height*/
   font-size: 1pc;
   text-align: middle;
-}
-
-.group-component{
-  border: 5px solid yellow;
-  width: 50vw;
-  height: 40vh;
-  margin-left: 10px;
-  padding-left: 30px;
-}
-
-.group-list{
-  background-color: #FFF8F7;
-  margin-left: 0px;
-  padding-left: 10px;
-  width: 50vw;
-}
-
-.each-group-row{
-  height:75px;
-  width:600px; 
-  margin-bottom: 10px;
-  border: 2px solid grey;
-}
-
-.button-create-group{
   position: relative;
-  right: 50px;
-  top: 0.5vh;
+}
+
+.create-group-button{
+  position: absolute;
+  right: 5%;
+  bottom: 8%;
+}
+
+.find-title{
+  border-radius: 10px;
+  height: 50px; /*requires explicit height*/
+  font-family: $titleboldfont;
+  font-size: 2pc;
+  text-align: left;
+  color: black;
+  margin: 10px;
+}
+
+.find-outer-wrap{
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.scroll{
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.scroll-content{
+  flex: 1;
 }
