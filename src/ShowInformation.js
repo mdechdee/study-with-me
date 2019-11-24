@@ -50,17 +50,17 @@ class ShowInformation extends React.Component {
 		return(
 			<div className="information">
 				<Form>
-						<div>
+						<Container>
 							<Row>
-								<Col xs sm md lg xl = {3}><div>Name</div></Col>
-								<Col xs sm md lg xl = {6}>
+								<Col xs = {3}sm md lg xl ><div>Name</div></Col>
+								<Col xs = {9}sm md lg xl >
 					    		<Form.Control type="name" placeholder={this.state.name||"Name"} onChange={this.handleChange}/>
 									<Form.Text className="text-muted">
 						      		This name is displayed in public.
 						    	</Form.Text>
 						    </Col>
 							</Row>
-					  </div>
+					  </Container>
 
 					<Button variant="primary" type="submit" onClick={this.handleUpdate}>
 				    Save changes
