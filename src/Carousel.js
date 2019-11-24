@@ -1,65 +1,82 @@
 import React from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 import { db,storage} from './firebase/firebase.js';
+import Cheer from './Cheer.js'
 class Carousel extends React.Component{
   constructor(props){
     super(props);
     this.state ={
+      rank: this.props.props.rank,
+      people: this.props.props.mapPeopleWithNumber,
       url : "",
       progress : "",
-      goal:""
+      goal:"",
+      uid:this.props.props.mapPeopleWithNumber[this.props.props.rank],
+      interval:0,
+      info: null,
+      isReady: false,
+      name: ""
     }
   }
-  render(){
-    //initiate variables
-    var rank = this.props.props.rank;
-    var person = this.props.props.mapPeopleWithNumber;
-    var uid ="";
-    for(var prop in person){
-      if(prop==rank) uid=person[prop];
-    }
-    console.log("uid = " + uid);
 
-    //Useful varibles
-    const userRef = db.ref(`groups/study/people/${uid}`);
-    var interval = null;
-    userRef.limitToLast(1).once('value',function(snapshot){
-      console.log("----");
-      console.log(snapshot.val());
-      interval = snapshot.val();
-    })
-
-    let url = "";
-    let progress = "";
-    let goal = "";
-    var lastInterval =0;
-    for(var prop in interval){
-      progress = interval[prop].progress;
-      goal = interval[prop].goal;
-      lastInterval=prop;
-      break;
-    }
-
-    //bug infinite loop from here
-    this.setState({progress:progress, goal: goal});
-    console.log(lastInterval);
-    storage.ref(`images/${uid}`).child(`work`+`${lastInterval}`+`.jpg`).getDownloadURL()
+  getUrl(interval){
+    console.log("-> getUrl");
+    storage.ref(`images/${this.state.uid}`).child(`work`+`${interval}`+`.jpg`).getDownloadURL()
       .then(url => {
         this.setState({ url });
-      });
+      }).catch(function(error) {
+      console.log(error);
+    });;
+  }
+  componentDidMount(){
+    console.log("Now componentDidMount is working.")
+    var interval = null;
+    var temp = null;
+    var self=this;
+    db.ref(`groups/study/people`).child(`/${this.state.uid}`).orderByKey().limitToLast(1).once('value',function(snapshot){
+      snapshot.forEach((childSnapshot) =>{
+        console.log("childsnapshot")
+        console.log(childSnapshot.key)
+        console.log(childSnapshot.val())
+        interval = childSnapshot.key;
+        temp = childSnapshot.val();
+        self.setState({interval: interval});
+        self.setState({info: temp})
+        self.setState({progress: temp["progress"]})
+        self.setState({goal: temp["goal"]})
+        console.log("Now componentDidMount is not working.")
+        self.getUrl(interval);
+        self.setState({isReady: true})
+      })
+    })
+  db.ref("users").child(`/${this.state.uid}`).once('value',function(snapshot){
+      var value = snapshot.val();
+      console.log("111");
+      self.setState({name:value["name"]});
+    })
+  }
+
+  render(){
+    console.log("Here is at Carousel");
+    console.log(this.state);
     return (
       <MDBCol>
-        <MDBCard style={{ width: "22rem"  }}>
-          <MDBCardImage className="img-fluid" src={this.state.url || "https://via.placeholder.com/200x300"} waves />
+        <MDBCard style={{ width: "15rem"  }}>
+          <MDBCardImage className="img-fluid" src={ this.state.url || "https://via.placeholder.com/200x300"} waves />
           <MDBCardBody>
-            <MDBCardTitle>{uid}</MDBCardTitle>
+            <MDBCardTitle>{this.state.name}</MDBCardTitle>
             <MDBCardText>
-              <p>My progress</p>
-              {this.state.progress}
-              <p>My goal</p>
-              {this.state.goal}
+              My progress: {this.state.progress}
+              <br/>
+              My goal: {this.state.goal}
             </MDBCardText>
-            <MDBBtn href="#">MDBBtn</MDBBtn>
+            <div>
+                {this.state.isReady ? (
+                  <Cheer uid={this.state.uid} interval = {this.state.interval}/>
+                  ) : (
+                    <p> loading </p>
+                )}
+            </div>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>

@@ -6,15 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import progress from './camera.jpg';
 import Carousel from './Carousel.js';
 import { Scrollbars } from 'react-custom-scrollbars';
-
-function makePersonalCard(props){
-	return(
-		<div>
-			<Carousel props = {props}/>
-			{props.rank}
-		</div>
-	)
-}
+import { Container, Row, Col } from 'react-bootstrap';
+import { MDBContainer, MDBCarousel ,MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 
 class MyGroup extends React.Component {
 
@@ -30,12 +23,15 @@ class MyGroup extends React.Component {
 			rank:0 ,
 			totalPeople: 0,
 			people: null,
-			mapPeopleWithNumber: null
+			mapPeopleWithNumber: null,
+			isLoaded: false,
+			isDone:false
 		};
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
 	}
 	// bring data from database 
+
 	collectPeople(){
 		db.ref('groups/study/people').once('value',(snapshot) =>{
 			this.setState({
@@ -53,7 +49,9 @@ class MyGroup extends React.Component {
 		});
 		this.setState({mapPeopleWithNumber:temp});
 		this.setState({totalPeople:num});
-
+		this.setState({isLoaded:true});
+		console.log("state");
+		console.log(this.state);
 	}
 	handleLeft(){
 		if (this.state.rank>0) this.setState({rank:this.state.rank-1})
@@ -99,18 +97,9 @@ class MyGroup extends React.Component {
 			console.log("Time's up!")
 		}
 	}
-
-	componentWillMount(){
-		this.collectPeople();
-		setTimeout(function(){
-			this.countPeople()
-			}.bind(this),1000)
-	}
-
 	componentDidMount(){
 		this.fetchCurrentTime()
 		this.fetchGroupData()
-		console.log(this.state.totalPeople);
 		setInterval(() => {
 			this.setState({
 				currentTime : this.state.offset + Date.now()
@@ -118,10 +107,14 @@ class MyGroup extends React.Component {
 			this.checkTimeUp()
 		}, 100)
 		//Boss part
+		this.collectPeople();
+		setTimeout(function(){
+			this.countPeople()
+			}.bind(this),1000);
 	}
 
 	render(){
-
+		console.log("This is from myGroup");
 		return(
 			<div>
 				<Scrollbars style={{ width: 400, height: 700}}>
@@ -132,19 +125,27 @@ class MyGroup extends React.Component {
 					<div>
 						Group: Study Marathon
 					</div>
-					<div>
+					<div className="member-progress">
 						<p>Progress</p>
-						<p>-username</p>
-						<button onClick={this.handleLeft}><FontAwesomeIcon icon='chevron-circle-left'/></button>
-						{makePersonalCard(this.state)}
-						<button onClick={this.handleRight}><FontAwesomeIcon icon='chevron-circle-right'/></button>
-					</div>
-					<div>
-						<button><FontAwesomeIcon icon='comment'/></button>
-						<button><FontAwesomeIcon icon='star'/></button>
-					</div>
-					<div>
-						<button> Join Group </button>
+						<Container>
+							<Col>
+						        <Row md={4}><button onClick={this.handleLeft}><FontAwesomeIcon icon='chevron-circle-left'/></button></Row>
+						    </Col>
+						    <Col>
+						        <Row md={4}>
+						        	<div className="card">
+									    {this.state.isLoaded ? (
+									    	<Carousel props={this.state}/>
+									    	) : (
+									        <p> loading </p>
+									    )}
+								    </div>
+								</Row>
+							</Col>
+							<Col>
+						        <Row md={4}><button onClick={this.handleRight}><FontAwesomeIcon icon='chevron-circle-right'/></button></Row>
+						    </Col>
+					    </Container>
 					</div>
 				</Scrollbars>
 			</div>

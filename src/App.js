@@ -38,7 +38,7 @@ class App extends React.Component{
                   )}
               }
               </TimerContext.Consumer>
-              )}
+            )}
           }
           </AuthContext.Consumer>
         </Row>
