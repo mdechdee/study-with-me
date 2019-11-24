@@ -3,7 +3,6 @@ import { db } from './firebase/firebase.js';
 import TimerContext from './TimerContext.js'
 import AuthContext from './authentication/AuthContext.js'
 
-
 const withTimer = (Component) =>
 	class WithTimer extends React.Component {
 		constructor(props){
@@ -80,7 +79,6 @@ const withTimer = (Component) =>
 			//Next, store start&stop time for the group
 			this.fetchGroupData()
 			//Countdown every 100ms to update local current time
-
 			console.log(this.props.auth)
 			let stopwatch = setInterval(() => {
 				this.setState({
@@ -99,9 +97,12 @@ const withTimer = (Component) =>
 					//<div> {new Date(this.state.stopTime).getMilliseconds()} </div>
 		render(){
 			return(
-					<TimerContext.Provider value={this.state}>
+				<AuthContext.Consumer>{ auth => { return(
+					<TimerContext.Provider auth={auth} value={this.state}>
 						<Component {...this.props} />
 					</TimerContext.Provider>
+				)}}
+				</AuthContext.Consumer>
 			);
 		}
 	}

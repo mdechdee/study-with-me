@@ -1,10 +1,15 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
 import { db } from './firebase/firebase.js';
+import TimerContext from './TimerContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import progress from './camera.jpg';
-import JoinGroup from './JoinGroup.js';
-import AllMember from './AllMember.js';
+import Carousel from './Carousel.js';
+import UpdateProgress from './UpdateProgress.js';
+import { Scrollbars } from 'react-custom-scrollbars';
+import { Container, Row, Col } from 'react-bootstrap';
+import { MDBContainer, MDBCarousel ,MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+
 class MyGroup extends React.Component {
 
 	constructor(props){
@@ -15,7 +20,45 @@ class MyGroup extends React.Component {
 			currentTime : Date.now(),
 			intervalTime: 0,
 			offset: 0,
+			//Boss part
+			rank:0 ,
+			totalPeople: 0,
+			people: null,
+			mapPeopleWithNumber: null,
+			isLoaded: false,
+			isDone:false
 		};
+		this.handleLeft = this.handleLeft.bind(this);
+		this.handleRight = this.handleRight.bind(this);
+	}
+	// bring data from database
+
+	collectPeople(){
+		db.ref('groups/study/people').once('value',(snapshot) =>{
+			this.setState({
+				people: snapshot.val()
+			})
+		})
+	}
+	// map uid to number and count total number of people
+	countPeople(){
+		let num = 0;
+		let temp = {};
+		Object.keys(this.state.people).forEach(function (person){
+			temp[num]=person;
+		    num=num+1;
+		});
+		this.setState({mapPeopleWithNumber:temp});
+		this.setState({totalPeople:num});
+		this.setState({isLoaded:true});
+		console.log("state");
+		console.log(this.state);
+	}
+	handleLeft(){
+		if (this.state.rank>0) this.setState({rank:this.state.rank-1})
+	}
+	handleRight(){
+		if (this.state.rank<this.state.totalPeople-1) this.setState({rank:this.state.rank+1})
 	}
 	//Fetch group start/stop/interval time (Now start with current time)
 	fetchGroupData(){
@@ -25,7 +68,7 @@ class MyGroup extends React.Component {
 	        	intervalTime: val.interval,
 	        	startTime: this.state.currentTime,
         		stopTime: this.state.currentTime + val.interval
-	    	})
+	    	});
         })
 
 	}
@@ -55,7 +98,6 @@ class MyGroup extends React.Component {
 			console.log("Time's up!")
 		}
 	}
-
 	componentDidMount(){
 		this.fetchCurrentTime()
 		this.fetchGroupData()
@@ -65,37 +107,49 @@ class MyGroup extends React.Component {
 			})
 			this.checkTimeUp()
 		}, 100)
-
+		//Boss part
+		this.collectPeople();
+		setTimeout(function(){
+			this.countPeople()
+			}.bind(this),1000);
 	}
 
 	render(){
+		console.log("This is from myGroup");
 		return(
 			<div>
-				<div>
-					Group: Study Marathon
-				</div>
-				<div>
-					<p>Progress:</p>
-					<p>Username:</p>
-					<p>Goal:</p>
-					<button><FontAwesomeIcon icon='chevron-circle-left'/></button>
-					<img src={progress} width="300" height ="150"/>
-					<button><FontAwesomeIcon icon='chevron-circle-right'/></button>
-				</div>
-				<div>
-					<button><FontAwesomeIcon icon='comment'/></button>
-					<button><FontAwesomeIcon icon='star'/></button>
-				</div>
-				<div>
-					<JoinGroup uid={this.props.uid}/>
-				</div>
-				<div>
-					My <FontAwesomeIcon icon='comment'/>:<button><FontAwesomeIcon icon='search'/></button>
-				</div>
-				<div>
-					<p>My <FontAwesomeIcon icon='star'/>:</p>
-				</div>
-			<AllMember/>
+				<Scrollbars style={{ width: 600, height: 500}}>
+					<div> {new Date(this.state.currentTime).getSeconds()} </div>
+					<div> {new Date(this.state.startTime).getSeconds()} </div>
+					<div> {new Date(this.state.stopTime).getSeconds()} </div>
+					<div> {this.state.intervalTime} </div>
+					<div>
+						Group: Study Marathon
+					</div>
+					<div className="member-progress">
+						<p>Progress</p>
+						<Container>
+							<Col>
+						        <Row md={4}><button onClick={this.handleLeft}><FontAwesomeIcon icon='chevron-circle-left'/></button></Row>
+						    </Col>
+						    <Col>
+						        <Row md={4}>
+						        	<div className="card">
+									    {this.state.isLoaded ? (
+									    	<Carousel props={this.state}/>
+									    	) : (
+									        <p> loading </p>
+									    )}
+								    </div>
+								</Row>
+							</Col>
+							<Col>
+						        <Row md={4}><button onClick={this.handleRight}><FontAwesomeIcon icon='chevron-circle-right'/></button></Row>
+						    </Col>
+					    </Container>
+					</div>
+				<UpdateProgress />
+				</Scrollbars>
 			</div>
 		);
 	}

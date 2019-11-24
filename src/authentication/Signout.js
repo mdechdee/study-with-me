@@ -7,13 +7,11 @@ import AuthContext from './AuthContext.js';
 class Signout extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.auth)
     this.state = {
-      auth: this.props.auth,
+      auth: this.props.authUser,
       redirect: false,
     };
   }
-
 
   componentDidMount(){
     if(!this.state.auth){
@@ -24,9 +22,14 @@ class Signout extends React.Component {
   }
 
   handleSignOut () {
-    auth
+    this.state.auth
       .doSignOut()
-
+      .then(() => {
+        this.props.history.push('/login');
+      })
+      .catch(error => {
+        console.log(error)
+      });
   }
 
   render(){
