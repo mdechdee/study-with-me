@@ -74,7 +74,7 @@ class MyGroup extends React.Component {
         })
 
 	}
-	// Fetch current server's time
+	// Fetch current servers time
 	fetchCurrentTime(){
         db.ref('/.info/serverTimeOffset').on('value', (data) => {
 	    	this.setState({
@@ -121,10 +121,6 @@ class MyGroup extends React.Component {
 		return(
 			<div>
 				<Scrollbars style={{ width: 600, height: 500}}>
-					<div> {new Date(this.state.currentTime).getSeconds()} </div>
-					<div> {new Date(this.state.startTime).getSeconds()} </div>
-					<div> {new Date(this.state.stopTime).getSeconds()} </div>
-					<div> {this.state.intervalTime} </div>
 					<div>
 						Group: Study Marathon
 					</div>
@@ -151,7 +147,11 @@ class MyGroup extends React.Component {
 					    </Container>
 					</div>
 				<UpdateProgress />
+		<JoinGroup uid={this.props.uid}/>
+			//Temporary join group
 				</Scrollbars>
+
+
 			</div>
 		);
 	}
