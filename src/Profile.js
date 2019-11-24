@@ -22,16 +22,6 @@ class Profile extends React.Component {
 									<div>
 										<ProfileImage uid={auth.uid} />
 										<ShowInformation uid={auth.uid}/>
-										<TimerContext.Consumer>{
-											timer => {
-												return(
-													<div>
-														<Cheer uid={auth.uid} interval = {timer.intervalNum}/>
-													</div>
-												);
-											}
-										}
-										</TimerContext.Consumer>
 									</div>
 								);
 							}

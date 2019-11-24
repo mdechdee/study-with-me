@@ -17,7 +17,7 @@ class Cheer extends React.Component{
 			uid: props.uid,
 			interval: props.interval,
 			disable: false,
-			Ref: db.ref(`groups/study/people/${props.uid}`),
+			Ref: db.ref("groups/study/people/"),
 			numberLargeSmile: 0,
 			numberSmile: 0,
 			numberLike: 0,
@@ -50,24 +50,28 @@ class Cheer extends React.Component{
 		});
 	}
 	handleLargeSmile(){
+		const numberLargeSmile = this.state.numberLargeSmile+1;
 		this.setState({numberLargeSmile: this.state.numberLargeSmile+1})
 		console.log(this.state.numberLargeSmile+"A");
-		this.state.Ref.child(`${this.state.interval}`).set({numberLargeSmile: this.state.numberLargeSmile});
+		this.state.Ref.child(`${this.state.uid}`).set({numberLargeSmile: numberLargeSmile});
 	}
 	handleSmile(){
+		const numberSmile = this.state.numberSmile+1;
 		this.setState({numberSmile: this.state.numberSmile+1})
 		console.log(this.state.numberSmile+"B");
-		this.state.Ref.child(`${this.state.interval}`).set({numberSmile: this.state.numberSmile});
+		this.state.Ref.child(`${this.state.uid}`).set({numberSmile: numberSmile});
 	}
 	handleLike(){
+		const numberLike = this.state.numberLike+1;
 		this.setState({numberLike: this.state.numberLike+1})
 		console.log(this.state.numberLike+"C");
-		this.state.Ref.child(`${this.state.interval}`).set({numberLike: this.state.numberLike});
+		this.state.Ref.child(`${this.state.uid}`).set({numberLike: numberLike});
 	}
 	handleLove(){
+		const numberLove = this.state.numberLove+1;
 		this.setState({numberLove: this.state.numberLove+1})
 		console.log(this.state.numberLove+"D");
-		this.state.Ref.child(`${this.state.interval}`).set({numberLove: this.state.numberLove});
+		this.state.Ref.child(`${this.state.uid}`).set({numberLove: numberLove});
 	}
 	render(){
 		return(
