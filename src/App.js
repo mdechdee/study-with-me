@@ -28,7 +28,7 @@ class App extends React.Component{
                          <Hamburger/>
                          <div className='title'>Study With Me</div>
                       </div>
-                      <div className='horizontal-div-above' style = {{zIndex: '-2'}}/>
+                      <div className='horizontal-div-user' style = {{zIndex: '-2'}}/>
                       <Page authUser = {auth} timer={timer}/>
                       <div className='horizontal-div-below'/>
                     </Col>
