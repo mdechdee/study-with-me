@@ -3,18 +3,41 @@ import {storage,db} from './firebase/firebase.js';
 import {Form} from 'react-bootstrap';
 import {Button,Col,Row} from 'react-bootstrap';
 import './scss/Profile.scss';
-class Information extends React.Component {
+class ShowInformation extends React.Component {
 	constructor(props) {
 	    super(props);
-	    this.handleChange=this.handleChange.bind(this)
-		this.handleUpdate = this.handleUpdate.bind(this)
-	    this.state = {
+	    this.handleChange=this.handleChange.bind(this);
+		this.handleUpdate = this.handleUpdate.bind(this);
+		this.state = {
 	      uid: props.uid,
-	      name: ""
+	      name: "",
+	      nameRef: db.ref(`users/${props.uid}`)
 	    };
+
 	}
+	componentDidMount() {
+	 	var self = this;
+	 	var nameRef = db.ref(`users/${this.state.uid}`);
+	  	nameRef.once('value')
+	  	.then(function(snapshot) {
+	    	self.setState({
+	      		name: (snapshot.val() && snapshot.val().name)|| ""
+	    	});
+	  	});
+	 }
+	 componentWillMount() {
+	 	var self = this;
+	 	var nameRef = db.ref(`users/${this.state.uid}`);
+	  	nameRef.on('value', function(snapshot) {
+	    	self.setState({
+	      		name: (snapshot.val() && snapshot.val().name)|| ""
+	    	});
+	  	});
+	 }
 	handleChange(e){
 		this.setState({name:e.target.value});
+		console.log("state name = "+ this.state.name);
+		console.log("**********");
 	}
 	handleUpdate(e){
 		e.preventDefault();
@@ -31,7 +54,7 @@ class Information extends React.Component {
 							<Row className="name">
 								<Form.Label column sm ="4">Name</Form.Label>
 								<Col sm="7">
-						    		<Form.Control type="name" placeholder={this.state.name} onChange={this.handleChange}/>
+						    		<Form.Control type="name" placeholder={this.state.name||"Name"} onChange={this.handleChange}/>
 							    	<Form.Text className="text-muted">
 							      		This name is displayed in public.
 							    	</Form.Text>
@@ -48,4 +71,4 @@ class Information extends React.Component {
 	}
 }
 
-export default Information;
+export default ShowInformation;
