@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
@@ -74,5 +76,8 @@
   "bugs": {
     "url": "https://github.com/mdechdee/study-with-me/issues"
   },
-  "homepage": "https://github.com/mdechdee/study-with-me#readme"
+  "homepage": "https://github.com/mdechdee/study-with-me#readme",
+  "devDependencies": {
+    "validator": "^12.1.0"
+  }
 }

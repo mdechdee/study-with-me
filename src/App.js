@@ -19,8 +19,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { library } from '@fortawesome/fontawesome-svg-core';
 //import { fas } from '@fortawesome/free-solid-svg-icons';
 //import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faChevronCircleLeft,faChevronCircleRight,faComment,faStar } from '@fortawesome/free-solid-svg-icons';
-library.add(faChevronCircleLeft,faChevronCircleRight,faComment,faStar);
+import { faChevronCircleLeft,faChevronCircleRight,faComment,faStar,faSearch } from '@fortawesome/free-solid-svg-icons';
+library.add(faChevronCircleLeft,faChevronCircleRight,faComment,faStar,faSearch);
 class App extends React.Component{
   render() {
     return(
