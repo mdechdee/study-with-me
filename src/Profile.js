@@ -4,17 +4,18 @@ import AuthContext from './authentication/AuthContext'
 import TimerContext from './TimerContext.js'
 import ProfileImage from './ProfileImage'
 import ShowInformation from './ShowInformation'
-import './scss/_base.scss'
+import './scss/Profile.scss'
 import { Scrollbars } from 'react-custom-scrollbars';
 import Cheer from './Cheer'
 class Profile extends React.Component {
 	render(){
 		return(
-			<div className="profile">
-				<br/>
+			<React.Fragment>
 				<h2>Profile</h2>
-				<div className="profile-info">
-					<Scrollbars style={{ width: 400, height: 700}}>
+				<Scrollbars horizontal={false}
+						className="scroll"
+						contentClassName="scroll-content"
+						>
 						<AuthContext.Consumer>{
 							auth => {
 								console.log(auth.email+""+auth.uid)
@@ -38,9 +39,8 @@ class Profile extends React.Component {
 						}
 						</AuthContext.Consumer>
 					</Scrollbars>
-				</div>
-				<UpdateProgress/>
-			</div>
+					<UpdateProgress/>
+			</React.Fragment>
 		);
 	}
 }
