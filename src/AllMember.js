@@ -65,7 +65,7 @@ class AllMember extends React.Component {
         console.log(this.state)
     for(let i=0; i<this.state.people.length; i+=1)
     {
-        nameList.push(<div><p>Name: {this.state.peopleName[i]}</p><p>Goal: {this.state.goal[i]}</p></div>);
+        nameList.push(<div><p>Name: {this.state.peopleName[i]}<br/>Goal: {this.state.goal[i]}</p></div>);
     }
     return (nameList)
   }
