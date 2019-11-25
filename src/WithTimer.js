@@ -14,6 +14,8 @@ const withTimer = (Component) =>
 				group: null,
 				startTime :  Date.now(),
 				stopTime: Date.now() + 100000,
+				baseStartTime: Date.now(),
+				baseStopTime:  Date.now() + 100000,
 				currentTime : Date.now(),
 				intervalTime: 0,
 				intervalNum: 0,
@@ -33,6 +35,8 @@ const withTimer = (Component) =>
 						intervalNum: val.intervalNum,
 						startTime: val.startTime,
 						stopTime: val.stopTime,
+						baseStartTime: val.baseStartTime,
+						baseStopTime: val.baseStopTime,
 					})
 				})
 			})
@@ -95,7 +99,6 @@ const withTimer = (Component) =>
 					clearInterval(this.state.stopwatch)
 					this.setupTimer()
 				});
-
 			}
 
 		}
