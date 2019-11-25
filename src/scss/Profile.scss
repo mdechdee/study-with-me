@@ -1,19 +1,18 @@
+@import '_base.scss';
+
+.prof-title{
+  border-radius: 10px;
+  height: 50px; /*requires explicit height*/
+  font-family: $f3;
+  font-size: 2pc;
+  text-align: middle;
+  color: black;
+}
+
+.group-row{
+  margin: 1px;
+}
+
 .name {
   text-align: center;
-}
-
-.scroll-content{
-  display: flex;
-  flex-direction: column;
-}
-
-.progress-bar{
-  height: 10px;
-  width: 300px;
-  margin: auto;
-  background-color: transparent !important;
-}
-
-.btn-zone{
-  width: 300px
 }

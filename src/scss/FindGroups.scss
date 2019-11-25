@@ -1,28 +1,22 @@
-$gray: #ccc;
-
-$defaultfont: OpenSans;
-$boldfont: OpenSans-Bold;
-$semiboldfont: 'OpenSans-SemiBold';
-$titlefont: Oswald;
-$titleboldfont: Oswald-Bold;
+@import '_base.scss';
 
 .box-wrap{
   margin: 10px 10px;
 }
 
 .col-title{
-  font-family: $defaultfont;
+  font-family: $f1;
   color: black;
   height: 30px; /*requires explicit height*/
-  font-size: 1pc;
+  font-size: 0.8pc;
   text-align: middle;
 }
 
 .group-name{
-  font-family: $defaultfont;
+  font-family: $f1;
   color: white;
   width: 80%;
-  height: 80%;
+  height: 100%;
   font-size: 1pc;
   text-align: middle;
   background-color: gray;
@@ -35,7 +29,7 @@ $titleboldfont: Oswald-Bold;
 }
 
 .group-info{
-  font-family: $defaultfont;
+  font-family: $f2;
   color: black;
   height: 25px; /*requires explicit height*/
   font-size: 1pc;
@@ -44,6 +38,8 @@ $titleboldfont: Oswald-Bold;
 }
 
 .create-group-button{
+  font-family: $f3;
+  font-size: 1pc;
   position: absolute;
   right: 5%;
   bottom: 8%;
@@ -52,7 +48,7 @@ $titleboldfont: Oswald-Bold;
 .find-title{
   border-radius: 10px;
   height: 50px; /*requires explicit height*/
-  font-family: $titleboldfont;
+  font-family: $f3;
   font-size: 2pc;
   text-align: left;
   color: black;
