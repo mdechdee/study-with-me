@@ -33,7 +33,10 @@ class JoinGroup extends React.Component {
       numberLike: 0,
       numberLove:0
     });
-
+    var userRef =  db.ref('users/' + this.props.uid);
+    userRef.update({
+      group: this.props.name
+    })
     alert('Goal: ' + this.state.goal);
     //event.preventDefault();
   }
