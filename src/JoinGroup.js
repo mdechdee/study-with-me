@@ -1,7 +1,9 @@
 import React from 'react';
-import {Modal, Button} from 'react-bootstrap'
+import {Row, Col, Form, Modal, Button} from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {toast} from 'react-toastify';
 import { db } from './firebase/firebase.js';
+import './scss/JoinGroup.scss';
 
 class JoinGroup extends React.Component {
   constructor(props){
@@ -51,21 +53,39 @@ class JoinGroup extends React.Component {
     return(
       <div>
           <Modal size="sm" show={this.props.show} onHide={this.props.handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title> <h3>Join Group</h3> {this.props.popup_id} </Modal.Title>
+
+            <Modal.Header>
+              <Modal.Title>
+                <div sm={10} className="join-title"> Join Group {this.props.popup_id} </div>
+                <FontAwesomeIcon icon='times-circle' className='join-close-icon' onClick={this.props.handleClose}/>
+              </Modal.Title>
             </Modal.Header>
+
             <Modal.Body>
-              <form onSubmit={this.handleSubmit}>
-                <label>
-                  Goal:
-                  <input type='text' value={this.state.goal} onChange={this.handleChange}/>
-                </label>
-                <p>*Your goal should be evaluable.</p>
-                <p>Ex. I will finish mock exam within 3 hours.</p>
-                <p>You must update your progress each interval.</p>
-                <input type="submit" value="Join"/>
-              </form>
-              <Button onClick = {this.props.handleClose}> Cancel </Button>
+              <Row>
+                <Col className="form-font" xs={2}> Goal: </Col>
+                <Col xs={9}>
+      						<Form>
+      						  	<Form.Group controlId="group-name">
+      							    <Form.Control className="form-font" onChange={this.handleChange} />
+      						  	</Form.Group>
+      						</Form>
+      					</Col>
+                <div className="mute-font">*Your goal should be evaluable.
+                Ex: I will finish mock exam within 3 hours.
+                You must update your progress each interval.</div>
+              </Row>
+
+              <Button variant="success"
+                    className="join-button"
+                    onClick={this.handleSubmit}
+              > Join </Button>
+
+              <Button variant="danger"
+                    className="cancel-button"
+                    onClick = {this.props.handleClose}
+              > Cancel </Button>
+
             </Modal.Body>
           </Modal>
       </div>
