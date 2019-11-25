@@ -14,7 +14,8 @@ class AllMember extends React.Component {
       show:false,
       people:[],
       peopleName:[],
-      goal:[]
+      goal:[],
+      status:[]
     };
   }
 
@@ -46,7 +47,8 @@ class AllMember extends React.Component {
     this.setState({
       peopleName: tempPeopleName,
       people: tempPeople,
-      goal:tempGoal
+      goal:tempGoal,
+      status:tempStatus
     })
     num=num-1;
   }
@@ -55,7 +57,7 @@ class AllMember extends React.Component {
     let nameList = []
     for(let i=0; i<this.state.people.length; i+=1)
     {
-        nameList.push(<div><p>Name: {this.state.peopleName[i]}<br/>Goal: {this.state.goal[i]}</p></div>);
+        nameList.push(<div><p>Name: {this.state.peopleName[i]}<br/>Goal: {this.state.goal[i]}<br/>Status: {this.state.status[i]}</p></div>);
     }
     return (nameList)
   }

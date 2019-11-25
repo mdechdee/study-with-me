@@ -135,7 +135,7 @@ class MyGroup extends React.Component {
 					<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>
 				</div>
 				<div>
-					<AllMember people={this.state.people} />
+					<AllMember people={this.state.people} intervalNum={this.props.timer.intervalNum}/>
 				</div>
 			</div>
 		);
