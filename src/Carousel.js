@@ -32,10 +32,13 @@ class Carousel extends React.Component{
     });;
   }
   componentDidMount(){
-    console.log("Now componentDidMount is working.")
     var interval = null;
     var temp = null;
     var self=this;
+    console.log("Carousel/componentDidmount : state")
+    console.log(this.state)
+    console.log("Carousel/componentDidmount : props")
+    console.log(this.props)
     db.ref(`groups/${this.state.groupName}/people`).child(`/${this.state.uid}`).once('value',
       function(snapshot){
         self.setState({

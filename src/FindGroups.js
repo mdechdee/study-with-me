@@ -29,10 +29,8 @@ class FindGroups extends React.Component {
 
 	checkUserGroup()
 	{
-		let userHasGroup = true
 		db.ref(`users/${this.props.uid}`).on('value', (snapshot) => {
 			let a = snapshot.val()
-			console.log(a.group)
 			this.setState({usergroup: a.group})
 		});
 	}
@@ -45,7 +43,7 @@ class FindGroups extends React.Component {
 	showAllGroups(){
 		let groupsComponent = []
 		for(let i=0; i<this.state.groups.length; i+=1){
-				groupsComponent.push(<MyComponent one={this.state.groups[i]} uid={this.props.uid} key={i}> </MyComponent>);
+				groupsComponent.push(<MyComponent usergroup={this.state.usergroup} one={this.state.groups[i]} uid={this.props.uid} key={i}> </MyComponent>);
 		}
 		return groupsComponent
 	}

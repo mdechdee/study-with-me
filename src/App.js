@@ -45,28 +45,32 @@ class App extends React.Component{
 
 const Page = (auth) => {
   return(
-    <Col xs={12} sm={8} md={6} lg={4} className='page-wrap'>
-      <div className='horizontal-div-above' style= {{background :base_styles.primary}}>
-         <Hamburger/>
-         <div className='title'>Study With Me</div>
-      </div>
-      <div className='horizontal-div-mid' />
-      <div className='div-content'>
-      <Switch>
-          <Route exact path='/' render = {() => (
-              <Redirect to='/find_group' />
-          )}/>
-        <Route path='/find_group' render={(routeProps) => (<FindGroups uid = {auth.auth.uid} {...routeProps} />)} />
-          <Route path='/my_group' render={(routeProps) => (<MyGroup uid = {auth.auth.uid} {...routeProps} />)} />
-          <Route path='/profile'  component={Profile} />
-          <Route path='/logout' render={() => (<Signout auth/>)}/>
-          <Route  path='/login' render = {() => (
-              <Redirect to='/find_group' />
-          )}/>
-      </Switch>
-      </div>
-      <div className='horizontal-div-below'/>
-    </Col>
+    <TimerContext.Consumer>
+    { timer => {return(
+      <Col xs={12} sm={8} md={6} lg={4} className='page-wrap'>
+        <div className='horizontal-div-above' style= {{background :base_styles.primary}}>
+           <Hamburger/>
+           <div className='title'>Study With Me</div>
+        </div>
+        <div className='horizontal-div-mid' />
+        <div className='div-content'>
+        <Switch>
+            <Route exact path='/' render = {() => (
+                <Redirect to='/find_group' />
+            )}/>
+          <Route path='/find_group' render={(routeProps) => (<FindGroups uid = {auth.auth.uid}{...routeProps} />)} />
+            <Route path='/my_group' render={(routeProps) => (<MyGroup uid = {auth.auth.uid} timer={timer} {...routeProps} />)} />
+            <Route path='/profile'  component={Profile} />
+            <Route path='/logout' render={() => (<Signout auth/>)}/>
+            <Route  path='/login' render = {() => (
+                <Redirect to='/find_group' />
+            )}/>
+        </Switch>
+        </div>
+        <div className='horizontal-div-below'/>
+      </Col>)
+    }}
+    </TimerContext.Consumer>
   );
 }
 

@@ -11,7 +11,7 @@ const withTimer = (Component) =>
 			super(props);
 			this.state = {
 				uid: null,
-				group: null,
+				groupName: null,
 				startTime :  Date.now(),
 				stopTime: Date.now() + 100000,
 				baseStartTime: Date.now(),
@@ -27,7 +27,7 @@ const withTimer = (Component) =>
 		fetchGroupData(){
 			db.ref(`users/${this.state.uid}/group`).on('value', (snap) =>{
 				let _group = snap.val();
-				this.setState({group: _group})
+				this.setState({groupName: _group})
 				db.ref(`groups/${_group}`).once('value', (snapshot) => {
 					let val = snapshot.val();
 					this.setState({
@@ -53,16 +53,16 @@ const withTimer = (Component) =>
 
 
 		pushNewStartTime(){
-			if(this.state.group === "")
+			if(this.state.groupName === "")
 				return
 			this.setState({
 		        startTime: this.state.startTime + this.state.intervalTime,
 	        	stopTime: this.state.stopTime + this.state.intervalTime,
 	        	intervalNum: this.state.intervalNum+1
 	        })
-			db.ref(`groups/${this.state.group}/startTime`).set(this.state.startTime)
-			db.ref(`groups/${this.state.group}/stopTime`).set(this.state.stopTime)
-			db.ref(`groups/${this.state.group}/intervalNum`).set(this.state.intervalNum)
+			db.ref(`groups/${this.state.groupName}/startTime`).set(this.state.startTime)
+			db.ref(`groups/${this.state.groupName}/stopTime`).set(this.state.stopTime)
+			db.ref(`groups/${this.state.groupName}/intervalNum`).set(this.state.intervalNum)
 
 		}
 
