@@ -1,6 +1,6 @@
 import React from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
-import { db,storage} from './firebase/firebase.js';
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+import { db, storage } from './firebase/firebase.js';
 import Cheer from './Cheer.js'
 class Carousel extends React.Component{
   constructor(props){

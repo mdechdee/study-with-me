@@ -1,50 +1,12 @@
 @import '_base.scss';
 
+/*--------------------------------------------------
+--------------------------------------------------
+These are for FindGroups.js
+--------------------------------------------------
+--------------------------------------------------*/
 .box-wrap{
   margin: 10px 10px;
-}
-
-.col-title{
-  font-family: $f1;
-  color: black;
-  height: 30px; /*requires explicit height*/
-  font-size: 0.8pc;
-  text-align: middle;
-}
-
-.group-name{
-  font-family: $f1;
-  color: white;
-  width: 80%;
-  height: 100%;
-  font-size: 1pc;
-  text-align: middle;
-  background-color: gray;
-  box-sizing: border-box;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-.group-column{
-  align-content: center;
-  align-items: center;
-}
-
-.group-info{
-  font-family: $f2;
-  color: black;
-  height: 25px; /*requires explicit height*/
-  font-size: 1pc;
-  text-align: middle;
-  position: relative;
-}
-
-.create-group-button{
-  font-family: $f3;
-  font-size: 1pc;
-  position: absolute;
-  right: 5%;
-  bottom: 8%;
 }
 
 .find-title{
@@ -59,17 +21,83 @@
 
 .find-outer-wrap{
   position: relative;
+  top: 3%;
   width: 100%;
   box-sizing: border-box;
   flex: 1;
 }
 
+.col-title{
+  font-family: $f1;
+  color: black;
+  height: 30px; /*requires explicit height*/
+  font-size: 0.8pc;
+  text-align: middle;
+}
+
 .scroll{
   position: relative;
+  top: 3%;
   width: 100%;
   box-sizing: border-box;
 }
 
 .scroll-content{
   flex: 1;
+}
+
+.create-group-button{
+  font-family: $f3;
+  font-size: 1pc;
+  position: absolute;
+  right: 5%;
+  bottom: 8%;
+}
+
+/*--------------------------------------------------
+--------------------------------------------------
+These are for MyComponent.js
+--------------------------------------------------
+--------------------------------------------------*/
+.group-wrap{
+  margin: 20px 50px;
+}
+
+.group-row{
+  align-content: center;
+  align-items: center;
+}
+
+.group-column{
+  @extend .group-row;
+}
+
+.group-name{
+  font-family: $f2;
+  color: white;
+  width: 100%;
+  height: 100%;
+  font-size: 1pc;
+  text-align: middle;
+  background-color: gray;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.group-info{
+  font-family: $f3;
+  color: black;
+  height: 25px; /*requires explicit height*/
+  font-size: 1pc;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.group-info-small{
+  @extend .group-info;
+  font-family: $f2;
+  color: gray !important;
+  font-size: 0.8pc !important;
 }

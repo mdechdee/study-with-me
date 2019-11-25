@@ -3,8 +3,6 @@ import {storage} from './firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap'
 import './scss/UpdateProgress.scss';
-import AuthContext from './authentication/AuthContext';
-import TimerContext from './TimerContext.js'
 
 class ProgressImage extends Component {
   constructor(props) {
@@ -39,7 +37,7 @@ class ProgressImage extends Component {
         );
         this.setState({ progress: progress_current});
         this.setState({ show: progress_current+"%"});
-        if(progress_current==100){
+        if(progress_current===100){
           this.setState({status: "success",show:"success"});
         }
       },

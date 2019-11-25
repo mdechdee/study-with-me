@@ -2,7 +2,6 @@
 //https://material-ui.com/customization/components/#pseudo-classes
 import React from 'react';
 import {db} from './firebase/firebase.js';
-import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import Smile from "@material-ui/icons/SentimentSatisfiedAlt";
 import LargeSmile from "@material-ui/icons/InsertEmoticon";

@@ -1,8 +1,7 @@
 import React from 'react';
-import {Row, Col, Modal, Button} from 'react-bootstrap'
+import {Modal, Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CreateGroupDescription from'./CreateGroupDescription.js';
-import { db } from './firebase/firebase.js';
 import './scss/CreateGroup.scss';
 
 class CreateGroup extends React.Component {
@@ -33,12 +32,8 @@ class CreateGroup extends React.Component {
           <Modal size="sm" show={this.state.show} onHide={this.handleClose}>
             <Modal.Header>
               <Modal.Title>
-                <Row>
-                  <Col sm={10} className="create-title"> Create a group </Col>
-                  <Col sm={2}>
-                    <FontAwesomeIcon icon='times-circle' className='custom-close-icon' onClick={this.handleClose}/>
-                  </Col>
-                </Row>
+                <div sm={10} className="create-title"> Create a group </div>
+                <FontAwesomeIcon icon='times-circle' className='custom-close-icon' onClick={this.handleClose}/>
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>

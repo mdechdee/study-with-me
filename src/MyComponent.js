@@ -1,9 +1,8 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 // import Moment from 'moment';
-import './scss/FindGroups.scss';
-import {db} from './firebase/firebase.js'
 import JoinGroup from'./JoinGroup.js';
+import './scss/FindGroups.scss';
 
 class MyComponent extends React.Component {
 	constructor(props) {
@@ -26,21 +25,21 @@ class MyComponent extends React.Component {
 
 	render() {
 		return(
-			<Container>
+			<Container className="group-wrap">
 				<Row className='group-row'>
 
 					<Col xs sm md lg xl={3}>
 						<Row><div className='group-name' onClick={this.handleShow}> {this.props.one.name} </div></Row>
 					</Col>
 
-					<Col xs sm md lg xl={3} className=" group-column">
+					<Col xs sm md lg xl={3} className="group-column">
 						<Row><div className='group-info'> {this.props.one.baseStartDate} </div></Row>
 						<Row><div className='group-info'> {this.props.one.baseStartTime} </div></Row>
 					</Col>
 
 					<Col xs sm md lg xl={3} className="group-column">
 						<Row><div className='group-info'> {this.props.one.totalTime} {this.props.one.totalTimeUnit} </div></Row>
-						<Row><div className='group-info'> ({this.props.one.interval} {this.props.one.intervalUnit} x {this.props.one.roundNum}) </div></Row>
+						<Row><div className='group-info-small'> ({this.props.one.interval} {this.props.one.intervalUnit} x {this.props.one.roundNum}) </div></Row>
 					</Col>
 
 					<Col xs sm md lg xl={3} className="group-column">
