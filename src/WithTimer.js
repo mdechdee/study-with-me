@@ -6,6 +6,7 @@ import AuthContext from './authentication/AuthContext.js'
 
 const withTimer = (Component) =>
 	class WithTimer extends React.Component {
+		static contextType = AuthContext
 		constructor(props){
 			super(props);
 			this.state = {
@@ -22,9 +23,9 @@ const withTimer = (Component) =>
 		}
 		//Fetch group start/stop/interval time (Now start with current time)
 		fetchGroupData(){
-			console.log(this.state.uid)
 			db.ref(`users/${this.state.uid}/group`).once('value', (snap) =>{
 				let _group = snap.val();
+				this.setState({group: _group})
 				db.ref(`groups/${_group}`).once('value', (snapshot) => {
 					let val = snapshot.val();
 					this.setState({
@@ -32,7 +33,6 @@ const withTimer = (Component) =>
 						intervalNum: val.intervalNum,
 						startTime: val.startTime,
 						stopTime: val.stopTime,
-						group: _group
 					})
 				})
 			})
@@ -41,14 +41,16 @@ const withTimer = (Component) =>
 		fetchCurrentTime(){
 	      db.ref('/.info/serverTimeOffset').on('value', (data) => {
 		    	this.setState({
-					offset : data.val(),
-					currentTime: data.val() + Date.now()
+						offset : data.val(),
+						currentTime: data.val() + Date.now()
 					})
 		  	});
 		}
 
 
 		pushNewStartTime(){
+			if(this.state.group === "")
+				return
 			this.setState({
 		        startTime: this.state.startTime + this.state.intervalTime,
 	        	stopTime: this.state.stopTime + this.state.intervalTime,
@@ -83,14 +85,15 @@ const withTimer = (Component) =>
 			this.setState({stopwatchID: stopwatch})
 		}
 
-		setAuth(UserAuth){
-			if(UserAuth === null)
+		componentDidUpdate(){
+			const auth = this.context
+			if(auth === null)
 				return
-			if (UserAuth.uid !== this.state.uid)
+			if (auth.uid !== this.state.uid)
 			{
-				this.setState({uid: UserAuth.uid}, () => {
-					this.setupTimer()
+				this.setState({uid: auth.uid}, () => {
 					clearInterval(this.state.stopwatch)
+					this.setupTimer()
 				});
 
 			}
@@ -102,14 +105,7 @@ const withTimer = (Component) =>
 		render(){
 			return(
 				<TimerContext.Provider value={this.state}>
-					<AuthContext.Consumer>
-					{
-						auth => {
-							this.setAuth(auth)
-							return(<Component {...this.props} />)
-						}
-					}
-					</AuthContext.Consumer>
+					<Component {...this.props} />
 				</TimerContext.Provider>
 			);
 		}
