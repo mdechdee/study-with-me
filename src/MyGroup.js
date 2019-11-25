@@ -28,6 +28,7 @@ class MyGroup extends React.Component {
 			mapPeopleWithNumber: null,
 			isLoaded: false,
 			isDone:false,
+			intervalNum: props.timer.intervalNum,
 			groupName:props.timer.groupName
 		};
 		this.handleLeft = this.handleLeft.bind(this);
@@ -78,6 +79,8 @@ class MyGroup extends React.Component {
 	}
 
 	render(){
+		console.log("Mygroup/render: state")
+		console.log(this.state)
 		return(
 			<div>
 				<Container>
