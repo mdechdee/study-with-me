@@ -34,6 +34,7 @@ class AllMember extends React.Component {
     let tempPeople=[]
     let tempGoal =[]
     let tempPeopleName=[]
+    let tempStatus=[]
     Object.keys(this.props.people).forEach((person) =>{
       tempPeople[num]=person
       let person_value = this.props.people[person]
