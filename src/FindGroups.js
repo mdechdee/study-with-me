@@ -64,9 +64,8 @@ class FindGroups extends React.Component {
 					</Row>
 				</Container>
 
-					<Scrollbars horizontal={false}
+					<Scrollbars hideTracksWhenNotNeeded={true}
 						className="scroll"
-						contentClassName="scroll-content"
 						>
 						{this.showAllGroups()}
 					</Scrollbars>

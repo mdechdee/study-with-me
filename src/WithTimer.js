@@ -25,7 +25,7 @@ const withTimer = (Component) =>
 		}
 		//Fetch group start/stop/interval time (Now start with current time)
 		fetchGroupData(){
-			db.ref(`users/${this.state.uid}/group`).once('value', (snap) =>{
+			db.ref(`users/${this.state.uid}/group`).on('value', (snap) =>{
 				let _group = snap.val();
 				this.setState({group: _group})
 				db.ref(`groups/${_group}`).once('value', (snapshot) => {
@@ -74,6 +74,7 @@ const withTimer = (Component) =>
 		}
 
 		setupTimer(){
+			console.log("Setting up timer, uid: "+this.state.uid)
 			//First, store current time to match server's time
 			this.fetchCurrentTime()
 			//Next, store start&stop time for the group

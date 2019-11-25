@@ -89,4 +89,4 @@ const UnAuthPage = () => {
   );
 }
 
-export default withTimer(withAuthentication(App));
+export default withAuthentication(withTimer(App));
