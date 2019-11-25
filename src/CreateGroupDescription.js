@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Col, Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
-import {ToastContainer, toast} from 'react-toastify';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {db} from './firebase/firebase.js'
 
@@ -148,12 +148,14 @@ class CreateGroupDescription extends React.Component{
 				'stopTime': startTime + intervalTime,
 				'intervalTime': intervalTime,
 				'intervalNum': 0,
-				'peopleNum': 1
+				'peopleNum': 1,
+				'people': people
 			})
 			var userRef = db.ref(`users/${this.props.uid}`);
 			userRef.update({
 				'group': this.state.group_name
 			})
+
 	}
 
 	render(){

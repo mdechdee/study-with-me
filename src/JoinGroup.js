@@ -1,6 +1,6 @@
 import React from 'react';
 import {Modal, Button} from 'react-bootstrap'
-import {ToastContainer, toast} from 'react-toastify';
+import {toast} from 'react-toastify';
 import { db } from './firebase/firebase.js';
 
 class JoinGroup extends React.Component {
@@ -33,7 +33,10 @@ class JoinGroup extends React.Component {
       numberLike: 0,
       numberLove:0
     });
-
+    var userRef =  db.ref('users/' + this.props.uid);
+    userRef.update({
+      group: this.props.name
+    })
     alert('Goal: ' + this.state.goal);
     //event.preventDefault();
   }
@@ -47,7 +50,7 @@ class JoinGroup extends React.Component {
   render(){
     return(
       <div>
-          <Modal show={this.props.show} onHide={this.props.handleClose}>
+          <Modal size="sm" show={this.props.show} onHide={this.props.handleClose}>
             <Modal.Header closeButton>
               <Modal.Title> <h3>Join Group</h3> {this.props.popup_id} </Modal.Title>
             </Modal.Header>
