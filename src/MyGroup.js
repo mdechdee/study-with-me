@@ -28,7 +28,8 @@ class MyGroup extends React.Component {
 			mapPeopleWithNumber: null,
 			isLoaded: false,
 			isDone:false,
-			groupName:""
+			intervalNum: props.timer.intervalNum,
+			groupName:props.timer.groupName
 		};
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
@@ -79,6 +80,11 @@ class MyGroup extends React.Component {
 	}
 
 	render(){
+		console.log("Mygroup/render: state")
+		console.log(this.state)
+		var cur_time = new Date(this.props.timer.currentTime).toString()
+		var start_time = new Date(this.props.timer.startTime).toString()
+		var stop_time = new Date(this.props.timer.stopTime).toString()
 		return(
 			<div>
 				<Container>
@@ -90,7 +96,7 @@ class MyGroup extends React.Component {
 									<div className="info-font">Time</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {new Date(this.props.timer.currentTime).getSeconds()} </div>
+									<div className="info-font"> {cur_time.substring(0, cur_time.length - 32)} </div>
 								</Row>
 							</Col>
 							<Col className="time-col">
@@ -98,7 +104,7 @@ class MyGroup extends React.Component {
 									<div className="info-font">Start time</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {new Date(this.props.timer.startTime).getSeconds()} </div>
+									<div className="info-font"> {start_time.substring(0, cur_time.length - 32)} </div>
 								</Row>
 							</Col>
 							<Col className="time-col">
@@ -106,7 +112,7 @@ class MyGroup extends React.Component {
 									<div className="info-font">End time</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {new Date(this.props.timer.stopTime).getSeconds()} </div>
+									<div className="info-font"> {stop_time.substring(0, cur_time.length - 32)} </div>
 								</Row>
 							</Col>
 							<Col className="time-col">
@@ -114,7 +120,7 @@ class MyGroup extends React.Component {
 									<div className="info-font">Interval</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {this.props.timer.intervalTime} </div>
+									<div className="info-font"> {new Date(this.props.timer.intervalTime).getMinutes() + 'Min.'} </div>
 								</Row>
 							</Col>
 						</Row>
