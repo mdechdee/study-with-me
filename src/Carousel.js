@@ -46,6 +46,7 @@ class Carousel extends React.Component{
 		})
   }
   preparePeopleInfo(){
+
   	for(let i=0; i<this.state.people.length; i+=1){
   		let person = this.state.people[i]
   		console.log(i)
@@ -62,6 +63,7 @@ class Carousel extends React.Component{
   componentDidMount(){
   	this.fetchName()
   	setTimeout(this.fetchPeople(), 1000)
+  	setTimeout(this.preparePeopleInfo(),2000)
   }
   render(){
     this.getUrl()
