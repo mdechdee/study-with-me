@@ -75,10 +75,6 @@ class MyGroup extends React.Component {
 	}
 
 	render(){
-		console.log("Mygroup/render: state")
-		console.log(this.state)
-		console.log("Mygroup/render: state.intervalNum")
-		console.log(this.props.timer.intervalNum)
 		var cur_time = new Date(this.props.timer.currentTime).toString()
 		var start_time = new Date(this.props.timer.startTime).toString()
 		var stop_time = new Date(this.props.timer.stopTime).toString()
