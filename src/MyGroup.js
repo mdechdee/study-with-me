@@ -36,7 +36,7 @@ class MyGroup extends React.Component {
 	// bring data from database
 
 	collectPeople(){
-		db.ref(`groups/${this.props.timer.group}/people`).once('value',(snapshot) =>{
+		db.ref(`groups/${this.props.timer.groupName}/people`).once('value',(snapshot) =>{
 			this.setState({
 				people: snapshot.val()
 			}, () => {
@@ -74,14 +74,14 @@ class MyGroup extends React.Component {
 		return(
 			<div className="my-group">
 				<div className="title-my-group">
-					<div> <h3>Group: {this.props.timer.group}</h3> </div>
+					<div> <h3>Group: {this.props.timer.groupName}</h3> </div>
 					<Row className="time">
 						<Col className="time-col">
 							<Row className="time-row">
 								<div>Time</div>
 							</Row>
 							<Row className="time-row">
-								<div> {new Date(this.props.timer.currentTime).getSeconds()} </div>
+								<div> {new Date(this.props.timer.currentTime).toString()} </div>
 							</Row>
 						</Col>
 						<Col className="time-col">
@@ -89,7 +89,7 @@ class MyGroup extends React.Component {
 								<div>Start time</div>
 							</Row>
 							<Row className="time-row">
-								<div> {new Date(this.props.timer.startTime).getSeconds()} </div>
+								<div> {new Date(this.props.timer.startTime).toString()} </div>
 							</Row>
 						</Col>
 						<Col className="time-col">
@@ -97,7 +97,7 @@ class MyGroup extends React.Component {
 								<div>End time</div>
 							</Row>
 							<Row className="time-row">
-								<div> {new Date(this.props.timer.stopTime).getSeconds()} </div>
+								<div> {new Date(this.props.timer.stopTime).toString()} </div>
 							</Row>
 						</Col>
 						<Col className="time-col">
