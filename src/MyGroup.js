@@ -1,15 +1,10 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
 import { db } from './firebase/firebase.js';
 import TimerContext from './TimerContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import progress from './camera.jpg';
 import Carousel from './Carousel.js';
 import UpdateProgress from './UpdateProgress.js';
-import { Scrollbars } from 'react-custom-scrollbars';
 import { Container, Row, Col } from 'react-bootstrap';
-import { MDBContainer, MDBCarousel ,MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
-import AllMember from './AllMember';
 import './scss/MyGroup.scss';
 
 class MyGroup extends React.Component {
@@ -29,8 +24,7 @@ class MyGroup extends React.Component {
 			mapPeopleWithNumber: null,
 			isLoaded: false,
 			isDone:false,
-			intervalNum: props.timer.intervalNum,
-			groupName:props.timer.groupName
+
 		};
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
@@ -81,8 +75,6 @@ class MyGroup extends React.Component {
 	}
 
 	render(){
-		console.log("Mygroup/render: state")
-		console.log(this.state)
 		var cur_time = new Date(this.props.timer.currentTime).toString()
 		var start_time = new Date(this.props.timer.startTime).toString()
 		var stop_time = new Date(this.props.timer.stopTime).toString()
@@ -135,7 +127,11 @@ class MyGroup extends React.Component {
 					    <Col>
 				        	<div className="card">
 							    {this.state.isLoaded ? (
-							    	<Carousel props={this.state}/>
+							    	<Carousel groupName={this.props.timer.groupName}
+							    	rank={this.state.rank}
+							    	people={this.state.people}
+							    	mapPeopleWithNumber={this.state.mapPeopleWithNumber}
+							    	intervalNum={this.props.timer.intervalNum}/>
 							    	) : (
 							        <p> loading </p>
 							    )}
@@ -147,7 +143,7 @@ class MyGroup extends React.Component {
 				    </Row>
 				</div>
 				<div className="update-progress">
-					<UpdateProgress uid={this.props.uid} groupName={this.state.groupName}/>
+					<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>
 				</div>
 				<div>
 					<AllMember people={this.state.people} />

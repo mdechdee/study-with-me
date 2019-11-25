@@ -49,7 +49,7 @@ class ProfileImage extends Component {
         );
         this.setState({ progress: progress_current});
         this.setState({ show: progress_current+"%"});
-        if(progress_current==100){
+        if(progress_current===100){
           this.setState({status: "success",show:"success"});
         }
       },
@@ -77,7 +77,7 @@ class ProfileImage extends Component {
         <div className="align image">
           <img
             src={this.state.url}
-            alt="Profile Image"
+            alt="Profile"
             height="200"
             width="300"
           />

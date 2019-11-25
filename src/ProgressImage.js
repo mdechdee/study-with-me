@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import {storage} from './firebase/firebase.js';
+import {storage,db} from './firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap'
 import './scss/UpdateProgress.scss';
-import AuthContext from './authentication/AuthContext';
-import TimerContext from './TimerContext.js'
 
 class ProgressImage extends Component {
   constructor(props) {
@@ -14,10 +12,7 @@ class ProgressImage extends Component {
       url: "",
       progress: 0,
       status:"info",
-      show:"",
-      uid: props.uid,
-      interval:props.interval
-      //interval: ""
+      show:""
     };
   }
 
@@ -32,8 +27,7 @@ class ProgressImage extends Component {
 
   handleUpload = () => {
     const { image } = this.state;
-    const { uid } = this.state;
-    const uploadTask = storage.ref(`images/${uid}/work`+`${this.state.interval}`+`.jpg`).put(image);
+    const uploadTask = storage.ref(`images/${this.props.uid}/work`+`${this.props.intervalNum}`+`.jpg`).put(image);
     uploadTask.on(
       "state_changed",
       snapshot => {
@@ -43,7 +37,7 @@ class ProgressImage extends Component {
         );
         this.setState({ progress: progress_current});
         this.setState({ show: progress_current+"%"});
-        if(progress_current==100){
+        if(progress_current===100){
           this.setState({status: "success",show:"success"});
         }
       },
@@ -54,11 +48,13 @@ class ProgressImage extends Component {
       () => {
         // complete function ...
         storage
-          .ref(`images/${uid}/`)
-          .child(`work`+`${this.state.interval}`+`.jpg`)
+          .ref(`images/${this.props.uid}/`)
+          .child(`work`+`${this.props.intervalNum}`+`.jpg`)
           .getDownloadURL()
           .then(url => {
             this.setState({ url });
+            console.log("ProgressImage/snapshot")
+            console.log(url)
           }).catch( error =>{
             console.log(error);
           });
@@ -66,6 +62,8 @@ class ProgressImage extends Component {
     );
   };
   render() {
+    console.log("ProgressImage/render")
+    console.log(this.props.intervalNum)
     return (
       <div className="image-upload">
         <br/>
