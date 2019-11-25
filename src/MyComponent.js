@@ -20,7 +20,7 @@ class MyComponent extends React.Component {
   }
 
   handleShow(){
-		if(this.props.usergroup==''){
+		if(this.props.usergroup===''){
     this.setState({show: true});
   }}
 

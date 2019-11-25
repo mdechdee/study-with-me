@@ -1,0 +1,11 @@
+@import '_base.scss';
+
+.custom-close-icon {
+  animation: 0.3s rotate90Counter;
+  color: black;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  cursor: pointer;
+  background: white;
+  border-radius: 100%;
+}

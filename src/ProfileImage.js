@@ -49,7 +49,7 @@ class ProfileImage extends Component {
         );
         this.setState({ progress: progress_current});
         this.setState({ show: progress_current+"%"});
-        if(progress_current==100){
+        if(progress_current===100){
           this.setState({status: "success",show:"success"});
         }
       },

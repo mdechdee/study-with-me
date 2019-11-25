@@ -1,6 +1,6 @@
 import React from 'react';
 import {Modal, Button} from 'react-bootstrap'
-import {ToastContainer, toast} from 'react-toastify';
+import {toast} from 'react-toastify';
 import { db } from './firebase/firebase.js';
 
 class JoinGroup extends React.Component {
