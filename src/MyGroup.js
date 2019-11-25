@@ -142,7 +142,7 @@ class MyGroup extends React.Component {
 				<div className="update-progress">
 					<UpdateProgress uid={this.props.uid} groupName={this.state.groupName}/>
 				</div>
-			</React.Fragment>
+			</div>
 		);
 	}
 }
