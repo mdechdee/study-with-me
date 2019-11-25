@@ -83,16 +83,16 @@ class MyGroup extends React.Component {
 		var stop_time = new Date(this.props.timer.stopTime).toString()
 		return(
 			<div>
-				<Container>
+				<Container className="my-group-wrap">
 					<div className="my-group-title"> Group: {this.props.timer.groupName} </div>
 					<Container>
-						<Row className="time">
+						<Row className="line info-wrap">
 							<Col className="time-col">
 								<Row className="time-row">
 									<div className="info-font">Time</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {cur_time.substring(0, cur_time.length - 32)} </div>
+									<div className="info-font-small"> {cur_time.substring(0, cur_time.length - 32)} </div>
 								</Row>
 							</Col>
 							<Col className="time-col">
@@ -100,7 +100,7 @@ class MyGroup extends React.Component {
 									<div className="info-font">Start time</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {start_time.substring(0, cur_time.length - 32)} </div>
+									<div className="info-font-small"> {start_time.substring(0, cur_time.length - 32)} </div>
 								</Row>
 							</Col>
 							<Col className="time-col">
@@ -108,7 +108,7 @@ class MyGroup extends React.Component {
 									<div className="info-font">End time</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {stop_time.substring(0, cur_time.length - 32)} </div>
+									<div className="info-font-small"> {stop_time.substring(0, cur_time.length - 32)} </div>
 								</Row>
 							</Col>
 							<Col className="time-col">
@@ -116,7 +116,7 @@ class MyGroup extends React.Component {
 									<div className="info-font">Interval</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {new Date(this.props.timer.intervalTime).getMinutes() + 'Min.'} </div>
+									<div className="info-font-small"> {new Date(this.props.timer.intervalTime).getMinutes() + ' Min.'} </div>
 								</Row>
 							</Col>
 						</Row>
