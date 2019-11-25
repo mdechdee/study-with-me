@@ -35,14 +35,15 @@ class MyGroup extends React.Component {
 		this.handleRight = this.handleRight.bind(this);
 	}
 	// bring data from database
-	
+
 	collectPeople(){
 		db.ref(`groups/${this.props.timer.groupName}/people`).once('value',(snapshot) =>{
 			this.setState({
 				people: snapshot.val()
-			},() => {
+				}, () => {
 				let num = 0;
 				let temp = {};
+				console.log(this.state.people)
 				Object.keys(this.state.people).forEach(function (person){
 					temp[num]=person;
 				    num=num+1;
@@ -52,7 +53,7 @@ class MyGroup extends React.Component {
 					totalPeople:num,
 					isLoaded:true
 				});
-				console.log("mygroup/collectpeople : state");
+				console.log("mygroup/countpeople : state");
 				console.log(this.state);
 			})
 		})
@@ -81,10 +82,13 @@ class MyGroup extends React.Component {
 	render(){
 		console.log("Mygroup/render: state")
 		console.log(this.state)
+		var cur_time = new Date(this.props.timer.currentTime).toString()
+		var start_time = new Date(this.props.timer.startTime).toString()
+		var stop_time = new Date(this.props.timer.stopTime).toString()
 		return(
 			<div>
 				<Container>
-					<div className="my-group-title"> Group: {this.state.groupName} </div>
+					<div className="my-group-title"> Group: {this.props.timer.groupName} </div>
 					<Container>
 						<Row className="time">
 							<Col className="time-col">
@@ -92,7 +96,7 @@ class MyGroup extends React.Component {
 									<div className="info-font">Time</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {new Date(this.state.currentTime).getSeconds()} </div>
+									<div className="info-font"> {cur_time.substring(0, cur_time.length - 32)} </div>
 								</Row>
 							</Col>
 							<Col className="time-col">
@@ -100,7 +104,7 @@ class MyGroup extends React.Component {
 									<div className="info-font">Start time</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {new Date(this.state.startTime).getSeconds()} </div>
+									<div className="info-font"> {start_time.substring(0, cur_time.length - 32)} </div>
 								</Row>
 							</Col>
 							<Col className="time-col">
@@ -108,7 +112,7 @@ class MyGroup extends React.Component {
 									<div className="info-font">End time</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {new Date(this.state.stopTime).getSeconds()} </div>
+									<div className="info-font"> {stop_time.substring(0, cur_time.length - 32)} </div>
 								</Row>
 							</Col>
 							<Col className="time-col">
@@ -116,7 +120,7 @@ class MyGroup extends React.Component {
 									<div className="info-font">Interval</div>
 								</Row>
 								<Row className="time-row">
-									<div className="info-font"> {this.state.intervalTime} </div>
+									<div className="info-font"> {new Date(this.props.timer.intervalTime).getMinutes() + 'Min.'} </div>
 								</Row>
 							</Col>
 						</Row>
