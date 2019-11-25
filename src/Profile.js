@@ -11,35 +11,23 @@ class Profile extends React.Component {
 	render(){
 		return(
 			<React.Fragment>
-				<h2>Profile</h2>
-				<Scrollbars horizontal={false}
+				<h2>Edit Profile</h2>
+				<Scrollbars hideTracksWhenNotNeeded={true}
 						className="scroll"
-						contentClassName="scroll-content"
-						>
+						renderView={props => <div {...props} className="scroll-content"/>}>
 						<AuthContext.Consumer>{
 							auth => {
 								console.log(auth.email+""+auth.uid)
 								return(
-									<div>
+									<React.Fragment>
 										<ProfileImage uid={auth.uid} />
 										<ShowInformation uid={auth.uid}/>
-										<TimerContext.Consumer>{
-											timer => {
-												return(
-													<div>
-														<Cheer uid={auth.uid} interval = {timer.intervalNum}/>
-													</div>
-												);
-											}
-										}
-										</TimerContext.Consumer>
-									</div>
+									</React.Fragment>
 								);
 							}
 						}
 						</AuthContext.Consumer>
 					</Scrollbars>
-					<UpdateProgress/>
 			</React.Fragment>
 		);
 	}

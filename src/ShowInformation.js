@@ -1,8 +1,9 @@
 import React from 'react';
 import {storage,db} from './firebase/firebase.js';
 import {Form} from 'react-bootstrap';
-import {Button,Col,Row} from 'react-bootstrap';
+import {Container, Button,Col,Row} from 'react-bootstrap';
 import './scss/Profile.scss';
+
 class ShowInformation extends React.Component {
 	constructor(props) {
 	    super(props);
@@ -47,7 +48,7 @@ class ShowInformation extends React.Component {
 	}
 	render(){
 		return(
-			<div className="information">
+			<Container className="information">
 				<Form>
 					<Form.Group controlId="name">
 						<div className="name">
@@ -66,7 +67,7 @@ class ShowInformation extends React.Component {
 				    	Save changes
 				  	</Button>
 				</Form>
-			</div>
+			</Container>
 		);
 	}
 }

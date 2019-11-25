@@ -14,7 +14,7 @@ class ProfileImage extends Component {
       status:"info",
       progress: 0
     };
-    console.log("a");
+
     storage
       .ref(`images/${this.state.uid}`)
       .child("profile.jpg")
@@ -73,7 +73,6 @@ class ProfileImage extends Component {
   render() {
     return (
       <div className="image-upload">
-        <br/>
         <div className="align image">
           <img
             src={this.state.url}
@@ -82,28 +81,21 @@ class ProfileImage extends Component {
             width="300"
           />
         </div>
-        <div className="btn">
-          <h5>Change picture here {":  "}</h5>
-          <div className="file-box">
-            <input type="file" name="ccc" onChange={this.handleChange} />
-          </div>
-          <br/>
-
-          
-        </div>
         <div className="progress-bar">
           <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.show} />
         </div>
-        <br />
+        <div className="btn-zone">
+          <div className="file-box">
+            <input type="file" name="ccc" onChange={this.handleChange} />
+          </div>
+          <Button variant = "outline-primary"
+                onClick={this.handleUpload}
+                className="waves-effect waves-light btn"
+          >
+            Upload
+          </Button>
+        </div>
 
-        <Button variant = "outline-primary"
-              onClick={this.handleUpload}
-              className="waves-effect waves-light btn"
-        >
-          Upload
-        </Button>
-        <br />
-        <br />
       </div>
     );
   }

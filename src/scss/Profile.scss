@@ -1,3 +1,19 @@
 .name {
   text-align: center;
 }
+
+.scroll-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.progress-bar{
+  height: 10px;
+  width: 300px;
+  margin: auto;
+  background-color: transparent !important;
+}
+
+.btn-zone{
+  width: 300px
+}
