@@ -7,10 +7,13 @@ import { db } from './firebase/firebase.js';
 class AllMember extends React.Component {
   constructor(props){
     super(props);
+    this.handleShow = this.handleShow.bind(this)
+    this.handleClose = this.handleClose.bind(this)
     this.state = {
       show:false,
-      people:{},
-      goal:{}
+      people:[],
+      peopleName:[],
+      goal:[]
     };
   }
 
@@ -24,24 +27,53 @@ class AllMember extends React.Component {
       show:false
     })
   }
-  goalMatched(){
+  goalMatch(){
+    let num=0;
+    let tempPeople=[]
+    let tempGoal =[]
+    let tempPeopleName=[]
+    console.log(this.props.people)
     Object.keys(this.props.people).forEach((person) =>{
-      this.setState({
-        people:[...this.state.people, person],
-        goal:[...this.state.goal, this.props.people[person]]
+        console.log(person)
+      tempPeople[num]=person
+      let person_value = this.props.people[person]
+      tempGoal[num]=person_value.goal
+      db.ref('users/'+person).on('value',(snapshot)=>{
+              let a = snapshot.val()
+        tempPeopleName[num]=a.name
+        console.log(num)
+        console.log(a.name)
+        console.log(person_value.goal)
       })
+      console.log(num)
+      num=num+1;
     })
+    console.log(tempPeople)
+    console.log(tempGoal)
+    console.log(tempPeopleName)
+    this.setState({
+      peopleName: tempPeopleName,
+      people: tempPeople,
+      goal:tempGoal
+    })
+    num=num-1;
   }
+
   showNameList(){
     let nameList = []
+        console.log(this.state)
     for(let i=0; i<this.state.people.length; i+=1)
     {
-        nameList.push(<div><p>this.people[i]</p><p>this.goal[i]</p></div>);
+        nameList.push(<div><p>Name: {this.state.peopleName[i]}</p><p>Goal: {this.state.goal[i]}</p></div>);
     }
     return (nameList)
   }
-  componentDidMount(){
-    this.goalMatched()
+  componentDidUpdate(prevProps){
+    if(this.props.people && this.props.people !== prevProps.people)
+    {
+      this.goalMatch()
+    }
+
   }
   render(){
     return(
@@ -53,13 +85,8 @@ class AllMember extends React.Component {
               <h3>All Member</h3>
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <Scrollbars horizontal={false}
-              className="scroll"
-              contentClassName="scroll-content"
-              >
+          <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>
               {this.showNameList()}
-            </Scrollbars>
           </Modal.Body>
         </Modal>
       </React.Fragment>
