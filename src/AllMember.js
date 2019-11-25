@@ -33,25 +33,16 @@ class AllMember extends React.Component {
     let tempPeople=[]
     let tempGoal =[]
     let tempPeopleName=[]
-    console.log(this.props.people)
     Object.keys(this.props.people).forEach((person) =>{
-        console.log(person)
       tempPeople[num]=person
       let person_value = this.props.people[person]
       tempGoal[num]=person_value.goal
       db.ref('users/'+person).on('value',(snapshot)=>{
               let a = snapshot.val()
         tempPeopleName[num]=a.name
-        console.log(num)
-        console.log(a.name)
-        console.log(person_value.goal)
       })
-      console.log(num)
       num=num+1;
     })
-    console.log(tempPeople)
-    console.log(tempGoal)
-    console.log(tempPeopleName)
     this.setState({
       peopleName: tempPeopleName,
       people: tempPeople,
@@ -62,7 +53,6 @@ class AllMember extends React.Component {
 
   showNameList(){
     let nameList = []
-        console.log(this.state)
     for(let i=0; i<this.state.people.length; i+=1)
     {
         nameList.push(<div><p>Name: {this.state.peopleName[i]}<br/>Goal: {this.state.goal[i]}</p></div>);
