@@ -6,6 +6,7 @@ import Carousel from './Carousel.js';
 import UpdateProgress from './UpdateProgress.js';
 import { Container, Row, Col } from 'react-bootstrap';
 import './scss/MyGroup.scss';
+import AllMember from './AllMember';
 
 class MyGroup extends React.Component {
 	static contextType = TimerContext
