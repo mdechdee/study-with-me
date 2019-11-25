@@ -60,10 +60,18 @@ class MyGroup extends React.Component {
 	// map uid to number and count total number of people
 
 	handleLeft(){
-		if (this.state.rank>0) this.setState({rank:this.state.rank-1})
+		var self = this;
+		if (this.state.rank>0){
+			self.setState({rank:self.state.rank-1})
+			console.log("-")
+		}
 	}
 	handleRight(){
-		if (this.state.rank<this.state.totalPeople-1) this.setState({rank:this.state.rank+1})
+		var self = this;
+		if (this.state.rank<this.state.totalPeople-1){
+			self.setState({rank:self.state.rank+1})
+			console.log("+")
+		}
 	}
 
 	componentDidMount(){
@@ -72,23 +80,45 @@ class MyGroup extends React.Component {
 
 	render(){
 		return(
-			<React.Fragment>
-				<Container className="title-my-group">
-					<Row> <h3>Group: {this.props.timer.groupName}</h3> </Row>
-					<Row className="time">
-						<Col className="time-col">
-								<div>Current Time: {new Date(this.props.timer.currentTime).toString()} </div>
-						</Col>
-						<Col className="time-col">
-								<div>Start time: {new Date(this.props.timer.startTime).toString()} </div>
-						</Col>
-						<Col className="time-col">
-								<div>End time: {new Date(this.props.timer.stopTime).toString()} </div>
-						</Col>
-						<Col className="time-col">
-								<div>Interval: {this.props.timer.intervalTime} </div>
-						</Col>
-					</Row>
+			<div>
+				<Container>
+					<div className="my-group-title"> Group: {this.props.timer.groupName} </div>
+					<Container>
+						<Row className="time">
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">Time</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {new Date(this.props.timer.currentTime).getSeconds()} </div>
+								</Row>
+							</Col>
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">Start time</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {new Date(this.props.timer.startTime).getSeconds()} </div>
+								</Row>
+							</Col>
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">End time</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {new Date(this.props.timer.stopTime).getSeconds()} </div>
+								</Row>
+							</Col>
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">Interval</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {this.props.timer.intervalTime} </div>
+								</Row>
+							</Col>
+						</Row>
+					</Container>
 				</Container>
 				<div className="member-progress">
 					<Row>

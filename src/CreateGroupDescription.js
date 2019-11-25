@@ -4,6 +4,7 @@ import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {db} from './firebase/firebase.js'
+import './scss/CreateGroup.scss';
 
 class CreateGroupDescription extends React.Component{
 	constructor(props){
@@ -162,100 +163,96 @@ class CreateGroupDescription extends React.Component{
 		return(
 			<div>
 				<Row>
-					<Col xs={3}> Name: </Col>
+					<Col className="form-font" xs={3}> Name: </Col>
 					<Col xs={8}>
 						<Form>
 						  	<Form.Group controlId="group-name">
-							    <Form.Control onChange={this.group_name_change} />
+							    <Form.Control className="form-font" onChange={this.group_name_change} />
 						  	</Form.Group>
 						</Form>
 					</Col>
 				</Row>
 
 				<Row>
-					<Col xs={3}> Start Date: </Col>
+					<Col className="form-font" xs={3}> Start Date: </Col>
 					<Col xs={8}>
 						 <Form>
 						 	<Form.Group controlId="group-start-date">
-						 		<Form.Control type="date" onChange={this.group_start_date_change}/>
+						 		<Form.Control className="form-font" type="date" onChange={this.group_start_date_change}/>
 					 		</Form.Group>
 						</Form>
 					</Col>
 				</Row>
 
 				<Row>
-					<Col xs={3}> Start Time: </Col>
+					<Col className="form-font" xs={3}> Start Time: </Col>
 					<Col xs={8}>
 						<Form>
 								<Form.Group controlId="group-time">
-		 						 	<Form.Control type="time" onChange={this.group_start_time_change} />
+		 						 	<Form.Control className="form-font" type="time" onChange={this.group_start_time_change} />
 		 					 	</Form.Group>
 						</Form>
 					</Col>
 				</Row>
 
 				<Row>
-					<Col xs={3}> Interval: </Col>
+					<Col className="form-font" xs={3}> Interval: </Col>
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-interval">
-		 						 	<Form.Control type="number" min="1" max="999" step="1" pattern="[0-9]*" onChange={this.group_interval_change} />
+		 						 	<Form.Control className="form-font" type="number" min="1" max="999" step="1" pattern="[0-9]*" onChange={this.group_interval_change} />
 		 					 	</Form.Group>
 						</Form>
 					</Col>
 					<Col xs={4}>
 						<select value={this.state.value} onChange={this.unit_interval_change}>
-							<option value="minutes">minutes</option>
-							<option value="hours">hours</option>
-							<option value="days">days</option>
+							<option className="form-font" value="minutes">minutes</option>
+							<option className="form-font" value="hours">hours</option>
+							<option className="form-font" value="days">days</option>
 						</select>
 					</Col>
 				</Row>
 
 				<Row>
-					<Col xs={{offset: 3}}>
-						<Form.Text className="text-muted">
+					<Col xs={{offset: 0}}>
+						<Form.Text className="mute-font text-muted">
 								*Time units can only be minutes, hours and days,
-						</Form.Text>
-						<Form.Text className="text-muted">
 								e.g. 1 minute, 10 days
 						</Form.Text>
 					</Col>
 				</Row>
 
 				<Row>
-					<Col xs={3}> Total Time: </Col>
+					<Col className="form-font" xs={3}> Total Time: </Col>
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-total-time">
-		 						 	<Form.Control type="date-time" min="1" max="999" step="1" pattern="[0-9]*" onChange={this.group_total_time_change} />
+		 						 	<Form.Control className="form-font" type="date-time" min="1" max="999" step="1" pattern="[0-9]*" onChange={this.group_total_time_change} />
 		 					 	</Form.Group>
 						</Form>
 					</Col>
 					<Col xs={4}>
 						<select value={this.state.value} onChange={this.unit_total_time_change}>
-							<option value="minutes">minutes</option>
-							<option value="hours">hours</option>
-							<option value="days">days</option>
+							<option className="form-font" value="minutes">minutes</option>
+							<option className="form-font" value="hours">hours</option>
+							<option className="form-font" value="days">days</option>
 						</select>
 					</Col>
 				</Row>
 
 				<Row>
-					<Col xs={{offset: 3}}>
-						<Form.Text className="text-muted">
+					<Col xs={{offset: 0}}>
+						<Form.Text className="mute-font text-muted">
 								*Time units can only be minutes, hours and days,
-						</Form.Text>
-						<Form.Text className="text-muted">
 								e.g. 1 minute, 10 days
 						</Form.Text>
 					</Col>
 				</Row>
 
-				<Button variant="warning" offset={100}
+				<Button variant="warning" offset={100} className="create-button"
 				onClick={this.handleClick}> Create </Button>
 
-				<Button variant="danger" offset={100}
+				<Button variant="danger" offset={100} className="cancel-button"
 				onClick={this.props.handleClose}> Cancel </Button>
 	  	</div>
 		);

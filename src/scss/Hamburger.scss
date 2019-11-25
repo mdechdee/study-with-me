@@ -1,3 +1,5 @@
+@import '_base.scss';
+
 /* Position and sizing of burger button */
 .bm-burger-button {
     position: absolute;
@@ -44,6 +46,7 @@
     position: relative !important;
     overflow: hidden !important;
     padding: 2.5em 1.5em 0;
+    font-family: $f3;
     font-size: 1.15em;
   }
 
