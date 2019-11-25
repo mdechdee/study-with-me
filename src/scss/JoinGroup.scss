@@ -2,10 +2,10 @@
 
 /*--------------------------------------------------
 --------------------------------------------------
-These are for CreateGroup.js
+These are for JoinGroup.js
 --------------------------------------------------
 --------------------------------------------------*/
-.create-title{
+.join-title{
   border-radius: 10px;
   height: 40px; /*requires explicit height*/
   font-family: $f3;
@@ -14,7 +14,7 @@ These are for CreateGroup.js
   color: black;
 }
 
-.custom-close-icon {
+.join-close-icon {
   animation: 0.3s rotate90Counter;
   color: black;
   font-size: 1.5rem;
@@ -27,11 +27,6 @@ These are for CreateGroup.js
   top: 5%;
 }
 
-/*--------------------------------------------------
---------------------------------------------------
-These are for CreateGroupDescription.js
---------------------------------------------------
---------------------------------------------------*/
 .form-font{
   font-family: $f2;
   font-size: 1pc;
@@ -40,10 +35,11 @@ These are for CreateGroupDescription.js
 .mute-font{
   font-family: $f3;
   font-size: 0.9pc;
-  color: red !important;
+  color: gray !important;
+  margin: 5px 20px 20px; //top lr bottom
 }
 
-.create-button{
+.join-button{
   font-family: $f3;
   font-size: 1.2pc !important;
   text-align: center;
@@ -54,6 +50,6 @@ These are for CreateGroupDescription.js
 }
 
 .cancel-button{
-  @extend .create-button;
+  @extend .join-button;
   left: 25%;
 }

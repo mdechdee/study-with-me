@@ -1,6 +1,6 @@
 import React from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
-import { db,storage} from './firebase/firebase.js';
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+import { db, storage } from './firebase/firebase.js';
 import Cheer from './Cheer.js'
 class Carousel extends React.Component{
   constructor(props){
@@ -24,7 +24,7 @@ class Carousel extends React.Component{
   }
 
   getUrl(interval){
-    storage.ref(`images/${this.props.props.mapPeopleWithNumber[this.props.props.rank]}`).child(`work`+`${this.props.props.intervalNum}`+`.jpg`).getDownloadURL()
+    storage.ref(`images/${this.props.props.mapPeopleWithNumber[this.props.props.rank]}`).child(`work${this.props.props.intervalNum}.jpg`).getDownloadURL()
       .then(url => {
         this.setState({ url });
       }).catch(function(error) {
@@ -32,8 +32,6 @@ class Carousel extends React.Component{
     });;
   }
   componentDidMount(){
-    var interval = null;
-    var temp = null;
     var self=this;
     console.log("Carousel/componentDidmount : state")
     console.log(this.state)
