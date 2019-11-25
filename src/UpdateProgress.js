@@ -15,9 +15,10 @@ class UpdateProgress extends React.Component{
 		super(props);
 		this.handleShow = this.handleShow.bind(this);
 		this.handleClose = this.handleClose.bind(this);
-
 		this.state = {
-			show: false
+			show: false,
+			uid: props.uid,
+			groupName: props.groupName
 		};
 	}
 	handleClose(){
@@ -36,7 +37,7 @@ class UpdateProgress extends React.Component{
   								<Button variant = "primary" onClick = {this.handleShow}> Update Progress </Button>
   								<Modal dialogClassName = 'custom-dialog' show={this.state.show} onHide={this.handleClose} centered>
 						         	<Modal.Header closeButton>
-						            	<Modal.Title> <h3>Update progress</h3> {this.props.popup_id} </Modal.Title>
+						            	<Modal.Title> <h3>Update progress</h3></Modal.Title>
 						          	</Modal.Header>
 						          	<Scrollbars style={{ width: 400, height: 700 }}>
 						          	<Modal.Body>
@@ -46,10 +47,12 @@ class UpdateProgress extends React.Component{
 									          			<div className="componentToUpdate">
 										          			<ProgressImage
 										          				uid={auth.uid}
-										          				interval={timer.intervalNum}/>
+										          				interval={timer.intervalNum}
+										          				groupName = {this.state.groupName}/>
 					            							<ProgressDescription
 					            								uid = {auth.uid}
 					            								interval = {timer.intervalNum}
+					            								groupName = {this.state.groupName}
 					            								setStatus = {this.handleClose}/>
 					            						</div>
 									          		);}

@@ -59,6 +59,8 @@ class ProgressImage extends Component {
           .getDownloadURL()
           .then(url => {
             this.setState({ url });
+          }).catch( error =>{
+            console.log(error);
           });
       }
     );

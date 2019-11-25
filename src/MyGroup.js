@@ -35,10 +35,8 @@ class MyGroup extends React.Component {
 	}
 	// bring data from database
 	fetchGroupName(){
-		console.log("uid");
-		console.log(this.props);
 		db.ref(`users/${this.props.uid}`).once('value',(snapshot) =>{
-			console.log("fetchGroupName");
+			console.log("mygroup/fetchGroupName : users/uid");
 			console.log(snapshot.val());
 			this.setState({
 				groupName: snapshot.val().group
@@ -63,7 +61,7 @@ class MyGroup extends React.Component {
 		this.setState({mapPeopleWithNumber:temp});
 		this.setState({totalPeople:num});
 		this.setState({isLoaded:true});
-		console.log("state");
+		console.log("mygroup/countpeople : state");
 		console.log(this.state);
 	}
 	handleLeft(){
@@ -190,7 +188,7 @@ class MyGroup extends React.Component {
 				    </Row>
 				</div>
 				<div className="update-progress">
-					<UpdateProgress />
+					<UpdateProgress uid={this.props.uid} groupName={this.state.groupName}/>
 				</div>
 			</div>
 		);
