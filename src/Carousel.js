@@ -6,14 +6,14 @@ class Carousel extends React.Component{
   constructor(props){
     super(props);
     this.state ={
-      rank: this.props.props.rank,
-      people: this.props.props.mapPeopleWithNumber,
-      groupName: this.props.props.groupName,
+      rank: props.props.rank,
+      people: props.props.mapPeopleWithNumber,
+      groupName: props.props.groupName,
       url : "",
       progress : "",
       goal:"",
-      uid:this.props.props.mapPeopleWithNumber[this.props.props.rank],
-      intervalNum: 0,
+      uid:props.props.mapPeopleWithNumber[props.props.rank],
+      intervalNum: props.props.intervalNum,
       info: null,
       name: "",
       numberLargeSmile:0,
@@ -24,7 +24,7 @@ class Carousel extends React.Component{
   }
 
   getUrl(interval){
-    storage.ref(`images/${this.state.uid}`).child(`work`+`${this.state.intervalNum}`+`.jpg`).getDownloadURL()
+    storage.ref(`images/${this.props.props.mapPeopleWithNumber[this.props.props.rank]}`).child(`work`+`${this.props.props.intervalNum}`+`.jpg`).getDownloadURL()
       .then(url => {
         this.setState({ url });
       }).catch(function(error) {
@@ -32,11 +32,14 @@ class Carousel extends React.Component{
     });;
   }
   componentDidMount(){
-    console.log("Now componentDidMount is working.")
     var interval = null;
     var temp = null;
     var self=this;
-    db.ref(`groups/${this.state.groupName}/people`).child(`/${this.state.uid}`).once('value',
+    console.log("Carousel/componentDidmount : state")
+    console.log(this.state)
+    console.log("Carousel/componentDidmount : props")
+    console.log(this.props)
+    db.ref(`groups/${this.props.props.groupName}/people`).child(`/${this.props.props.mapPeopleWithNumber[this.props.props.rank]}`).once('value',
       function(snapshot){
         self.setState({
           goal:snapshot.val().goal,
@@ -46,15 +49,18 @@ class Carousel extends React.Component{
           numberLike:snapshot.val().numberLike,
           numberLove:snapshot.val().numberLove,
         });
-
     })
-    db.ref("users").child(`/${this.state.uid}`).once('value',function(snapshot){
+    db.ref("users").child(`/${this.props.props.mapPeopleWithNumber[this.props.props.rank]}`).once('value',function(snapshot){
         var value = snapshot.val();
         self.setState({name:value.name});
       })
     this.getUrl()
     }
   render(){
+    console.log("Carousel/render : rank")
+    console.log(this.state.rank)
+    console.log(this.props.props.rank)
+    console.log(this.state)
     return (
       <MDBCol>
         <MDBCard style={{ width: "15rem"  }}>
@@ -67,7 +73,7 @@ class Carousel extends React.Component{
               {this.state.goal||""}
             </MDBCardText>
             <div>
-              <Cheer uid={this.state.uid} intervalNum = {this.state.intervalNum} groupName = {this.state.groupName}/>
+              <Cheer uid={this.props.props.mapPeopleWithNumber[this.state.rank]} intervalNum = {this.state.intervalNum} groupName = {this.state.groupName}/>
             </div>
           </MDBCardBody>
         </MDBCard>

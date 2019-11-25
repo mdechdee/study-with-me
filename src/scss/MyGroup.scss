@@ -1,10 +1,19 @@
-$gray: #ccc;
+@import '_base.scss';
 
-$defaultfont: OpenSans;
-$boldfont: OpenSans-Bold;
-$semiboldfont: 'OpenSans-SemiBold';
-$titlefont: Oswald;
-$titleboldfont: Oswald-Bold;
+.my-group-title{
+  border-radius: 10px;
+  height: 50px; /*requires explicit height*/
+  font-family: $f3;
+  font-size: 2pc;
+  text-align: middle;
+  color: black;
+}
+
+.info-font{
+  font-family: $f2;
+  font-size: 1pc;
+	text-align: middle;
+}
 
 .my-group{
 	background-color: #F2F2F2;
@@ -30,6 +39,7 @@ $titleboldfont: Oswald-Bold;
   	height: 72%;
   	width: 100%;
 }
+
 .update-progress{
 	position:relative;
 }
@@ -39,6 +49,7 @@ $titleboldfont: Oswald-Bold;
 	top:25vh;
 	font-size: 3rem;
 }
+
 .time{
 	border-top: 2px solid grey;
 }

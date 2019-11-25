@@ -29,7 +29,8 @@ class MyGroup extends React.Component {
 			mapPeopleWithNumber: null,
 			isLoaded: false,
 			isDone:false,
-			groupName:""
+			intervalNum: props.timer.intervalNum,
+			groupName:props.timer.groupName
 		};
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
@@ -37,10 +38,10 @@ class MyGroup extends React.Component {
 	// bring data from database
 
 	collectPeople(){
-		db.ref(`groups/${this.props.timer.group}/people`).once('value',(snapshot) =>{
+		db.ref(`groups/${this.props.timer.groupName}/people`).once('value',(snapshot) =>{
 			this.setState({
 				people: snapshot.val()
-			}, () => {
+				}, () => {
 				let num = 0;
 				let temp = {};
 				console.log(this.state.people)
@@ -61,10 +62,18 @@ class MyGroup extends React.Component {
 	// map uid to number and count total number of people
 
 	handleLeft(){
-		if (this.state.rank>0) this.setState({rank:this.state.rank-1})
+		var self = this;
+		if (this.state.rank>0){
+			self.setState({rank:self.state.rank-1})
+			console.log("-")
+		}
 	}
 	handleRight(){
-		if (this.state.rank<this.state.totalPeople-1) this.setState({rank:this.state.rank+1})
+		var self = this;
+		if (this.state.rank<this.state.totalPeople-1){
+			self.setState({rank:self.state.rank+1})
+			console.log("+")
+		}
 	}
 
 	componentDidMount(){
@@ -72,45 +81,52 @@ class MyGroup extends React.Component {
 	}
 
 	render(){
+		console.log("Mygroup/render: state")
+		console.log(this.state)
+		var cur_time = new Date(this.props.timer.currentTime).toString()
+		var start_time = new Date(this.props.timer.startTime).toString()
+		var stop_time = new Date(this.props.timer.stopTime).toString()
 		return(
-			<div className="my-group">
-				<div className="title-my-group">
-					<div> <h3>Group: {this.props.timer.group}</h3> </div>
-					<Row className="time">
-						<Col className="time-col">
-							<Row className="time-row">
-								<div>Time</div>
-							</Row>
-							<Row className="time-row">
-								<div> {new Date(this.props.timer.currentTime).getSeconds()} </div>
-							</Row>
-						</Col>
-						<Col className="time-col">
-							<Row className="time-row">
-								<div>Start time</div>
-							</Row>
-							<Row className="time-row">
-								<div> {new Date(this.props.timer.startTime).getSeconds()} </div>
-							</Row>
-						</Col>
-						<Col className="time-col">
-							<Row className="time-row">
-								<div>End time</div>
-							</Row>
-							<Row className="time-row">
-								<div> {new Date(this.props.timer.stopTime).getSeconds()} </div>
-							</Row>
-						</Col>
-						<Col className="time-col">
-							<Row className="time-row">
-								Interval
-							</Row>
-							<Row className="time-row">
-								<div> {this.props.timer.intervalTime} </div>
-							</Row>
-						</Col>
-					</Row>
-				</div>
+			<div>
+				<Container>
+					<div className="my-group-title"> Group: {this.props.timer.groupName} </div>
+					<Container>
+						<Row className="time">
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">Time</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {cur_time.substring(0, cur_time.length - 32)} </div>
+								</Row>
+							</Col>
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">Start time</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {start_time.substring(0, cur_time.length - 32)} </div>
+								</Row>
+							</Col>
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">End time</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {stop_time.substring(0, cur_time.length - 32)} </div>
+								</Row>
+							</Col>
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">Interval</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {new Date(this.props.timer.intervalTime).getMinutes() + 'Min.'} </div>
+								</Row>
+							</Col>
+						</Row>
+					</Container>
+				</Container>
 				<div className="member-progress">
 					<Row>
 						<Col className="button-slide">

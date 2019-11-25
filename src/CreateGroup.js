@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Button} from 'react-bootstrap'
+import {Row, Col, Modal, Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CreateGroupDescription from'./CreateGroupDescription.js';
 import { db } from './firebase/firebase.js';
@@ -31,9 +31,15 @@ class CreateGroup extends React.Component {
         onClick={this.handleShow}> Create a group </Button>
 
           <Modal size="sm" show={this.state.show} onHide={this.handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title> <h3>Create a group</h3> {this.props.popup_id} </Modal.Title>
-              <div className='custom-close-label'>close</div>
+            <Modal.Header>
+              <Modal.Title>
+                <Row>
+                  <Col sm={10} className="create-title"> Create a group </Col>
+                  <Col sm={2}>
+                    <FontAwesomeIcon icon='times-circle' className='custom-close-icon' onClick={this.handleClose}/>
+                  </Col>
+                </Row>
+              </Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <CreateGroupDescription uid={this.props.uid} handleClose={this.handleClose}/>
