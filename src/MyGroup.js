@@ -40,7 +40,7 @@ class MyGroup extends React.Component {
 		db.ref(`groups/${this.props.timer.group}/people`).once('value',(snapshot) =>{
 			this.setState({
 				people: snapshot.val()
-			}, () =>{
+			}, () => {
 				let num = 0;
 				let temp = {};
 				console.log(this.state.people)
@@ -55,7 +55,7 @@ class MyGroup extends React.Component {
 				});
 				console.log("mygroup/countpeople : state");
 				console.log(this.state);
-			})	
+			})
 		})
 	}
 	// map uid to number and count total number of people
@@ -75,14 +75,14 @@ class MyGroup extends React.Component {
 		return(
 			<div className="my-group">
 				<div className="title-my-group">
-					<div> <h3>Group: {this.props.group}</h3> </div>
+					<div> <h3>Group: {this.props.timer.group}</h3> </div>
 					<Row className="time">
 						<Col className="time-col">
 							<Row className="time-row">
 								<div>Time</div>
 							</Row>
 							<Row className="time-row">
-								<div> {new Date(this.props.currentTime).getSeconds()} </div>
+								<div> {new Date(this.props.timer.currentTime).getSeconds()} </div>
 							</Row>
 						</Col>
 						<Col className="time-col">
@@ -90,7 +90,7 @@ class MyGroup extends React.Component {
 								<div>Start time</div>
 							</Row>
 							<Row className="time-row">
-								<div> {new Date(this.props.startTime).getSeconds()} </div>
+								<div> {new Date(this.props.timer.startTime).getSeconds()} </div>
 							</Row>
 						</Col>
 						<Col className="time-col">
@@ -98,7 +98,7 @@ class MyGroup extends React.Component {
 								<div>End time</div>
 							</Row>
 							<Row className="time-row">
-								<div> {new Date(this.props.stopTime).getSeconds()} </div>
+								<div> {new Date(this.props.timer.stopTime).getSeconds()} </div>
 							</Row>
 						</Col>
 						<Col className="time-col">
@@ -106,7 +106,7 @@ class MyGroup extends React.Component {
 								Interval
 							</Row>
 							<Row className="time-row">
-								<div> {this.props.intervalTime} </div>
+								<div> {this.props.timer.intervalTime} </div>
 							</Row>
 						</Col>
 					</Row>
