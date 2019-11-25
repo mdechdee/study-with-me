@@ -59,21 +59,17 @@ class MyGroup extends React.Component {
 	// map uid to number and count total number of people
 
 	handleLeft(){
-		console.log("mygroup/handleleft : rankbefore")
-		console.log(this.state.rank)
-		var self=this;
+		var self = this;
 		if (this.state.rank>0){
 			self.setState({rank:self.state.rank-1})
+			console.log("-")
 		}
-		console.log("mygroup/handleleft : rankafter")
-		console.log(this.state.rank)
 	}
 	handleRight(){
-		console.log("mygroup/handleright : rankbefore")
-		console.log(this.state.rank)
 		var self = this;
 		if (this.state.rank<this.state.totalPeople-1){
 			self.setState({rank:self.state.rank+1})
+			console.log("+")
 		}
 	}
 

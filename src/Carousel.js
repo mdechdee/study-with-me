@@ -49,7 +49,6 @@ class Carousel extends React.Component{
           numberLike:snapshot.val().numberLike,
           numberLove:snapshot.val().numberLove,
         });
-
     })
     db.ref("users").child(`/${this.state.uid}`).once('value',function(snapshot){
         var value = snapshot.val();
