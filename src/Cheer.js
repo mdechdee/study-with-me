@@ -13,11 +13,7 @@ class Cheer extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			uid: props.uid,
-			intervalNum: props.intervalNum,
 			disable: false,
-			groupName: props.groupName,
-			Ref: db.ref(`groups/${props.groupName}/people/${props.uid}`),
 			numberLargeSmile: 0,
 			numberSmile: 0,
 			numberLike: 0,
@@ -29,30 +25,32 @@ class Cheer extends React.Component{
 		this.handleLove = this.handleLove.bind(this);
 	}
 	componentDidMount(){
+		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
 		console.log("Cheer/componentDidMount : snapshot")
-		this.state.Ref.on('value', function(snapshot) {
-			console.log(snapshot.val())
-		})
 	}
 	handleLargeSmile(){
-		this.setState({numberLargeSmile: this.state.numberLargeSmile+1})
+		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
 		console.log(this.state.numberLargeSmile+"A");
-		this.state.Ref.child(`${this.state.intervalNum}`).update({numberLargeSmile: this.state.numberLargeSmile});
+		Ref.child(`${this.props.intervalNum}`).update({numberLargeSmile: this.state.numberLargeSmile+1});
+		this.setState({numberLargeSmile: this.state.numberLargeSmile+1})
 	}
 	handleSmile(){
-		this.setState({numberSmile: this.state.numberSmile+1})
+		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
 		console.log(this.state.numberSmile+"B");
-		this.state.Ref.child(`${this.state.intervalNum}`).update({numberSmile: this.state.numberSmile});
+		Ref.child(`${this.props.intervalNum}`).update({numberSmile: this.state.numberSmile+1});
+		this.setState({numberSmile: this.state.numberSmile+1})
 	}
 	handleLike(){
-		this.setState({numberLike: this.state.numberLike+1})
+		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
 		console.log(this.state.numberLike+"C");
-		this.state.Ref.child(`${this.state.intervalNum}`).update({numberLike: this.state.numberLike});
+		Ref.child(`${this.props.intervalNum}`).update({numberLike: this.state.numberLike+1});
+		this.setState({numberLike: this.state.numberLike+1})
 	}
 	handleLove(){
-		this.setState({numberLove: this.state.numberLove+1})
+		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
 		console.log(this.state.numberLove+"D");
-		this.state.Ref.child(`${this.state.intervalNum}`).update({numberLove: this.state.numberLove});
+		Ref.child(`${this.props.intervalNum}`).update({numberLove: this.state.numberLove+1});
+		this.setState({numberLove: this.state.numberLove+1})
 	}
 	render(){
 		return(
