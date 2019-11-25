@@ -17,6 +17,7 @@ class MyGroup extends React.Component {
 			stopTime: Date.now() + 100000,
 			currentTime : Date.now(),
 			intervalTime: 0,
+			intervalNum: 0,
 			offset: 0,
 			//Boss part
 			rank:0 ,
@@ -67,7 +68,7 @@ class MyGroup extends React.Component {
 			console.log("+")
 		}
 	}
-	
+
 	showMemberProgress(){
 		if(this.state.isGroupLoaded)
 		{
@@ -80,6 +81,7 @@ class MyGroup extends React.Component {
 
 	componentDidMount(){
 		console.log("MOUNT")
+		this.setState({intervalNum: this.props.timer.intervalNum})
 		this.collectPeople()
 	}
 

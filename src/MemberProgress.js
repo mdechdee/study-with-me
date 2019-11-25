@@ -14,7 +14,7 @@ class MemberProgress extends React.Component {
       pictureUrlLoaded: false,
       pictureNumLoaded: 0,
       userName: [],
-      userGroup: [],
+      userGoal: [],
       userInfoLoaded: false,
       userInfoNumLoaded: 0,
       peopleUID: [],
@@ -25,22 +25,35 @@ class MemberProgress extends React.Component {
     console.log(peopleName)
     for(let i in peopleName)
     {
+      //Fetch pictures
       storage.ref(`images/${peopleName[i]}`)
-      .child(`work0.jpg`).getDownloadURL()
+      .child(`work${this.props.groupInfo.intervalNum}.jpg`).getDownloadURL()
         .then(url => {
           this.setState({pictureUrl: [...this.state.pictureUrl, url]}, () =>{
             this.checkPictureLoaded()
-          });
-        })
-      db.ref(`users/${peopleName[i]}`).once('value',(snapshot) =>{
+          })})
+        .catch(error => {
+            this.setState({pictureUrl: [...this.state.pictureUrl, 'https://via.placeholder.com/300']}, () =>{
+              this.checkPictureLoaded()
+            })});
+      //Fetch username
+       db.ref(`users/${peopleName[i]}`).once('value',(snapshot) =>{
         let val = snapshot.val()
         this.setState({
-          userName: [...this.state.userName, val.name],
-          usergroup: [...this.state.userGroup, val.group]}, ()=> {
+          userName: [...this.state.userName, val.name]}, () => {
             this.checkUserInfoLoaded()
           })
-      })
+        })
     }
+    //Fetch Goals
+    var ppl = this.props.groupInfo.people
+    var itv_num = this.props.groupInfo.intervalNum
+    var _goal = []
+    Object.keys(this.props.groupInfo.people).forEach(function (person){
+        _goal.push(ppl[person].goal)
+    });
+    this.setState({userGoal: _goal})
+    ///
   }
 
   checkPictureLoaded(){
@@ -72,15 +85,15 @@ class MemberProgress extends React.Component {
       for(var i = 0;i<this.props.groupInfo.totalPeople;i++)
       {
         progress.push(
-        <Carousel.Item>
+        <Carousel.Item key={i}>
           <img
             className="d-block w-100"
             src={this.state.pictureUrl[i]}
             alt="First slide"
           />
-          <Carousel.Caption>
+          <Carousel.Caption key={this.props.groupInfo.totalPeople+i}>
             <h3>UserName: {this.state.userName[i]} </h3>
-            <p>Goal: {this.state.userGroup[i]}</p>
+            <p>Goal: {this.state.userGoal[i]}</p>
           </Carousel.Caption>
           </Carousel.Item>
         )
