@@ -2,7 +2,7 @@ import React from 'react';
 import { db } from './firebase/firebase.js';
 import TimerContext from './TimerContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Carousel from './Carousel.js';
+import MemberProgress from './MemberProgress.js';
 import UpdateProgress from './UpdateProgress.js';
 import { Container, Row, Col } from 'react-bootstrap';
 import './scss/MyGroup.scss';
@@ -23,7 +23,7 @@ class MyGroup extends React.Component {
 			totalPeople: 0,
 			people: null,
 			mapPeopleWithNumber: null,
-			isLoaded: false,
+			isGroupLoaded: false,
 			isDone:false,
 
 		};
@@ -37,20 +37,17 @@ class MyGroup extends React.Component {
 			this.setState({
 				people: snapshot.val()
 				}, () => {
-				let num = 0;
-				let temp = {};
-				console.log(this.state.people)
-				Object.keys(this.state.people).forEach(function (person){
-					temp[num]=person;
-				    num=num+1;
-				});
-				this.setState({
-					mapPeopleWithNumber:temp,
-					totalPeople:num,
-					isLoaded:true
-				});
-				console.log("mygroup/countpeople : state");
-				console.log(this.state);
+					let num = 0;
+					let temp = {};
+					Object.keys(this.state.people).forEach(function (person){
+							temp[num]=person;
+					    num=num+1;
+					});
+					this.setState({
+						mapPeopleWithNumber:temp,
+						totalPeople:num,
+						isGroupLoaded:true
+					});
 			})
 		})
 	}
@@ -70,8 +67,19 @@ class MyGroup extends React.Component {
 			console.log("+")
 		}
 	}
+	
+	showMemberProgress(){
+		if(this.state.isGroupLoaded)
+		{
+			return(<MemberProgress groupInfo={this.state}/>)
+		}
+		else {
+			return(<React.Fragment/>)
+		}
+	}
 
 	componentDidMount(){
+		console.log("MOUNT")
 		this.collectPeople()
 	}
 
@@ -120,38 +128,19 @@ class MyGroup extends React.Component {
 						</Row>
 					</Container>
 				</Container>
-				<div className="member-progress">
-					<Row>
-						<Col className="button-slide">
-					        <button onClick={this.handleLeft}><FontAwesomeIcon icon='chevron-circle-left'/></button>
-					    </Col>
-					    <Col>
-				        	<div className="card">
-							    {this.state.isLoaded ? (
-							    	<Carousel groupName={this.props.timer.groupName}
-							    	rank={this.state.rank}
-							    	people={this.state.people}
-							    	mapPeopleWithNumber={this.state.mapPeopleWithNumber}
-							    	intervalNum={this.props.timer.intervalNum}/>
-							    	) : (
-							        <p> loading </p>
-							    )}
-						    </div>
-						</Col>
-						<Col className="button-slide">
-					        <button onClick={this.handleRight}><FontAwesomeIcon icon='chevron-circle-right'/></button>
-					    </Col>
-				    </Row>
-				</div>
+
+				{this.showMemberProgress()}
+
 				<div className="update-progress">
 					<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>
 				</div>
 				<div>
-					<AllMember people={this.state.people} />
+					<AllMember people={this.state.people} intervalNum={this.props.timer.intervalNum}/>
 				</div>
 			</div>
 		);
 	}
 }
+
 
 export default MyGroup;
