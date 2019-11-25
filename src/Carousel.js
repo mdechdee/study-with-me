@@ -50,8 +50,9 @@ class Carousel extends React.Component{
     })
     db.ref("users").child(`/${this.state.uid}`).once('value',function(snapshot){
         var value = snapshot.val();
-        self.setState({name:value["name"]});
+        self.setState({name:value.name});
       })
+    this.getUrl()
     }
   render(){
     console.log("Carousel/render : state");
