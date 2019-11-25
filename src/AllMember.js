@@ -14,7 +14,8 @@ class AllMember extends React.Component {
       show:false,
       people:[],
       peopleName:[],
-      goal:[]
+      goal:[],
+      status:[]
     };
   }
 
@@ -33,7 +34,8 @@ class AllMember extends React.Component {
     let tempPeople=[]
     let tempGoal =[]
     let tempPeopleName=[]
-    console.log(this.props.people)
+    let tempStatus=[]
+
     Object.keys(this.props.people).forEach((person) =>{
         console.log(person)
       tempPeople[num]=person
@@ -46,6 +48,12 @@ class AllMember extends React.Component {
         console.log(a.name)
         console.log(person_value.goal)
       })
+        if(this.props.intervalNum in this.props.people){
+          tempStatus[num]="Update"
+        }
+        else{
+          tempStatus[num]="Not updated"
+        }
       console.log(num)
       num=num+1;
     })
@@ -55,7 +63,8 @@ class AllMember extends React.Component {
     this.setState({
       peopleName: tempPeopleName,
       people: tempPeople,
-      goal:tempGoal
+      goal:tempGoal,
+      status:tempStatus
     })
     num=num-1;
   }
@@ -65,7 +74,7 @@ class AllMember extends React.Component {
         console.log(this.state)
     for(let i=0; i<this.state.people.length; i+=1)
     {
-        nameList.push(<div><p>Name: {this.state.peopleName[i]}<br/>Goal: {this.state.goal[i]}</p></div>);
+        nameList.push(<div><p>Name: {this.state.peopleName[i]}<br/>Goal: {this.state.goal[i]}<br/>Status: {this.state.status[i]}</p></div>);
     }
     return (nameList)
   }
