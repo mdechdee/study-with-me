@@ -43,7 +43,7 @@ class ShowInformation extends React.Component {
 		e.preventDefault();
 		const { uid } = this.state;
 		const userRef = db.ref(`users`);
-		const uploadProgress = userRef.child(`${uid}`).set({'name': this.state.name})
+		const uploadProgress = userRef.child(`${uid}`).update({'name': this.state.name})
 	}
 	render(){
 		return(
