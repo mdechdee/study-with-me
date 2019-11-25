@@ -55,8 +55,6 @@ class Carousel extends React.Component{
     this.getUrl()
     }
   render(){
-    console.log("Carousel/render : state");
-    console.log(this.state);
     return (
       <MDBCol>
         <MDBCard style={{ width: "15rem"  }}>

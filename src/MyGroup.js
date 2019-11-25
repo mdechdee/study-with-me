@@ -128,8 +128,6 @@ class MyGroup extends React.Component {
 	}
 
 	render(){
-		console.log("Mygroup/render : state");
-		console.log(this.state)
 		return(
 			<div className="my-group">
 				<div className="title-my-group">
