@@ -51,19 +51,20 @@ class ShowInformation extends React.Component {
 			<Container className="information">
 				<Form>
 					<Form.Group controlId="name">
-						<div className="name">
-							<Row className="name">
-								<Form.Label column sm ="4">Name</Form.Label>
-								<Col sm="7">
+						<div>
+							<Row>
+								<Form.Label column sm={2} className="form-font">Name</Form.Label>
+									<Col sm={9}>
 						    		<Form.Control type="name" placeholder={this.state.name||"Name"} onChange={this.handleChange}/>
-							    	<Form.Text className="text-muted">
-							      		This name is displayed in public.
-							    	</Form.Text>
 							    </Col>
-						    </Row>
-					    </div>
-				  	</Form.Group>
-				  	<Button variant="primary" type="submit" onClick={this.handleUpdate}>
+								<Form.Text className="form-font name text-muted">
+										This name is displayed in public.
+								</Form.Text>
+					    </Row>
+				    </div>
+			  	</Form.Group>
+
+				  	<Button variant="success" type="submit" className="save-button" onClick={this.handleUpdate}>
 				    	Save changes
 				  	</Button>
 				</Form>

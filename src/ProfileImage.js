@@ -3,6 +3,7 @@ import {storage} from './firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import './scss/UpdateProgress.scss';
+
 class ProfileImage extends Component {
   constructor(props) {
     super(props);
@@ -88,9 +89,9 @@ class ProfileImage extends Component {
           <div className="file-box">
             <input type="file" name="ccc" onChange={this.handleChange} />
           </div>
-          <Button variant = "outline-primary"
+          <Button variant = "outline-info"
                 onClick={this.handleUpload}
-                className="waves-effect waves-light btn"
+                className="upload-button waves-effect waves-light btn"
           >
             Upload
           </Button>

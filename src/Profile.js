@@ -11,7 +11,7 @@ class Profile extends React.Component {
 	render(){
 		return(
 			<React.Fragment>
-				<h2>Edit Profile</h2>
+				<div className="prof-title">Edit Profile</div>
 				<Scrollbars hideTracksWhenNotNeeded={true}
 						className="scroll"
 						renderView={props => <div {...props} className="scroll-content"/>}>
