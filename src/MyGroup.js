@@ -28,8 +28,7 @@ class MyGroup extends React.Component {
 			mapPeopleWithNumber: null,
 			isLoaded: false,
 			isDone:false,
-			intervalNum: props.timer.intervalNum,
-			groupName:props.timer.groupName
+			
 		};
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
@@ -82,6 +81,8 @@ class MyGroup extends React.Component {
 	render(){
 		console.log("Mygroup/render: state")
 		console.log(this.state)
+		console.log("Mygroup/render: state.intervalNum")
+		console.log(this.props.timer.intervalNum)
 		var cur_time = new Date(this.props.timer.currentTime).toString()
 		var start_time = new Date(this.props.timer.startTime).toString()
 		var stop_time = new Date(this.props.timer.stopTime).toString()
@@ -134,7 +135,11 @@ class MyGroup extends React.Component {
 					    <Col>
 				        	<div className="card">
 							    {this.state.isLoaded ? (
-							    	<Carousel props={this.state}/>
+							    	<Carousel groupName={this.props.timer.groupName} 
+							    	rank={this.state.rank} 
+							    	people={this.state.people} 
+							    	mapPeopleWithNumber={this.state.mapPeopleWithNumber} 
+							    	intervalNum={this.props.timer.intervalNum}/>
 							    	) : (
 							        <p> loading </p>
 							    )}
@@ -146,7 +151,7 @@ class MyGroup extends React.Component {
 				    </Row>
 				</div>
 				<div className="update-progress">
-					<UpdateProgress uid={this.props.uid} groupName={this.state.groupName}/>
+					<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>
 				</div>
 			</div>
 		);
