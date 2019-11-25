@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 // import Moment from 'moment';
-import {db} from './firebase/firebase.js'
 import JoinGroup from'./JoinGroup.js';
 import './scss/FindGroups.scss';
 

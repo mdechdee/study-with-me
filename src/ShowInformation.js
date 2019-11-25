@@ -1,5 +1,5 @@
 import React from 'react';
-import {storage,db} from './firebase/firebase.js';
+import {db} from './firebase/firebase.js';
 import {Form} from 'react-bootstrap';
 import {Container, Button,Col,Row} from 'react-bootstrap';
 import './scss/Profile.scss';
@@ -42,9 +42,6 @@ class ShowInformation extends React.Component {
 	}
 	handleUpdate(e){
 		e.preventDefault();
-		const { uid } = this.state;
-		const userRef = db.ref(`users`);
-		const uploadProgress = userRef.child(`${uid}`).update({'name': this.state.name})
 	}
 	render(){
 		return(

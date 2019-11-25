@@ -3,7 +3,6 @@
 import React from 'react';
 import {Modal} from 'react-bootstrap'
 import {Button} from 'react-bootstrap'
-import {Form} from 'react-bootstrap'
 import ProgressImage from './ProgressImage.js'
 import ProgressDescription from './ProgressDescription.js'
 import AuthContext from './authentication/AuthContext';

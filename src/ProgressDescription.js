@@ -3,9 +3,7 @@
 import React from 'react';
 import {Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
-import {db} from './firebase/firebase.js';
 import './scss/UpdateProgress.scss'
-import TimerContext from './TimerContext.js'
 class ProgressDescription extends React.Component{
 	constructor(props){
 		super(props);
@@ -29,9 +27,6 @@ class ProgressDescription extends React.Component{
 	}
 	handleUpload(e){
 		e.preventDefault();
-		const { uid,groupName } = this.state;
-		const userRef = db.ref(`groups/${groupName}/people/${uid}`);
-		const uploadProgress = userRef.child(`${this.state.interval}`).update({'progress': this.state.progress_description,'goal': this.state.goal_description});
 		this.state.setStatus();
 	}
 	render(){

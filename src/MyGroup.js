@@ -1,14 +1,10 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
 import { db } from './firebase/firebase.js';
 import TimerContext from './TimerContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import progress from './camera.jpg';
 import Carousel from './Carousel.js';
 import UpdateProgress from './UpdateProgress.js';
-import { Scrollbars } from 'react-custom-scrollbars';
 import { Container, Row, Col } from 'react-bootstrap';
-import { MDBContainer, MDBCarousel ,MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 import './scss/MyGroup.scss';
 
 class MyGroup extends React.Component {

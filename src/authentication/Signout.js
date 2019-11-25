@@ -1,8 +1,6 @@
 import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { auth } from '../firebase';
-import AuthContext from './AuthContext.js';
 
 class Signout extends React.Component {
   constructor(props) {

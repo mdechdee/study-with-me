@@ -1,7 +1,6 @@
 import React from 'react';
-import { Row, Col, Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import {ToastContainer, toast} from 'react-toastify';
+import { Form, Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import { auth } from '../firebase';
 import '../scss/Signin.scss';
 
