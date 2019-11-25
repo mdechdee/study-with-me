@@ -40,21 +40,22 @@ class MyGroup extends React.Component {
 		db.ref(`groups/${this.props.timer.group}/people`).once('value',(snapshot) =>{
 			this.setState({
 				people: snapshot.val()
-			})
-			let num = 0;
-			let temp = {};
-			console.log(this.state.people)
-			Object.keys(this.state.people).forEach(function (person){
-				temp[num]=person;
-			    num=num+1;
-			});
-			this.setState({
-				mapPeopleWithNumber:temp,
-				totalPeople:num,
-				isLoaded:true
-			});
-			console.log("mygroup/countpeople : state");
-			console.log(this.state);
+			}, () =>{
+				let num = 0;
+				let temp = {};
+				console.log(this.state.people)
+				Object.keys(this.state.people).forEach(function (person){
+					temp[num]=person;
+				    num=num+1;
+				});
+				this.setState({
+					mapPeopleWithNumber:temp,
+					totalPeople:num,
+					isLoaded:true
+				});
+				console.log("mygroup/countpeople : state");
+				console.log(this.state);
+			})	
 		})
 	}
 	// map uid to number and count total number of people
@@ -74,14 +75,14 @@ class MyGroup extends React.Component {
 		return(
 			<div className="my-group">
 				<div className="title-my-group">
-					<div> <h3>Group: {this.state.groupName}</h3> </div>
+					<div> <h3>Group: {this.props.group}</h3> </div>
 					<Row className="time">
 						<Col className="time-col">
 							<Row className="time-row">
 								<div>Time</div>
 							</Row>
 							<Row className="time-row">
-								<div> {new Date(this.state.currentTime).getSeconds()} </div>
+								<div> {new Date(this.props.currentTime).getSeconds()} </div>
 							</Row>
 						</Col>
 						<Col className="time-col">
@@ -89,7 +90,7 @@ class MyGroup extends React.Component {
 								<div>Start time</div>
 							</Row>
 							<Row className="time-row">
-								<div> {new Date(this.state.startTime).getSeconds()} </div>
+								<div> {new Date(this.props.startTime).getSeconds()} </div>
 							</Row>
 						</Col>
 						<Col className="time-col">
@@ -97,7 +98,7 @@ class MyGroup extends React.Component {
 								<div>End time</div>
 							</Row>
 							<Row className="time-row">
-								<div> {new Date(this.state.stopTime).getSeconds()} </div>
+								<div> {new Date(this.props.stopTime).getSeconds()} </div>
 							</Row>
 						</Col>
 						<Col className="time-col">
@@ -105,7 +106,7 @@ class MyGroup extends React.Component {
 								Interval
 							</Row>
 							<Row className="time-row">
-								<div> {this.state.intervalTime} </div>
+								<div> {this.props.intervalTime} </div>
 							</Row>
 						</Col>
 					</Row>
