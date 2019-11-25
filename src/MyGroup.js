@@ -9,6 +9,7 @@ import UpdateProgress from './UpdateProgress.js';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { Container, Row, Col } from 'react-bootstrap';
 import { MDBContainer, MDBCarousel ,MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+import AllMember from './AllMember';
 import './scss/MyGroup.scss';
 
 class MyGroup extends React.Component {
@@ -54,6 +55,7 @@ class MyGroup extends React.Component {
 	countPeople(){
 		let num = 0;
 		let temp = {};
+		console.log(this.state.people);
 		Object.keys(this.state.people).forEach(function (person){
 			temp[num]=person;
 		    num=num+1;
@@ -82,7 +84,7 @@ class MyGroup extends React.Component {
         })
 
 	}
-	// Fetch current server's time
+	// Fetch current servers time
 	fetchCurrentTime(){
         db.ref('/.info/serverTimeOffset').on('value', (data) => {
 	    	this.setState({
@@ -124,7 +126,7 @@ class MyGroup extends React.Component {
 			}.bind(this),1000);
 		setTimeout(function(){
 			this.countPeople()
-			}.bind(this),2000);
+		}.bind(this),7000);
 	}
 
 	render(){
@@ -188,6 +190,9 @@ class MyGroup extends React.Component {
 				</div>
 				<div className="update-progress">
 					<UpdateProgress uid={this.props.uid} groupName={this.state.groupName}/>
+				</div>
+				<div>
+					<AllMember people={this.state.people} />
 				</div>
 			</div>
 		);
