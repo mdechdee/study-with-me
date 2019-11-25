@@ -9,3 +9,38 @@
   background: white;
   border-radius: 100%;
 }
+
+.create-title{
+  border-radius: 10px;
+  height: 40px; /*requires explicit height*/
+  font-family: $f3;
+  font-size: 2pc;
+  text-align: left;
+  color: black;
+}
+
+.form-font{
+  font-family: $f2;
+  font-size: 1pc;
+}
+
+.mute-font{
+  font-family: $f3;
+  font-size: 0.9pc;
+  color: red !important;
+}
+
+.create-button{
+  font-family: $f3;
+  font-size: 1.2pc !important;
+  text-align: center;
+  position: relative;
+  height: 10%;
+  width: 28%;
+  left: 20%;
+}
+
+.cancel-button{
+  @extend .create-button;
+  left: 25%;
+}

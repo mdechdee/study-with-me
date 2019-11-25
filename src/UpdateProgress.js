@@ -8,8 +8,9 @@ import ProgressImage from './ProgressImage.js'
 import ProgressDescription from './ProgressDescription.js'
 import AuthContext from './authentication/AuthContext';
 import TimerContext from './TimerContext.js'
-import './scss/UpdateProgress.scss'
 import { Scrollbars } from 'react-custom-scrollbars';
+import './scss/UpdateProgress.scss'
+
 class UpdateProgress extends React.Component{
 	constructor(props){
 		super(props);
@@ -34,8 +35,8 @@ class UpdateProgress extends React.Component{
 		          	{ auth => {
 		          		return(
   							<div>
-  								<Button variant = "primary" onClick = {this.handleShow}> Update Progress </Button>
-  								<Modal dialogClassName = 'custom-dialog' show={this.state.show} onHide={this.handleClose} centered>
+  								<Button variant = "success" onClick = {this.handleShow} className="upload-button"> Update Progress </Button>
+  								<Modal size="sm" dialogClassName = 'custom-dialog' show={this.state.show} onHide={this.handleClose} centered>
 						         	<Modal.Header closeButton>
 						            	<Modal.Title> <h3>Update progress</h3></Modal.Title>
 						          	</Modal.Header>

@@ -129,44 +129,46 @@ class MyGroup extends React.Component {
 
 	render(){
 		return(
-			<div className="my-group">
-				<div className="title-my-group">
-					<div> <h3>Group: {this.state.groupName}</h3> </div>
-					<Row className="time">
-						<Col className="time-col">
-							<Row className="time-row">
-								<div>Time</div>
-							</Row>
-							<Row className="time-row">
-								<div> {new Date(this.state.currentTime).getSeconds()} </div>
-							</Row>
-						</Col>
-						<Col className="time-col">
-							<Row className="time-row">
-								<div>Start time</div>
-							</Row>
-							<Row className="time-row">
-								<div> {new Date(this.state.startTime).getSeconds()} </div>
-							</Row>
-						</Col>
-						<Col className="time-col">
-							<Row className="time-row">
-								<div>End time</div>
-							</Row>
-							<Row className="time-row">
-								<div> {new Date(this.state.stopTime).getSeconds()} </div>
-							</Row>
-						</Col>
-						<Col className="time-col">
-							<Row className="time-row">
-								Interval
-							</Row>
-							<Row className="time-row">
-								<div> {this.state.intervalTime} </div>
-							</Row>
-						</Col>
-					</Row>
-				</div>
+			<div>
+				<Container>
+					<div className="my-group-title"> Group: {this.state.groupName} </div>
+					<Container>
+						<Row className="time">
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">Time</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {new Date(this.state.currentTime).getSeconds()} </div>
+								</Row>
+							</Col>
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">Start time</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {new Date(this.state.startTime).getSeconds()} </div>
+								</Row>
+							</Col>
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">End time</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {new Date(this.state.stopTime).getSeconds()} </div>
+								</Row>
+							</Col>
+							<Col className="time-col">
+								<Row className="time-row">
+									<div className="info-font">Interval</div>
+								</Row>
+								<Row className="time-row">
+									<div className="info-font"> {this.state.intervalTime} </div>
+								</Row>
+							</Col>
+						</Row>
+					</Container>
+				</Container>
 				<div className="member-progress">
 					<Row>
 						<Col className="button-slide">
