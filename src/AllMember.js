@@ -86,7 +86,7 @@ class AllMember extends React.Component {
   render(){
     return(
       <React.Fragment>
-        <Button variant="info" size="lg"
+        <Button variant="info"
         onClick={this.handleShow}
         className="all-member-button"> All Members </Button>
 

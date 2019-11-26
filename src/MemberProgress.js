@@ -89,7 +89,7 @@ class MemberProgress extends React.Component {
             src={this.state.pictureUrl[i]}
             alt="First slide"
           />
-          <Carousel.Caption key={this.props.groupInfo.totalPeople+i}>
+          <Carousel.Caption key={this.props.groupInfo.totalPeople+i} style={{zIndex: '1'}}>
             <div className="carousel-font">UserName: {this.state.userName[i]} </div>
             <div className="carousel-font">Goal: {this.state.userGoal[i]}</div>
             <Cheer uid={this.state.peopleUID[i]} groupName={this.props.groupInfo.groupName}/>

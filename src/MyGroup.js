@@ -6,6 +6,7 @@ import UpdateProgress from './UpdateProgress.js';
 import { Container, Row, Col } from 'react-bootstrap';
 import './scss/MyGroup.scss';
 import AllMember from './AllMember';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class MyGroup extends React.Component {
 	static contextType = TimerContext
@@ -93,7 +94,9 @@ class MyGroup extends React.Component {
 		var start_time = new Date(this.props.timer.startTime).toString()
 		var stop_time = new Date(this.props.timer.stopTime).toString()
 		return(
-			<div>
+			<Scrollbars hideTracksWhenNotNeeded={true}
+					className="scroll"
+					renderView={props => <div {...props} className="scroll-content"/>}>
 				<Container className="my-group-wrap">
 					<div className="my-group-title"> Group: {this.props.timer.groupName} </div>
 					<Container>
@@ -136,13 +139,11 @@ class MyGroup extends React.Component {
 
 				{this.showMemberProgress()}
 
-				<div className="update-progress">
+				<div className="buttons-wrap">
 					<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>
-				</div>
-				<div>
 					<AllMember people={this.state.people} intervalNum={this.props.timer.intervalNum}/>
 				</div>
-			</div>
+			</Scrollbars>
 		);
 	}
 }

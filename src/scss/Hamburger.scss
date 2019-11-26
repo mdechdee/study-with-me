@@ -3,9 +3,9 @@
 /* Position and sizing of burger button */
 .bm-burger-button {
     position: absolute;
-    width: 30px;
-    height: 20px;
-    margin: 10px;
+    width: 40px;
+    height: 30px;
+    margin: 15px;
   }
 
   /* Color/shape of burger icon bars */
@@ -48,6 +48,7 @@
     padding: 2.5em 1.5em 0;
     font-family: $f3;
     font-size: 1.15em;
+    z-index: 100;
   }
 
   /* Morph shape necessary with bubble or elastic */

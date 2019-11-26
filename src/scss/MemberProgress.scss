@@ -1,7 +1,7 @@
 @import '_base.scss';
 
 .carousel-custom{
-  width: 300px;
+  width: 320px;
   text-align: center;
   margin: auto;
 }
@@ -10,4 +10,8 @@
   font-family: $f2;
   text-align: center;
   color: black;
+}
+
+.carousel-indicators{
+  z-index: 1 !important;
 }
