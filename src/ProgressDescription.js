@@ -3,6 +3,7 @@
 import React from 'react';
 import {Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
+import {db} from './firebase/firebase.js';
 import './scss/UpdateProgress.scss'
 class ProgressDescription extends React.Component{
 	constructor(props){
@@ -12,11 +13,7 @@ class ProgressDescription extends React.Component{
 		this.handleUpload = this.handleUpload.bind(this)
 		this.state = {
 			progress_description:"",
-			goal_description:"",
-			uid:props.uid,
-			interval:props.interval,
-			groupName:props.groupName,
-			setStatus:props.setStatus
+			goal_description:""
 		};
 	}
 	progress_description_change(e){
@@ -27,7 +24,8 @@ class ProgressDescription extends React.Component{
 	}
 	handleUpload(e){
 		e.preventDefault();
-		this.state.setStatus();
+		db.ref(`groups/${this.props.groupName}/people/${this.props.uid}/`).child(`${this.props.intervalNum}`).update({goal: this.state.goal_description, progress: this.state.progress_description})
+		this.props.setStatus();
 	}
 	render(){
 		return(
