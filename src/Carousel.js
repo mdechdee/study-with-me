@@ -21,9 +21,9 @@ class Carousel extends React.Component{
   }
 
   getUrl(){
-    storage.ref(`images/${this.props.mapPeopleWithNumber[this.props.rank]}`).child(`work`+`${this.props.intervalNum}`+`.jpg`).getDownloadURL()
+    storage.ref(`images/${this.props.mapPeopleWithNumber[this.props.rank]}/`).child(`work${this.props.intervalNum}.jpg`).getDownloadURL()
       .then(url => {
-        this.setState({ url });
+        this.setState({url: url});
       }).catch(function(error) {
       console.log(error);
     });;
@@ -43,19 +43,17 @@ class Carousel extends React.Component{
           numberLove:snapshot.val().numberLove,
         });
     })
-    db.ref("users").child(`/${this.props.mapPeopleWithNumber[this.props.rank]}`).once('value',function(snapshot){
+    db.ref("users").child(`/${this.props.mapPeopleWithNumber[this.props.rank]}`).on('value',function(snapshot){
         var value = snapshot.val();
-        console.log("Carousel/componentDidMount : snapshot")
-        console.log(value)
         self.setState({name:value.name});
       })
-    this.getUrl()
     }
 
   render(){
-    console.log("Carousel/render : props")
-    console.log(this.props)
+    this.getUrl()
+    console.log("Carousel/render")
     console.log(this.props.mapPeopleWithNumber[this.props.rank])
+    console.log(this.props.intervalNum)
     return (
       <MDBCol>
         <MDBCard style={{ width: "15rem" }}>

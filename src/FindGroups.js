@@ -20,8 +20,6 @@ class FindGroups extends React.Component {
 		db.ref(`groups`).once('value',(snapshot) => {
 			let val = snapshot.val();
 			Object.keys(val).forEach((item) => {
-				console.log("Findgroup/fetchgroupdata : groups/ val[item]")
-				console.log(val[item])
 				this.setState({groups: [...this.state.groups, val[item]]});
 			})
 		})

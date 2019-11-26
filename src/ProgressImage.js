@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {storage} from './firebase/firebase.js';
+import {storage,db} from './firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap'
 import './scss/UpdateProgress.scss';
@@ -53,6 +53,8 @@ class ProgressImage extends Component {
           .getDownloadURL()
           .then(url => {
             this.setState({ url });
+            console.log("ProgressImage/snapshot")
+            console.log(url)
           }).catch( error =>{
             console.log(error);
           });
@@ -60,8 +62,8 @@ class ProgressImage extends Component {
     );
   };
   render() {
-    console.log("ProgressImage/render : state")
-    console.log(this.state)
+    console.log("ProgressImage/render")
+    console.log(this.props.intervalNum)
     return (
       <div className="image-upload">
         <br/>

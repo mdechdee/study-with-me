@@ -1,68 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# **Study With Me** - Social Computing (CS473)
+by Akkanit, Mathichai, Phatarapran, Wirittipol
 
-## Available Scripts
 
-In the project directory, you can run:
+## **Index**
+1. [Description](#description)
+5. [Appendix](#Appendix)
 
-### `npm start`
+## **Description**
+### The project is still in prototyping stage!
+Study with me is a platform that will aggregate readers as a group, allowing them to share thier reading progresses together. The platform applies social pressure as a motivation by notifying them to update thier progresses after an interval of time. The implementation of this project is done using React.js in JavaScript ES6 and SCSS also firebase as our main database and storages. The platform is designed to be used on mobile and on contemporary browsers especially Chrome. 
+**Demo** : https://whaler.netlify.com ([mirror](https://whalerz.netlify.com))
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## **Appendix**
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Libraries and Framework
+you can also find the list in `package.json` file
+- [react](https://reactjs.org)
+- [react-bootstrap](https://react-bootstrap.netlify.com)
+- [react-fontawesome](https://fontawesome.com)
+- [firebase](https://firebase.google.com/?gclid=Cj0KCQiAxNnfBRDwARIsAJlH29DkGiYpDh3s0DOPre_sJG9q66-aNFBNOoSL3MEp3OAXBUAlu4ejy_YaAly4EALw_wcB)
+- [node-sass](https://github.com/sass/node-sass)
+- [react-router](https://reacttraining.com/react-router/core/guides/philosophy)
+- [react-toastify](https://fkhadra.github.io/react-toastify)
+- [@react-firebase/database](https://react-firebase-js.com)
+- [react-burger-menu](https://github.com/negomi/react-burger-menu)
+- [react-modal](https://github.com/reactjs/react-modal)
+- [react-datetime-picker](https://www.npmjs.com/package/react-datetime-picker)
+- [react-custom-scrollbars](https://github.com/malte-wessel/react-custom-scrollbars)
 
-### `npm test`
+### Assets
+- **Font used**: [Oswald](https://fonts.google.com/specimen/Oswald)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+---
