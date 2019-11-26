@@ -4,6 +4,7 @@ import TimerContext from './TimerContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Container, Row, Col, Carousel} from 'react-bootstrap';
 import './scss/MemberProgress.scss'
+import Cheer from './Cheer.js'
 
 class MemberProgress extends React.Component {
 
@@ -94,6 +95,7 @@ class MemberProgress extends React.Component {
           <Carousel.Caption key={this.props.groupInfo.totalPeople+i}>
             <h3>UserName: {this.state.userName[i]} </h3>
             <p>Goal: {this.state.userGoal[i]}</p>
+            <Cheer uid={this.state.peopleUID[i]} groupName={this.props.groupInfo.groupName}/>
           </Carousel.Caption>
           </Carousel.Item>
         )

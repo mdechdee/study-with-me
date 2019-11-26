@@ -23,6 +23,8 @@ class MyGroup extends React.Component {
 			rank:0 ,
 			totalPeople: 0,
 			people: null,
+			groupName:"",
+			uid: "",
 			mapPeopleWithNumber: null,
 			isGroupLoaded: false,
 			isDone:false,
@@ -82,6 +84,8 @@ class MyGroup extends React.Component {
 	componentDidMount(){
 		console.log("MOUNT")
 		this.setState({intervalNum: this.props.timer.intervalNum})
+		this.setState({groupName: this.props.timer.groupName})
+		this.setState({uid: this.props.timer.uid})
 		this.collectPeople()
 	}
 

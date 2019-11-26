@@ -9,6 +9,7 @@ import Like from "@material-ui/icons/ThumbUpAlt";
 import Love from "@material-ui/icons/Favorite";
 
 
+
 class Cheer extends React.Component{
 	constructor(props){
 		super(props)
@@ -17,7 +18,8 @@ class Cheer extends React.Component{
 			numberLargeSmile: 0,
 			numberSmile: 0,
 			numberLike: 0,
-			numberLove: 0
+			numberLove: 0,
+			isLoaded: true
 		}
 		this.handleLargeSmile = this.handleLargeSmile.bind(this);
 		this.handleSmile = this.handleSmile.bind(this);
@@ -27,29 +29,43 @@ class Cheer extends React.Component{
 	componentDidMount(){
 		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
 		console.log("Cheer/componentDidMount : snapshot")
+		this.fetchCheerAmount()
+	}
+	fetchCheerAmount(){
+		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
+		Ref.once('value', (snapshot)=>{
+			this.setState({
+				numberLargeSmile: snapshot.val().numberLargeSmile,
+				numberSmile: snapshot.val().numberSmile,
+				numberLike: snapshot.val().numberLike,
+				numberLove: snapshot.val().numberLove
+			}, ()=>{
+				this.setState({isLoaded: true})
+			})
+		})
 	}
 	handleLargeSmile(){
-		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
+		var Ref = db.ref(`groups/${this.props.groupName}/people/`)
 		console.log(this.state.numberLargeSmile+"A");
-		Ref.child(`${this.props.intervalNum}`).update({numberLargeSmile: this.state.numberLargeSmile+1});
+		Ref.child(`${this.props.uid}`).update({numberLargeSmile: this.state.numberLargeSmile+1});
 		this.setState({numberLargeSmile: this.state.numberLargeSmile+1})
 	}
 	handleSmile(){
-		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
+		var Ref = db.ref(`groups/${this.props.groupName}/people/`)
 		console.log(this.state.numberSmile+"B");
-		Ref.child(`${this.props.intervalNum}`).update({numberSmile: this.state.numberSmile+1});
+		Ref.child(`${this.props.uid}`).update({numberSmile: this.state.numberSmile+1});
 		this.setState({numberSmile: this.state.numberSmile+1})
 	}
 	handleLike(){
-		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
+		var Ref = db.ref(`groups/${this.props.groupName}/people/`)
 		console.log(this.state.numberLike+"C");
-		Ref.child(`${this.props.intervalNum}`).update({numberLike: this.state.numberLike+1});
+		Ref.child(`${this.props.uid}`).update({numberLike: this.state.numberLike+1});
 		this.setState({numberLike: this.state.numberLike+1})
 	}
 	handleLove(){
-		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
+		var Ref = db.ref(`groups/${this.props.groupName}/people/`)
 		console.log(this.state.numberLove+"D");
-		Ref.child(`${this.props.intervalNum}`).update({numberLove: this.state.numberLove+1});
+		Ref.child(`${this.props.uid}`).update({numberLove: this.state.numberLove+1});
 		this.setState({numberLove: this.state.numberLove+1})
 	}
 	render(){
