@@ -9,7 +9,7 @@ by Akkanit, Mathichai, Phatarapran, Wirittipol
 ## **Description**
 ### The project is still in prototyping stage!
 Study with me is a platform that will aggregate readers as a group, allowing them to share thier reading progresses together. The platform applies social pressure as a motivation by notifying them to update thier progresses after an interval of time. The implementation of this project is done using React.js in JavaScript ES6 and SCSS also firebase as our main database and storages. The platform is designed to be used on mobile and on contemporary browsers especially Chrome. 
-**Demo** : https://studywithme.netlify.com/login
+**Demo** : https://studywithme.netlify.com/
 
 ## **Appendix**
 
