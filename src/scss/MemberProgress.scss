@@ -1,7 +1,13 @@
 @import '_base.scss';
 
 .carousel-custom{
-  width: 250px;
+  width: 300px;
   text-align: center;
   margin: auto;
+}
+
+.carousel-font{
+  font-family: $f2;
+  text-align: center;
+  color: black;
 }

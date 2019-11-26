@@ -32,7 +32,7 @@ class MemberProgress extends React.Component {
             this.checkPictureLoaded()
           })})
         .catch(error => {
-            this.setState({pictureUrl: [...this.state.pictureUrl, 'https://via.placeholder.com/300']}, () =>{
+            this.setState({pictureUrl: [...this.state.pictureUrl, 'https://via.placeholder.com/400']}, () =>{
               this.checkPictureLoaded()
             })});
       //Fetch username
@@ -90,8 +90,8 @@ class MemberProgress extends React.Component {
             alt="First slide"
           />
           <Carousel.Caption key={this.props.groupInfo.totalPeople+i}>
-            <h3>UserName: {this.state.userName[i]} </h3>
-            <p>Goal: {this.state.userGoal[i]}</p>
+            <div className="carousel-font">UserName: {this.state.userName[i]} </div>
+            <div className="carousel-font">Goal: {this.state.userGoal[i]}</div>
             <Cheer uid={this.state.peopleUID[i]} groupName={this.props.groupInfo.groupName}/>
           </Carousel.Caption>
           </Carousel.Item>

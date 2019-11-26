@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 // import Moment from 'moment';
 import JoinGroup from'./JoinGroup.js';
+import {toast} from 'react-toastify';
 import './scss/FindGroups.scss';
 
 class MyComponent extends React.Component {
@@ -21,11 +22,17 @@ class MyComponent extends React.Component {
   handleShow(){
 		if(this.props.usergroup === ''){
     	this.setState({show: true});
-  }}
+		}
+		else {
+			toast("You're already in a group.", {
+				position: toast.POSITION.TOP_CENTER
+			});
+		}
+  }
 
 	render() {
 		return(
-			<Container className="group-wrap">
+			<Container fluid className="group-wrap">
 				<Row className='group-row'>
 
 					<Col xs sm md lg xl={3}>

@@ -57,7 +57,7 @@ class Carousel extends React.Component{
     return (
       <MDBCol>
         <MDBCard style={{ width: "15rem" }}>
-          <MDBCardImage className="img-fluid" src={ this.state.url || "https://via.placeholder.com/150x200"} waves />
+          <MDBCardImage className="img-fluid" src={ this.state.url || "https://via.placeholder.com/300x300"} waves />
           <MDBCardBody>
             <MDBCardTitle className="carousel-font">{this.state.name}</MDBCardTitle>
             <MDBCardText className="carousel-font-small">

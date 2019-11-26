@@ -200,7 +200,7 @@ class CreateGroupDescription extends React.Component{
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-interval">
-		 						 	<Form.Control className="form-font" type="number" min="1" max="999" step="1" pattern="[0-9]*" onChange={this.group_interval_change} />
+		 						 	<Form.Control className="form-font" type="number" min="1" max="300" step="1" pattern="[0-9]*" onChange={this.group_interval_change} />
 		 					 	</Form.Group>
 						</Form>
 					</Col>
@@ -227,7 +227,7 @@ class CreateGroupDescription extends React.Component{
 					<Col xs={4}>
 						<Form>
 								<Form.Group controlId="group-total-time">
-		 						 	<Form.Control className="form-font" type="date-time" min="1" max="999" step="1" pattern="[0-9]*" onChange={this.group_total_time_change} />
+		 						 	<Form.Control className="form-font" type="date-time" min="1" max="300" step="1" pattern="[0-9]*" onChange={this.group_total_time_change} />
 		 					 	</Form.Group>
 						</Form>
 					</Col>

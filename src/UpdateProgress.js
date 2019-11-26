@@ -34,7 +34,7 @@ class UpdateProgress extends React.Component{
 							className="upload-button"
 					> Update Progress </Button>
 
-					<Modal size="sm" show={this.state.show} onHide={this.handleClose}>
+					<Modal size="lg" show={this.state.show} onHide={this.handleClose}>
             <Modal.Header>
               <Modal.Title>
                 <div sm={10} className="update-title"> Update Progress {this.props.popup_id} </div>
