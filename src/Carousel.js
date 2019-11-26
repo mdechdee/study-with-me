@@ -2,6 +2,8 @@ import React from 'react';
 import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 import { db, storage } from './firebase/firebase.js';
 import Cheer from './Cheer.js'
+import './scss/MyGroup.scss';
+
 class Carousel extends React.Component{
   constructor(props){
     super(props);
@@ -26,6 +28,7 @@ class Carousel extends React.Component{
       console.log(error);
     });;
   }
+
   componentDidMount(){
     console.log("Carousel/componentDidMount")
     var self=this;
@@ -48,17 +51,18 @@ class Carousel extends React.Component{
       })
     this.getUrl()
     }
+
   render(){
     console.log("Carousel/render : props")
     console.log(this.props)
     console.log(this.props.mapPeopleWithNumber[this.props.rank])
     return (
       <MDBCol>
-        <MDBCard style={{ width: "15rem"  }}>
-          <MDBCardImage className="img-fluid" src={ this.state.url || "https://via.placeholder.com/200x300"} waves />
+        <MDBCard style={{ width: "15rem" }}>
+          <MDBCardImage className="img-fluid" src={ this.state.url || "https://via.placeholder.com/150x200"} waves />
           <MDBCardBody>
-            <MDBCardTitle>{this.state.name}</MDBCardTitle>
-            <MDBCardText>
+            <MDBCardTitle className="carousel-font">{this.state.name}</MDBCardTitle>
+            <MDBCardText className="carousel-font-small">
               {this.state.progress||"No info"}
               <br/>
               {this.state.goal||""}

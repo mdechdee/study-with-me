@@ -1,7 +1,7 @@
 import React from 'react';
 import {db} from './firebase/firebase.js';
 import {Form} from 'react-bootstrap';
-import {Container, Button,Col,Row} from 'react-bootstrap';
+import {Container, Button, Col, Row} from 'react-bootstrap';
 import './scss/Profile.scss';
 
 class ShowInformation extends React.Component {
@@ -45,19 +45,19 @@ class ShowInformation extends React.Component {
 	}
 	render(){
 		return(
-			<Container className="information">
+			<Container className="info">
 				<Form>
 					<Form.Group controlId="name">
 						<div>
 							<Row>
 								<Form.Label column sm={2} className="form-font">Name</Form.Label>
 									<Col sm={9}>
-						    		<Form.Control type="name" placeholder={this.state.name||"Name"} onChange={this.handleChange}/>
+						    		<Form.Control className="form-font" type="name" placeholder={this.state.name||"Name"} onChange={this.handleChange}/>
 							    </Col>
-								<Form.Text className="form-font name text-muted">
-										This name is displayed in public.
-								</Form.Text>
 					    </Row>
+							<div className="form-font name text-muted">
+									This name is displayed in public.
+							</div>
 				    </div>
 			  	</Form.Group>
 

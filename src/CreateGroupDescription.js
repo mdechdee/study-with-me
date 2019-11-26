@@ -215,7 +215,7 @@ class CreateGroupDescription extends React.Component{
 
 				<Row>
 					<Col xs={{offset: 0}}>
-						<Form.Text className="mute-font text-muted">
+						<Form.Text className="mute-font">
 								*Time units can only be minutes, hours and days,
 								e.g. 1 minute, 10 days
 						</Form.Text>
@@ -242,14 +242,14 @@ class CreateGroupDescription extends React.Component{
 
 				<Row>
 					<Col xs={{offset: 0}}>
-						<Form.Text className="mute-font text-muted">
+						<Form.Text className="mute-font">
 								*Time units can only be minutes, hours and days,
 								e.g. 1 minute, 10 days
 						</Form.Text>
 					</Col>
 				</Row>
 
-				<Button variant="warning" offset={100} className="create-button"
+				<Button variant="success" offset={100} className="create-button"
 				onClick={this.handleClick}> Create </Button>
 
 				<Button variant="danger" offset={100} className="cancel-button"

@@ -53,20 +53,22 @@ class FindGroups extends React.Component {
 		return(
 			<React.Fragment>
 					<div className="find-title">Groups in SWM</div>
-					<Container className="find-outer-wrap">
-						<Row className="row-line">
-							<Col xs sm={3}><div className="col-title">NAME</div></Col>
-							<Col xs sm={3}><div className="col-title">START AT</div></Col>
-							<Col xs sm={3}><div className="col-title">TIME</div></Col>
-							<Col xs sm={3}><div className="col-title">MEMBER</div></Col>
-						</Row>
-					</Container>
+
+						<Container className="find-title-wrap">
+							<Row className="row-line">
+								<Col xs sm={3}><div className="col-title">NAME</div></Col>
+								<Col xs sm={3}><div className="col-title">START AT</div></Col>
+								<Col xs sm={3}><div className="col-title">TIME</div></Col>
+								<Col xs sm={3}><div className="col-title">MEMBER</div></Col>
+							</Row>
+						</Container>
 
 						<Scrollbars hideTracksWhenNotNeeded={true}
 							className="scroll"
 							>
 							{this.showAllGroups()}
 						</Scrollbars>
+
 
 				<div className="create-group-button">
 					<CreateGroup disabled={this.state.usergroup !== ""} uid={this.props.uid}/>

@@ -19,7 +19,7 @@ These are for FindGroups.js
   margin: 10px;
 }
 
-.find-outer-wrap{
+.find-title-wrap{
   position: relative;
   top: 3%;
   width: 100%;
@@ -60,7 +60,7 @@ These are for MyComponent.js
 --------------------------------------------------
 --------------------------------------------------*/
 .group-wrap{
-  margin: 20px 50px;
+  padding: 20px 50px;
 }
 
 .group-row{
@@ -79,7 +79,7 @@ These are for MyComponent.js
   height: 100%;
   font-size: 1pc;
   text-align: middle;
-  background-color: gray;
+  background-color: #78909c;
   box-sizing: border-box;
   cursor: pointer;
   border-radius: 3px;

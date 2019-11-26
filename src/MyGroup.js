@@ -24,7 +24,7 @@ class MyGroup extends React.Component {
 			mapPeopleWithNumber: null,
 			isLoaded: false,
 			isDone:false,
-			
+
 		};
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
@@ -87,7 +87,7 @@ class MyGroup extends React.Component {
 				<Container className="my-group-wrap">
 					<div className="my-group-title"> Group: {this.props.timer.groupName} </div>
 					<Container>
-						<Row className="line info-wrap">
+						<Row className="info-wrap top-border">
 							<Col className="time-col">
 								<Row className="time-row">
 									<div className="info-font">Time</div>
@@ -131,13 +131,13 @@ class MyGroup extends React.Component {
 					    <Col>
 				        	<div className="card">
 							    {this.state.isLoaded ? (
-							    	<Carousel groupName={this.props.timer.groupName} 
-							    	rank={this.state.rank} 
-							    	people={this.state.people} 
-							    	mapPeopleWithNumber={this.state.mapPeopleWithNumber} 
+							    	<Carousel groupName={this.props.timer.groupName}
+							    	rank={this.state.rank}
+							    	people={this.state.people}
+							    	mapPeopleWithNumber={this.state.mapPeopleWithNumber}
 							    	intervalNum={this.props.timer.intervalNum}/>
 							    	) : (
-							        <p> loading </p>
+							        <div className="info-font"> ...Loading... </div>
 							    )}
 						    </div>
 						</Col>

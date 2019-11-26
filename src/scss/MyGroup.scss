@@ -1,7 +1,13 @@
 @import '_base.scss';
 
+/*--------------------------------------------------
+--------------------------------------------------
+These are for MyGroup.js
+--------------------------------------------------
+--------------------------------------------------*/
+
 .my-group-wrap{
-  background-color: $primary;
+
 }
 
 .my-group-title{
@@ -13,8 +19,8 @@
   color: black;
 }
 
-.line{
-	border-top: 2px solid grey;
+.top-border{
+	border-top: 2px solid #78909c;
 }
 
 .info-wrap{
@@ -25,6 +31,7 @@
 .info-font{
   font-family: $f4;
   font-size: 1pc;
+  color: black;
   text-align: center;
   position: relative;
   width: 100%;
@@ -69,4 +76,24 @@
 	position: absolute;
 	top:25vh;
 	font-size: 3rem;
+}
+
+/*--------------------------------------------------
+--------------------------------------------------
+These are for Carousel.js
+--------------------------------------------------
+--------------------------------------------------*/
+.carousel-font{
+  font-family: $f4;
+  font-size: 1.2pc;
+  color: black;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.carousel-font-small{
+  @extend .carousel-font;
+  font-family: $f2 !important;
+  font-size: 0.8pc !important;
 }
