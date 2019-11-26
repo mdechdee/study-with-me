@@ -1,0 +1,55 @@
+@import '_base.scss';
+
+/*--------------------------------------------------
+--------------------------------------------------
+These are for AllMember.js
+--------------------------------------------------
+--------------------------------------------------*/
+.all-member-button{
+  font-family: $f3;
+  font-size: 1.2pc !important;
+  text-align: center;
+  position: relative;
+  height: 10%;
+}
+
+.all-member-title{
+  border-radius: 10px;
+  height: 40px; /*requires explicit height*/
+  font-family: $f3;
+  font-size: 2pc;
+  text-align: left;
+  color: black;
+}
+
+.custom-close-icon {
+  animation: 0.3s rotate90Counter;
+  color: black;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  cursor: pointer;
+  background: white;
+  border-radius: 100%;
+  position: absolute;
+  right: 7%;
+  top: 5%;
+}
+
+.info-wrap{
+  margin: 10px 10px;
+}
+
+.info-title-font{
+  font-family: $f4;
+  font-size: 1pc;
+  text-align: left;
+  color: #db6c62;
+}
+
+.info-font{
+  font-family: $f1;
+  font-size: 1pc;
+  text-align: left;
+  width: 100%;
+  color: black;
+}

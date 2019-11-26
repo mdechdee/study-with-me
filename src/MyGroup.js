@@ -1,7 +1,6 @@
 import React from 'react';
 import { db } from './firebase/firebase.js';
 import TimerContext from './TimerContext'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MemberProgress from './MemberProgress.js';
 import UpdateProgress from './UpdateProgress.js';
 import { Container, Row, Col } from 'react-bootstrap';

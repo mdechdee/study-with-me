@@ -1,20 +1,106 @@
 @import '_base.scss';
 $gray: #ccc;
 
-.image-upload{
-	text-align: center;
+/*--------------------------------------------------
+--------------------------------------------------
+These are for UpdateProgress.js
+--------------------------------------------------
+--------------------------------------------------*/
+
+.update-button{
+  font-family: $f3;
+  font-size: 1.2pc !important;
+  text-align: center;
+  position: relative;
+  height: 10%;
 }
 
 .update-title{
 	border-radius: 10px;
   height: 50px; /*requires explicit height*/
   font-family: $f4;
-  font-size: 2.5pc;
+  font-size: 2pc;
   text-align: left;
   color: black;
   margin: 10px;
 }
 
+.update-close-icon {
+  animation: 0.3s rotate90Counter;
+  color: black;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  cursor: pointer;
+  background: white;
+  border-radius: 100%;
+  position: absolute;
+  right: 7%;
+  top: 5%;
+}
+
+/*--------------------------------------------------
+--------------------------------------------------
+These are for ProgressImage.js & ProfileImage.js
+--------------------------------------------------
+--------------------------------------------------*/
+
+.image-upload{
+	text-align: center;
+}
+
+.file-font {
+	font-family: $f2;
+  font-size: 1pc;
+}
+
+.upload-button{
+  font-family: $f3;
+  font-size: 1.2pc !important;
+}
+
+/*--------------------------------------------------
+--------------------------------------------------
+These are for ProgressDescription.js & ShowInformation.js
+--------------------------------------------------
+--------------------------------------------------*/
+.form-font {
+	font-family: $f2;
+  font-size: 1.5pc;
+}
+
+.mute-font{
+  font-family: $f3;
+  font-size: 0.9pc;
+  color: gray !important;
+  margin: 5px 20px 20px; //top lr bottom
+}
+
+
+.save-button{
+  font-family: $f3;
+  font-size: 1.2pc !important;
+  text-align: center;
+}
+
+.submit-button{
+	@extend .save-button;
+  position: relative !important;
+  height: 10% !important;
+  width: 28% !important;
+  left: 20% !important;
+}
+
+.cancel-button{
+  @extend .save-button;
+  left: 25%;
+}
+
+
+
+/*--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------*/
 .hide_input{
   position: absolute;
   width: 100%;
@@ -49,14 +135,4 @@ $gray: #ccc;
 
 .custom-dialog{
   max-width: 33% !important;
-}
-
-.form-font{
-  font-family: $f2;
-  font-size: 1pc;
-}
-
-.upload-button{
-  font-family: $f3;
-  font-size: 1.2pc !important;
 }

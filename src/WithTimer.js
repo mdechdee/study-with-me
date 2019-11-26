@@ -2,7 +2,6 @@ import React from 'react';
 import { db } from './firebase/firebase.js';
 import TimerContext from './TimerContext.js'
 import AuthContext from './authentication/AuthContext.js'
-import { toast } from 'react-toastify';
 
 const withTimer = (Component) =>
 	class WithTimer extends React.Component {

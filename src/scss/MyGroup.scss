@@ -31,16 +31,17 @@ These are for MyGroup.js
 .info-font{
   font-family: $f4;
   font-size: 1pc;
-  color: black;
+  color: #db6c62;
+  width: 100%;
   text-align: center;
   position: relative;
-  width: 100%;
 }
 
 .info-font-small{
   @extend .info-font;
   font-family: $f2 !important;
   font-size: 0.8pc !important;
+  color: black !important;
 }
 
 .my-group{

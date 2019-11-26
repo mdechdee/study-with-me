@@ -1,8 +1,6 @@
 import React from 'react';
 import { db , storage} from './firebase/firebase.js';
-import TimerContext from './TimerContext'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Container, Row, Col, Carousel} from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import './scss/MemberProgress.scss'
 import Cheer from './Cheer.js'
 
@@ -48,7 +46,6 @@ class MemberProgress extends React.Component {
     }
     //Fetch Goals
     var ppl = this.props.groupInfo.people
-    var itv_num = this.props.groupInfo.intervalNum
     var _goal = []
     Object.keys(this.props.groupInfo.people).forEach(function (person){
         _goal.push(ppl[person].goal)

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import {storage,db} from './firebase/firebase.js';
+import {storage} from './firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
-import {Button} from 'react-bootstrap'
+import {Container, Button} from 'react-bootstrap'
 import './scss/UpdateProgress.scss';
 
 class ProgressImage extends Component {
@@ -66,7 +66,7 @@ class ProgressImage extends Component {
     console.log("ProgressImage/render")
     console.log(this.props.intervalNum)
     return (
-      <div className="image-upload">
+      <Container className="image-upload">
         <br/>
         <div className="align image">
           <img
@@ -76,7 +76,7 @@ class ProgressImage extends Component {
             width="300"
           />
         </div>
-        <div className="btn">
+        <div className="file-font">
           <span>File: </span>
           <input type="file" onChange={this.handleChange} />
         </div>
@@ -84,15 +84,13 @@ class ProgressImage extends Component {
           <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.show} />
         </div>
         <br />
-        <Button variant = "outline-primary"
+        <Button variant = "outline-info"
               onClick={this.handleUpload}
-              className="waves-effect waves-light btn"
-        >
-          Upload
-        </Button>
+              className="upload-button waves-effect waves-light btn"
+        > Upload </Button>
         <br />
         <br />
-      </div>
+      </Container>
     );
   }
 }

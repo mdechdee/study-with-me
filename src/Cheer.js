@@ -9,7 +9,6 @@ import Like from "@material-ui/icons/ThumbUpAlt";
 import Love from "@material-ui/icons/Favorite";
 
 
-
 class Cheer extends React.Component{
 	constructor(props){
 		super(props)
@@ -27,7 +26,6 @@ class Cheer extends React.Component{
 		this.handleLove = this.handleLove.bind(this);
 	}
 	componentDidMount(){
-		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
 		console.log("Cheer/componentDidMount : snapshot")
 		this.fetchCheerAmount()
 	}

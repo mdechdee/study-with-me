@@ -1,12 +1,10 @@
 //https://dev.to/clintdev/simple-firebase-image-uploader-display-with-reactjs-3aoo
 //https://stackoverflow.com/questions/13955813/how-to-store-and-view-images-on-firebase
 import React from 'react';
-import {Modal} from 'react-bootstrap'
-import {Button} from 'react-bootstrap'
+import {Container, Modal, Button} from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProgressImage from './ProgressImage.js'
 import ProgressDescription from './ProgressDescription.js'
-import AuthContext from './authentication/AuthContext';
-import TimerContext from './TimerContext.js'
 import { Scrollbars } from 'react-custom-scrollbars';
 import './scss/UpdateProgress.scss'
 
@@ -30,31 +28,37 @@ class UpdateProgress extends React.Component{
 	}
 	render(){
 		return(
-			<div>
-				<div>
-					<Button variant = "success" onClick = {this.handleShow} className="upload-button"> Update Progress </Button>
-					<Modal size="sm" dialogClassName = 'custom-dialog' show={this.state.show} onHide={this.handleClose} centered>
-			         	<Modal.Header closeButton>
-			            	<Modal.Title> <h3>Update progress</h3></Modal.Title>
-			          	</Modal.Header>
-			          	<Scrollbars style={{ width: 400, height: 700 }}>
-				          	<Modal.Body>
-			          			<div className="componentToUpdate">
-				          			<ProgressImage
-				          				uid={this.state.uid}
-				          				intervalNum={this.state.intervalNum}
-				          				groupName = {this.state.groupName}/>
-									<ProgressDescription
-										uid = {this.state.uid}
-										intervalNum = {this.state.intervalNum}
-										groupName = {this.state.groupName}
-										setStatus = {this.handleClose}/>
-								</div>
-				          	</Modal.Body>
-			          	</Scrollbars>
+			<Container>
+					<Button variant = "warning"
+							onClick = {this.handleShow}
+							className="upload-button"
+					> Update Progress </Button>
+
+					<Modal size="sm" show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header>
+              <Modal.Title>
+                <div sm={10} className="update-title"> Update Progress {this.props.popup_id} </div>
+                <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleClose}/>
+              </Modal.Title>
+            </Modal.Header>
+
+						<Scrollbars style={{ width: 400, height: 700 }}>
+							<Modal.Body>
+								<Container className="componentToUpdate">
+										<ProgressImage
+											uid={this.state.uid}
+											intervalNum={this.state.intervalNum}
+											groupName = {this.state.groupName}/>
+										<ProgressDescription
+											uid = {this.state.uid}
+											intervalNum = {this.state.intervalNum}
+											groupName = {this.state.groupName}
+											setStatus = {this.handleClose}/>
+								</Container>
+							</Modal.Body>
+						</Scrollbars>
 					</Modal>
-				</div>	
-      		</div>
+			</Container>
 		);
 	}
 }
