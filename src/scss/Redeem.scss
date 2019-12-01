@@ -1,0 +1,91 @@
+@import '_base.scss';
+
+/*--------------------------------------------------
+--------------------------------------------------
+These are for Redeem.js
+--------------------------------------------------
+--------------------------------------------------*/
+.box-wrap{
+  margin: 10px 10px;
+}
+
+.redeem-title{
+  border-radius: 10px;
+  height: 50px; /*requires explicit height*/
+  font-family: $f3;
+  font-size: 2pc;
+  text-align: left;
+  color: black;
+  margin: 10px;
+  vertical-align: bottom;
+}
+
+.redeem-title-wrap{
+  position: relative;
+  top: 3%;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.custom-close-icon {
+  animation: 0.3s rotate90Counter;
+  color: black;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  cursor: pointer;
+  background: white;
+  border-radius: 100%;
+  position: absolute;
+  right: 7%;
+  top: 5%;
+}
+
+.balance{
+  font-family: $f3;
+  font-size: 1.2pc;
+  text-align: right;
+  vertical-align: bottom;
+}
+
+.sticker-name{
+  font-family: $f3;
+  font-size: 1.2pc;
+}
+
+.sticker-price{
+  font-family: $f2;
+  font-size: 0.9pc;
+  color: #db6c62;
+}
+
+.redeem-button{
+  font-family: $f3;
+  font-size: 1pc;
+  text-align: center;
+}
+
+/*--------------------------------------------------
+--------------------------------------------------
+These are for Redeem.js MODAL
+--------------------------------------------------
+--------------------------------------------------*/
+.confirm-title{
+  @extend .redeem-title;
+  height: 20px !important;
+}
+
+.yes-button{
+  font-family: $f3;
+  font-size: 1.2pc !important;
+  text-align: center;
+  position: relative;
+  height: 10%;
+  width: 28%;
+  left: 20%;
+}
+
+.cancel-button{
+  @extend .yes-button;
+  left: 25%;
+}

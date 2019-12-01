@@ -8,6 +8,7 @@ import Hamburger from './Hamburger.js';
 import Profile from './Profile.js';
 import FindGroups from './FindGroups.js';
 import MyGroup from './MyGroup.js';
+import Redeem from './Redeem.js'
 import AuthContext from './authentication/AuthContext.js';
 import TimerContext from './TimerContext.js';
 import Signin from './authentication/Signin.js';
@@ -60,6 +61,7 @@ const Page = (auth) => {
           <Route path='/find_group' render={(routeProps) => (<FindGroups uid = {auth.auth.uid}{...routeProps} />)} />
             <Route path='/my_group' render={(routeProps) => (<MyGroup uid = {auth.auth.uid} timer={timer} {...routeProps} />)} />
             <Route path='/profile'  component={Profile} />
+            <Route path='/redeem' render={(routeProps) => (<Redeem uid = {auth.auth.uid}{...routeProps} />)} />
             <Route path='/logout' render={() => (<Signout auth/>)}/>
             <Route  path='/login' render = {() => (
                 <Redirect to='/find_group' />

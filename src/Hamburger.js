@@ -28,6 +28,7 @@ class Hamburger extends React.Component {
         <NavLink onClick={() => this.closeMenu()} exact to="/find_group">Find Groups</NavLink>
         <NavLink onClick={() => this.closeMenu()} exact to="/my_group">My Group</NavLink>
         <NavLink onClick={() => this.closeMenu()} exact to="/profile">Profile</NavLink>
+        <NavLink onClick={() => this.closeMenu()} exact to="/redeem">Redeem</NavLink>
         <NavLink onClick={() => this.closeMenu()} exact to="/logout">Logout</NavLink>
       </Menu>
     );
