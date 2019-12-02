@@ -3,7 +3,8 @@ import { db } from './firebase/firebase.js';
 import TimerContext from './TimerContext'
 import MemberProgress from './MemberProgress.js';
 import UpdateProgress from './UpdateProgress.js';
-import { Container, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Container, Modal, Row, Col } from 'react-bootstrap';
 import './scss/MyGroup.scss';
 import AllMember from './AllMember';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -28,10 +29,13 @@ class MyGroup extends React.Component {
 			mapPeopleWithNumber: null,
 			isGroupLoaded: false,
 			isDone:false,
+			showNoti:false,
 
 		};
 		this.handleLeft = this.handleLeft.bind(this);
 		this.handleRight = this.handleRight.bind(this);
+		this.handleIntervalChange = this.handleIntervalChange.bind(this);
+		this.handleClose = this.handleClose.bind(this);
 	}
 	// bring data from database
 
@@ -81,6 +85,14 @@ class MyGroup extends React.Component {
 		}
 	}
 
+	handleIntervalChange(){
+		this.setState({showNoti: true})
+	}
+
+	handleClose(){
+		this.setState({showNoti: false})
+	}
+
 	componentDidMount(){
 		console.log("MOUNT")
 		this.setState({intervalNum: this.props.timer.intervalNum})
@@ -93,6 +105,11 @@ class MyGroup extends React.Component {
 		var cur_time = new Date(this.props.timer.currentTime).toString()
 		var start_time = new Date(this.props.timer.startTime).toString()
 		var stop_time = new Date(this.props.timer.stopTime).toString()
+		if(this.state.intervalNum!==this.props.timer.intervalNum){
+			this.setState({intervalNum: this.props.timer.intervalNum},()=>{
+				this.handleIntervalChange();
+			})
+		}
 		return(
 			<Scrollbars hideTracksWhenNotNeeded={true}
 					className="scroll"
@@ -136,6 +153,19 @@ class MyGroup extends React.Component {
 						</Row>
 					</Container>
 				</Container>
+
+				<Modal size="sm" show={this.state.showNoti} onHide={this.handleClose}>
+		            <Modal.Header>
+		              <Modal.Title>
+		                <div sm={10} className="update-title"> Notification </div>
+		                <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleClose}/>
+		              </Modal.Title>
+		            </Modal.Header>
+					<Modal.Body>
+						New interval !
+						It's time to update your {this.state.intervalNum} progress
+					</Modal.Body>
+				</Modal>
 
 				{this.showMemberProgress()}
 

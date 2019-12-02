@@ -29,30 +29,30 @@ class UpdateProgress extends React.Component{
 	render(){
 		return(
 			<React.Fragment>
-					<Button variant = "warning"
-							onClick = {this.handleShow}
-							className="upload-button"
-					> Update Progress </Button>
+				<Button variant = "warning"
+						onClick = {this.handleShow}
+						className="upload-button"
+				> Update Progress </Button>
 
 				<Modal size="sm" show={this.state.show} onHide={this.handleClose}>
-            <Modal.Header>
-              <Modal.Title>
-                <div sm={10} className="update-title"> Update Progress {this.props.popup_id} </div>
-                <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleClose}/>
-              </Modal.Title>
-            </Modal.Header>
-				<Modal.Body>
-					<ProgressImage
-						uid={this.props.uid}
-						intervalNum={this.props.intervalNum}
-						groupName = {this.props.groupName}/>
-					<ProgressDescription
-						uid = {this.props.uid}
-						intervalNum = {this.props.intervalNum}
-						groupName = {this.props.groupName}
-						setStatus = {this.handleClose}/>
-				</Modal.Body>
-					</Modal>
+		            <Modal.Header>
+		              <Modal.Title>
+		                <div sm={10} className="update-title"> Update Progress {this.props.popup_id} </div>
+		                <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleClose}/>
+		              </Modal.Title>
+		            </Modal.Header>
+					<Modal.Body>
+						<ProgressImage
+							uid={this.props.uid}
+							intervalNum={this.props.intervalNum}
+							groupName = {this.props.groupName}/>
+						<ProgressDescription
+							uid = {this.props.uid}
+							intervalNum = {this.props.intervalNum}
+							groupName = {this.props.groupName}
+							setStatus = {this.handleClose}/>
+					</Modal.Body>
+				</Modal>
 			</React.Fragment>
 		);
 	}
