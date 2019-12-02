@@ -17,6 +17,8 @@ import withAuthentication from './authentication/WithAuthentication.js';
 import withTimer from './WithTimer.js';
 import { ToastContainer } from 'react-toastify';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import ReactNotification from 'react-notifications-component';
+import Notification from './Notification';
 //import { fas } from '@fortawesome/free-solid-svg-icons';
 //import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faChevronCircleLeft,faChevronCircleRight,faComment,faStar,faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -50,7 +52,9 @@ const Page = (auth) => {
       <Col xs={12} sm={8} md={6} lg={4} className='page-wrap'>
         <div className='horizontal-div-above' style= {{background :base_styles.primary}}>
            <Hamburger/>
-           <div className='title'>Study With Me</div>
+           <div className='title'>Study With Me<Notification/></div>
+           <ReactNotification />
+
         </div>
         <div className='horizontal-div-mid' />
         <div className='div-content'>
