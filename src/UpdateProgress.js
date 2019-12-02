@@ -15,9 +15,9 @@ class UpdateProgress extends React.Component{
 		this.handleClose = this.handleClose.bind(this);
 		this.state = {
 			show: false,
-			uid: props.uid,
-			groupName: props.groupName,
-			intervalNum: props.intervalNum
+			//uid: props.uid,
+			//groupName: props.groupName,
+			//intervalNum: props.intervalNum
 		};
 	}
 	handleClose(){
@@ -41,17 +41,17 @@ class UpdateProgress extends React.Component{
                 <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleClose}/>
               </Modal.Title>
             </Modal.Header>
-							<Modal.Body>
-											<ProgressImage
-												uid={this.state.uid}
-												intervalNum={this.state.intervalNum}
-												groupName = {this.state.groupName}/>
-											<ProgressDescription
-												uid = {this.state.uid}
-												intervalNum = {this.state.intervalNum}
-												groupName = {this.state.groupName}
-												setStatus = {this.handleClose}/>
-							</Modal.Body>
+				<Modal.Body>
+					<ProgressImage
+						uid={this.props.uid}
+						intervalNum={this.props.intervalNum}
+						groupName = {this.props.groupName}/>
+					<ProgressDescription
+						uid = {this.props.uid}
+						intervalNum = {this.props.intervalNum}
+						groupName = {this.props.groupName}
+						setStatus = {this.handleClose}/>
+				</Modal.Body>
 					</Modal>
 			</React.Fragment>
 		);

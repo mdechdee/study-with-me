@@ -10,15 +10,15 @@ class ShowInformation extends React.Component {
 	    this.handleChange=this.handleChange.bind(this);
 		this.handleUpdate = this.handleUpdate.bind(this);
 		this.state = {
-	      uid: props.uid,
+	      //uid: this.props.uid,
 	      name: "",
-	      nameRef: db.ref(`users/${props.uid}`)
+	      //nameRef: db.ref(`users/${props.uid}`)
 	    };
 
 	}
 	componentDidMount() {
 	 	var self = this;
-	 	var nameRef = db.ref(`users/${this.state.uid}`);
+	 	var nameRef = db.ref(`users/${this.props.uid}`);
 	  	nameRef.once('value')
 	  	.then(function(snapshot) {
 	    	self.setState({
@@ -42,6 +42,8 @@ class ShowInformation extends React.Component {
 	}
 	handleUpdate(e){
 		e.preventDefault();
+		var nameRef = db.ref(`users/`);
+		nameRef.child(`${this.props.uid}`).update({name: this.state.name})
 	}
 	render(){
 		return(

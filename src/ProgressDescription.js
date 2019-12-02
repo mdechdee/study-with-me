@@ -14,6 +14,10 @@ class ProgressDescription extends React.Component{
 		this.state = {
 			progress_description:"",
 			goal_description:""
+			//uid = this.props.uid
+			//intervalNum = this.props.intervalNum
+			//groupName = this.props.groupName
+			//setStatus = this.props.handleClose/>
 		};
 	}
 
@@ -27,10 +31,9 @@ class ProgressDescription extends React.Component{
 
 	handleUpload(e){
 		e.preventDefault();
-		db.ref(`groups/${this.props.groupName}/people/${this.props.uid}/`).child(`${this.props.intervalNum}`).update({goal: this.state.goal_description, progress: this.state.progress_description})
+		db.ref(`groups/${this.props.groupName}/people/`).child(`${this.props.uid}`).update({goal: this.state.goal_description, progress: this.state.progress_description})
 		this.props.setStatus();
 	}
-
 	render(){
 		return(
 			<div>

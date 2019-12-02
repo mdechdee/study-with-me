@@ -9,22 +9,21 @@ class ProfileImage extends Component {
     super(props);
     this.state = {
       url: "",
-      uid: props.uid,
       show: "",
       image: null,
       status:"info",
       progress: 0
     };
 
-    storage
-      .ref(`images/${this.state.uid}`)
-      .child("profile.jpg")
-      .getDownloadURL()
-      .then(url => {
-        this.setState({ url });
-      }).catch( error =>{
-          this.setState({url:"https://via.placeholder.com/300x200"})
-      });
+  storage
+    .ref(`images/${this.props.uid}`)
+    .child("profile.jpg")
+    .getDownloadURL()
+    .then(url => {
+      this.setState({ url });
+    }).catch( error =>{
+        this.setState({url:"https://via.placeholder.com/300x200"})
+    });
   }
 
   handleChange = e => {
@@ -38,8 +37,7 @@ class ProfileImage extends Component {
 
   handleUpload = () => {
     const { image } = this.state;
-    const { uid } = this.state;
-    const uploadTask = storage.ref(`images/${uid}/profile.jpg`).put(image);
+    const uploadTask = storage.ref(`images/${this.props.uid}/profile.jpg`).put(image);
     uploadTask.on(
       "state_changed",
       snapshot => {
@@ -60,7 +58,7 @@ class ProfileImage extends Component {
       () => {
         // complete function ...
         storage
-          .ref(`images/${uid}`)
+          .ref(`images/${this.props.uid}`)
           .child("profile.jpg")
           .getDownloadURL()
           .then(url => {
@@ -71,6 +69,9 @@ class ProfileImage extends Component {
       }
     );
   };
+  componentDidMount(){
+
+  }
   render() {
     return (
       <div className="image-upload">
