@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { auth } from '../firebase';
 import '../scss/Signin.scss';
-
+import {NavLink } from 'react-router-dom';
 
 const INITIAL_STATE = {
   email: '',
@@ -63,6 +63,9 @@ class Signin extends React.Component {
             <Button variant='warning' className='login-button' type='submit'>Login</Button>
           </Form.Group>
         </Form>
+        <NavLink to='/Signup' className='icon-default'activeClassName='icon-active'>
+          <Button variant='warning' className='signup-button'>Sign up</Button>
+        </NavLink>
       </div>
     )
   }

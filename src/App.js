@@ -12,6 +12,7 @@ import Redeem from './Redeem.js'
 import AuthContext from './authentication/AuthContext.js';
 import TimerContext from './TimerContext.js';
 import Signin from './authentication/Signin.js';
+import Signup from './authentication/Signup.js';
 import Signout from './authentication/Signout.js';
 import withAuthentication from './authentication/WithAuthentication.js';
 import withTimer from './WithTimer.js';
@@ -122,6 +123,7 @@ const UnAuthPage = () => {
       <div className='div-content'>
         <Switch>
           <Route path='/login' component={Signin} />
+          <Route path='/signup' component={Signup} />
           <Route render = {() => (
               <Redirect to='/login' />
           )}/>
