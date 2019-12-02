@@ -5,5 +5,16 @@ export const doCreateUser = (uid, username, email, date) =>
     uid,
     username,
     email,
+    point: 20,
+    stickerOne: false,
+    stickerTrue: false,
+    stickerThree: false,
+    stickerFour: false,
     date,
   });
+
+  export const onceGetOneUser = (uid) =>
+    db.ref(`users/${uid}`).once('value');
+
+  export const getHistory = () =>
+    db.ref('redeem_hist').once('value')
