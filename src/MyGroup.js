@@ -26,7 +26,7 @@ class MyGroup extends React.Component {
 			rank:0 ,
 			totalPeople: 0,
 			people: null,
-			groupName:"",
+			groupName:this.props.timer.groupName,
 			uid: "",
 			mapPeopleWithNumber: null,
 			isGroupLoaded: false,
@@ -106,6 +106,7 @@ class MyGroup extends React.Component {
 
 	checkEndTime(){
 		if(this.props.timer.currentTime>this.props.timer.baseStopTime){
+			this.setState({clearGroup: true})
 			// change everyone's group to ""
 			var _peopleName = []
 			Object.keys(this.state.people).forEach(function (person){
@@ -138,6 +139,7 @@ class MyGroup extends React.Component {
 				this.handleIntervalChange();
 			})
 		}
+
 		var intervalNum = ""
 		var self = this;
 		if(this.state.intervalNum==1){
@@ -152,80 +154,88 @@ class MyGroup extends React.Component {
 		else{
 			intervalNum = `${self.state.intervalNum}th`;
 		}
+
 		var changePage;
 		if(this.state.clearGroup){
 			changePage = <Switch>
-				            <Redirect to='/find_group' render={(routeProps) => (<FindGroups uid = {this.props.timer.uid}{...routeProps} />)} />
-				         </Switch>
+				    		<Redirect to='/find_group' render={(routeProps) => (<FindGroups uid = {this.props.timer.uid}{...routeProps} />)} />
+		        		</Switch>
 		}
 		console.log(this.props.timer)
-		return(
-			<Scrollbars hideTracksWhenNotNeeded={true}
-					className="scroll"
-					renderView={props => <div {...props} className="scroll-content"/>}>
-				<Container className="my-group-wrap">
-					<div className="my-group-title"> Group: {this.props.timer.groupName} </div>
-					<Container>
-						<Row className="info-wrap top-border">
-							<Col className="time-col">
-								<Row className="time-row">
-									<div className="info-font">Time</div>
-								</Row>
-								<Row className="time-row">
-									<div className="info-font-small"> {cur_time.substring(0, cur_time.length - 32)} </div>
-								</Row>
-							</Col>
-							<Col className="time-col">
-								<Row className="time-row">
-									<div className="info-font">Start time</div>
-								</Row>
-								<Row className="time-row">
-									<div className="info-font-small"> {start_time.substring(0, cur_time.length - 32)} </div>
-								</Row>
-							</Col>
-							<Col className="time-col">
-								<Row className="time-row">
-									<div className="info-font">End time</div>
-								</Row>
-								<Row className="time-row">
-									<div className="info-font-small"> {stop_time.substring(0, cur_time.length - 32)} </div>
-								</Row>
-							</Col>
-							<Col className="time-col">
-								<Row className="time-row">
-									<div className="info-font">Interval</div>
-								</Row>
-								<Row className="time-row">
-									<div className="info-font-small"> {new Date(this.props.timer.intervalTime).getMinutes() + ' Min.'} </div>
-								</Row>
-							</Col>
-						</Row>
+		if(!this.state.groupName){
+			return(
+				<Switch>
+				    <Redirect to='/find_group' render={(routeProps) => (<FindGroups uid = {this.props.timer.uid}{...routeProps} />)} />
+		        </Switch>
+		    )
+		}
+		else{
+			return(
+				<Scrollbars hideTracksWhenNotNeeded={true}
+						className="scroll"
+						renderView={props => <div {...props} className="scroll-content"/>}>
+					<Container className="my-group-wrap">
+						<div className="my-group-title"> Group: {this.props.timer.groupName} </div>
+						<Container>
+							<Row className="info-wrap top-border">
+								<Col className="time-col">
+									<Row className="time-row">
+										<div className="info-font">Time</div>
+									</Row>
+									<Row className="time-row">
+										<div className="info-font-small"> {cur_time.substring(0, cur_time.length - 32)} </div>
+									</Row>
+								</Col>
+								<Col className="time-col">
+									<Row className="time-row">
+										<div className="info-font">Start time</div>
+									</Row>
+									<Row className="time-row">
+										<div className="info-font-small"> {start_time.substring(0, cur_time.length - 32)} </div>
+									</Row>
+								</Col>
+								<Col className="time-col">
+									<Row className="time-row">
+										<div className="info-font">End time</div>
+									</Row>
+									<Row className="time-row">
+										<div className="info-font-small"> {stop_time.substring(0, cur_time.length - 32)} </div>
+									</Row>
+								</Col>
+								<Col className="time-col">
+									<Row className="time-row">
+										<div className="info-font">Interval</div>
+									</Row>
+									<Row className="time-row">
+										<div className="info-font-small"> {new Date(this.props.timer.intervalTime).getMinutes() + ' Min.'} </div>
+									</Row>
+								</Col>
+							</Row>
+						</Container>
 					</Container>
-				</Container>
+					<Modal size="sm" show={this.state.showNoti} onHide={this.handleCloseNoti}>
+			            <Modal.Header>
+			              <Modal.Title>
+			                <div sm={10} className="update-title"> Notification </div>
+			                <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleCloseNoti}/>
+			              </Modal.Title>
+			            </Modal.Header>
+						<Modal.Body>
+							New interval !
+							It's time to update your {intervalNum} progress
+						</Modal.Body>
+					</Modal>
+				
+				    {this.showMemberProgress()}
+				    {changePage}
 
-				<Modal size="sm" show={this.state.showNoti} onHide={this.handleCloseNoti}>
-		            <Modal.Header>
-		              <Modal.Title>
-		                <div sm={10} className="update-title"> Notification </div>
-		                <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleCloseNoti}/>
-		              </Modal.Title>
-		            </Modal.Header>
-					<Modal.Body>
-						New interval !
-						It's time to update your {intervalNum} progress
-					</Modal.Body>
-				</Modal>
-
-				{this.showMemberProgress()}
-
-				{changePage}
-
-				<div className="buttons-wrap">
-					<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>
-					<AllMember people={this.state.people} intervalNum={this.props.timer.intervalNum}/>
-				</div>
-			</Scrollbars>
-		);
+					<div className="buttons-wrap">
+						<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>
+						<AllMember people={this.state.people} intervalNum={this.props.timer.intervalNum}/>
+					</div>
+				</Scrollbars>
+			);
+		}
 	}
 }
 
