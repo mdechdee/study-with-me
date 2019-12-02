@@ -18,7 +18,7 @@ class ShowInformation extends React.Component {
 	}
 	componentDidMount() {
 	 	var self = this;
-	 	var nameRef = db.ref(`users/${this.state.uid}`);
+	 	var nameRef = db.ref(`users/${this.props.uid}`);
 	  	nameRef.once('value')
 	  	.then(function(snapshot) {
 	    	self.setState({
@@ -43,7 +43,7 @@ class ShowInformation extends React.Component {
 	handleUpdate(e){
 		e.preventDefault();
 		var nameRef = db.ref(`users/`);
-		nameRef.child(`${this.state.uid}`).update({name: this.state.name})
+		nameRef.child(`${this.props.uid}`).update({name: this.state.name})
 	}
 	render(){
 		return(

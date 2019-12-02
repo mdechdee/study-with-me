@@ -13,6 +13,9 @@ class ProgressImage extends Component {
       progress: 0,
       status:"info",
       show:""
+      //uid = this.props.uid
+      //intervalNum = this.props.intervalNum
+      //groupName = this.props.groupName
     };
   }
 

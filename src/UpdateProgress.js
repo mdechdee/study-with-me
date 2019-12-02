@@ -15,9 +15,9 @@ class UpdateProgress extends React.Component{
 		this.handleClose = this.handleClose.bind(this);
 		this.state = {
 			show: false,
-			uid: props.uid,
-			groupName: props.groupName,
-			intervalNum: props.intervalNum
+			//uid: props.uid,
+			//groupName: props.groupName,
+			//intervalNum: props.intervalNum
 		};
 	}
 	handleClose(){
@@ -43,13 +43,13 @@ class UpdateProgress extends React.Component{
             </Modal.Header>
 							<Modal.Body>
 											<ProgressImage
-												uid={this.state.uid}
-												intervalNum={this.state.intervalNum}
-												groupName = {this.state.groupName}/>
+												uid={this.props.uid}
+												intervalNum={this.props.intervalNum}
+												groupName = {this.props.groupName}/>
 											<ProgressDescription
-												uid = {this.state.uid}
-												intervalNum = {this.state.intervalNum}
-												groupName = {this.state.groupName}
+												uid = {this.props.uid}
+												intervalNum = {this.props.intervalNum}
+												groupName = {this.props.groupName}
 												setStatus = {this.handleClose}/>
 							</Modal.Body>
 					</Modal>
