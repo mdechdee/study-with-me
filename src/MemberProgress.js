@@ -103,8 +103,8 @@ class MemberProgress extends React.Component {
       return(
         <Carousel.Item>
           <img
-            className="d-block w-80"
-            src="https://via.placeholder.com/300"
+            className="d-block w-100"
+            src="https://via.placeholder.com/400"
             alt="First slide"
           />
         </Carousel.Item>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import 'react-bootstrap/dist/react-bootstrap.min.js';
 import './App.css';
 import base_styles from './scss/_base.scss';
@@ -16,13 +16,14 @@ import Signout from './authentication/Signout.js';
 import withAuthentication from './authentication/WithAuthentication.js';
 import withTimer from './WithTimer.js';
 import { ToastContainer } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import ReactNotification from 'react-notifications-component';
 import Notification from './Notification';
 //import { fas } from '@fortawesome/free-solid-svg-icons';
 //import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faChevronCircleLeft,faChevronCircleRight,faComment,faStar,faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-library.add(faChevronCircleLeft,faChevronCircleRight,faComment,faStar,faTimesCircle);
+import { faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,faChevronCircleRight,faComment,faStar,faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+library.add(faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,faChevronCircleRight,faComment,faStar,faTimesCircle);
 class App extends React.Component{
   render() {
     return(
@@ -72,7 +73,40 @@ const Page = (auth) => {
             )}/>
         </Switch>
         </div>
-        <div className='horizontal-div-below'/>
+        <div className='horizontal-div-below' style= {{background :base_styles.primary, zIndex: '1'}}>
+          <Container className='container-fluid d-flex h-100 flex-column'>
+            <Row className='flex-grow-1 flex-fill d-flex justify-content-start'>
+              <Col className='align-items-center align-middle' style={{display:'grid'}} >
+                <NavLink to='/find_group' className='icon-default'activeClassName='icon-active'>
+                  <FontAwesomeIcon
+                    icon='search'
+                  />
+                </NavLink>
+              </Col>
+              <Col className='align-items-center align-middle' style={{display:'grid'}}>
+                <NavLink to='/my_group' className='icon-default'activeClassName='icon-active'>
+                  <FontAwesomeIcon
+                    icon='users'
+                  />
+                </NavLink>
+              </Col>
+              <Col className='align-items-center align-middle' style={{display:'grid'}}>
+                <NavLink to='/redeem' className='icon-default'activeClassName='icon-active'>
+                  <FontAwesomeIcon
+                    icon='gift'
+                  />
+                </NavLink>
+              </Col>
+              <Col className='align-items-center align-middle' style={{display:'grid'}}>
+                <NavLink to='/profile' className='icon-default'activeClassName='icon-active'>
+                  <FontAwesomeIcon
+                    icon='user-circle'
+                  />
+                </NavLink>
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </Col>)
     }}
     </TimerContext.Consumer>
@@ -93,7 +127,8 @@ const UnAuthPage = () => {
           )}/>
         </Switch>
       </div>
-      <div className='horizontal-div-below' style= {{background :base_styles.primary, zIndex: '1'}}/>
+      <div className='horizontal-div-below'/>
+
     </Col>
   );
 }

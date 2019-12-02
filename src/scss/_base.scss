@@ -2,6 +2,7 @@
 $primary: #9BE3DE;
 $secondary: #FFE87C;
 
+$darkgray: #666666;
 $lightgray: #eeeeee;
 $background: white;
 
@@ -166,4 +167,23 @@ body {
 
 .row-line{
   padding: 0 2px;
+}
+
+.icon-default {
+  color: white;
+  font-size: 1.8rem;
+  transition: all 0.2s ease-out;
+  vertical-align: middle;
+  margin:auto;
+
+  &:hover {
+    color: $darkgray;
+    font-size: 2.2rem;
+    background-color: $primary !important;
+  }
+}
+
+.icon-active {
+  font-size: 2.2rem;
+  color: $darkgray;
 }
