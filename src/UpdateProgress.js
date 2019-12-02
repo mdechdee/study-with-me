@@ -41,17 +41,17 @@ class UpdateProgress extends React.Component{
                 <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleClose}/>
               </Modal.Title>
             </Modal.Header>
-							<Modal.Body>
-											<ProgressImage
-												uid={this.props.uid}
-												intervalNum={this.props.intervalNum}
-												groupName = {this.props.groupName}/>
-											<ProgressDescription
-												uid = {this.props.uid}
-												intervalNum = {this.props.intervalNum}
-												groupName = {this.props.groupName}
-												setStatus = {this.handleClose}/>
-							</Modal.Body>
+				<Modal.Body>
+					<ProgressImage
+						uid={this.props.uid}
+						intervalNum={this.props.intervalNum}
+						groupName = {this.props.groupName}/>
+					<ProgressDescription
+						uid = {this.props.uid}
+						intervalNum = {this.props.intervalNum}
+						groupName = {this.props.groupName}
+						setStatus = {this.handleClose}/>
+				</Modal.Body>
 					</Modal>
 			</React.Fragment>
 		);
