@@ -72,6 +72,9 @@ const Page = (auth) => {
             <Route  path='/login' render = {() => (
                 <Redirect to='/find_group' />
             )}/>
+            <Route render = {() => (
+                <Redirect to='/find_group' />
+            )}/>
         </Switch>
         </div>
         <div className='horizontal-div-below' style= {{background :base_styles.primary, zIndex: '1'}}>

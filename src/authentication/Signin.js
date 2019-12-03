@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Row, Col, Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { auth } from '../firebase';
 import '../scss/Signin.scss';
@@ -32,7 +32,7 @@ class Signin extends React.Component {
             position: toast.POSITION.TOP_CENTER
       		});
         else
-          toast('Wrong email or password.', {
+          toast(error.message, {
       			position: toast.POSITION.TOP_CENTER
       		});
       });
@@ -60,11 +60,16 @@ class Signin extends React.Component {
               name="password" value={password}
               onChange={this.handleChange}
             />
-            <Button variant='warning' className='login-button' type='submit'>Login</Button>
+
+          </Form.Group>
+          <Form.Group as = {Row}>
+            <Col/>
+            <Col> <Button variant='warning' type='submit'>Login</Button> </Col>
+            <Col/>
           </Form.Group>
         </Form>
-        <NavLink to='/Signup' className='icon-default'activeClassName='icon-active'>
-          <Button variant='warning' className='signup-button'>Sign up</Button>
+        <NavLink to='/Signup' activeClassName='icon-active'>
+          <div>Sign up</div>
         </NavLink>
       </div>
     )
