@@ -4,7 +4,7 @@ import TimerContext from './TimerContext'
 import MemberProgress from './MemberProgress.js';
 import UpdateProgress from './UpdateProgress.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Container, Modal, Row, Col } from 'react-bootstrap';
+import { Container, Modal, Row, Col, ProgressBar } from 'react-bootstrap';
 import './scss/MyGroup.scss';
 import AllMember from './AllMember';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -75,7 +75,7 @@ class MyGroup extends React.Component {
 	}
 	handleRight(){
 		var self = this;
-		if (this.state.rank<this.state.totalPeople-1){
+		if (this.state.rank < this.state.totalPeople-1){
 			self.setState({rank:self.state.rank+1})
 			console.log("+")
 		}
@@ -113,9 +113,15 @@ class MyGroup extends React.Component {
 		this.setState({clearGroup: false})
 
 	}
-
+	checkIntervalChange(){
+		if(this.state.intervalNum !== this.props.timer.intervalNum){
+			this.setState({intervalNum: this.props.timer.intervalNum},()=>{
+				this.handleIntervalChange();
+			})
+		}
+	}
 	checkEndTime(){
-		if(this.props.timer.currentTime>this.props.timer.baseStopTime){
+		if(this.props.timer.currentTime > this.props.timer.baseStopTime){
 			this.setState({clearGroup: true})
 			// change everyone's group to ""
 			var _peopleName = []
@@ -141,15 +147,10 @@ class MyGroup extends React.Component {
 	}
 
 	render(){
-		var cur_time = new Date(this.props.timer.currentTime).toString()
-		var start_time = new Date(this.props.timer.startTime).toString()
-		var stop_time = new Date(this.props.timer.stopTime).toString()
-		if(this.state.intervalNum!==this.props.timer.intervalNum){
-			this.setState({intervalNum: this.props.timer.intervalNum},()=>{
-				this.handleIntervalChange();
-			})
-		}
-
+		var cur_time = this.props.timer.currentTime
+		var start_time = this.props.timer.startTime
+		var stop_time = this.props.timer.stopTime
+		this.checkIntervalChange()
 		var intervalNum = ""
 		var self = this;
 		if(this.state.intervalNum==1){
@@ -171,7 +172,6 @@ class MyGroup extends React.Component {
 				    		<Redirect to='/find_group' render={(routeProps) => (<FindGroups uid = {this.props.timer.uid}{...routeProps} />)} />
 		        		</Switch>
 		}
-		console.log(this.props.timer)
 		if(!this.state.groupName){
 			return(
 				<Switch>
@@ -185,43 +185,13 @@ class MyGroup extends React.Component {
 						className="scroll"
 						renderView={props => <div {...props} className="scroll-content"/>}>
 					<Container className="my-group-wrap">
-						<div className="my-group-title"> Group: {this.props.timer.groupName} </div>
-						<Container>
-							<Row className="info-wrap top-border">
-								<Col className="time-col">
-									<Row className="time-row">
-										<div className="info-font">Time</div>
-									</Row>
-									<Row className="time-row">
-										<div className="info-font-small"> {cur_time.substring(0, cur_time.length - 32)} </div>
-									</Row>
-								</Col>
-								<Col className="time-col">
-									<Row className="time-row">
-										<div className="info-font">Start time</div>
-									</Row>
-									<Row className="time-row">
-										<div className="info-font-small"> {start_time.substring(0, cur_time.length - 32)} </div>
-									</Row>
-								</Col>
-								<Col className="time-col">
-									<Row className="time-row">
-										<div className="info-font">End time</div>
-									</Row>
-									<Row className="time-row">
-										<div className="info-font-small"> {stop_time.substring(0, cur_time.length - 32)} </div>
-									</Row>
-								</Col>
-								<Col className="time-col">
-									<Row className="time-row">
-										<div className="info-font">Interval</div>
-									</Row>
-									<Row className="time-row">
-										<div className="info-font-small"> {new Date(this.props.timer.intervalTime).getMinutes() + ' Min.'} </div>
-									</Row>
-								</Col>
-							</Row>
-						</Container>
+						<Row>
+							<Col className='flex-direction-column justify-content-center'> <div className="my-group-title"> Group: {this.props.timer.groupName} </div> </Col>
+							<Col className='flex-direction-column justify-content-center'>
+								<div> Time Left: {Math.ceil((stop_time-cur_time)/60000)} min </div>
+								<ProgressBar animated now = {(cur_time-start_time)/(stop_time-start_time)*100}/>
+							</Col>
+						</Row>
 					</Container>
 					<Modal size="sm" show={this.state.showNoti} onHide={this.handleCloseNoti}>
 			            <Modal.Header>

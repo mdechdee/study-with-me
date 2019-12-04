@@ -66,8 +66,6 @@ class ProgressImage extends Component {
     );
   };
   render() {
-    console.log("ProgressImage/render")
-    console.log(this.props.intervalNum)
     return (
       <Container className="image-upload">
         <br/>

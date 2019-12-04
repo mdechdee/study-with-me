@@ -17,7 +17,9 @@ class MemberProgress extends React.Component {
       userInfoLoaded: false,
       userInfoNumLoaded: 0,
       peopleUID: [],
+      currentPersonView: '',
     }
+    this.handlePicChange = this.handlePicChange.bind(this)
   }
 
   getData(peopleName){
@@ -80,19 +82,19 @@ class MemberProgress extends React.Component {
     if(this.state.pictureUrlLoaded && this.state.userInfoLoaded)
     {
       var progress = []
-      for(var i = 0;i<this.props.groupInfo.totalPeople;i++)
+      for(var i = 0;i < this.props.groupInfo.totalPeople;i++)
       {
         progress.push(
         <Carousel.Item key={i}>
           <img
-            className="d-block w-100"
+            style = {{ objectFit: 'cover'}}
+            className="d-block w-100 h-100"
             src={this.state.pictureUrl[i]}
             alt="First slide"
           />
           <Carousel.Caption key={this.props.groupInfo.totalPeople+i} style={{zIndex: '1'}}>
             <div className="carousel-font">UserName: {this.state.userName[i]} </div>
             <div className="carousel-font">Goal: {this.state.userGoal[i]}</div>
-            <Cheer uid={this.state.peopleUID[i]} groupName={this.props.groupInfo.groupName}/>
           </Carousel.Caption>
           </Carousel.Item>
         )
@@ -103,7 +105,8 @@ class MemberProgress extends React.Component {
       return(
         <Carousel.Item>
           <img
-            className="d-block w-100"
+            style = {{ objectFit: 'cover'}}
+            className="d-block w-100 h-100"
             src="https://via.placeholder.com/400"
             alt="First slide"
           />
@@ -112,22 +115,27 @@ class MemberProgress extends React.Component {
     }
 
   }
-
+  handlePicChange(event){
+    this.setState({currentPersonView: this.props.groupInfo.mapPeopleWithNumber[event]})
+  }
   componentDidMount(){
     var _peopleName = []
     console.log(this.props.groupInfo)
     Object.keys(this.props.groupInfo.people).forEach(function (person){
       _peopleName.push(person)
     });
-    this.setState({peopleUID: _peopleName})
+    this.setState({peopleUID: _peopleName, currentPersonView: this.props.groupInfo.mapPeopleWithNumber[0]})
     this.getData(_peopleName)
   }
 
   render(){
     return(
-      <Carousel className='carousel-custom' interval={0}>
-        {this.showAllProgress()}
-      </Carousel>
+      <React.Fragment>
+        <Carousel className='carousel-custom' interval={0} onSelect={this.handlePicChange}>
+          {this.showAllProgress()}
+        </Carousel>
+        <Cheer  groupName={this.props.groupInfo.groupName} uid={this.state.currentPersonView} />
+      </React.Fragment>
     )
   }
 }

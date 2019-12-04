@@ -54,14 +54,25 @@ const withTimer = (Component) =>
 		pushNewStartTime(){
 			if(this.state.groupName === "")
 				return
+			var _startTime = this.state.startTime
+			var _stopTime = this.state.stopTime
+			var _intervalNum = this.state.intervalNum
+			while(_stopTime < this.state.currentTime)
+			{
+				_startTime += this.state.intervalTime
+				_stopTime += this.state.intervalTime
+				_intervalNum += 1
+			}
 			this.setState({
-		        startTime: this.state.startTime + this.state.intervalTime,
-	        	stopTime: this.state.stopTime + this.state.intervalTime,
-	        	intervalNum: this.state.intervalNum+1
-	        })
-			db.ref(`groups/${this.state.groupName}/startTime`).set(this.state.startTime)
-			db.ref(`groups/${this.state.groupName}/stopTime`).set(this.state.stopTime)
-			db.ref(`groups/${this.state.groupName}/intervalNum`).set(this.state.intervalNum)
+		        startTime: _startTime,
+	        	stopTime: _stopTime,
+	        	intervalNum: _intervalNum
+	        }, () => {
+					console.log(this.state.startTime)
+					db.ref(`groups/${this.state.groupName}/startTime`).set(this.state.startTime)
+					db.ref(`groups/${this.state.groupName}/stopTime`).set(this.state.stopTime)
+					db.ref(`groups/${this.state.groupName}/intervalNum`).set(this.state.intervalNum)
+			})
 
 		}
 
