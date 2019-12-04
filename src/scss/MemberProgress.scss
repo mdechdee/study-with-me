@@ -1,15 +1,31 @@
 @import '_base.scss';
 
 .carousel-custom{
-  width: 320px;
+  height: 300px;
   text-align: center;
   margin: auto;
+}
+
+.carousel-item{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin: auto;
+}
+
+.carousel-inner{
+  width: 100%;
+  height: 100%;
 }
 
 .carousel-font{
   font-family: $f2;
   text-align: center;
   color: black;
+}
+
+.carousel-caption{
+  background-color: rgba($darkgray ,0.3);
 }
 
 .carousel-indicators{

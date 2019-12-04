@@ -97,7 +97,7 @@ class AllMember extends React.Component {
                 <FontAwesomeIcon icon='times-circle' className='custom-close-icon' onClick={this.handleClose}/>
               </Modal.Title>
             </Modal.Header>
-            <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>
+            <Modal.Body style={{maxHeight: 'calc(100vh - 210px)', overflowY: 'auto'}}>
               {this.showNameList()}
             </Modal.Body>
           </Modal>
