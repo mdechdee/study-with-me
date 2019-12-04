@@ -9,6 +9,7 @@ import Profile from './Profile.js';
 import FindGroups from './FindGroups.js';
 import MyGroup from './MyGroup.js';
 import Redeem from './Redeem.js'
+import StickerDetails from './StickerDetails';
 import AuthContext from './authentication/AuthContext.js';
 import TimerContext from './TimerContext.js';
 import Signin from './authentication/Signin.js';
@@ -21,10 +22,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import ReactNotification from 'react-notifications-component';
 import Notification from './Notification';
+import 'react-toastify/dist/ReactToastify.css';
 //import { fas } from '@fortawesome/free-solid-svg-icons';
 //import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,faChevronCircleRight,faComment,faStar,faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-library.add(faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,faChevronCircleRight,faComment,faStar,faTimesCircle);
+import {
+  faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,
+  faChevronCircleRight, faComment, faStar, faTimesCircle
+} from '@fortawesome/free-solid-svg-icons';
+
+library.add(
+  faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,
+  faChevronCircleRight, faComment, faStar, faTimesCircle
+);
+
 class App extends React.Component{
   render() {
     return(
@@ -68,6 +78,7 @@ const Page = (auth) => {
             <Route path='/my_group' render={(routeProps) => (<MyGroup uid = {auth.auth.uid} timer={timer} {...routeProps} />)} />
             <Route path='/profile'  component={Profile} />
             <Route path='/redeem' render={(routeProps) => (<Redeem uid = {auth.auth.uid}{...routeProps} />)} />
+            <Route path='/details' component={StickerDetails}/>
             <Route path='/logout' render={() => (<Signout auth/>)}/>
             <Route  path='/login' render = {() => (
                 <Redirect to='/find_group' />
