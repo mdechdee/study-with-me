@@ -1,12 +1,14 @@
 //https://codesandbox.io/s/iconbutton-hover-focus-cnexr?fontsize=14
 //https://material-ui.com/customization/components/#pseudo-classes
 import React from 'react';
+import {Button, OverlayTrigger, Popover} from 'react-bootstrap'
 import {db} from './firebase/firebase.js';
 import IconButton from "@material-ui/core/IconButton";
 import Smile from "@material-ui/icons/SentimentSatisfiedAlt";
 import LargeSmile from "@material-ui/icons/InsertEmoticon";
 import Like from "@material-ui/icons/ThumbUpAlt";
 import Love from "@material-ui/icons/Favorite";
+import More from "@material-ui/icons/MoreHoriz"
 
 
 class Cheer extends React.Component{
@@ -14,74 +16,70 @@ class Cheer extends React.Component{
 		super(props)
 		this.state = {
 			disable: false,
-			numberLargeSmile: 0,
-			numberSmile: 0,
-			numberLike: 0,
-			numberLove: 0,
+			numberCheer: '',
 			isLoaded: true
 		}
-		this.handleLargeSmile = this.handleLargeSmile.bind(this);
-		this.handleSmile = this.handleSmile.bind(this);
-		this.handleLike = this.handleLike.bind(this);
-		this.handleLove = this.handleLove.bind(this);
+		this.handleCheer = this.handleCheer.bind(this);
 	}
 	componentDidMount(){
-		console.log("Cheer/componentDidMount : snapshot")
 		this.fetchCheerAmount()
 	}
 	fetchCheerAmount(){
 		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
-		Ref.once('value', (snapshot)=>{
+		Ref.once('value', (snapshot) =>{
+			var val = snapshot.val()
 			this.setState({
-				numberLargeSmile: snapshot.val().numberLargeSmile,
-				numberSmile: snapshot.val().numberSmile,
-				numberLike: snapshot.val().numberLike,
-				numberLove: snapshot.val().numberLove
-			}, ()=>{
+				numberCheer: val.numberCheer
+			}, () => {
 				this.setState({isLoaded: true})
 			})
 		})
 	}
-	handleLargeSmile(){
-		var Ref = db.ref(`groups/${this.props.groupName}/people/`)
-		console.log(this.state.numberLargeSmile+"A");
-		Ref.child(`${this.props.uid}`).update({numberLargeSmile: this.state.numberLargeSmile+1});
-		this.setState({numberLargeSmile: this.state.numberLargeSmile+1})
+	handleCheer(cheerType){
+		var Ref = db.ref(`groups/${this.props.groupName}/people`)
+		let _numberCheer = this.state.numberCheer
+		if(_numberCheer === ''){
+			_numberCheer = {}
+			_numberCheer[cheerType] = 1
+		}
+		else{
+			if(_numberCheer[cheerType] === undefined)
+					_numberCheer[cheerType] = 1
+			else
+				_numberCheer[cheerType] += 1
+		}
+		this.setState({numberCheer: _numberCheer})
+		Ref.child(`${this.props.uid}`).update({numberCheer: _numberCheer});
+
 	}
-	handleSmile(){
-		var Ref = db.ref(`groups/${this.props.groupName}/people/`)
-		console.log(this.state.numberSmile+"B");
-		Ref.child(`${this.props.uid}`).update({numberSmile: this.state.numberSmile+1});
-		this.setState({numberSmile: this.state.numberSmile+1})
-	}
-	handleLike(){
-		var Ref = db.ref(`groups/${this.props.groupName}/people/`)
-		console.log(this.state.numberLike+"C");
-		Ref.child(`${this.props.uid}`).update({numberLike: this.state.numberLike+1});
-		this.setState({numberLike: this.state.numberLike+1})
-	}
-	handleLove(){
-		var Ref = db.ref(`groups/${this.props.groupName}/people/`)
-		console.log(this.state.numberLove+"D");
-		Ref.child(`${this.props.uid}`).update({numberLove: this.state.numberLove+1});
-		this.setState({numberLove: this.state.numberLove+1})
-	}
+
 	render(){
+		var popover =
+			<Popover id="popover-basic" >
+			<Popover.Title as="h3">Popover right</Popover.Title>
+				<Popover.Content>
+					"And here's some" <strong> "amazing" </strong> "content. It's very engaging.
+					right?"
+				</Popover.Content>
+			</Popover>
+
 		return(
 		    <div>
-		      <IconButton aria-label="Delete" onClick={this.handleLargeSmile}>
-		        <LargeSmile />
-		      </IconButton>
-		      <IconButton aria-label="Delete" onClick={this.handleSmile}>
-		        <Smile />
-		      </IconButton>
-		      <IconButton aria-label="Delete" onClick={this.handleLike}>
-		        <Like />
-		      </IconButton>
-		      <IconButton aria-label="Delete" onClick={this.handleLove}>
-		        <Love />
-		      </IconButton>
-		    </div>
+			      <IconButton aria-label="Delete" onClick={() => this.handleCheer('LargeSmile')}>
+			        <LargeSmile />
+			      </IconButton>
+			      <IconButton aria-label="Delete" onClick={() => this.handleCheer('Smile')}>
+			        <Smile />
+			      </IconButton>
+			      <IconButton aria-label="Delete" onClick={() => this.handleCheer('Like')}>
+			        <Like />
+			      </IconButton>
+						<OverlayTrigger trigger="click" placement="top" overlay={popover}>
+							<IconButton aria-label="Delete">
+								<More />
+							</IconButton>
+						</OverlayTrigger>
+			   </div>
 	  	);
 	}
 }

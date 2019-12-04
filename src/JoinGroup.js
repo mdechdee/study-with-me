@@ -30,10 +30,8 @@ class JoinGroup extends React.Component {
     var newMemberRef = peopleRef.child(`${this.props.uid}`);
     newMemberRef.set({
       goal: this.state.goal,
-      numberLargeSmile: 0,
-      numberSmile: 0,
-      numberLike: 0,
-      numberLove:0
+      progress: '',
+      numberCheer: '',
     });
     var userRef =  db.ref('users/' + this.props.uid);
     userRef.update({

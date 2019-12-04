@@ -18,6 +18,7 @@ class MemberProgress extends React.Component {
       userInfoNumLoaded: 0,
       peopleUID: [],
       currentPersonView: '',
+      isCurrentPersonViewLoaded: false,
     }
     this.handlePicChange = this.handlePicChange.bind(this)
   }
@@ -115,8 +116,18 @@ class MemberProgress extends React.Component {
     }
 
   }
+  showCheer(){
+    if(this.state.isCurrentPersonViewLoaded){
+      return(<Cheer groupName={this.props.groupInfo.groupName} uid={this.state.currentPersonView} />)
+    }
+    else {
+      return(<React.Fragment/>)
+    }
+  }
   handlePicChange(event){
-    this.setState({currentPersonView: this.props.groupInfo.mapPeopleWithNumber[event]})
+    this.setState({isCurrentPersonViewLoaded: false})
+    this.setState({currentPersonView: this.props.groupInfo.mapPeopleWithNumber[event]},
+      ()=>{this.setState({isCurrentPersonViewLoaded: true})})
   }
   componentDidMount(){
     var _peopleName = []
@@ -124,7 +135,8 @@ class MemberProgress extends React.Component {
     Object.keys(this.props.groupInfo.people).forEach(function (person){
       _peopleName.push(person)
     });
-    this.setState({peopleUID: _peopleName, currentPersonView: this.props.groupInfo.mapPeopleWithNumber[0]})
+    this.setState({peopleUID: _peopleName, currentPersonView: this.props.groupInfo.mapPeopleWithNumber[0]},
+      () => {this.setState({isCurrentPersonViewLoaded: true})})
     this.getData(_peopleName)
   }
 
@@ -134,7 +146,7 @@ class MemberProgress extends React.Component {
         <Carousel className='carousel-custom' interval={0} onSelect={this.handlePicChange}>
           {this.showAllProgress()}
         </Carousel>
-        <Cheer  groupName={this.props.groupInfo.groupName} uid={this.state.currentPersonView} />
+        {this.showCheer()}
       </React.Fragment>
     )
   }
