@@ -25,7 +25,13 @@ class Signup extends React.Component {
         console.log(authUser)
           db.ref(`users/${authUser.user.uid}`).set({
             name: this.state.username,
-            group: ""
+            group: "",
+            point: 0,
+            groupJoined: 0,
+            groupCreated: 0,
+            sticker: '',
+            tasks: '',
+            cheer: ''
           })
           .then(() => {
             this.setState(() => ({ ...INITIAL_VALUE }));
