@@ -93,6 +93,16 @@ class MyGroup extends React.Component {
 
 	handleIntervalChange(){
 		this.setState({showNoti: true})
+		var userRef = db.ref("users/"+this.state.uid)
+		userRef.child("task").set({
+			updateTask:{number:0,
+				rewardReceived:false
+			},
+			voteTask:{number:0,
+				rewardReceived:false
+			},
+			remainedTask:0
+		})
 	}
 
 	handleCloseNoti(){
@@ -225,7 +235,7 @@ class MyGroup extends React.Component {
 							It's time to update your {intervalNum} progress
 						</Modal.Body>
 					</Modal>
-				
+
 				    {this.showMemberProgress()}
 				    {changePage}
 

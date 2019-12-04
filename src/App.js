@@ -54,7 +54,7 @@ const Page = (auth) => {
       <Col xs={12} sm={8} md={6} lg={4} className='page-wrap'>
         <div className='horizontal-div-above' style= {{background :base_styles.primary}}>
            <Hamburger/>
-           <div className='title'>Study With Me<Notification/></div>
+           <div className='title'>Study With Me<Notification uid={auth.auth.uid}/></div>
            <ReactNotification />
 
         </div>
