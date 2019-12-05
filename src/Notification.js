@@ -78,12 +78,13 @@ class Notification extends React.Component {
 		if(updateTaskStatus===false){
 			if(voteTaskStatus===false){
 				return(
-					<div align="left" style={{
+					<container style={{
       backgroundColor: 'white'
     }}>
-					<p>Task: Update your progress<br/>Progress: {updateNum}/1{this.UpdateReward(updateNum)}</p>
-					<p>Task: Cheer others<br/>Progress: {voteNum}/3{this.CheerReward(voteNum)}</p>
-				</div>
+
+					<Row><Col><p>Task: Update your progress<br/>Progress: {updateNum}/1</p></Col><Col xs sm={4}>{this.UpdateReward(updateNum)}</Col></Row>
+					<Row><Col><p>Task: Cheer others<br/>Progress: {voteNum}/3</p></Col><Col xs sm={4}>{this.CheerReward(voteNum)}</Col></Row>
+				</container>
 			)
 			}
 			else{
