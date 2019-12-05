@@ -1,19 +1,65 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { db } from './firebase/firebase.js';
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'animate.css';
 
 class Notification extends React.Component {
 	constructor(props){
 	    super(props);
+			this.handleCheerReward=this.handleCheerReward.bind(this)
+			this.handleUpdateReward=this.handleUpdateReward.bind(this)
 	    this.state = {
 	        loading: null,
 	        groups: [],
 					usergroup: "",
 	    }
+	}
+	handleCheerReward(){
+		db.ref("users/"+this.props.uid+"/task/voteTask/rewardReceived").set(true)
+		db.ref("users/"+this.props.uid+"/task/remainedTask").once('value',(snapshot)=>{
+			let remainedTask = snapshot.val();
+			remainedTask = remainedTask -1;
+			db.ref("users/"+this.props.uid+"/task/remainedTask").set(remainedTask)
+		})
+
+	}
+
+	handleUpdateReward(){
+		db.ref("users/"+this.props.uid+"/task/updateTask/rewardReceived").set(true)
+		db.ref("users/"+this.props.uid+"/task/remainedTask").once('value',(snapshot)=>{
+			let remainedTask = snapshot.val();
+			remainedTask = remainedTask -1;
+			db.ref("users/"+this.props.uid+"/task/remainedTask").set(remainedTask)
+		})
+	}
+
+	CheerReward(voteNum){
+		if(voteNum>=1){
+			return(
+				<Button variant="success" onClick={this.handleCheerReward}>Claim point</Button>
+			)
+		}
+		else
+		return null
+	}
+
+	UpdateReward(updateNum){
+		if(updateNum>=1){
+			return(
+				<Button variant="success" onClick={this.handleUpdateReward}>Claim point</Button>
+			)
+		}
+		else
+		return null
+
+	}
+
+	CheerNotification(){
+
 	}
 
 	MyNotification(){
@@ -28,34 +74,24 @@ class Notification extends React.Component {
 			voteTaskStatus = task.voteTask.rewardReceived
 			updateNum = task.updateTask.number
 			voteNum = task.voteTask.number
-			console.log(task);
-			console.log(task.updateTask.rewardReceived)
 		})
 		if(updateTaskStatus===false){
 			if(voteTaskStatus===false){
 				return(
 					<div align="left" style={{
-			width: 250,
-      backgroundColor: 'yellow',
-      borderRadius: 5
+      backgroundColor: 'white'
     }}>
-					<h2>Notification</h2>
-					<p>Remained Task:2</p>
-					<p>Update your progress ({updateNum}/1)
-					<br/>Vote others ({voteNum}/3)</p>
+					<p>Task: Update your progress<br/>Progress: {updateNum}/1{this.UpdateReward(updateNum)}</p>
+					<p>Task: Cheer others<br/>Progress: {voteNum}/3{this.CheerReward(voteNum)}</p>
 				</div>
 			)
 			}
 			else{
 				return(
-				<div align="left" style={{
-			width: 250,
-      backgroundColor: 'yellow',
-      borderRadius: 5
+					<div align="left" style={{
+      backgroundColor: 'white'
     }}>
-				<h2>Notification</h2>
-				<p>Remained Task:1</p>
-				<p>Update your progress ({updateNum}/)</p>
+		<p>Task: Update your progress<br/>Progress: {updateNum}/1{this.UpdateReward(updateNum)}</p>
 			</div>
 		)
 			}
@@ -64,48 +100,26 @@ class Notification extends React.Component {
 		if(voteTaskStatus===false){
 			return(
 				<div align="left" style={{
-			width: 250,
-      backgroundColor: 'yellow',
-      borderRadius: 5
-    }}>
-				<h2>Notification</h2>
-				<p>Remained Task:1</p>
-				<p>Vote others ({voteNum}/3)</p>
-			</div>)
+			backgroundColor: 'white'
+			}}>
+			<p>Task: Cheer others<br/>Progress: {voteNum}/3{this.CheerReward(voteNum)}</p>
+</div>
+		)
 		}
 		else{
 			return(
 				<div align="left" style={{
-			width: 250,
-      backgroundColor: 'yellow',
-      borderRadius: 5
-    }}>
-					<h2>Notification</h2>
-					<p>Update your progress ({updateNum}/1)
-					<br/>Vote others ({voteNum}/3){voteTaskStatus}{updateTaskStatus}</p>
-				<p>No Task Remained</p>
-				</div>
+			backgroundColor: 'white'
+			}}>
+
+			</div>
 		)
 		}
 	}
 	}
 
-	fetchGroupsData(){
-		db.ref(`groups`).once('value',(snapshot) => {
-			let val = snapshot.val();
-			Object.keys(val).forEach((item) => {
-				this.setState({groups: [...this.state.groups, val[item]]});
-			})
-		})
-	}
 
-	checkUserGroup()
-	{
-		db.ref(`users/${this.props.uid}`).on('value', (snapshot) => {
-			let a = snapshot.val()
-			this.setState({usergroup: a.group})
-		});
-	}
+
 
 	componentDidMount(){
 
@@ -114,25 +128,18 @@ class Notification extends React.Component {
 
 
 	render() {
+		var popover =
+			<Popover id="popover-notification" >
+				<Popover.Content>
+					{this.MyNotification()}
+				</Popover.Content>
+			</Popover>
+
 		return(
 			<React.Fragment>
-					<Button
-						onClick={()=> {
-							store.addNotification({
-								title: 'Notification',
-								content:this.MyNotification(),
-								type:'info',
-								container: 'top-center',
-								animationIn: ["animated", "fadeIn"],
-								animationOut: ["animated", "fadeOut"],
-								dismiss:{
-									duration: 10000
-								}
-							})
-						}}
-						>
-						Notification
-					</Button>
+				<OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+					<FontAwesomeIcon icon="bell" />
+				</OverlayTrigger>
 			</React.Fragment>
 		)}
 }

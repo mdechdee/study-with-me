@@ -109,7 +109,7 @@ class MemberProgress extends React.Component {
   }
   showCheer(){
     if(this.state.isCurrentPersonViewLoaded){
-      return(<Cheer groupName={this.props.groupInfo.groupName} uid={this.state.currentPersonView} />)
+      return(<Cheer groupName={this.props.groupInfo.groupName} uid={this.state.currentPersonView} cheererUid={this.props.cheererUid} />)
     }
     else {
       return(<React.Fragment/>)
