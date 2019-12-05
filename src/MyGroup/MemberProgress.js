@@ -32,12 +32,17 @@ class MemberProgress extends React.Component {
       storage.ref(`images/${peopleName[i]}`)
       .child(`work${this.props.groupInfo.intervalNum}.jpg`).getDownloadURL()
         .then(url => {
-          this.setState({pictureUrl: [...this.state.pictureUrl, url],
+          const {pictureUrl} = this.state;
+          pictureUrl[i] = url
+          this.setState({pictureUrl,
             pictureNumLoaded: this.state.pictureNumLoaded +1}, () =>{
             this.checkPictureLoaded()
-          })})
+          })
+        })
         .catch(error => {
-            this.setState({pictureUrl: [...this.state.pictureUrl, 'https://via.placeholder.com/400'],
+            const {pictureUrl} = this.state;
+            pictureUrl[i] = 'https://via.placeholder.com/400'
+            this.setState({pictureUrl,
               pictureNumLoaded: this.state.pictureNumLoaded +1}, () =>{
               this.checkPictureLoaded()
             })});
