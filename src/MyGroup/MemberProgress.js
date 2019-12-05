@@ -1,7 +1,7 @@
 import React from 'react';
-import { db , storage} from './firebase/firebase.js';
+import { db , storage} from '../firebase/firebase.js';
 import { Carousel } from 'react-bootstrap';
-import './scss/MemberProgress.scss'
+import '../scss/MemberProgress.scss'
 import Cheer from './Cheer.js'
 
 class MemberProgress extends React.Component {

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProgressImage from './ProgressImage.js'
 import ProgressDescription from './ProgressDescription.js'
 import { Scrollbars } from 'react-custom-scrollbars';
-import './scss/UpdateProgress.scss'
+import '../scss/UpdateProgress.scss'
 
 class UpdateProgress extends React.Component{
 	constructor(props){

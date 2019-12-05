@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import StickerTitle from "./StickerTitle";
 import Sticker from "./Sticker";
-import {StickerConsumer} from "./Context";
-import './scss/Redeem.scss';
+import {StickerConsumer} from "../Context.js";
+import '../scss/Redeem.scss';
 
 export class Redeem extends Component {
 	render() {

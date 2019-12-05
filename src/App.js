@@ -5,11 +5,11 @@ import 'react-bootstrap/dist/react-bootstrap.min.js';
 import './App.css';
 import base_styles from './scss/_base.scss';
 import Hamburger from './Hamburger.js';
-import Profile from './Profile.js';
-import FindGroups from './FindGroups.js';
-import MyGroup from './MyGroup.js';
-import Redeem from './Redeem.js'
-import StickerDetails from './StickerDetails';
+import Profile from './Profile/Profile.js';
+import FindGroups from './FindGroups/FindGroups.js';
+import MyGroup from './MyGroup/MyGroup.js';
+import Redeem from './Redeem/Redeem.js'
+import StickerDetails from './Redeem/StickerDetails';
 import AuthContext from './authentication/AuthContext.js';
 import TimerContext from './TimerContext.js';
 import Signin from './authentication/Signin.js';

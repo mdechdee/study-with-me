@@ -1,15 +1,15 @@
 import React from 'react';
-import { db } from './firebase/firebase.js';
-import TimerContext from './TimerContext'
+import { db } from '../firebase/firebase.js';
+import TimerContext from '../TimerContext'
 import MemberProgress from './MemberProgress.js';
 import UpdateProgress from './UpdateProgress.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Container, Modal, Row, Col, ProgressBar } from 'react-bootstrap';
-import './scss/MyGroup.scss';
+import '../scss/MyGroup.scss';
 import AllMember from './AllMember';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import FindGroups from './FindGroups.js';
+import FindGroups from '../FindGroups/FindGroups.js';
 
 class MyGroup extends React.Component {
 	static contextType = TimerContext

@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 // import Moment from 'moment';
 import JoinGroup from'./JoinGroup.js';
 import {toast} from 'react-toastify';
-import './scss/FindGroups.scss';
+import '../scss/FindGroups.scss';
 
 class MyComponent extends React.Component {
 	constructor(props) {

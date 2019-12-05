@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {StickerConsumer} from "./Context";
+import {StickerConsumer} from "../Context";
 import {Link} from "react-router-dom"
 import StickerTitle from "./StickerTitle";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'react-bootstrap';
-import './scss/Redeem.scss';
+import '../scss/Redeem.scss';
 
 export class StickerDetails extends Component {
 	render() {

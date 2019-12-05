@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import {storage} from './firebase/firebase.js';
+import {storage} from '../firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Container, Button} from 'react-bootstrap'
-import './scss/UpdateProgress.scss';
+import '../scss/UpdateProgress.scss';
 
 class ProgressImage extends Component {
   constructor(props) {

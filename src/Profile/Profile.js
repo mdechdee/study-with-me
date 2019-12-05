@@ -1,8 +1,8 @@
 import React from 'react';
-import AuthContext from './authentication/AuthContext'
+import AuthContext from '../authentication/AuthContext'
 import ProfileImage from './ProfileImage'
 import ShowInformation from './ShowInformation'
-import './scss/Profile.scss'
+import '../scss/Profile.scss'
 import { Scrollbars } from 'react-custom-scrollbars';
 
 class Profile extends React.Component {

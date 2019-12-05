@@ -2,8 +2,8 @@
 //https://stackoverflow.com/questions/13955813/how-to-store-and-view-images-on-firebase
 import React from 'react';
 import {Button, Form} from 'react-bootstrap'
-import {db} from './firebase/firebase.js';
-import './scss/UpdateProgress.scss'
+import {db} from '../firebase/firebase.js';
+import '../scss/UpdateProgress.scss'
 
 class ProgressDescription extends React.Component{
 	constructor(props){

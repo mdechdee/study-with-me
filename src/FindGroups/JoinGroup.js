@@ -2,8 +2,8 @@ import React from 'react';
 import {Row, Col, Form, Modal, Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {toast} from 'react-toastify';
-import { db } from './firebase/firebase.js';
-import './scss/JoinGroup.scss';
+import { db } from '../firebase/firebase.js';
+import '../scss/JoinGroup.scss';
 
 class JoinGroup extends React.Component {
   constructor(props){

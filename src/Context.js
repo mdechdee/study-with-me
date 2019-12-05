@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { storeStickers, detailSticker } from "./StickerData"
+import { storeStickers, detailSticker } from "./Redeem/StickerData"
 import { firebase, db } from './firebase/firebase';
 
 const StickerContext = React.createContext();

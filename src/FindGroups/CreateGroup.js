@@ -2,7 +2,7 @@ import React from 'react';
 import {Modal, Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CreateGroupDescription from'./CreateGroupDescription.js';
-import './scss/CreateGroup.scss';
+import '../scss/CreateGroup.scss';
 
 class CreateGroup extends React.Component {
   constructor(props){

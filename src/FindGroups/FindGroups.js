@@ -3,8 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 import CreateGroup from'./CreateGroup.js';
 import MyComponent from './MyComponent.js'
-import { db } from './firebase/firebase.js';
-import './scss/FindGroups.scss';
+import { db } from '../firebase/firebase.js';
+import '../scss/FindGroups.scss';
 
 class FindGroups extends React.Component {
 	constructor(props){

@@ -2,7 +2,7 @@
 //https://material-ui.com/customization/components/#pseudo-classes
 import React from 'react';
 import {Button, OverlayTrigger, Popover} from 'react-bootstrap'
-import {db} from './firebase/firebase.js';
+import {db} from '../firebase/firebase.js';
 import IconButton from "@material-ui/core/IconButton";
 import Smile from "@material-ui/icons/SentimentSatisfiedAlt";
 import LargeSmile from "@material-ui/icons/InsertEmoticon";

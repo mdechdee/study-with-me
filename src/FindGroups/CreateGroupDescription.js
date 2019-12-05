@@ -3,8 +3,8 @@ import {Row, Col, Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {db} from './firebase/firebase.js'
-import './scss/CreateGroup.scss';
+import {db} from '../firebase/firebase.js'
+import '../scss/CreateGroup.scss';
 
 class CreateGroupDescription extends React.Component{
 	constructor(props){

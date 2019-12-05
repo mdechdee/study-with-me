@@ -1,8 +1,8 @@
 import React from 'react';
-import {db} from './firebase/firebase.js';
+import {db} from '../firebase/firebase.js';
 import {Form} from 'react-bootstrap';
 import {Container, Button, Col, Row} from 'react-bootstrap';
-import './scss/Profile.scss';
+import '../scss/Profile.scss';
 
 class ShowInformation extends React.Component {
 	constructor(props) {

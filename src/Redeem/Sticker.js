@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import {StickerConsumer} from "./Context";
-import './scss/Redeem.scss';
+import {StickerConsumer} from "../Context";
+import '../scss/Redeem.scss';
 
 export class Sticker extends Component {
 	render() {

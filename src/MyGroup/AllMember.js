@@ -1,8 +1,8 @@
 import React from 'react';
 import {Row, Col, Modal, Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { db } from './firebase/firebase.js';
-import './scss/AllMember.scss';
+import { db } from '../firebase/firebase.js';
+import '../scss/AllMember.scss';
 
 
 class AllMember extends React.Component {

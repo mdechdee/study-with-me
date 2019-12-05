@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import {StickerConsumer} from "./Context";
-import './scss/Redeem.scss';
+import {StickerConsumer} from "../Context";
+import '../scss/Redeem.scss';
 
 
 export default function StickerTitle({name, title}){
