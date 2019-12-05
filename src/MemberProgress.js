@@ -15,36 +15,37 @@ class MemberProgress extends React.Component {
       userName: [],
       userGoal: [],
       userInfoLoaded: false,
-      userInfoNumLoaded: 0,
       peopleUID: [],
       currentPersonView: '',
       isCurrentPersonViewLoaded: false,
     }
     this.handlePicChange = this.handlePicChange.bind(this)
+    this.checkUserInfoLoaded = this.checkUserInfoLoaded.bind(this)
   }
 
-  getData(peopleName){
-    console.log(peopleName)
+  getData(){
+    var _username = []
+    var peopleName = this.state.peopleUID
     for(let i in peopleName)
     {
       //Fetch pictures
       storage.ref(`images/${peopleName[i]}`)
       .child(`work${this.props.groupInfo.intervalNum}.jpg`).getDownloadURL()
         .then(url => {
-          this.setState({pictureUrl: [...this.state.pictureUrl, url]}, () =>{
+          this.setState({pictureUrl: [...this.state.pictureUrl, url],
+            pictureNumLoaded: this.state.pictureNumLoaded +1}, () =>{
             this.checkPictureLoaded()
           })})
         .catch(error => {
-            this.setState({pictureUrl: [...this.state.pictureUrl, 'https://via.placeholder.com/400']}, () =>{
+            this.setState({pictureUrl: [...this.state.pictureUrl, 'https://via.placeholder.com/400'],
+              pictureNumLoaded: this.state.pictureNumLoaded +1}, () =>{
               this.checkPictureLoaded()
             })});
       //Fetch username
        db.ref(`users/${peopleName[i]}`).once('value',(snapshot) =>{
-        let val = snapshot.val()
-        this.setState({
-          userName: [...this.state.userName, val.name]}, () => {
-            this.checkUserInfoLoaded()
-          })
+          let val = snapshot.val()
+          _username.push(val.name)
+          this.setState({userName: _username}, () => {this.checkUserInfoLoaded()})
         })
     }
     //Fetch Goals
@@ -58,26 +59,16 @@ class MemberProgress extends React.Component {
   }
 
   checkPictureLoaded(){
-    this.setState({pictureNumLoaded: this.state.pictureNumLoaded +1},() =>
+      if(this.state.pictureNumLoaded >= this.props.groupInfo.totalPeople)
       {
-        if(this.state.pictureNumLoaded >= this.props.groupInfo.totalPeople)
-        {
-          console.log("Pics Loaded: "+this.state.pictureNumLoaded)
-          this.setState({pictureUrlLoaded: true})
-        }
+        this.setState({pictureUrlLoaded: true})
       }
-    )
   }
   checkUserInfoLoaded(){
-    this.setState({userInfoNumLoaded: this.state.userInfoNumLoaded +1},() =>
-      {
-        if(this.state.userInfoNumLoaded >= this.props.groupInfo.totalPeople)
-        {
-          console.log("Infos Loaded: "+this.state.userInfoNumLoaded)
-          this.setState({userInfoLoaded: true})
-        }
-      }
-    )
+    if(this.state.userName.length >= this.props.groupInfo.totalPeople)
+    {
+      this.setState({userInfoLoaded: true})
+    }
   }
   showAllProgress(){
     if(this.state.pictureUrlLoaded && this.state.userInfoLoaded)
@@ -136,8 +127,10 @@ class MemberProgress extends React.Component {
       _peopleName.push(person)
     });
     this.setState({peopleUID: _peopleName, currentPersonView: this.props.groupInfo.mapPeopleWithNumber[0]},
-      () => {this.setState({isCurrentPersonViewLoaded: true})})
-    this.getData(_peopleName)
+      () => {
+        this.setState({isCurrentPersonViewLoaded: true})
+        this.getData()
+      })
   }
 
   render(){

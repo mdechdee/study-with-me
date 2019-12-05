@@ -31,7 +31,14 @@ class ProgressDescription extends React.Component{
 
 	handleUpload(e){
 		e.preventDefault();
-		db.ref(`groups/${this.props.groupName}/people/`).child(`${this.props.uid}`).update({goal: this.state.goal_description, progress: this.state.progress_description})
+		db.ref(`groups/${this.props.groupName}/people/`).child(`${this.props.uid}`).update({
+			goal: this.state.goal_description,
+			progress: this.state.progress_description,
+			status: "active"
+		})
+		var progressUpdateFlag = 0;
+		db.ref(`groups/${this.props.groupName}`).once('value',(snapshot) =>{progressUpdateFlag = snapshot.val().progressUpdateFlag})
+		db.ref(`groups/${this.props.groupName}/progressUpdateFlag`).set(progressUpdateFlag+1)
 		this.props.setStatus();
 	}
 	render(){

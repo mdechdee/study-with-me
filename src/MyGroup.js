@@ -16,14 +16,8 @@ class MyGroup extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			startTime :  Date.now(),
-			stopTime: Date.now() + 100000,
-			currentTime : Date.now(),
-			intervalTime: 0,
 			intervalNum: 0,
-			offset: 0,
 			//Boss part
-			rank:0 ,
 			totalPeople: 0,
 			people: null,
 			groupName:this.props.timer.groupName,
@@ -33,10 +27,7 @@ class MyGroup extends React.Component {
 			isDone:false,
 			showNoti:false,
 			clearGroup: false,
-
 		};
-		this.handleLeft = this.handleLeft.bind(this);
-		this.handleRight = this.handleRight.bind(this);
 		this.handleIntervalChange = this.handleIntervalChange.bind(this);
 		this.handleCloseNoti = this.handleCloseNoti.bind(this);
 		this.handleCloseClearGroup = this.handleCloseClearGroup.bind(this);
@@ -44,13 +35,13 @@ class MyGroup extends React.Component {
 	// bring data from database
 
 	collectPeople(){
-		db.ref(`groups/${this.props.timer.groupName}/people`).once('value',(snapshot) =>{
+			this.setState({isGroupLoaded: false})
 			this.setState({
-				people: snapshot.val()
+				people: this.props.timer.people
 				}, () => {
 					let num = 0;
 					let temp = {};
-					Object.keys(snapshot.val()).forEach(function (person){
+					Object.keys(this.props.timer.people).forEach(function (person){
 							temp[num]=person;
 					    num=num+1;
 					});
@@ -62,29 +53,13 @@ class MyGroup extends React.Component {
 						this.checkEndTime()
 					});
 			})
-		})
 	}
 	// map uid to number and count total number of people
-
-	handleLeft(){
-		var self = this;
-		if (this.state.rank>0){
-			self.setState({rank:self.state.rank-1})
-			console.log("-")
-		}
-	}
-	handleRight(){
-		var self = this;
-		if (this.state.rank < this.state.totalPeople-1){
-			self.setState({rank:self.state.rank+1})
-			console.log("+")
-		}
-	}
 
 	showMemberProgress(){
 		if(this.state.isGroupLoaded && !this.state.clearGroup)
 		{
-			return(<MemberProgress groupInfo={this.state}/>)
+			return(<MemberProgress groupInfo={this.state} key={this.props.timer.progressUpdateFlag}/>)
 		}
 		else {
 			return(<React.Fragment/>)

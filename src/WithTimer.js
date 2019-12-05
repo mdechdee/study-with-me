@@ -20,6 +20,8 @@ const withTimer = (Component) =>
 				intervalNum: 0,
 				offset: 0,
 				stopwatchID: 0,
+				people: [],
+				progressUpdateFlag: 0,
 			};
 		}
 		//Fetch group start/stop/interval time (Now start with current time)
@@ -27,7 +29,7 @@ const withTimer = (Component) =>
 			db.ref(`users/${this.state.uid}/group`).on('value', (snap) =>{
 				let _group = snap.val();
 				this.setState({groupName: _group})
-				db.ref(`groups/${_group}`).once('value', (snapshot) => {
+				db.ref(`groups/${_group}`).on('value', (snapshot) => {
 					let val = snapshot.val();
 					this.setState({
 						intervalTime: val.intervalTime,
@@ -36,6 +38,8 @@ const withTimer = (Component) =>
 						stopTime: val.stopTime,
 						baseStartTime: val.baseStartTime,
 						baseStopTime: val.baseStopTime,
+						people: val.people,
+						progressUpdateFlag: val.progressUpdateFlag,
 					})
 				})
 			})
@@ -73,7 +77,18 @@ const withTimer = (Component) =>
 					db.ref(`groups/${this.state.groupName}/stopTime`).set(this.state.stopTime)
 					db.ref(`groups/${this.state.groupName}/intervalNum`).set(this.state.intervalNum)
 			})
+			this.setPeopleStatus()
+		}
 
+		setPeopleStatus(){
+				var _people = this.state.people
+				Object.keys(_people).forEach((person) =>{
+					_people[person].status = 'inactive'
+				})
+				console.log(_people)
+				this.setState({people: _people})
+				db.ref(`groups/${this.state.groupName}/people`).update(_people)
+				db.ref(`groups/${this.state.groupName}/progressUpdateFlag`).set(0)
 		}
 
 		checkTimeUp(){

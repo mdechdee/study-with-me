@@ -35,12 +35,12 @@ class UpdateProgress extends React.Component{
 				> Update Progress </Button>
 
 				<Modal size="sm" show={this.state.show} onHide={this.handleClose}>
-		            <Modal.Header>
-		              <Modal.Title>
-		                <div sm={10} className="update-title"> Update Progress {this.props.popup_id} </div>
-		                <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleClose}/>
-		              </Modal.Title>
-		            </Modal.Header>
+          <Modal.Header>
+            <Modal.Title>
+              <div sm={10} className="update-title"> Update Progress {this.props.popup_id} </div>
+              <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleClose}/>
+            </Modal.Title>
+          </Modal.Header>
 					<Modal.Body>
 						<ProgressImage
 							uid={this.props.uid}
