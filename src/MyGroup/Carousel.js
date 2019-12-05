@@ -3,6 +3,7 @@ import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol }
 import { db, storage } from '../firebase/firebase.js';
 import Cheer from './Cheer.js'
 import '../scss/MyGroup.scss';
+import Report from './Report.js';
 
 class Carousel extends React.Component{
   constructor(props){
@@ -67,6 +68,7 @@ class Carousel extends React.Component{
             </MDBCardText>
             <div>
               <Cheer uid={this.props.mapPeopleWithNumber[this.props.rank]} intervalNum = {this.props.intervalNum} groupName = {this.props.groupName}/>
+              <Report uid={this.props.mapPeopleWithNumber[this.props.rank]}/>
             </div>
           </MDBCardBody>
         </MDBCard>

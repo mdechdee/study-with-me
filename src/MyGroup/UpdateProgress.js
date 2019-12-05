@@ -26,6 +26,7 @@ class UpdateProgress extends React.Component{
 	}
 	handleClose(){
 		this.setState({ show: false, redirect: true});
+		window.location.reload(false);
 	}
 	handleShow(){
 		this.setState({show : true});
