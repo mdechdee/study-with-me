@@ -2,7 +2,7 @@ export const storeStickers = [
   {
     id: 1,
     title: "smiley face",
-    img: "img/product-1.png",
+    img: "product-1.png",
     price: 50,
     company: "smiley face",
     info:
@@ -15,7 +15,7 @@ export const storeStickers = [
   {
     id: 2,
     title: "sunney face",
-    img: "img/product-2.png",
+    img: "product-2.png",
     price: 50,
     company: "kakao talk",
     info:
@@ -28,7 +28,7 @@ export const storeStickers = [
   {
     id: 3,
     title: "hexagoney face",
-    img: "img/product-3.png",
+    img: "product-3.png",
     price: 50,
     company: "FamilyMart",
     info:
@@ -41,7 +41,7 @@ export const storeStickers = [
   {
     id: 4,
     title: "cloudey face",
-    img: "img/product-4.png",
+    img: "product-4.png",
     price: 50,
     company: "baskin robbins",
     info:
@@ -57,7 +57,7 @@ export const storeStickers = [
 export const detailSticker = {
     id: 1,
     title: "smiley face",
-    img: "img/product-1.png",
+    img: "product-1.png",
     price: 50,
     company: "Starbucks",
     info:

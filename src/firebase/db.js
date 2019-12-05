@@ -7,7 +7,7 @@ export const doCreateUser = (uid, username, email, date) =>
     email,
     point: 20,
     stickerOne: false,
-    stickerTrue: false,
+    stickerTwo: false,
     stickerThree: false,
     stickerFour: false,
     date,
