@@ -36,7 +36,7 @@ class StickerProvider extends Component {
 
 
   		} else {
-    		// No user signs in.
+    		// No user is signed in.
   		}
 		});
 
@@ -166,6 +166,6 @@ class StickerProvider extends Component {
 	}
 }
 
-const StickerConsumer = StickerContext.Sticker;
+const StickerConsumer = StickerContext.Consumer;
 
 export {StickerProvider, StickerConsumer};
