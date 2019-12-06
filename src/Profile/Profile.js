@@ -1,15 +1,17 @@
 import React from 'react';
 import AuthContext from '../authentication/AuthContext'
-import ProfileImage from './ProfileImage'
-import ShowInformation from './ShowInformation'
+import EditProfile from './EditProfile.js'
+import ProfileImage from './ProfileImage.js'
+import ShowInformation from './ShowInformation.js'
 import '../scss/Profile.scss'
 import { Scrollbars } from 'react-custom-scrollbars';
+import { db, storage} from '../firebase/firebase.js';
 
 class Profile extends React.Component {
 	render(){
 		return(
 			<React.Fragment>
-				<div className="prof-title">Edit Profile</div>
+				<div className="prof-title">Profile</div>
 				<Scrollbars hideTracksWhenNotNeeded={true}
 						className="scroll"
 						renderView={props => <div {...props} className="scroll-content"/>}>
@@ -19,7 +21,8 @@ class Profile extends React.Component {
 								return(
 									<React.Fragment>
 										<ProfileImage uid={auth.uid} />
-										<ShowInformation uid={auth.uid}/>
+										<ShowInformation uid={auth.uid} email = {auth.email}/>
+										<EditProfile uid={auth.uid}/>
 									</React.Fragment>
 								);
 							}

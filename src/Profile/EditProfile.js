@@ -3,15 +3,14 @@
 import React from 'react';
 import {Container, Modal, Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ProgressImage from './ProgressImage.js'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
-import ProgressDescription from './ProgressDescription.js'
 import { Scrollbars } from 'react-custom-scrollbars';
 import '../scss/UpdateProgress.scss'
 import TimerContext from '../TimerContext.js';
-import MyGroup from './MyGroup.js';
+import EditProfileImage from './EditProfileImage.js';
+import EditProfileInfo from './EditProfileInfo.js';
 
-class UpdateProgress extends React.Component{
+class EditProfile extends React.Component{
 	constructor(props){
 		super(props);
 		this.handleShow = this.handleShow.bind(this);
@@ -36,21 +35,21 @@ class UpdateProgress extends React.Component{
 				<Button variant = "warning"
 						onClick = {this.handleShow}
 						className="upload-button"
-				> Update Progress </Button>
+				> Edit </Button>
 
 				<Modal size="sm" show={this.state.show} onHide={this.handleClose}>
 			          <Modal.Header>
 			            <Modal.Title>
-			              <div sm={10} className="update-title"> Update Progress {this.props.popup_id} </div>
+			              <div sm={10} className="update-title"> Edit Profile {this.props.popup_id} </div>
 			              <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleClose}/>
 			            </Modal.Title>
 			          </Modal.Header>
 					<Modal.Body>
-						<ProgressImage
+						<EditProfileImage
 							uid={this.props.uid}
 							intervalNum={this.props.intervalNum}
 							groupName = {this.props.groupName}/>
-						<ProgressDescription
+						<EditProfileInfo
 							uid = {this.props.uid}
 							intervalNum = {this.props.intervalNum}
 							groupName = {this.props.groupName}
@@ -63,4 +62,4 @@ class UpdateProgress extends React.Component{
 }
 
 
-export default UpdateProgress;
+export default EditProfile;

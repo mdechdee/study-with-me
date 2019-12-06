@@ -1,7 +1,8 @@
 //https://codesandbox.io/s/iconbutton-hover-focus-cnexr?fontsize=14
 //https://material-ui.com/customization/components/#pseudo-classes
 import React from 'react';
-import {Button, OverlayTrigger, Popover} from 'react-bootstrap'
+import {Button, OverlayTrigger, Popover, Container,Row, Col} from 'react-bootstrap'
+import { Scrollbars } from 'react-custom-scrollbars';
 import {db} from '../firebase/firebase.js';
 import IconButton from "@material-ui/core/IconButton";
 import Smile from "@material-ui/icons/SentimentSatisfiedAlt";
@@ -9,7 +10,7 @@ import LargeSmile from "@material-ui/icons/InsertEmoticon";
 import Like from "@material-ui/icons/ThumbUpAlt";
 import Love from "@material-ui/icons/Favorite";
 import More from "@material-ui/icons/MoreHoriz"
-
+import '../scss/MyGroup.scss'
 
 class Cheer extends React.Component{
 	constructor(props){
@@ -69,13 +70,60 @@ class Cheer extends React.Component{
 		})
 	}
 
+	showMoreCheers(){
+		var _moreCheers = []
+		let a = 20;
+		for(let i=1;i <= a;i+=2)
+		{
+			if(i+1 <= a){
+			_moreCheers.push(
+					<Row className="my-1">
+						<Col className="px-0">
+							<img
+							style = {{ objectFit: 'cover'}}
+							className="m-auto"
+							src="https://via.placeholder.com/50"
+							/>
+						</Col>
+						<Col className="px-0">
+							<img
+							style = {{ objectFit: 'cover'}}
+							className="m-auto"
+							src="https://via.placeholder.com/50"
+							/>
+						</Col>
+					</Row>
+				)
+			}
+			else {
+			_moreCheers.push(
+				<Row className="my-1">
+						<Col className="px-0">
+							<img
+							style = {{ objectFit: 'cover'}}
+							className="m-auto"
+							src="https://via.placeholder.com/50"
+							/>
+						</Col>
+					</Row>
+				)
+			}
+		}
+		return(_moreCheers)
+	}
+
 	render(){
 		var popover =
-			<Popover id="popover-basic" >
-			<Popover.Title as="h3">Cheers</Popover.Title>
-				<Popover.Content>
-					"And here's some" <strong> "amazing" </strong> "content. It's very engaging.
-					right?"
+			<Popover id="popover-basic" className = "more-cheers-popover">
+			<Popover.Title as="h3">Special Cheers!</Popover.Title>
+				<Popover.Content className = "more-cheers-content">
+					<Scrollbars hideTracksWhenNotNeeded={true}
+							className="scroll"
+							renderView={props => <div {...props} className="scroll-content"/>}>
+						<Container>
+							{this.showMoreCheers()}
+						</Container>
+					</Scrollbars>
 				</Popover.Content>
 			</Popover>
 

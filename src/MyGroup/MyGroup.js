@@ -27,6 +27,7 @@ class MyGroup extends React.Component {
 			isDone:false,
 			showNoti:false,
 			clearGroup: false,
+			firstPassed: false,
 		};
 		this.handleIntervalChange = this.handleIntervalChange.bind(this);
 		this.handleCloseNoti = this.handleCloseNoti.bind(this);
@@ -59,7 +60,7 @@ class MyGroup extends React.Component {
 	showMemberProgress(){
 		if(this.state.isGroupLoaded && !this.state.clearGroup)
 		{
-			return(<MemberProgress cheererUid={this.state.uid} groupInfo={this.state} key={this.props.timer.progressUpdateFlag}/>)
+			return(<MemberProgress cheererUid={this.props.timer.uid} groupInfo={this.state} key={this.props.timer.progressUpdateFlag}/>)
 		}
 		else {
 			return(<React.Fragment/>)
@@ -89,10 +90,15 @@ class MyGroup extends React.Component {
 
 	}
 	checkIntervalChange(){
-		if(this.state.intervalNum !== this.props.timer.intervalNum){
-			this.setState({intervalNum: this.props.timer.intervalNum},()=>{
-				this.handleIntervalChange();
-			})
+		if(this.state.firstPassed){
+			if(this.state.intervalNum !== this.props.timer.intervalNum){
+				this.setState({intervalNum: this.props.timer.intervalNum},()=>{
+					this.handleIntervalChange();
+				})
+			}
+		}
+		else{
+			this.setState({firstPassed: true})
 		}
 	}
 	checkEndTime(){
@@ -115,7 +121,9 @@ class MyGroup extends React.Component {
 
 	componentDidMount(){
 		console.log("MOUNT")
-		this.setState({intervalNum: this.props.timer.intervalNum})
+		this.setState({intervalNum: this.props.timer.intervalNum}, () =>{
+			this.checkIntervalChange()
+		})
 		this.setState({groupName: this.props.timer.groupName})
 		this.setState({uid: this.props.timer.uid})
 		this.collectPeople()

@@ -67,6 +67,10 @@ const withTimer = (Component) =>
 				_stopTime += this.state.intervalTime
 				_intervalNum += 1
 			}
+			while(_startTime >= _stopTime)
+			{
+				_startTime -= this.state.intervalTime
+			}
 			this.setState({
 		        startTime: _startTime,
 	        	stopTime: _stopTime,

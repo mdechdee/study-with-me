@@ -56,7 +56,7 @@ class ProgressDescription extends React.Component{
 				  	<Form.Group controlId="form-progress-next">
 					    <Form.Label className="form-font">My next goal</Form.Label>
 					    <Form.Control className="form-font" onChange={this.goal_description_change}/>
-					 	</Form.Group>
+					</Form.Group>
 
 					<Button variant="success"
 							className="submit-button"

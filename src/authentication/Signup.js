@@ -27,9 +27,9 @@ class Signup extends React.Component {
             name: this.state.username,
             group: "",
             point: 0,
+            numberReport: 0,
             groupJoined: 0,
             groupCreated: 0,
-            sticker: '',
             tasks: '',
             cheer: ''
           })
