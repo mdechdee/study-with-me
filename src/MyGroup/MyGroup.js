@@ -59,7 +59,7 @@ class MyGroup extends React.Component {
 	showMemberProgress(){
 		if(this.state.isGroupLoaded && !this.state.clearGroup)
 		{
-			return(<MemberProgress groupInfo={this.state} key={this.props.timer.progressUpdateFlag}/>)
+			return(<MemberProgress groupInfo={this.state} key={this.props.timer.progressUpdateFlag} uid={this.props.timer.uid}/>)
 		}
 		else {
 			return(<React.Fragment/>)
