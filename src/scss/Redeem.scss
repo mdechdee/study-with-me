@@ -9,6 +9,10 @@ These are for Redeem.js
   margin: 10px 10px;
 }
 
+.card {
+  transition: all 0.2s ease-out;
+}
+
 .redeem-title{
   border-radius: 10px;
   height: 50px; /*requires explicit height*/

@@ -27,12 +27,14 @@ import 'react-toastify/dist/ReactToastify.css';
 //import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
   faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,
-  faChevronCircleRight, faComment, faStar, faTimesCircle, faBell, faCircle
+  faChevronCircleRight, faComment, faStar, faTimesCircle, faBell, faCircle,
+  faCheckCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,
-  faChevronCircleRight, faComment, faStar, faTimesCircle, faBell, faCircle
+  faChevronCircleRight, faComment, faStar, faTimesCircle, faBell, faCircle,
+  faCheckCircle
 );
 
 class App extends React.Component{

@@ -26,7 +26,7 @@ class Signup extends React.Component {
           db.ref(`users/${authUser.user.uid}`).set({
             name: this.state.username,
             group: "",
-            point: 0,
+            point: 50,
             numberReport: 0,
             groupJoined: 0,
             groupCreated: 0,
