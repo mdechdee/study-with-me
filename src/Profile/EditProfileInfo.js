@@ -47,15 +47,15 @@ class EditProfileInfo extends React.Component {
 						<div>
 							<Row>
 								<Form.Label column sm={2} className="form-font">Name</Form.Label>
-									<Col sm={9}>
+								<Col sm={9}>
 						    		<Form.Control className="form-font" type="name" placeholder={this.state.name||"Name"} onChange={this.handleChange}/>
 							    </Col>
-					    </Row>
+					    	</Row>
 							<div className="form-font name text-muted">
 									This name is displayed in public.
 							</div>
-				    </div>
-			  	</Form.Group>
+				    	</div>
+			  		</Form.Group>
 
 				  	<Button variant="success" type="submit" className="save-button" onClick={this.handleUpdate}>
 				    	Save changes

@@ -18,18 +18,26 @@ class Report extends React.Component{
 		this.handleChange = this.handleChange.bind(this)
 		this.handleShow = this.handleShow.bind(this)
 		this.handleClose = this.handleClose.bind(this)
-		//this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
 	fetchReportAmount(){
 		var Ref = db.ref(`users/${this.props.uid}`)
 		Ref.once('value', (snapshot) =>{
 			var val = snapshot.val()
-			this.setState({
-				numberReport: val.numberReport
-			}, () => {
-				this.setState({isLoaded: true})
-			})
+
+			if(val.numberReport === undefined){
+				this.setState({numberReport: 0},() => {
+					this.setState({isLoaded: true})
+				})
+			}
+			else{
+				this.setState({
+					numberReport: val.numberReport
+				}, () => {
+					this.setState({isLoaded: true})
+				})
+			}
 		})
 	}
 
@@ -41,25 +49,12 @@ class Report extends React.Component{
 		this.setState({showModal:false})
 	}
 
-	//handleSubmit(){
-	//	this.setState({numberReport: this.state.numberReport, showModal: false}, () => {
-	//		var updates = {};
-	//		db.ref(`users/`).child(`${this.props.uid}`).once('value', (snapshot) =>{
-	//			updates = snapshot.val()
-	//			console.log(updates)
-	//			updates['numberReport']=this.state.numberReport+1
-	//			this.setState({numberReport: this.state.numberReport+``})
-	//			db.ref(`users/`).child(`${this.props.uid}`).set(updates)
-	//			console.log(updates)
-	//		})
-	//	})
-	//}
-	//<Button variant="success"
-	//						className="submit-button"
-	//						type="submit"
-	//						onClick = {this.handleSubmit}
-	//					> Submit </Button>
-
+	handleSubmit(){
+		this.setState({numberReport: this.state.numberReport+1, showModal: false}, () =>{
+			db.ref(`/users/${this.props.uid}`).update({numberReport: this.state.numberReport})
+		})
+	}
+	
 	handleChange(e){
 		this.setState({message: e.target.value})
 	}
@@ -86,7 +81,11 @@ class Report extends React.Component{
 								<Form.Control className="form-font" type="name" onChange={this.handleChange}/>
 							</Form.Group>
 						</Form>
-						
+						<Button variant="success"
+							className="submit-button"
+							type="submit"
+							onClick = {this.handleSubmit}
+						> Submit </Button>
 					</Modal.Body>
 				</Modal>
 		    </div>

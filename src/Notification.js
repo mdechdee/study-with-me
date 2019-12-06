@@ -67,7 +67,6 @@ class Notification extends React.Component {
 		let cheerList=[]
 		db.ref("users/"+this.props.uid+"/cheer").on('value',(snapshot)=>{
 			var cheer = snapshot.val()
-			console.log(cheer)
 			if((cheer!==null) &&(cheer!="")){
 			Object.keys(cheer).forEach((item)=>{
 				cheerList.push(
@@ -97,7 +96,6 @@ class Notification extends React.Component {
 	MyNotification(){
 		db.ref("users/"+this.props.uid+"/cheer").once('value',(snapshot)=>{
 			let check = snapshot.val()
-			console.log(check)
 		})
 		var taskRef = db.ref("users/"+this.props.uid+"/task")
 		var updateTaskStatus = false;
