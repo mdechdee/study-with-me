@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {storage} from '../firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
-import {Avatar} from 'react-avatar-edit';
+import Avatar from 'react-avatar-edit';
 import '../scss/UpdateProgress.scss';
 
 class EditProfileImage extends Component {
@@ -28,7 +28,7 @@ class EditProfileImage extends Component {
   onClose() {
     this.setState({preview: null})
   }
-  
+
   onCrop(preview) {
     this.setState({preview})
   }
