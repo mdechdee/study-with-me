@@ -4,7 +4,7 @@ import {Form} from 'react-bootstrap';
 import {Container, Button, Col, Row} from 'react-bootstrap';
 import '../scss/Profile.scss';
 
-class ShowInformation extends React.Component {
+class EditProfileInfo extends React.Component {
 	constructor(props) {
 	    super(props);
 	    this.handleChange=this.handleChange.bind(this);
@@ -42,11 +42,28 @@ class ShowInformation extends React.Component {
 	render(){
 		return(
 			<Container className="info">
-				Name : {this.state.name} <br/>
-				Email : {this.state.email} <br/>
+				<Form>
+					<Form.Group controlId="name">
+						<div>
+							<Row>
+								<Form.Label column sm={2} className="form-font">Name</Form.Label>
+									<Col sm={9}>
+						    		<Form.Control className="form-font" type="name" placeholder={this.state.name||"Name"} onChange={this.handleChange}/>
+							    </Col>
+					    </Row>
+							<div className="form-font name text-muted">
+									This name is displayed in public.
+							</div>
+				    </div>
+			  	</Form.Group>
+
+				  	<Button variant="success" type="submit" className="save-button" onClick={this.handleUpdate}>
+				    	Save changes
+				  	</Button>
+				</Form>
 			</Container>
 		);
 	}
 }
 
-export default ShowInformation;
+export default EditProfileInfo;
