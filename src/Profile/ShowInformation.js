@@ -11,8 +11,8 @@ class ShowInformation extends React.Component {
 	      	url: "",
 			name: "",
 			email: "",
-			numberGroupJoined: 0,
-			numberGroupCreated: 0,
+			groupJoined: 0,
+			groupCreated: 0,
 			totalCheer: null,
 	    };
 
@@ -24,19 +24,17 @@ class ShowInformation extends React.Component {
 	    	this.setState({
 	      		name: snapshot.val().name,
 	      		email: this.props.email,
-	      		numberGroupJoined: snapshot.val().numberGroupJoined,
-	      		numberGroupCreated: snapshot.val().numberGroupCreated,
+	      		groupJoined: snapshot.val().groupJoined,
+	      		groupCreated: snapshot.val().groupCreated,
 	    	});
-	    	console.log(snapshot.val())
-	    	console.log(snapshot.val().numberGroupCreated)
-	    	if(snapshot.val().numberGroupCreated === undefined){
-				this.setState({numberGroupCreated: 0}, () =>{
-					db.ref(`users/${this.props.uid}`).update({numberGroupCreated:0})
+	    	if(snapshot.val().groupCreated === undefined){
+				this.setState({groupCreated: 0}, () =>{
+					db.ref(`users/${this.props.uid}`).update({groupCreated:0})
 				})
 			}
-			if(snapshot.val().numberGroupJoined === undefined){
-				this.setState({numberGroupJoined: 1}, ()=>{
-					db.ref(`users/${this.props.uid}`).update({numberGroupJoined:1})
+			if(snapshot.val().groupJoined === undefined){
+				this.setState({groupJoined: 1}, ()=>{
+					db.ref(`users/${this.props.uid}`).update({groupJoined:1})
 				})	
 			}
 	  	});
@@ -69,20 +67,20 @@ class ShowInformation extends React.Component {
 		Info.push(
 			<Row>
 				<Col>
-					Number of group you have joined: 
+					Group joined: 
 				</Col>
 				<Col>
-					{this.state.numberGroupJoined} 
+					{this.state.groupJoined} 
 				</Col>
 			</Row>
 			)
 		Info.push(
 			<Row>
 				<Col>
-					Number of group you have created: {this.state.numberGroupCreated} 
+					Group created:
 				</Col>
 				<Col>
-					{this.state.numberGroupCreated} 
+					{this.state.groupCreated} 
 				</Col>
 			</Row>
 			)

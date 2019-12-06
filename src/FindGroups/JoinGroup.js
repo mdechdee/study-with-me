@@ -19,8 +19,28 @@ class JoinGroup extends React.Component {
 
   handleChange(event) {
     this.setState({goal: event.target.value});
+
   }
 
+  updateUser(){
+    var userRef =  db.ref('users/' + this.props.uid);
+    userRef.update({
+      group: this.props.name
+    })
+
+    userRef.once('value').then(
+      (snapshot) =>{
+        var val = snapshot.val();
+        var groupJoined = 1
+        if(val.groupJoined !== undefined){
+          groupJoined = val.groupJoined+1
+        }
+        userRef.update({
+          groupJoined: groupJoined
+        })
+      }
+    )
+  }
   handleSubmit(event) {
     if(this.state.goal==="") {
       this.fillAll();
@@ -33,12 +53,12 @@ class JoinGroup extends React.Component {
       progress: '',
       numberCheer: '',
     });
-    var userRef =  db.ref('users/' + this.props.uid);
-    userRef.update({
-      group: this.props.name
-    })
+    
     alert('Goal: ' + this.state.goal);
     //event.preventDefault();
+
+    this.updateUser()
+
   }
 
   fillAll() {
