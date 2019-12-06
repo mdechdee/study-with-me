@@ -37,8 +37,6 @@ class ShowInformation extends React.Component {
 	 }
 	handleChange(e){
 		this.setState({name:e.target.value});
-		console.log("state name = "+ this.state.name);
-		console.log("**********");
 	}
 	handleUpdate(e){
 		e.preventDefault();
