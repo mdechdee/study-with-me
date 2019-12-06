@@ -50,7 +50,7 @@ class FindGroups extends React.Component {
 
 		return(
 			<React.Fragment>
-					<div className="find-title">Groups in SWM</div>
+					<div className="find-title">Find your group!</div>
 
 						<Container className="find-title-wrap">
 							<Row className="row-line">
