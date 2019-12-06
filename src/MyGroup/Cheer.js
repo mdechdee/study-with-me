@@ -17,7 +17,8 @@ class Cheer extends React.Component{
 		this.state = {
 			disable: false,
 			numberCheer: '',
-			isLoaded: true
+			isLoaded: true,
+			cheererUid:''
 		}
 		this.handleCheer = this.handleCheer.bind(this);
 	}
@@ -38,6 +39,7 @@ class Cheer extends React.Component{
 	handleCheer(cheerType){
 		var Ref = db.ref(`groups/${this.props.groupName}/people`)
 		let _numberCheer = this.state.numberCheer
+		let _cheererUid = this.props.cheererUid
 		if(_numberCheer === ''){
 			_numberCheer = {}
 			_numberCheer[cheerType] = 1
@@ -50,7 +52,13 @@ class Cheer extends React.Component{
 		}
 		this.setState({numberCheer: _numberCheer})
 		Ref.child(`${this.props.uid}`).update({numberCheer: _numberCheer});
-
+		db.ref(`users/${this.props.uid}/cheer/${this.props.cheererUid}`).set(cheerType)
+		db.ref(`users/${this.props.cheererUid}/task/voteTask/number`).once('value',(snapshot)=>{
+				var cheerTaskNum = snapshot.val()
+				console.log(cheerTaskNum)
+				cheerTaskNum = cheerTaskNum+1
+				db.ref(`users/${this.props.cheererUid}/task/voteTask/number`).set(cheerTaskNum)
+		})
 	}
 
 	render(){
