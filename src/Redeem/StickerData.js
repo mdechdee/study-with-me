@@ -2,7 +2,7 @@ export const storeStickers = [
   {
     id: 1,
     title: "great job",
-    img: "sticker-1.png",
+    img: "greatJob.png",
     price: 50,
     company: "cute neko",
     info:
@@ -15,7 +15,7 @@ export const storeStickers = [
   {
     id: 2,
     title: "fighting",
-    img: "sticker-2.png",
+    img: "fighting.png",
     price: 50,
     company: "cute neko",
     info:
@@ -28,7 +28,7 @@ export const storeStickers = [
   {
     id: 3,
     title: "awesome",
-    img: "sticker-3.png",
+    img: "awesome.png",
     price: 50,
     company: "cute neko",
     info:
@@ -41,7 +41,7 @@ export const storeStickers = [
   {
     id: 4,
     title: "go get'em",
-    img: "sticker-4.png",
+    img: "goGetEm.png",
     price: 50,
     company: "cute neko",
     info:
@@ -57,7 +57,7 @@ export const storeStickers = [
 export const detailSticker = {
     id: 1,
     title: "smiley face",
-    img: "sticker-1.png",
+    img: "smileyFace.png",
     price: 50,
     company: "cute neko",
     info:

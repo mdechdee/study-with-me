@@ -19,12 +19,15 @@ class Cheer extends React.Component{
 			disable: false,
 			numberCheer: '',
 			isLoaded: true,
-			cheererUid:''
+			isStickerLoaded: false,
+			cheererUid:'',
+			sticker:{},
 		}
 		this.handleCheer = this.handleCheer.bind(this);
 	}
 	componentDidMount(){
 		this.fetchCheerAmount()
+		this.fetchStickerAmount()
 	}
 	fetchCheerAmount(){
 		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
@@ -37,7 +40,19 @@ class Cheer extends React.Component{
 			})
 		})
 	}
+	fetchStickerAmount(){
+		var Ref = db.ref(`users/${this.props.cheererUid}/sticker`)
+		Ref.once('value', (snapshot) =>{
+			var val = snapshot.val()
+			this.setState({
+				sticker: val
+			}, () => {
+				this.setState({isStickerLoaded: true})
+			})
+		})
+	}
 	handleCheer(cheerType){
+		console.log('HANDLE')
 		var Ref = db.ref(`groups/${this.props.groupName}/people`)
 		let _numberCheer = this.state.numberCheer
 		let _cheererUid = this.props.cheererUid
@@ -83,25 +98,39 @@ class Cheer extends React.Component{
 	}
 
 	showMoreCheers(){
+		if(!this.state.isStickerLoaded)
+			return(<h3> Loading </h3>);
+		if(this.state.sticker === '')
+			return(<h3> You have no special cheer yet, Do some tasks and redeem it :) </h3>);
 		var _moreCheers = []
-		let a = 20;
-		for(let i=1;i <= a;i+=2)
+		var _stickers = this.state.sticker
+		var _stickerList = []
+		var totalSticker = 0
+		console.log(_stickers)
+		Object.keys(_stickers).forEach(function(sticker) {
+			totalSticker += _stickers[sticker]
+			for(var m = 0; m < _stickers[sticker] ; m++)
+				_stickerList.push(sticker)
+		});
+		for(let i=0;i < totalSticker;i+=2)
 		{
-			if(i+1 <= a){
+			if(i+1 <= totalSticker){
 			_moreCheers.push(
 					<Row className="my-1">
 						<Col className="px-0">
 							<img
-							style = {{ objectFit: 'cover'}}
-							className="m-auto"
-							src="https://via.placeholder.com/50"
+								style = {{ objectFit: 'cover', height:'40px'}}
+								className="m-auto"
+								src={_stickerList[i]+'.png'}
+								onClick={()=>{this.handleCheer(_stickerList[i])}}
 							/>
 						</Col>
 						<Col className="px-0">
 							<img
-							style = {{ objectFit: 'cover'}}
-							className="m-auto"
-							src="https://via.placeholder.com/50"
+								style = {{ objectFit: 'cover', height:'40px'}}
+								className="m-auto"
+								src={_stickerList[i+1]+'.png'}
+								onClick={()=>{this.handleCheer(_stickerList[i+1])}}
 							/>
 						</Col>
 					</Row>
@@ -112,9 +141,10 @@ class Cheer extends React.Component{
 				<Row className="my-1">
 						<Col className="px-0">
 							<img
-							style = {{ objectFit: 'cover'}}
+							style = {{ objectFit: 'cover', height:'40px'}}
 							className="m-auto"
-							src="https://via.placeholder.com/50"
+							src={_stickerList[i]+'.png'}
+							onClick={()=>{this.handleCheer(_stickerList[i])}}
 							/>
 						</Col>
 					</Row>
@@ -124,8 +154,8 @@ class Cheer extends React.Component{
 		return(_moreCheers)
 	}
 
-	render(){
-		var popover =
+	popover(){
+		var _popover =
 			<Popover id="popover-basic" className = "more-cheers-popover">
 			<Popover.Title as="h3">Special Cheers!</Popover.Title>
 				<Popover.Content className = "more-cheers-content">
@@ -138,7 +168,10 @@ class Cheer extends React.Component{
 					</Scrollbars>
 				</Popover.Content>
 			</Popover>
+			return _popover
+	}
 
+	render(){
 		return(
 		    <div>
 			      <IconButton aria-label="Delete" onClick={() => this.handleCheer('LargeSmile')}>
@@ -150,7 +183,7 @@ class Cheer extends React.Component{
 			      <IconButton aria-label="Delete" onClick={() => this.handleCheer('Like')}>
 			        <Like />
 			      </IconButton>
-						<OverlayTrigger trigger="click" placement="top" overlay={popover}>
+						<OverlayTrigger trigger="click" placement="top" overlay={this.popover()}>
 							<IconButton aria-label="Delete">
 								<More />
 							</IconButton>

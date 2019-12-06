@@ -31,7 +31,8 @@ class Signup extends React.Component {
             groupJoined: 0,
             groupCreated: 0,
             tasks: '',
-            cheer: ''
+            cheer: '',
+            sticker: ''
           })
           .then(() => {
             this.setState(() => ({ ...INITIAL_VALUE }));
