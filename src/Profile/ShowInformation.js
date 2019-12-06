@@ -1,20 +1,18 @@
 import React from 'react';
 import {db} from '../firebase/firebase.js';
-import {Form} from 'react-bootstrap';
-import {Container, Button, Col, Row} from 'react-bootstrap';
+import {Container, Button, Col, Row, Form} from 'react-bootstrap';
 import '../scss/Profile.scss';
 
 class ShowInformation extends React.Component {
 	constructor(props) {
 	    super(props);
 	    this.handleChange=this.handleChange.bind(this);
-		this.handleUpdate = this.handleUpdate.bind(this);
 		this.state = {
 	      	url: "",
 			name: "",
 			email: "",
-			numberGroupJoined: 0,
-			numberGroupCreated: 0,
+			groupJoined: 0,
+			groupCreated: 0,
 			totalCheer: null,
 	    };
 
@@ -26,24 +24,74 @@ class ShowInformation extends React.Component {
 	    	this.setState({
 	      		name: snapshot.val().name,
 	      		email: this.props.email,
-	      		//numberGroupJoined: snapshot.val().n,
-	      		//numberGroupCreated: ,
+	      		groupJoined: snapshot.val().groupJoined,
+	      		groupCreated: snapshot.val().groupCreated,
 	    	});
+	    	if(snapshot.val().groupCreated === undefined){
+				this.setState({groupCreated: 0}, () =>{
+					db.ref(`users/${this.props.uid}`).update({groupCreated:0})
+				})
+			}
+			if(snapshot.val().groupJoined === undefined){
+				this.setState({groupJoined: 1}, ()=>{
+					db.ref(`users/${this.props.uid}`).update({groupJoined:1})
+				})	
+			}
 	  	});
 	}
 	handleChange(e){
 		this.setState({name:e.target.value});
 	}
-	handleUpdate(e){
-		e.preventDefault();
-		var nameRef = db.ref(`users/`);
-		nameRef.child(`${this.props.uid}`).update({name: this.state.name})
+	showInfo(){
+		var Info = []
+		Info.push(
+			<Row>
+				<Col>
+					Name:
+				</Col>
+				<Col>
+					{this.state.name} 
+				</Col>
+			</Row>
+			)
+		Info.push(
+			<Row>
+				<Col>
+					Email:
+				</Col>
+				<Col>
+					{this.state.email} 
+				</Col>
+			</Row>
+			)
+		Info.push(
+			<Row>
+				<Col>
+					Group joined: 
+				</Col>
+				<Col>
+					{this.state.groupJoined} 
+				</Col>
+			</Row>
+			)
+		Info.push(
+			<Row>
+				<Col>
+					Group created:
+				</Col>
+				<Col>
+					{this.state.groupCreated} 
+				</Col>
+			</Row>
+			)
+		
+		return(Info)
 	}
+
 	render(){
 		return(
 			<Container className="info">
-				Name : {this.state.name} <br/>
-				Email : {this.state.email} <br/>
+				{this.showInfo()}
 			</Container>
 		);
 	}

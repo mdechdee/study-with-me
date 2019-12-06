@@ -20,6 +20,7 @@ class CreateGroupDescription extends React.Component{
 		this.handleClick = this.handleClick.bind(this)
 		this.fillAll = this.fillAll.bind(this)
 		this.fillTime = this.fillTime.bind(this)
+		this.updateUser = this.updateUser.bind(this)
 		this.state = {
 			group_name:"",
 			group_start_date:"",
@@ -77,10 +78,23 @@ class CreateGroupDescription extends React.Component{
 		return(t)
 	}
 
+	updateUser(){
+		var userRef = db.ref(`users/${this.props.uid}`)
+		userRef.once('value').then(( snapshot) => {
+			var val = snapshot.val();
+			var groupCreated = 1
+			if(val.groupCreated !== undefined){
+				groupCreated = val.groupCreated+1
+			}
+			userRef.update({groupCreated: groupCreated})
+		})
+	}
+
 	handleClick() {
 		if(this.isEmpty()) { this.fillAll() }
 		else if(this.isCorrectFormat()) {
 			this.writeToDatabase();
+			this.updateUser();
 			this.props.handleClose();
 		}
 		else { this.fillTime()}
