@@ -99,8 +99,8 @@ class Notification extends React.Component {
 					<div>
 						<Row>
 							<Col>
-								{cheer[item].cheererName} gave you a {cheer[item].cheerType}
-								&nbsp;&nbsp;&nbsp;&nbsp;{this.CheerPic(cheer[item].cheerType)}
+								{cheer[item].cheererName} gave you a <span style={{color:'red'}}>{cheer[item].cheerType}</span>
+							&nbsp;&nbsp;&nbsp;&nbsp;<span style={{color:'red'}}>{this.CheerPic(cheer[item].cheerType)}</span>
 							</Col>
 						</Row>
 					</div>
@@ -155,7 +155,7 @@ class Notification extends React.Component {
 
 					<Row>
 						<Col xs sm={8}>
-							<p>Task:<br/>Update your progress<br/>Progress: {updateNum}/1</p>
+							<p><span style={{color:'red'}}>Task:</span><br/>Update your progress<br/>Progress: {updateNum}/1</p>
 						</Col>
 						<Col xs sm={4}>
 							{this.UpdateReward(updateNum)}
@@ -163,7 +163,7 @@ class Notification extends React.Component {
 					</Row>
 					<Row>
 						<Col xs sm={8}>
-							<p>Task: Cheer others<br/>Progress: {voteNum}/3</p>
+							<p><span style={{color:'red'}}>Task:</span> Cheer others<br/>Progress: {voteNum}/3</p>
 						</Col>
 						<Col xs sm={4}>
 							{this.CheerReward(voteNum)}
@@ -175,11 +175,19 @@ class Notification extends React.Component {
 			else{
 			//	this.setState({remainedTask:1})
 				return(
-					<div align="left" style={{
+					<div style={{
       backgroundColor: 'white'
     }}>
-		<p>Task: Update your progress<br/>Progress: {updateNum}/1{this.UpdateReward(updateNum)}</p>
-			</div>
+
+					<Row>
+						<Col xs sm={8}>
+							<p><span style={{color:'red'}}>Task:</span><br/>Update your progress<br/>Progress: {updateNum}/1</p>
+						</Col>
+						<Col xs sm={4}>
+							{this.UpdateReward(updateNum)}
+						</Col>
+					</Row>
+				</div>
 		)
 			}
 		}
@@ -187,20 +195,28 @@ class Notification extends React.Component {
 		if(voteTaskStatus===false){
 		//	this.setState({remainedTask:1})
 			return(
-				<div align="left" style={{
-			backgroundColor: 'white'
-			}}>
-			<p>Task: Cheer others<br/>Progress: {voteNum}/3{this.CheerReward(voteNum)}</p>
-</div>
+				<div style={{
+		backgroundColor: 'white'
+	}}>
+				<Row>
+					<Col xs sm={8}>
+						<p><span style={{color:'red'}}>Task:</span> Cheer others<br/>Progress: {voteNum}/3</p>
+					</Col>
+					<Col xs sm={4}>
+						{this.CheerReward(voteNum)}
+					</Col>
+				</Row>
+			</div>
 		)
 		}
 		else{
 		//	this.setState({remainedTask:0})
 			return(
-				<div align="left" style={{
-			backgroundColor: 'white'
-			}}>
-
+				<div style={{
+		backgroundColor: 'white'
+	}}>
+	No remain task
+	<p></p>
 			</div>
 		)
 		}
@@ -212,18 +228,14 @@ class Notification extends React.Component {
 			let CheerNumber = snapshot.val()
 			if(CheerNumber===null){
 				CheerNumber = 0
-				console.log('blahblah')
 			}
-			console.log(CheerNumber)
 			NotificationNumber = NotificationNumber + CheerNumber
 		})
 		db.ref('users/'+this.props.uid+'/task/remainedTask').once('value',(snapshot)=>{
 			let TaskNumber = snapshot.val()
 			if(TaskNumber===null){
 				TaskNumber = 0
-				console.log('blahblah')
 			}
-			console.log(TaskNumber)
 			NotificationNumber = NotificationNumber + TaskNumber
 		})
 		return (NotificationNumber)
