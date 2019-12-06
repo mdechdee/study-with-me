@@ -27,15 +27,13 @@ class ProfileImage extends Component {
   
   render(){
     return (
-      <div className="image-upload">
-        <div className="align image">
+      <div className="profile-image">
           <img
             src={this.state.url}
-            alt="Profile"
+            alt="profile-image"
             height="200"
             width="300"
           />
-        </div>
       </div>
     );
   }

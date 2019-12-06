@@ -2,38 +2,64 @@ import React, { Component } from "react";
 import {storage} from '../firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
+import Avatar from 'react-avatar-edit';
 import '../scss/UpdateProgress.scss';
 
 class EditProfileImage extends Component {
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleUpload = this.handleUpload.bind(this)
+    this.fetchCurrentPic = this.fetchCurrentPic.bind(this)
+    this.onCrop = this.onCrop.bind(this)
+    this.onClose = this.onClose.bind(this)
+    this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this)
+
     this.state = {
       url: "",
       show: "",
       image: null,
       status:"info",
-      progress: 0
+      progress: 0,
+      preview: null,
     };
+  }
 
-  storage
-    .ref(`images/${this.props.uid}`)
-    .child("profile.jpg")
-    .getDownloadURL()
-    .then(url => {
-      this.setState({ url });
-    }).catch( error =>{
-        this.setState({url:"https://via.placeholder.com/300x200"})
+  onClose() {
+    this.setState({preview: null})
+  }
+
+  onCrop(preview) {
+    this.setState({preview})
+  }
+
+  onBeforeFileLoad(elem) {
+    if(elem.target.files[0].size > 71680){
+      alert("File is too big!");
+      elem.target.value = "";
+    };
+  }
+
+  fetchCurrentPic(){
+    storage
+      .ref(`images/${this.props.uid}`)
+      .child("profile.jpg")
+      .getDownloadURL()
+      .then(url => {
+        this.setState({ url });
+      }).catch( error =>{
+          this.setState({url:"https://via.placeholder.com/300x200"})
     });
   }
 
-  handleChange = e => {
+  handleChange(e){
     if (e.target.files[0]) {
       const image = e.target.files[0];
       this.setState(() => ({ image }));
       this.setState({status:"info"});
       this.setState({show:"0%"});
     }
-  };
+  }
 
   handleUpload = () => {
     const { image } = this.state;
@@ -68,19 +94,27 @@ class EditProfileImage extends Component {
           });
       }
     );
-  };
-  componentDidMount(){
-
   }
+
+  componentDidMount(){
+    this.fetchCurrentPic()
+  }
+
   render() {
     return (
       <div className="image-upload">
         <div className="align image">
-          <img
+          <Avatar
+            width = {390}
+            height={295}
+            onCrop={this.onCrop}
+            onClose={this.onClose}
+            onBeforeFileLoad={this.onBeforeFileLoad}
             src={this.state.url}
-            alt="Profile"
-            height="200"
-            width="300"
+          />
+          <img
+            src={this.state.preview}
+            alt="Preview"
           />
         </div>
         <div className="progress-bar">

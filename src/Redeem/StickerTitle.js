@@ -10,12 +10,12 @@ export default function StickerTitle({name, title}){
 			{(value)=>{
 				return(
           <Container>
-            <Row>
+            <Row className="row-wrap">
               <Col xs sm={3}>
                 <div className="redeem-title">Redeem</div>
 							</Col>
-              <Col xs sm={8}>
-                <div className="balance">Balance:&nbsp;
+              <Col className="balance-wrap">
+                <div className="balance-label">Balance:&nbsp;
                   <div className="balance"> {title} points</div>
                 </div>
               </Col>
