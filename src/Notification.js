@@ -33,7 +33,11 @@ class Notification extends React.Component {
 			remainedTask = remainedTask -1;
 			db.ref("users/"+this.props.uid+"/task/remainedTask").set(remainedTask)
 		})
-
+		db.ref("users/"+this.props.uid+"/point").once('value',(snapshot)=>{
+			let point = snapshot.val()
+			point = point+10
+			db.ref("users/"+this.props.uid+"/point").set(point)
+})
 	}
 
 	handleUpdateReward(){
@@ -43,6 +47,11 @@ class Notification extends React.Component {
 			remainedTask = remainedTask -1;
 			db.ref("users/"+this.props.uid+"/task/remainedTask").set(remainedTask)
 		})
+		db.ref("users/"+this.props.uid+"/point").once('value',(snapshot)=>{
+			let point = snapshot.val()
+			point = point+25
+			db.ref("users/"+this.props.uid+"/point").set(point)
+})
 	}
 
 	CheerReward(voteNum){
@@ -82,19 +91,21 @@ class Notification extends React.Component {
 		else if (cheerType==='LargeSmile') {
 			return(<LargeSmile/>)
 		}
-		else{
+		else if(cheerType==='Like'){
 			return(<Like/>)
 		}
+		else return <img style = {{ objectFit: 'cover', height:'40px'}}
+			src={cheerType+'.png'}
+		/>
 	}
 
 	CheerNotification(){
 		let cheerList=[]
-		let remainedCheer = 0
 		db.ref("users/"+this.props.uid+"/cheer").on('value',(snapshot)=>{
 			var cheer = snapshot.val()
 			if((cheer!==null) &&(cheer!="")){
 			Object.keys(cheer).forEach((item)=>{
-				remainedCheer = remainedCheer+1
+				if((cheer[item].cheerType==='Smile')||(cheer[item].cheerType==='LargeSmile')||(cheer[item].cheerType==='Like')){
 				cheerList.push(
 					<div>
 						<Row>
@@ -104,7 +115,19 @@ class Notification extends React.Component {
 							</Col>
 						</Row>
 					</div>
-				)
+				)}
+				else{
+					cheerList.push(
+						<div>
+							<Row>
+								<Col>
+									{cheer[item].cheererName} gave you a sticker
+								&nbsp;&nbsp;&nbsp;&nbsp;{this.CheerPic(cheer[item].cheerType)}
+								</Col>
+							</Row>
+						</div>
+					)
+				}
 			})
 			cheerList.push(<div><p></p><Button onClick={this.ClearCheerList}>
 				Clear your cheer list notification
