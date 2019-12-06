@@ -20,11 +20,45 @@ These are for Redeem.js
   vertical-align: bottom;
 }
 
-.balance{
-  font-family: $f3;
-  font-size: 1.2pc;
+.balance-wrap {
   text-align: right;
+  height: 100%;
   vertical-align: bottom;
+}
+
+.balance-label {
+  display: inline-flex;
+  font-family: $f3;
+  font-size: 18px;
+  color: black;
+  line-height: 48px;
+  vertical-align: bottom;
+}
+
+.balance{
+  display: inline-flex;
+  font-family: $f3;
+  font-size: 18px;
+  color: #db6c62;
+  line-height: 48px;
+  vertical-align: bottom;
+}
+
+.scroll{
+  position: relative;
+  top: 3%;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/*--------------------------------------------------
+--------------------------------------------------
+These are for Sticker.js
+--------------------------------------------------
+--------------------------------------------------*/
+.reward-wrap {
+  border: 1px solid #bbbbbb;
 }
 
 .redeem-item-wrap{
@@ -39,18 +73,37 @@ These are for Redeem.js
 .sticker-name{
   font-family: $f3;
   font-size: 1.4pc;
+  color: #black;
 }
 
 .sticker-price{
   font-family: $f2;
   font-size: 1pc;
-  color: #db6c62;
+  vertical-align: center;
 }
 
-.redeem-button{
+/*--------------------------------------------------
+--------------------------------------------------
+These are for StickerDetails.js
+--------------------------------------------------
+--------------------------------------------------*/
+.sticker-title{
   font-family: $f3;
+  font-size: 2.4pc;
+  text-align: center;
+  color: black;
+}
+
+.sticker-detail{
+  font-family: $f2;
   font-size: 1pc;
   text-align: center;
+  color: black;
+}
+
+.sticker-info{
+  @extend .sticker-detail;
+  font-size: 1.4pc !important;
 }
 
 /*--------------------------------------------------

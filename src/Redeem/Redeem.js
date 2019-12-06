@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import StickerTitle from "./StickerTitle";
 import Sticker from "./Sticker";
 import {StickerConsumer} from "../Context.js";
+import { Container } from 'react-bootstrap';
+import { Scrollbars } from 'react-custom-scrollbars';
 import '../scss/Redeem.scss';
 
 export class Redeem extends Component {
 	render() {
 		return(
-			<div>
+			<React.Fragment>
 				<div>
 					<StickerConsumer>
 						{(value)=>{
@@ -19,17 +21,20 @@ export class Redeem extends Component {
 					</StickerConsumer>
 				</div>
 
-				<div>
-					<StickerConsumer>
-						{(value)=>{
-							return value.stickers.map( sticker => {
-								return <Sticker key={sticker.id} sticker={sticker} />
-							})
-						}}
-					</StickerConsumer>
-				</div>
+				<Scrollbars hideTracksWhenNotNeeded={true}
+					className="scroll">
+						<StickerConsumer>
 
-			</div>
+								{(value)=>{
+									return value.stickers.map( sticker => {
+										return <Sticker key={sticker.id} sticker={sticker} />
+									})
+								}}
+
+						</StickerConsumer>
+				</Scrollbars>
+
+			</React.Fragment>
 		);
 	}
 }
