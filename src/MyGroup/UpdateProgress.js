@@ -18,37 +18,21 @@ class UpdateProgress extends React.Component{
 		this.handleClose = this.handleClose.bind(this);
 		this.state = {
 			show: false,
-			redirect: false,
 			//uid: props.uid,
 			//groupName: props.groupName,
 			//intervalNum: props.intervalNum
 		};
 	}
 	handleClose(){
-		this.setState({ show: false, redirect: true});
-		window.location.reload(false);
+		this.setState({show: false});
 	}
 	handleShow(){
 		this.setState({show : true});
 	}
-	renderRedirect(){
-    	if (this.state.redirect) {
-    		console.log("redirect")
-      		return(
-      			<TimerContext.Consumer>
-    				{ timer => {return(
-    					<Switch>
-    						<Redirect to='/my_group' render={(routeProps) => (<MyGroup uid = {this.props.uid} timer = {timer} {...routeProps} />)} />
-    					</Switch>	
-					)}}
-				</TimerContext.Consumer>
-      		)
-    	}
-	}
+
 	render(){
 		return(
 			<React.Fragment>
-				{this.renderRedirect()}
 				<Button variant = "warning"
 						onClick = {this.handleShow}
 						className="upload-button"
