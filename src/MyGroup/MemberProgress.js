@@ -42,7 +42,7 @@ class MemberProgress extends React.Component {
         })
         .catch(error => {
             const {pictureUrl} = this.state;
-            pictureUrl[i] = 'https://via.placeholder.com/400'
+            pictureUrl[i] = 'idle-progress.png'
             this.setState({pictureUrl,
               pictureNumLoaded: this.state.pictureNumLoaded +1}, () =>{
               this.checkPictureLoaded()
