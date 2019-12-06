@@ -12,10 +12,11 @@ class Notification extends React.Component {
 	    super(props);
 			this.handleCheerReward=this.handleCheerReward.bind(this)
 			this.handleUpdateReward=this.handleUpdateReward.bind(this)
+			this.ClearCheerList=this.ClearCheerList.bind(this)
 	    this.state = {
-	        loading: null,
-	        groups: [],
-					usergroup: "",
+	        cheererName:[],
+					cheerType:[],
+					length: 0
 	    }
 	}
 	handleCheerReward(){
@@ -38,7 +39,7 @@ class Notification extends React.Component {
 	}
 
 	CheerReward(voteNum){
-		if(voteNum>=1){
+		if(voteNum>=3){
 			return(
 				<Button variant="success" onClick={this.handleCheerReward}>Claim point</Button>
 			)
@@ -58,16 +59,55 @@ class Notification extends React.Component {
 
 	}
 
-	CheerNotification(){
+	ClearCheerList(){
+		db.ref("users/"+this.props.uid+"/cheer").set(null)
+	}
 
+	CheerNotification(){
+		let cheerList=[]
+		db.ref("users/"+this.props.uid+"/cheer").on('value',(snapshot)=>{
+			var cheer = snapshot.val()
+			console.log(cheer)
+			if((cheer!==null) &&(cheer!="")){
+			Object.keys(cheer).forEach((item)=>{
+				cheerList.push(
+					<div>
+						<Row>
+							<Col>
+								{cheer[item].cheererName} gave you a {cheer[item].cheerType}
+							</Col>
+						</Row>
+					</div>
+				)
+			})
+			cheerList.push(<Button onClick={this.ClearCheerList}>Clear your cheer list notification</Button>)
+		}
+		else cheerList.push(
+			<div>
+								<Row>
+									<Col>
+										No cheer
+	</Col>
+								</Row>
+							</div>)
+	})
+		return (cheerList)
 	}
 
 	MyNotification(){
+		db.ref("users/"+this.props.uid+"/cheer").once('value',(snapshot)=>{
+			let check = snapshot.val()
+			console.log(check)
+		})
 		var taskRef = db.ref("users/"+this.props.uid+"/task")
-		var updateTaskStatus = false
-		var updateNum = 0
-		var voteNum = 0
-		var voteTaskStatus = false
+		var updateTaskStatus = false;
+		var updateNum = 0;
+		var voteNum = 0;
+		var tempNameList = [];
+		var tempCheerTypeList = [];
+		var voteTaskStatus = false;
+
+
 		taskRef.on("value",(snapshot)=>{
 			var task = snapshot.val()
 			updateTaskStatus = task.updateTask.rewardReceived
@@ -123,7 +163,9 @@ class Notification extends React.Component {
 
 
 	componentDidMount(){
-
+		db.ref("users/"+this.props.uid+"/cheer").on('value',(snapshot)=>{
+			var cheer = snapshot.val()
+			console.log(cheer)})
 	}
 
 
@@ -133,6 +175,7 @@ class Notification extends React.Component {
 			<Popover id="popover-notification" >
 				<Popover.Content>
 					{this.MyNotification()}
+					{this.CheerNotification()}
 				</Popover.Content>
 			</Popover>
 

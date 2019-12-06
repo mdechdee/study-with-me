@@ -52,12 +52,20 @@ class Cheer extends React.Component{
 		}
 		this.setState({numberCheer: _numberCheer})
 		Ref.child(`${this.props.uid}`).update({numberCheer: _numberCheer});
-		db.ref(`users/${this.props.uid}/cheer/${this.props.cheererUid}`).set(cheerType)
+		db.ref(`users/${this.props.uid}/cheer/${this.props.cheererUid}/cheerType`).set(cheerType)
+		db.ref(`users/${this.props.cheererUid}/name`).once('value',(snapshot)=>{
+			let cheererName = snapshot.val()
+			db.ref(`users/${this.props.uid}/cheer/${this.props.cheererUid}/cheererName`).set(cheererName)
+		})
 		db.ref(`users/${this.props.cheererUid}/task/voteTask/number`).once('value',(snapshot)=>{
 				var cheerTaskNum = snapshot.val()
 				console.log(cheerTaskNum)
 				cheerTaskNum = cheerTaskNum+1
 				db.ref(`users/${this.props.cheererUid}/task/voteTask/number`).set(cheerTaskNum)
+		})
+		db.ref("users/"+this.props.uid+"/cheer").once('value',(snapshot)=>{
+			let check = snapshot.val()
+			console.log(check)
 		})
 	}
 
