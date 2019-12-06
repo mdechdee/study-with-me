@@ -27,12 +27,12 @@ import 'react-toastify/dist/ReactToastify.css';
 //import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
   faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,
-  faChevronCircleRight, faComment, faStar, faTimesCircle, faBell
+  faChevronCircleRight, faComment, faStar, faTimesCircle, faBell, faCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,
-  faChevronCircleRight, faComment, faStar, faTimesCircle, faBell
+  faChevronCircleRight, faComment, faStar, faTimesCircle, faBell, faCircle
 );
 
 class App extends React.Component{
@@ -65,7 +65,7 @@ const Page = (auth) => {
         <div className='horizontal-div-above' style= {{background :base_styles.primary}}>
            <Hamburger/>
            <div className='title'>Study With Me<Notification uid={auth.auth.uid}/></div>
-           <ReactNotification />
+
 
         </div>
         <div className='horizontal-div-mid' />

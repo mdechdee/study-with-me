@@ -64,9 +64,21 @@ class Cheer extends React.Component{
 				cheerTaskNum = cheerTaskNum+1
 				db.ref(`users/${this.props.cheererUid}/task/voteTask/number`).set(cheerTaskNum)
 		})
-		db.ref("users/"+this.props.uid+"/cheer").once('value',(snapshot)=>{
-			let check = snapshot.val()
-			console.log(check)
+		db.ref("users/"+this.props.uid+"/remainedCheer").once('value',(snapshot)=>{
+			let remainedCheer = snapshot.val()
+			if(remainedCheer===null){
+				remainedCheer =0
+			}
+			remainedCheer = remainedCheer+1
+			db.ref("users/"+this.props.uid+"/remainedCheer").set(remainedCheer)
+		})
+		db.ref('users/'+this.props.uid+'/remainedCheer').once('value',(snapshot)=>{
+			let CheerNumber = snapshot.val()
+			if(CheerNumber===null){
+				CheerNumber = 0
+				console.log('blahblah')
+			}
+			console.log(CheerNumber)
 		})
 	}
 

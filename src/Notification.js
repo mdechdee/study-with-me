@@ -6,6 +6,7 @@ import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'animate.css';
+import './scss/Notification.scss';
 
 class Notification extends React.Component {
 	constructor(props){
@@ -16,7 +17,9 @@ class Notification extends React.Component {
 	    this.state = {
 	        cheererName:[],
 					cheerType:[],
-					length: 0
+					length: 0,
+					remainedTask:0,
+					remainedCheer:0
 	    }
 	}
 	handleCheerReward(){
@@ -41,7 +44,9 @@ class Notification extends React.Component {
 	CheerReward(voteNum){
 		if(voteNum>=3){
 			return(
-				<Button variant="success" onClick={this.handleCheerReward}>Claim point</Button>
+				<Button variant="success" onClick={this.handleCheerReward}>
+					<FontAwesomeIcon icon="gift"/>
+				</Button>
 			)
 		}
 		else
@@ -51,7 +56,9 @@ class Notification extends React.Component {
 	UpdateReward(updateNum){
 		if(updateNum>=1){
 			return(
-				<Button variant="success" onClick={this.handleUpdateReward}>Claim point</Button>
+				<Button variant="success" onClick={this.handleUpdateReward}>
+					<FontAwesomeIcon icon="gift"/>
+				</Button>
 			)
 		}
 		else
@@ -61,15 +68,18 @@ class Notification extends React.Component {
 
 	ClearCheerList(){
 		db.ref("users/"+this.props.uid+"/cheer").set(null)
+		db.ref("users/"+this.props.uid+"/remainedCheer").set(0)
 	}
 
 	CheerNotification(){
 		let cheerList=[]
+		let remainedCheer = 0
 		db.ref("users/"+this.props.uid+"/cheer").on('value',(snapshot)=>{
 			var cheer = snapshot.val()
 			console.log(cheer)
 			if((cheer!==null) &&(cheer!="")){
 			Object.keys(cheer).forEach((item)=>{
+				remainedCheer = remainedCheer+1
 				cheerList.push(
 					<div>
 						<Row>
@@ -80,7 +90,9 @@ class Notification extends React.Component {
 					</div>
 				)
 			})
-			cheerList.push(<Button onClick={this.ClearCheerList}>Clear your cheer list notification</Button>)
+			cheerList.push(<Button onClick={this.ClearCheerList}>
+				Clear your cheer list notification
+			</Button>)
 		}
 		else cheerList.push(
 			<div>
@@ -91,6 +103,9 @@ class Notification extends React.Component {
 								</Row>
 							</div>)
 	})
+//		this.setState({
+//			remainedCheer:remainedCheer
+//		})
 		return (cheerList)
 	}
 
@@ -117,17 +132,33 @@ class Notification extends React.Component {
 		})
 		if(updateTaskStatus===false){
 			if(voteTaskStatus===false){
+			//	this.setState({remainedTask:2})
 				return(
-					<container style={{
+					<div style={{
       backgroundColor: 'white'
     }}>
 
-					<Row><Col><p>Task: Update your progress<br/>Progress: {updateNum}/1</p></Col><Col xs sm={4}>{this.UpdateReward(updateNum)}</Col></Row>
-					<Row><Col><p>Task: Cheer others<br/>Progress: {voteNum}/3</p></Col><Col xs sm={4}>{this.CheerReward(voteNum)}</Col></Row>
-				</container>
+					<Row>
+						<Col xs sm={8}>
+							<p>Task:<br/>Update your progress<br/>Progress: {updateNum}/1</p>
+						</Col>
+						<Col xs sm={4}>
+							{this.UpdateReward(updateNum)}
+						</Col>
+					</Row>
+					<Row>
+						<Col xs sm={8}>
+							<p>Task: Cheer others<br/>Progress: {voteNum}/3</p>
+						</Col>
+						<Col xs sm={4}>
+							{this.CheerReward(voteNum)}
+						</Col>
+					</Row>
+				</div>
 			)
 			}
 			else{
+			//	this.setState({remainedTask:1})
 				return(
 					<div align="left" style={{
       backgroundColor: 'white'
@@ -139,6 +170,7 @@ class Notification extends React.Component {
 		}
 		else{
 		if(voteTaskStatus===false){
+		//	this.setState({remainedTask:1})
 			return(
 				<div align="left" style={{
 			backgroundColor: 'white'
@@ -148,6 +180,7 @@ class Notification extends React.Component {
 		)
 		}
 		else{
+		//	this.setState({remainedTask:0})
 			return(
 				<div align="left" style={{
 			backgroundColor: 'white'
@@ -158,14 +191,30 @@ class Notification extends React.Component {
 		}
 	}
 	}
-
-
-
+	NotificationNumber(){
+		let NotificationNumber = 0
+		db.ref('users/'+this.props.uid+'/remainedCheer').once('value',(snapshot)=>{
+			let CheerNumber = snapshot.val()
+			if(CheerNumber===null){
+				CheerNumber = 0
+				console.log('blahblah')
+			}
+			console.log(CheerNumber)
+			NotificationNumber = NotificationNumber + CheerNumber
+		})
+		db.ref('users/'+this.props.uid+'/task/remainedTask').once('value',(snapshot)=>{
+			let TaskNumber = snapshot.val()
+			if(TaskNumber===null){
+				TaskNumber = 0
+				console.log('blahblah')
+			}
+			console.log(TaskNumber)
+			NotificationNumber = NotificationNumber + TaskNumber
+		})
+		return (NotificationNumber)
+	}
 
 	componentDidMount(){
-		db.ref("users/"+this.props.uid+"/cheer").on('value',(snapshot)=>{
-			var cheer = snapshot.val()
-			console.log(cheer)})
 	}
 
 
@@ -182,7 +231,10 @@ class Notification extends React.Component {
 		return(
 			<React.Fragment>
 				<OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-					<FontAwesomeIcon icon="bell" />
+						<span className="fa-layers fa-fw" align="right">
+					<FontAwesomeIcon icon="bell"/>
+					    <span className="fa-layers-counter" style={{background:"Tomato"}}>{this.NotificationNumber()}</span>
+					  </span>
 				</OverlayTrigger>
 			</React.Fragment>
 		)}
