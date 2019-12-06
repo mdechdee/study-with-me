@@ -4,6 +4,10 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { db } from './firebase/firebase.js';
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
+import IconButton from "@material-ui/core/IconButton";
+import Smile from "@material-ui/icons/SentimentSatisfiedAlt";
+import LargeSmile from "@material-ui/icons/InsertEmoticon";
+import Like from "@material-ui/icons/ThumbUpAlt";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'animate.css';
 import './scss/Notification.scss';
@@ -71,6 +75,18 @@ class Notification extends React.Component {
 		db.ref("users/"+this.props.uid+"/remainedCheer").set(0)
 	}
 
+	CheerPic(cheerType){
+		if(cheerType==='Smile'){
+			return(<Smile/>)
+		}
+		else if (cheerType==='LargeSmile') {
+			return(<LargeSmile/>)
+		}
+		else{
+			return(<Like/>)
+		}
+	}
+
 	CheerNotification(){
 		let cheerList=[]
 		let remainedCheer = 0
@@ -84,14 +100,15 @@ class Notification extends React.Component {
 						<Row>
 							<Col>
 								{cheer[item].cheererName} gave you a {cheer[item].cheerType}
+								&nbsp;&nbsp;&nbsp;&nbsp;{this.CheerPic(cheer[item].cheerType)}
 							</Col>
 						</Row>
 					</div>
 				)
 			})
-			cheerList.push(<Button onClick={this.ClearCheerList}>
+			cheerList.push(<div><p></p><Button onClick={this.ClearCheerList}>
 				Clear your cheer list notification
-			</Button>)
+			</Button></div>)
 		}
 		else cheerList.push(
 			<div>
