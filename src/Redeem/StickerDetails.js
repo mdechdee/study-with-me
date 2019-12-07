@@ -48,25 +48,24 @@ export class StickerDetails extends Component {
 											</p>
 											<p className="sticker-info text-muted lead">{info}</p>
 										{/*button*/}
-										<div>
-
-											<div style={{textAlign: 'center'}}>
-		    								<Button cart="true"
+											<div>
+												<div style={{textAlign: 'center'}}>
+				    								<Button cart="true"
 		        										variant="warning"
 		        										disabled={(user_point < price)? true:false}
 																className="sticker-detail"
 		        										onClick={()=>{
 																value.openModal(id);
 													}}>
-													<FontAwesomeIcon icon='check-circle'/> {(user_point < price)?'Not Enough Point': "Redeem"}
-		    								</Button>
+														<FontAwesomeIcon icon='check-circle'/> {(user_point < price)?'Not Enough Point': "Redeem"}
+				    								</Button>
 
 													<div className='divider' />
-		    								<Link to='/redeem' className='redeem_link'>
-		    									<Button className='black-button sticker-detail' variant="info"><FontAwesomeIcon icon='times-circle'/> Go Back</Button>
-		    								</Link>
-		    							</div>
-										</div>
+				    								<Link to='/redeem' className='redeem_link'>
+				    									<Button className='black-button sticker-detail' variant="info"><FontAwesomeIcon icon='times-circle'/> Go Back</Button>
+				    								</Link>
+				    							</div>
+											</div>
 										</div>
 									</div>
 							</div>
