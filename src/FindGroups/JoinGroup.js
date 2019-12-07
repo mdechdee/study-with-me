@@ -53,7 +53,7 @@ class JoinGroup extends React.Component {
       progress: '',
       numberCheer: '',
     });
-    
+
     alert('Goal: ' + this.state.goal);
     //event.preventDefault();
 
@@ -62,9 +62,7 @@ class JoinGroup extends React.Component {
   }
 
   fillAll() {
-		toast("Please fill out all necessary information.", {
-			position: toast.POSITION.TOP_CENTER
-		});
+		toast.error("Please fill out all necessary information.");
 	}
 
   render(){

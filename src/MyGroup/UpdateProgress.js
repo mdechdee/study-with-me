@@ -54,7 +54,8 @@ class UpdateProgress extends React.Component{
 							uid = {this.props.uid}
 							intervalNum = {this.props.intervalNum}
 							groupName = {this.props.groupName}
-							setStatus = {this.handleClose}/>
+							setStatus = {this.handleClose}
+							handleClose = {this.handleClose}/>
 					</Modal.Body>
 				</Modal>
 			</React.Fragment>

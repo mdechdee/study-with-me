@@ -25,7 +25,7 @@ class MyComponent extends React.Component {
 		}
 		else {
 			toast("You're already in a group.", {
-				position: toast.POSITION.TOP_CENTER
+				position: toast.POSITION.TOP_CENTER,
 			});
 		}
   }

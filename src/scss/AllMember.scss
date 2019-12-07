@@ -34,6 +34,9 @@ These are for AllMember.js
   position: absolute;
   right: 7%;
   top: 5%;
+  &:hover {
+		animation: 0.3s rotate90Clockwise;
+	}
 }
 
 .info-wrap{

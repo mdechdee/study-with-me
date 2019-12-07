@@ -28,13 +28,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import {
   faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,
   faChevronCircleRight, faComment, faStar, faTimesCircle, faBell, faCircle,
-  faCheckCircle
+  faCheckCircle, faPencilAlt, faUpload, faSave
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,
   faChevronCircleRight, faComment, faStar, faTimesCircle, faBell, faCircle,
-  faCheckCircle
+  faCheckCircle, faPencilAlt, faUpload, faSave
 );
 
 class App extends React.Component{
@@ -53,7 +53,7 @@ class App extends React.Component{
           }
           </AuthContext.Consumer>
         </Row>
-        <ToastContainer />
+        <ToastContainer toastClassName="custom-toast" />
       </Container>
     );
   }

@@ -1,28 +1,110 @@
 @import '_base.scss';
 
-.prof-title{
-  border-radius: 10px;
-  height: 50px; /*requires explicit height*/
-  font-family: $f3;
-  font-size: 2pc;
-  text-align: middle;
-  color: black;
+/*--------------------------------------------------
+--------------------------------------------------
+These are for Profile.js
+--------------------------------------------------
+--------------------------------------------------*/
+.row-wrap {
+	border-bottom: 1px solid #ccc;
+  margin: 10px 10px 10px;
 }
 
-.group-row{
-  margin: 1px;
+.prof-title{
+  font-family: $f3;
+  font-size: 28px;
+  text-align: middle;
+  color: black;
+  margin: 10px;
+  vertical-align: bottom;
+}
+
+/*--------------------------------------------------
+--------------------------------------------------
+These are for ProfileImage.js
+--------------------------------------------------
+--------------------------------------------------*/
+.profile-image {
+  padding: 10px 10px 10px;
+}
+
+/*--------------------------------------------------
+--------------------------------------------------
+These are for ShowInformation.js
+--------------------------------------------------
+--------------------------------------------------*/
+.profile-label {
+  font-family: $f3;
+  color: black;
+  height: 25px; /*requires explicit height*/
+  font-size: 1pc;
+  text-align: left;
+  position: relative;
+}
+
+.profile-value {
+  @extend .profile-label;
+  font-family: $f2 !important;
 }
 
 .info {
-  margin: 20px;
+  margin: 10px 10px 20px;
 }
 
-.name{
-  text-align: center;
-  width: 100%;
+.update-close-icon {
+  animation: 0.3s rotate90Counter;
+  color: black;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  cursor: pointer;
+  background: white;
+  border-radius: 100%;
+  position: absolute;
+  right: 7%;
+  top: 5%;
+	&:hover {
+		animation: 0.3s rotate90Clockwise;
+	}
 }
 
-.save-button{
+/*--------------------------------------------------
+--------------------------------------------------
+These are for EditProfileImage.js & EditProfileInfo.js
+--------------------------------------------------
+--------------------------------------------------*/
+.content-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-upload{
+  padding: 0 !important;
+}
+
+.file-font {
+	font-family: $f2;
+  font-size: 1pc;
+  text-align: middle;
+  padding: 5px;
+}
+
+.upload-button{
   font-family: $f3;
   font-size: 1.2pc !important;
+}
+
+.form-font {
+	font-family: $f3;
+  font-size: 1.5pc;
+}
+
+.form-label {
+	@extend .form-font;
+  font-size: 1pc !important;
+  text-align: center;
+}
+
+.progress-bar{
+  margin: 0.5rem;
 }

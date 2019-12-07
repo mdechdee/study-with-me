@@ -186,14 +186,12 @@ body {
   }
 }
 
-.icon-noti{
+.icon-noti {
   color: white;
   font-size: 1.8rem;
   transition: all 0.2s ease-out;
   vertical-align: middle;
   margin:auto;
-
-
 }
 
 .icon-active {
@@ -202,7 +200,26 @@ body {
 }
 
 .custom-toast {
-  font-family: $f2;
+  font-family: $f3;
+  font-size: 1.2pc;
+  text-align: center;
+  color: white;
+  background-color: black;
+}
+
+@keyframes rotateClockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(45deg); }
+}
+
+@keyframes rotate90Clockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(90deg); }
+}
+
+@keyframes rotate90Counter {
+  0% { transform: rotate(90deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .burger-layout-adjust {

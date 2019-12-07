@@ -35,13 +35,13 @@ class EditProfile extends React.Component{
 				<Button variant = "warning"
 						onClick = {this.handleShow}
 						className="upload-button"
-				> Edit </Button>
+				> <FontAwesomeIcon icon='pencil-alt'/> Edit </Button>
 
 				<Modal size="sm" show={this.state.show} onHide={this.handleClose}>
 			          <Modal.Header>
 			            <Modal.Title>
 			              <div sm={10} className="update-title"> Edit Profile {this.props.popup_id} </div>
-			              <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleClose}/>
+			              <FontAwesomeIcon icon='times-circle' className='update-close-icon' onClick={this.handleClose}/>
 			            </Modal.Title>
 			          </Modal.Header>
 					<Modal.Body>
