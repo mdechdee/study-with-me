@@ -12,7 +12,6 @@ export class StickerDetails extends Component {
 	render() {
 		return (
 			<Scrollbars>
-
 					<StickerConsumer>
 						{(value) =>{
 							const {
@@ -74,7 +73,6 @@ export class StickerDetails extends Component {
 							)
 						}}
 					</StickerConsumer>
-
 			</Scrollbars>
 		);
 	}

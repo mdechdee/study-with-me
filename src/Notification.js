@@ -271,8 +271,8 @@ class Notification extends React.Component {
 
 	render() {
 		var popover =
-			<Popover id="popover-notification" >
-				<Popover.Content>
+			<Popover id="popover-notification" style={{marginRight: '2%'}} >
+				<Popover.Content >
 					{this.MyNotification()}
 					{this.CheerNotification()}
 				</Popover.Content>
@@ -281,10 +281,12 @@ class Notification extends React.Component {
 		return(
 			<React.Fragment>
 				<OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-						<span className="fa-layers fa-fw" align="right">
-					<FontAwesomeIcon icon="bell"/>
-					    <span className="fa-layers-counter" style={{background:"Tomato"}}>{this.NotificationNumber()}</span>
-					  </span>
+					<div style = {{width: '40px', height: '30px', margin: '15px'}}>
+						<span className="fa-layers fa-fw icon-noti" align="right">
+							<FontAwesomeIcon icon="bell"/>
+							<span className="fa-layers-counter" style={{background:"Tomato"}}>{this.NotificationNumber()}</span>
+						</span>
+					</div>
 				</OverlayTrigger>
 			</React.Fragment>
 		)}
