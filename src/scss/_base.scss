@@ -204,3 +204,8 @@ body {
 .custom-toast {
   font-family: $f2;
 }
+
+@keyframes rotate90Counter {
+  0% { transform: rotate(90deg); }
+  100% { transform: rotate(0deg); }
+}
