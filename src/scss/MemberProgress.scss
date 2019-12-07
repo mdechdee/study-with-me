@@ -19,6 +19,7 @@
 }
 
 .carousel-font{
+  background-color: rgba(white, 0.5);
   font-family: $f2;
   text-align: center;
   color: black;
@@ -33,7 +34,7 @@
 }
 
 .carousel-caption{
-  background-color: rgba($darkgray ,0.3);
+  background-color: rgba($darkgray, 0.3);
 }
 
 .carousel-indicators{
@@ -50,4 +51,13 @@
 
 .carousel-control-next-icon, .carousel-control-prev-icon{
   margin-top: 10px;
+}
+
+.form-wrap {
+  padding: 0px 10px 0px;
+}
+
+.submit-button{
+  font-family: $f3;
+  font-size: 1.2pc !important;
 }

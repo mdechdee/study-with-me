@@ -165,25 +165,33 @@ class MyGroup extends React.Component {
 		else{
 			return(
 				<Scrollbars>
-					<Container className="my-group-wrap">
-						<Row>
-							<Col className='flex-direction-column justify-content-center'> <div className="my-group-title"> Group: {this.props.timer.groupName} </div> </Col>
+					<Container>
+						<Row className="row-wrap">
 							<Col className='flex-direction-column justify-content-center'>
-								<div> Time Left: {Math.ceil((stop_time-cur_time)/60000)} min </div>
+								<div className="my-group-title">
+									Group: {this.props.timer.groupName}
+								</div>
+							</Col>
+
+							<Col className='flex-direction-column justify-content-center'>
+								<div className="time-label">Time Left:&nbsp;
+									<div className="time"> {Math.ceil((stop_time-cur_time)/60000)} min </div>
+								</div>
 								<ProgressBar animated now = {(cur_time-start_time)/(stop_time-start_time)*100}/>
 							</Col>
 						</Row>
 					</Container>
+
 					<Modal size="sm" show={this.state.showNoti} onHide={this.handleCloseNoti}>
 			            <Modal.Header>
 			              <Modal.Title>
 			                <div sm={10} className="update-title"> Notification </div>
-			                <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleCloseNoti}/>
+			                <FontAwesomeIcon icon='times-circle' className='update-close-icon' onClick={this.handleCloseNoti}/>
 			              </Modal.Title>
 			            </Modal.Header>
-						<Modal.Body>
-							New interval !
-							It's time to update your {intervalNum} progress
+						<Modal.Body className="noti-text">
+							New interval!
+							It's time to update your {intervalNum} progress.
 						</Modal.Body>
 					</Modal>
 
