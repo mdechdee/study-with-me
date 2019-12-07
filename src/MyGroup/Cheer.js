@@ -186,7 +186,7 @@ class Cheer extends React.Component{
 			      <IconButton aria-label="Delete" onClick={() => this.handleCheer('Like')}>
 			        <Like />
 			      </IconButton>
-						<OverlayTrigger trigger="click" placement="top" overlay={this.popover()}>
+						<OverlayTrigger rootClose={true} trigger="click" placement="top" overlay={this.popover()}>
 							<IconButton aria-label="Delete">
 								<More />
 							</IconButton>
