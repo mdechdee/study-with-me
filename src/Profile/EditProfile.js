@@ -1,12 +1,9 @@
 //https://dev.to/clintdev/simple-firebase-image-uploader-display-with-reactjs-3aoo
 //https://stackoverflow.com/questions/13955813/how-to-store-and-view-images-on-firebase
 import React from 'react';
-import {Container, Modal, Button} from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
-import Scrollbars from 'react-scrollbars-custom';
 import '../scss/UpdateProgress.scss'
-import TimerContext from '../TimerContext.js';
 import EditProfileImage from './EditProfileImage.js';
 import EditProfileInfo from './EditProfileInfo.js';
 

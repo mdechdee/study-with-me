@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Form, InputGroup, Button } from 'react-bootstrap';
+import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { auth, db } from '../firebase/firebase.js';
 import * as Yup from 'yup';

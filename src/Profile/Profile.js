@@ -6,7 +6,6 @@ import ShowInformation from './ShowInformation.js'
 import '../scss/Profile.scss'
 import Scrollbars from 'react-scrollbars-custom';
 import { Container, Row } from 'react-bootstrap';
-import { db, storage} from '../firebase/firebase.js';
 
 class Profile extends React.Component {
 	render(){

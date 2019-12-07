@@ -1,14 +1,14 @@
 //https://codesandbox.io/s/iconbutton-hover-focus-cnexr?fontsize=14
 //https://material-ui.com/customization/components/#pseudo-classes
 import React from 'react';
-import {Button, OverlayTrigger, Popover, Container,Row, Col} from 'react-bootstrap'
+import { OverlayTrigger, Popover, Container, Row, Col } from 'react-bootstrap'
 import Scrollbars from 'react-scrollbars-custom';
 import {db} from '../firebase/firebase.js';
 import IconButton from "@material-ui/core/IconButton";
 import Smile from "@material-ui/icons/SentimentSatisfiedAlt";
 import LargeSmile from "@material-ui/icons/InsertEmoticon";
 import Like from "@material-ui/icons/ThumbUpAlt";
-import Love from "@material-ui/icons/Favorite";
+// import Love from "@material-ui/icons/Favorite";
 import More from "@material-ui/icons/MoreHoriz"
 import '../scss/MyGroup.scss'
 
@@ -67,7 +67,7 @@ class Cheer extends React.Component{
 			else
 				_numberCheer[cheerType] += 1
 		}
-		
+
 		this.setState({numberCheer: _numberCheer})
 		Ref.child(`${this.props.uid}`).update({numberCheer: _numberCheer});
 		db.ref(`users/${this.props.uid}/cheer/${this.props.cheererUid}`).once('value',(snapshot)=>{
@@ -117,6 +117,7 @@ class Cheer extends React.Component{
 					style = {{ objectFit: 'cover', height:'40px'}}
 					className="m-auto sticker-img"
 					src={_stickerList[i]+'.png'}
+					alt="sticker"
 					onClick={()=>{this.handleCheer(_stickerList[i]); this.useSticker(_stickerList[i])}}
 				/>
 			</Col>

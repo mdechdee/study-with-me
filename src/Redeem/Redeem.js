@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import StickerTitle from "./StickerTitle";
 import Sticker from "./Sticker";
 import {StickerConsumer} from "../Context.js";
-import { Container } from 'react-bootstrap';
 import Scrollbars from 'react-scrollbars-custom';
 import '../scss/Redeem.scss';
 

@@ -1,10 +1,9 @@
 import React from 'react';
-import { Container, Row, Col, Button, OverlayTrigger, Popover } from 'react-bootstrap';
-import Scrollbars from 'react-scrollbars-custom';
+import {  Row, Col, Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import { db } from './firebase/firebase.js';
-import { store } from 'react-notifications-component';
+// import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
-import IconButton from "@material-ui/core/IconButton";
+// import IconButton from "@material-ui/core/IconButton";
 import Smile from "@material-ui/icons/SentimentSatisfiedAlt";
 import LargeSmile from "@material-ui/icons/InsertEmoticon";
 import Like from "@material-ui/icons/ThumbUpAlt";
@@ -95,7 +94,7 @@ class Notification extends React.Component {
 			return(<Like/>)
 		}
 		else return <img style = {{ objectFit: 'cover', height:'40px'}}
-			src={cheerType+'.png'}
+			src={cheerType+'.png'} alt="sticker"
 		/>
 	}
 
@@ -103,7 +102,7 @@ class Notification extends React.Component {
 		let cheerList=[]
 		db.ref("users/"+this.props.uid+"/cheer").on('value',(snapshot)=>{
 			var cheer = snapshot.val()
-			if((cheer!==null) &&(cheer!="")){
+			if((cheer!==null) && (cheer!=="")){
 			Object.keys(cheer).forEach((item)=>{
 				if((cheer[item].cheerType==='Smile')||(cheer[item].cheerType==='LargeSmile')||(cheer[item].cheerType==='Like')){
 				cheerList.push(
