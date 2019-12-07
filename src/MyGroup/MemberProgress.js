@@ -11,6 +11,7 @@ class MemberProgress extends React.Component {
     super(props)
     this.state ={
       pictureUrl: [],
+      typePictureUrl: [],
       pictureUrlLoaded: false,
       pictureNumLoaded: 0,
       userName: [],
@@ -35,7 +36,20 @@ class MemberProgress extends React.Component {
         .then(url => {
           const {pictureUrl} = this.state;
           pictureUrl[i] = url
-          this.setState({pictureUrl,
+
+
+          const {typePictureUrl} = this.state;
+
+          var _img = new Image();
+          _img.src = url;
+          _img.onload = function(){
+            console.log(this.width)
+            console.log(this.height)
+            if(this.width>this.height) typePictureUrl[i]=2
+            else typePictureUrl[i] = 1
+          }
+
+          this.setState({pictureUrl,typePictureUrl,
             pictureNumLoaded: this.state.pictureNumLoaded +1}, () =>{
             this.checkPictureLoaded()
           })
@@ -43,7 +57,9 @@ class MemberProgress extends React.Component {
         .catch(error => {
             const {pictureUrl} = this.state;
             pictureUrl[i] = 'idle-progress.png'
-            this.setState({pictureUrl,
+            const {typePictureUrl} = this.state;
+            typePictureUrl[i] = 1
+            this.setState({pictureUrl, typePictureUrl,
               pictureNumLoaded: this.state.pictureNumLoaded +1}, () =>{
               this.checkPictureLoaded()
             })});
@@ -82,20 +98,38 @@ class MemberProgress extends React.Component {
       var progress = []
       for(var i = 0;i < this.props.groupInfo.totalPeople;i++)
       {
-        progress.push(
-          <Carousel.Item key={i}>
-            <img
-              style = {{ objectFit: 'cover'}}
-              className="d-block w-100 h-100"
-              src={this.state.pictureUrl[i]}
-              alt="First slide"
-            />
-            <Carousel.Caption key={this.props.groupInfo.totalPeople+i} style={{zIndex: '1'}}>
-              <div className="carousel-font">UserName: {this.state.userName[i]} </div>
-              <div className="carousel-font">Goal: {this.state.userGoal[i]}</div>
-            </Carousel.Caption>
-          </Carousel.Item>
-        )
+        if(this.state.typePictureUrl[i]===1){
+          progress.push(
+            <Carousel.Item key={i}>
+              <img
+                style = {{ objectFit: 'cover'}}
+                className="carousel-img-1"
+                src={this.state.pictureUrl[i]}
+                alt="First slide"
+              />
+              <Carousel.Caption key={this.props.groupInfo.totalPeople+i} style={{zIndex: '1'}}>
+                <div className="carousel-font">UserName: {this.state.userName[i]} </div>
+                <div className="carousel-font">Goal: {this.state.userGoal[i]}</div>
+              </Carousel.Caption>
+            </Carousel.Item>
+          )
+        }
+        else{
+          progress.push(
+            <Carousel.Item key={i}>
+              <img
+                style = {{ objectFit: 'cover'}}
+                className="carousel-img-2"
+                src={this.state.pictureUrl[i]}
+                alt="First slide"
+              />
+              <Carousel.Caption key={this.props.groupInfo.totalPeople+i} style={{zIndex: '1'}}>
+                <div className="carousel-font">UserName: {this.state.userName[i]} </div>
+                <div className="carousel-font">Goal: {this.state.userGoal[i]}</div>
+              </Carousel.Caption>
+            </Carousel.Item>
+          )
+        }
       }
       return progress
     }
