@@ -31,3 +31,15 @@
 .carousel-indicators{
   z-index: 1 !important;
 }
+
+.circle-button{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: $darkgray;
+  box-shadow: 0px 0px  rgba(0,0,0,0.6);
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  margin-top: 10px;
+}

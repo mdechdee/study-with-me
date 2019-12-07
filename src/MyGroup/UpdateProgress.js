@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProgressImage from './ProgressImage.js'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import ProgressDescription from './ProgressDescription.js'
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbars from 'react-scrollbars-custom';
 import '../scss/UpdateProgress.scss'
 import TimerContext from '../TimerContext.js';
 import MyGroup from './MyGroup.js';

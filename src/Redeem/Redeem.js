@@ -3,7 +3,7 @@ import StickerTitle from "./StickerTitle";
 import Sticker from "./Sticker";
 import {StickerConsumer} from "../Context.js";
 import { Container } from 'react-bootstrap';
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbars from 'react-scrollbars-custom';
 import '../scss/Redeem.scss';
 
 export class Redeem extends Component {
@@ -21,8 +21,7 @@ export class Redeem extends Component {
 					</StickerConsumer>
 				</div>
 
-				<Scrollbars hideTracksWhenNotNeeded={true}
-					className="scroll">
+				<Scrollbars>
 						<StickerConsumer>
 
 								{(value)=>{

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Button, OverlayTrigger, Popover } from 'react-bootstrap';
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbars from 'react-scrollbars-custom';
 import { db } from './firebase/firebase.js';
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
