@@ -13,7 +13,6 @@ export class Redeem extends Component {
 				<div>
 					<StickerConsumer>
 						{(value)=>{
-
 							//value.getUserPoint_once(firebase.auth().currentUser.uid)
 							return (<StickerTitle name="Redeem" title={value.user_point}/>)
 
@@ -21,9 +20,8 @@ export class Redeem extends Component {
 					</StickerConsumer>
 				</div>
 
-				<Scrollbars>
+				<Scrollbars noScrollX  ={true}>
 						<StickerConsumer>
-
 								{(value)=>{
 									return value.stickers.map( sticker => {
 										return <Sticker key={sticker.id} sticker={sticker} />

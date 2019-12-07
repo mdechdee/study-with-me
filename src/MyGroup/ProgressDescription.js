@@ -48,15 +48,12 @@ class ProgressDescription extends React.Component{
 				<Form>
 				  	<Form.Group controlId="form-progress-description">
 					    <Form.Label className="form-font">My progress</Form.Label>
-					    <Form.Control className="form-font" onChange={this.progress_description_change} />
-					    <Form.Text className="mute-font text-muted">
-					      	This is what you have done recently.
-					    </Form.Text>
+					    <Form.Control placeholder="What you have done recently" className="form-placeholder" onChange={this.progress_description_change} />
 				  	</Form.Group>
 				  	<Form.Group controlId="form-progress-next">
 					    <Form.Label className="form-font">My next goal</Form.Label>
-					    <Form.Control className="form-font" onChange={this.goal_description_change}/>
-					</Form.Group>
+					    <Form.Control placeholder="What you will do next" className="form-placeholder" onChange={this.goal_description_change}/>
+						</Form.Group>
 
 					<Button variant="success"
 							className="submit-button"
