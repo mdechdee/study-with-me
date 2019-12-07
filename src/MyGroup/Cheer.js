@@ -101,6 +101,26 @@ class Cheer extends React.Component{
 		})
 	}
 
+	useSticker(sticker){
+		var _stickers = this.state.sticker
+		_stickers[sticker] -= 1
+		var Ref = db.ref(`users/${this.props.cheererUid}/sticker`)
+		Ref.set(_stickers)
+	}
+
+	getSticker(_stickerList, i){
+		return(
+			<Col className="px-0 sticker-wrap">
+				<img
+					style = {{ objectFit: 'cover', height:'40px'}}
+					className="m-auto sticker-img"
+					src={_stickerList[i]+'.png'}
+					onClick={()=>{this.handleCheer(_stickerList[i]); this.useSticker(_stickerList[i])}}
+				/>
+			</Col>
+		)
+	}
+
 	showMoreCheers(){
 		if(!this.state.isStickerLoaded)
 			return(<h3> Loading </h3>);
@@ -110,47 +130,28 @@ class Cheer extends React.Component{
 		var _stickers = this.state.sticker
 		var _stickerList = []
 		var totalSticker = 0
-		console.log(_stickers)
 		Object.keys(_stickers).forEach(function(sticker) {
 			totalSticker += _stickers[sticker]
 			for(var m = 0; m < _stickers[sticker] ; m++)
 				_stickerList.push(sticker)
 		});
-		for(let i=0;i < totalSticker;i+=2)
+		for(let i=0; i < totalSticker;i+=2)
 		{
-			if(i+1 <= totalSticker){
+			if(i+1 < totalSticker){
 			_moreCheers.push(
 					<Row className="my-1">
-						<Col className="px-0">
-							<img
-								style = {{ objectFit: 'cover', height:'40px'}}
-								className="m-auto"
-								src={_stickerList[i]+'.png'}
-								onClick={()=>{this.handleCheer(_stickerList[i])}}
-							/>
-						</Col>
-						<Col className="px-0">
-							<img
-								style = {{ objectFit: 'cover', height:'40px'}}
-								className="m-auto"
-								src={_stickerList[i+1]+'.png'}
-								onClick={()=>{this.handleCheer(_stickerList[i+1])}}
-							/>
-						</Col>
+						{this.getSticker(_stickerList,i)}
+						{this.getSticker(_stickerList,i+1)}
 					</Row>
 				)
 			}
 			else {
 			_moreCheers.push(
-				<Row className="my-1">
-						<Col className="px-0">
-							<img
-							style = {{ objectFit: 'cover', height:'40px'}}
-							className="m-auto"
-							src={_stickerList[i]+'.png'}
-							onClick={()=>{this.handleCheer(_stickerList[i])}}
-							/>
-						</Col>
+					<Row className="my-1">
+						{
+							this.getSticker(_stickerList,i)
+						}
+						<Col className="px-0"/>
 					</Row>
 				)
 			}
