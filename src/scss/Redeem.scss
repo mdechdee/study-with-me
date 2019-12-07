@@ -52,12 +52,8 @@ These are for StickerTitle.js
 }
 
 .balance{
-  display: inline-flex;
-  font-family: $f3;
-  font-size: 18px;
-  color: #db6c62;
-  line-height: 48px;
-  vertical-align: bottom;
+  @extend .balance-label;
+  color: #db6c62 !important;
 }
 
 /*--------------------------------------------------

@@ -1,26 +1,22 @@
 @import '_base.scss';
 
-.form-font{
-  font-family: $f3;
-  font-size: 1pc;
-  width: 300px;
+.books-image {
+  margin: 10px 10px 30px;
 }
 
 .login-button{
   font-family: $f3;
-  font-size: 1.6pc !important;
-  position: absolute;
-  height: 8%;
-  width: 20%;
-  right: 40%;
-  bottom: 40%;
+  font-size: 1.2pc !important;
 }
-.signup-button{
+
+.divider {
+  width: 15px;
+  height: auto;
+  display: inline-block;
+}
+
+.form-font {
   font-family: $f3;
-  font-size: 1.6pc !important;
-  position: absolute;
-  height: 8%;
-  width: 20%;
-  right: 10%;
-  bottom: 40%;
+  font-size: 1pc;
+  width: 300px;
 }

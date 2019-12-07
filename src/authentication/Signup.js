@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import { auth, db } from '../firebase/firebase.js';
 import * as Yup from 'yup';
 import {NavLink } from 'react-router-dom';
+import '../scss/Signin.scss';
 
 const INITIAL_VALUE = {
   username: '',
@@ -82,33 +83,39 @@ class Signup extends React.Component {
             isSubmitting,
           }) => (
           <Form onSubmit={handleSubmit}>
-            <Form.Label > Sign up </Form.Label>
+            <Form.Label className="form-font"> Sign up </Form.Label>
             <Form.Group as = {Row}>
-              <Form.Label column xs={4} sm={4}> Username </Form.Label>
-              <Col xs={8} sm={8}>
+              <Form.Label column xs sm={4}> Username </Form.Label>
+              <Col xs sm={8}>
                 <Form.Control value={values.username} name="username" placeholder="Enter your username"
                   type="text" onChange={(e) => {this.handleChange(e); handleChange(e)}}/>
               </Col>
             </Form.Group>
             <Form.Group as = {Row}>
-              <Form.Label column xs={4} sm={4}> Email </Form.Label>
-              <Col xs={8} sm={8}>
+              <Form.Label column xs sm={4}> Email </Form.Label>
+              <Col xs sm={8}>
                 <Form.Control value={values.email} name="email" placeholder="Enter your email"
                   type="email" onChange={(e) => {this.handleChange(e); handleChange(e)}}/>
               </Col>
             </Form.Group>
             <Form.Group as = {Row}>
-              <Form.Label column xs={4} sm={4}> Password </Form.Label>
-              <Col xs={8} sm={8}>
+              <Form.Label column xs sm={4}> Password </Form.Label>
+              <Col xs sm={8}>
                 <Form.Control value={values.password} name="password" placeholder="Enter your password"
                   type="password" onChange={(e) => {this.handleChange(e); handleChange(e)}}/>
               </Col>
             </Form.Group>
-            <Form.Group as = {Row}>
-              <Col/>
-              <Col xs={4} sm={4}> <NavLink to='/signin'> <Button block variant='secondary'> Cancel </Button>  </NavLink> </Col>
-              <Col xs={4} sm={4}> <Button block variant='warning' type='submit'> Sign up! </Button> </Col>
-              <Col/>
+
+            <Form.Group>
+              <NavLink to='/signin'>
+                <Button variant='secondary'
+                      className="login-button"> Cancel </Button>
+              </NavLink>
+              <div className='divider' />
+                <Button variant='warning'
+                      type='submit'
+                      className="login-button"
+                > Sign up! </Button>
             </Form.Group>
           </Form>
           )}

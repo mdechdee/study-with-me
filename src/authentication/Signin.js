@@ -2,8 +2,8 @@ import React from 'react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { auth } from '../firebase';
+import { NavLink } from 'react-router-dom';
 import '../scss/Signin.scss';
-import {NavLink } from 'react-router-dom';
 
 const INITIAL_STATE = {
   email: '',
@@ -47,7 +47,17 @@ class Signin extends React.Component {
   render(){
     const { email, password } = this.state;
     return(
+
       <div style = {{margin: 'auto'}}>
+        <div className="books-image">
+          <img
+            src={"books.png"}
+            alt="profile"
+            height="200"
+            width="200"
+          />
+        </div>
+
         <Form onSubmit={this.handleSubmit}>
           <Form.Group className='signin form-wrapper form-font'>
             <Form.Control
@@ -60,17 +70,18 @@ class Signin extends React.Component {
               name="password" value={password}
               onChange={this.handleChange}
             />
-
           </Form.Group>
           <Form.Group as = {Row}>
             <Col/>
-            <Col> <Button variant='warning' type='submit'>Login</Button> </Col>
+            <Col> <Button variant='warning' type='submit' className='login-button'>Login</Button> </Col>
             <Col/>
           </Form.Group>
         </Form>
+
         <NavLink to='/Signup' activeClassName='icon-active'>
-          <div>Sign up</div>
+          <Button variant='info' className='login-button'> Sign up </Button>
         </NavLink>
+
       </div>
     )
   }

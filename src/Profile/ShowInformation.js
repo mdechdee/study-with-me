@@ -57,40 +57,40 @@ class ShowInformation extends React.Component {
 		var Info = []
 		Info.push(
 			<Container>
-				<Row> <Col xs sm ={1}></Col>
-					<Col xs sm ={5} className="profile-label"> Name: </Col>
+				<Row>
+					<Col className="profile-label"> Name: </Col>
 					<Col className="profile-value"> {this.state.name} </Col>
 				</Row>
 			</Container>
 			)
 		Info.push(
 			<Container>
-				<Row> <Col xs sm ={1}></Col>
-					<Col xs sm ={5} className="profile-label"> Email: </Col>
+				<Row>
+					<Col className="profile-label"> Email: </Col>
 					<Col className="profile-value"> {this.state.email} </Col>
 				</Row>
 			</Container>
 			)
 		Info.push(
 			<Container>
-				<Row> <Col xs sm ={1}></Col>
-					<Col xs sm ={5} className="profile-label"> Group joined: </Col>
+				<Row>
+					<Col className="profile-label"> Group joined: </Col>
 					<Col className="profile-value"> {this.state.groupJoined} </Col>
 				</Row>
 			</Container>
 			)
 		Info.push(
 			<Container>
-				<Row> <Col xs sm ={1}></Col>
-					<Col xs sm ={5} className="profile-label"> Group created: </Col>
+				<Row>
+					<Col className="profile-label"> Group created: </Col>
 					<Col className="profile-value"> {this.state.groupCreated} </Col>
 				</Row>
 			</Container>
 			)
 		Info.push(
 			<Container>
-				<Row> <Col xs sm ={1}></Col>
-					<Col xs sm ={5} className="profile-label"> Total cheers: </Col>
+				<Row>
+					<Col className="profile-label"> Total cheers: </Col>
 					<Col className="profile-value"> {this.state.totalCheer.length} </Col>
 				</Row>
 			</Container>
@@ -101,8 +101,10 @@ class ShowInformation extends React.Component {
 
 	render(){
 		return(
-			<Container className="info">
-				{this.showInfo()}
+			<Container>
+				<div className="info">
+					{this.showInfo()}
+				</div>
 			</Container>
 		);
 	}

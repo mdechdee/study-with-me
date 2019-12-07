@@ -1,7 +1,7 @@
 //https://codesandbox.io/s/iconbutton-hover-focus-cnexr?fontsize=14
 //https://material-ui.com/customization/components/#pseudo-classes
 import React from 'react';
-import {Button, Modal, Form} from 'react-bootstrap'
+import {Row, Col, Button, Modal, Form} from 'react-bootstrap'
 import {db} from '../firebase/firebase.js';
 import ReporT from "@material-ui/icons/Report";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -54,7 +54,7 @@ class Report extends React.Component{
 			db.ref(`/users/${this.props.uid}`).update({numberReport: this.state.numberReport})
 		})
 	}
-	
+
 	handleChange(e){
 		this.setState({message: e.target.value})
 	}
@@ -75,17 +75,24 @@ class Report extends React.Component{
 			            </Modal.Title>
 			          </Modal.Header>
 					<Modal.Body>
-						<Form>
-							<Form.Group controlId="report">
-								<Form.Label column sm={2} className="form-font">What's wrong:</Form.Label>
-								<Form.Control className="form-font" type="name" onChange={this.handleChange}/>
-							</Form.Group>
-						</Form>
-						<Button variant="success"
-							className="submit-button"
-							type="submit"
-							onClick = {this.handleSubmit}
-						> Submit </Button>
+						<Row className="form-wrap">
+							<Col className="form-font" xs={5}> What's wrong: </Col>
+							<Col xs={7}>
+								<Form>
+										<Form.Group controlId="report">
+											<Form.Control className="form-font" type="name" onChange={this.handleChange} />
+										</Form.Group>
+								</Form>
+							</Col>
+						</Row>
+
+						<div className="content-center">
+							<Button variant="success"
+								className="submit-button"
+								type="submit"
+								onClick = {this.handleSubmit}
+							> Submit </Button>
+						</div>
 					</Modal.Body>
 				</Modal>
 		    </div>
