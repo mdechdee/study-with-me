@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {storage} from '../firebase/firebase.js';
+import {db} from '../firebase/firebase.js';
 import {ProgressBar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import '../scss/UpdateProgress.scss';
@@ -14,15 +14,15 @@ class ProfileImage extends Component {
   }
 
   componentDidMount(){
-    storage
-      .ref(`images/${this.props.uid}`)
-      .child("profile.jpg")
-      .getDownloadURL()
-      .then(url => {
-        this.setState({ url });
-      }).catch( error =>{
-          this.setState({url:"https://via.placeholder.com/300x200"})
-    });
+    db.ref(`users/${this.props.uid}`).on('value', (snapshot)=>{
+      var val = snapshot.val()
+      if(val.CroppedImg !== undefined){
+        this.setState({url:val.CroppedImg})
+      }
+      else{
+        this.setState({url:"https://via.placeholder.com/300x200"})
+      }
+    })
   }
   
   render(){
@@ -32,7 +32,7 @@ class ProfileImage extends Component {
             src={this.state.url}
             alt="profile-image"
             height="200"
-            width="300"
+            width="200"
           />
       </div>
     );
