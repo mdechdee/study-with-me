@@ -9,15 +9,27 @@ These are for Redeem.js
   margin: 10px 10px;
 }
 
-.card {
-  transition: all 0.2s ease-out;
+.scroll{
+  position: relative;
+  top: 3%;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/*--------------------------------------------------
+--------------------------------------------------
+These are for StickerTitle.js
+--------------------------------------------------
+--------------------------------------------------*/
+.row-wrap {
+	border-bottom: 1px solid #ccc;
+	padding: 10px 0px 0px;
 }
 
 .redeem-title{
-  border-radius: 10px;
-  height: 50px; /*requires explicit height*/
   font-family: $f3;
-  font-size: 2pc;
+  font-size: 28px;
   text-align: left;
   color: black;
   margin: 10px;
@@ -48,24 +60,53 @@ These are for Redeem.js
   vertical-align: bottom;
 }
 
-.scroll{
-  position: relative;
-  top: 3%;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-}
-
 /*--------------------------------------------------
 --------------------------------------------------
 These are for Sticker.js
 --------------------------------------------------
 --------------------------------------------------*/
+.card {
+	transition: all 0.2s ease-out;
+	border-color:transparent;
+}
+.card-footer {
+	background: transparent;
+	border-top: transparent;
+}
+
+.card:hover {
+	border: 0.04rem solid rgba(0,0,0,0.2);
+	box-shadow:2px 2px 5px 0px rgba(0,0,0, 0.2);
+}
+
+.card-footer:hover {
+	background: rgba(247, 247, 247, 0.5);
+}
+
 .reward-wrap {
   border: 1px solid #bbbbbb;
 }
 
-.redeem-item-wrap{
+.img-container {
+	overflow: hidden;
+}
+
+.img-container:hover .cart-btn{
+	transform: translate(0,0);
+}
+
+.card-img-top{
+	transition: all 0.5s linear;
+}
+
+.sticker_link, .sticker_link:hover {
+   text-decoration: none;
+   background: rgba(247, 247, 247, 0.5);
+   color: black;
+}
+
+
+.redeem-item-wrap {
   position: relative;
   top: 3%;
   width: 100%;
@@ -74,13 +115,13 @@ These are for Sticker.js
   flex: 1;
 }
 
-.sticker-name{
+.sticker-name {
   font-family: $f3;
   font-size: 1.4pc;
   color: #black;
 }
 
-.sticker-price{
+.sticker-price {
   font-family: $f2;
   font-size: 1pc;
   vertical-align: center;
@@ -91,6 +132,12 @@ These are for Sticker.js
 These are for StickerDetails.js
 --------------------------------------------------
 --------------------------------------------------*/
+.detail-wrap {
+  background: white;
+  padding: 0px 20px 20px 20px;
+  height: 144.5vh;
+}
+
 .sticker-title{
   font-family: $f3;
   font-size: 2.4pc;
@@ -110,12 +157,23 @@ These are for StickerDetails.js
   font-size: 1.4pc !important;
 }
 
+.divider {
+  width: 15px;
+  height: auto;
+  display: inline-block;
+}
+
+.redeem_link:hover {
+   text-decoration: none;
+   background: none;
+}
+
 /*--------------------------------------------------
 --------------------------------------------------
 These are for StickerModal.js
 --------------------------------------------------
 --------------------------------------------------*/
-.confirm-title{
+.confirm-title {
   @extend .redeem-title;
   height: 20px !important;
 }
@@ -133,7 +191,7 @@ These are for StickerModal.js
   top: 5%;
 }
 
-.yes-button{
+.yes-button {
   font-family: $f3;
   font-size: 1.2pc !important;
   text-align: center;
@@ -143,7 +201,7 @@ These are for StickerModal.js
   left: 20%;
 }
 
-.cancel-button{
+.cancel-button {
   @extend .yes-button;
   left: 25%;
 }

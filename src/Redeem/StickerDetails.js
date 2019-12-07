@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'react-bootstrap';
 import Scrollbars from 'react-scrollbars-custom';
 import '../scss/Redeem.scss';
-import styled from 'styled-components';
+
 
 export class StickerDetails extends Component {
 	render() {
@@ -28,12 +28,12 @@ export class StickerDetails extends Component {
 								<div className='detail-wrap'>
 									{/*show title*/}
 									<StickerTitle name="Redeem" title={user_point}/>
-									{/*product info*/}
+									{/*sticker info*/}
 									<div className="row">
 										<div className="col-10 mx-auto col-md-10 my-3">
 											<img src={img} className="img-fluid" alt="product"/>
 										</div>
-										{/* product text */}
+										{/*sticker text*/}
 										<div className="col-12 mx-auto col-md-12 my-3 text-capitalize">
 											<h2 className="sticker-title">{title}</h2>
 											<h4 className="text-title text-uppercase text-mutate mt-3 mb-2">
@@ -74,22 +74,10 @@ export class StickerDetails extends Component {
 							)
 						}}
 					</StickerConsumer>
-				</DetailContainer>
+
 			</Scrollbars>
 		);
 	}
 }
 
 export default StickerDetails;
-
-const DetailContainer = styled.div`
-
-.redeem_link:hover {
-   text-decoration: none;
-   background: none;
-}
-.detail-wrap{
-	background-color:#E9E8E9;
-}
-
-`
