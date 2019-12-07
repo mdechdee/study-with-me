@@ -145,7 +145,9 @@ class MemberProgress extends React.Component {
   render(){
     return(
       <React.Fragment>
-        <Carousel className='carousel-custom' interval={0} onSelect={this.handlePicChange}>
+        <Carousel className='carousel-custom' interval={0} onSelect={this.handlePicChange}
+          nextIcon={<div className="circle-button"><span aria-hidden="true" className="carousel-control-next-icon"/></div>}
+          prevIcon={<div className="circle-button"><span aria-hidden="true" className="carousel-control-prev-icon" />	</div>}>
           {this.showAllProgress()}
         </Carousel>
         {this.showCheerAndReport()}

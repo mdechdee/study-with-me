@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbars from 'react-scrollbars-custom';
 import CreateGroup from'./CreateGroup.js';
 import MyComponent from './MyComponent.js'
 import { db } from '../firebase/firebase.js';
@@ -50,7 +50,7 @@ class FindGroups extends React.Component {
 
 		return(
 			<React.Fragment>
-					<div className="find-title">Find your group!</div>
+					<div className="find-title">Find group!</div>
 
 						<Container className="find-title-wrap">
 							<Row className="row-line">
@@ -61,9 +61,7 @@ class FindGroups extends React.Component {
 							</Row>
 						</Container>
 
-						<Scrollbars hideTracksWhenNotNeeded={true}
-							className="scroll"
-							>
+						<Scrollbars>
 							{this.showAllGroups()}
 						</Scrollbars>
 

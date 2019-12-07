@@ -4,15 +4,14 @@ import {Link} from "react-router-dom"
 import StickerTitle from "./StickerTitle";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'react-bootstrap';
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbars from 'react-scrollbars-custom';
 import '../scss/Redeem.scss';
 import styled from 'styled-components';
 
 export class StickerDetails extends Component {
 	render() {
 		return (
-			<Scrollbars hideTracksWhenNotNeeded={true}
-				className="scroll">
+			<Scrollbars>
 				<DetailContainer>
 					<StickerConsumer>
 						{(value) =>{

@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Container, Modal, Row, Col, ProgressBar } from 'react-bootstrap';
 import '../scss/MyGroup.scss';
 import AllMember from './AllMember';
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbars from 'react-scrollbars-custom';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import FindGroups from '../FindGroups/FindGroups.js';
 
@@ -164,9 +164,7 @@ class MyGroup extends React.Component {
 		}
 		else{
 			return(
-				<Scrollbars hideTracksWhenNotNeeded={true}
-						className="scroll"
-						renderView={props => <div {...props} className="scroll-content"/>}>
+				<Scrollbars>
 					<Container className="my-group-wrap">
 						<Row>
 							<Col className='flex-direction-column justify-content-center'> <div className="my-group-title"> Group: {this.props.timer.groupName} </div> </Col>

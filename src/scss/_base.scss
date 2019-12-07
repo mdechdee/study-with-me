@@ -129,7 +129,7 @@ body {
 
 .div-content{
   @extend %horizontal-div;
-  padding: 0 5%;
+  padding: 5% 5%;
   box-sizing: border-box;
   background: transparent;
   box-shadow: 0 0 0 0 rgba(105,99,99,0.35);
@@ -167,6 +167,19 @@ body {
 
 .row-line{
   padding: 0 2px;
+}
+
+.scroll-view{
+  position: absolute !important;
+  overflow: scroll !important;
+  margin-right: -17px !important;
+  margin-bottom: -17px !important;
+  top: 0px !important;
+  left: 0px !important;
+  right: 0px !important;
+  bottom: 0px !important;
+  padding-right: 17px;
+  padding-bottom: 17px;
 }
 
 .icon-default {

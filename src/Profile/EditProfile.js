@@ -4,7 +4,7 @@ import React from 'react';
 import {Container, Modal, Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbars from 'react-scrollbars-custom';
 import '../scss/UpdateProgress.scss'
 import TimerContext from '../TimerContext.js';
 import EditProfileImage from './EditProfileImage.js';

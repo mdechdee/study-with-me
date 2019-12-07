@@ -2,7 +2,7 @@
 //https://material-ui.com/customization/components/#pseudo-classes
 import React from 'react';
 import {Button, OverlayTrigger, Popover, Container,Row, Col} from 'react-bootstrap'
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbars from 'react-scrollbars-custom';
 import {db} from '../firebase/firebase.js';
 import IconButton from "@material-ui/core/IconButton";
 import Smile from "@material-ui/icons/SentimentSatisfiedAlt";
@@ -163,9 +163,7 @@ class Cheer extends React.Component{
 			<Popover id="popover-basic" className = "more-cheers-popover">
 			<Popover.Title as="h3">Special Cheers!</Popover.Title>
 				<Popover.Content className = "more-cheers-content">
-					<Scrollbars hideTracksWhenNotNeeded={true}
-							className="scroll"
-							renderView={props => <div {...props} className="scroll-content"/>}>
+					<Scrollbars>
 						<Container>
 							{this.showMoreCheers()}
 						</Container>
