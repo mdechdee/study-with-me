@@ -135,12 +135,12 @@ class Notification extends React.Component {
 		}
 		else cheerList.push(
 			<div>
-								<Row>
-									<Col>
-										No cheer
-	</Col>
-								</Row>
-							</div>)
+				<Row>
+					<Col>
+						No cheer
+					</Col>
+				</Row>
+			</div>)
 	})
 //		this.setState({
 //			remainedCheer:remainedCheer
@@ -163,87 +163,95 @@ class Notification extends React.Component {
 
 		taskRef.on("value",(snapshot)=>{
 			var task = snapshot.val()
-			updateTaskStatus = task.updateTask.rewardReceived
-			voteTaskStatus = task.voteTask.rewardReceived
-			updateNum = task.updateTask.number
-			voteNum = task.voteTask.number
+			if(task.updateTask !== undefined){
+				updateTaskStatus = task.updateTask.rewardReceived
+			}
+			if(task.voteTask !== undefined){
+				voteTaskStatus = task.voteTask.rewardReceived
+			}
+			if(task.updateTask !== undefined){
+				updateNum = task.updateTask.number
+			}
+			if(task.voteTask !== undefined){
+				voteNum = task.voteTask.number
+			}
 		})
 		if(updateTaskStatus===false){
 			if(voteTaskStatus===false){
 			//	this.setState({remainedTask:2})
 				return(
 					<div style={{
-      backgroundColor: 'white'
-    }}>
+				      backgroundColor: 'white'
+				    }}>
 
-					<Row>
-						<Col xs sm={8}>
-							<p><span style={{color:'red'}}>Task:</span><br/>Update your progress<br/>Progress: {updateNum}/1</p>
-						</Col>
-						<Col xs sm={4}>
-							{this.UpdateReward(updateNum)}
-						</Col>
-					</Row>
-					<Row>
-						<Col xs sm={8}>
-							<p><span style={{color:'red'}}>Task:</span> Cheer others<br/>Progress: {voteNum}/3</p>
-						</Col>
-						<Col xs sm={4}>
-							{this.CheerReward(voteNum)}
-						</Col>
-					</Row>
-				</div>
-			)
+						<Row>
+							<Col xs sm={8}>
+								<p><span style={{color:'red'}}>Task:</span><br/>Update your progress<br/>Progress: {updateNum}/1</p>
+							</Col>
+							<Col xs sm={4}>
+								{this.UpdateReward(updateNum)}
+							</Col>
+						</Row>
+						<Row>
+							<Col xs sm={8}>
+								<p><span style={{color:'red'}}>Task:</span> Cheer others<br/>Progress: {voteNum}/3</p>
+							</Col>
+							<Col xs sm={4}>
+								{this.CheerReward(voteNum)}
+							</Col>
+						</Row>
+					</div>
+				)
 			}
 			else{
 			//	this.setState({remainedTask:1})
 				return(
 					<div style={{
-      backgroundColor: 'white'
-    }}>
+				      backgroundColor: 'white'
+				    }}>
 
-					<Row>
-						<Col xs sm={8}>
-							<p><span style={{color:'red'}}>Task:</span><br/>Update your progress<br/>Progress: {updateNum}/1</p>
-						</Col>
-						<Col xs sm={4}>
-							{this.UpdateReward(updateNum)}
-						</Col>
-					</Row>
-				</div>
-		)
+						<Row>
+							<Col xs sm={8}>
+								<p><span style={{color:'red'}}>Task:</span><br/>Update your progress<br/>Progress: {updateNum}/1</p>
+							</Col>
+							<Col xs sm={4}>
+								{this.UpdateReward(updateNum)}
+							</Col>
+						</Row>
+					</div>
+				)
 			}
 		}
 		else{
-		if(voteTaskStatus===false){
-		//	this.setState({remainedTask:1})
-			return(
-				<div style={{
-		backgroundColor: 'white'
-	}}>
-				<Row>
-					<Col xs sm={8}>
-						<p><span style={{color:'red'}}>Task:</span> Cheer others<br/>Progress: {voteNum}/3</p>
-					</Col>
-					<Col xs sm={4}>
-						{this.CheerReward(voteNum)}
-					</Col>
-				</Row>
-			</div>
-		)
+			if(voteTaskStatus===false){
+			//	this.setState({remainedTask:1})
+				return(
+					<div style={{
+						backgroundColor: 'white'
+					}}>
+						<Row>
+							<Col xs sm={8}>
+								<p><span style={{color:'red'}}>Task:</span> Cheer others<br/>Progress: {voteNum}/3</p>
+							</Col>
+							<Col xs sm={4}>
+								{this.CheerReward(voteNum)}
+							</Col>
+						</Row>
+					</div>
+				)
+			}
+			else{
+			//	this.setState({remainedTask:0})
+				return(
+					<div style={{
+						backgroundColor: 'white'
+					}}>
+						No remain task
+						<p></p>
+					</div>
+				)
+			}
 		}
-		else{
-		//	this.setState({remainedTask:0})
-			return(
-				<div style={{
-		backgroundColor: 'white'
-	}}>
-	No remain task
-	<p></p>
-			</div>
-		)
-		}
-	}
 	}
 	NotificationNumber(){
 		let NotificationNumber = 0

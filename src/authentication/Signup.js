@@ -30,7 +30,7 @@ class Signup extends React.Component {
             numberReport: 0,
             groupJoined: 0,
             groupCreated: 0,
-            tasks: '',
+            task: '',
             cheer: '',
             sticker: ''
           })
