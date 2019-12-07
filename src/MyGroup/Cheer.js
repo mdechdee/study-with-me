@@ -17,7 +17,7 @@ class Cheer extends React.Component{
 		super(props)
 		this.state = {
 			disable: false,
-			numberCheer: '',
+			numberCheer: {},
 			isLoaded: true,
 			isStickerLoaded: false,
 			cheererUid:'',
@@ -56,7 +56,8 @@ class Cheer extends React.Component{
 		var Ref = db.ref(`groups/${this.props.groupName}/people`)
 		let _numberCheer = this.state.numberCheer
 		let _cheererUid = this.props.cheererUid
-		if(_numberCheer === ''){
+
+		if(_numberCheer === undefined){
 			_numberCheer = {}
 			_numberCheer[cheerType] = 1
 		}
@@ -66,6 +67,7 @@ class Cheer extends React.Component{
 			else
 				_numberCheer[cheerType] += 1
 		}
+		
 		this.setState({numberCheer: _numberCheer})
 		Ref.child(`${this.props.uid}`).update({numberCheer: _numberCheer});
 		db.ref(`users/${this.props.uid}/cheer/${this.props.cheererUid}`).once('value',(snapshot)=>{
@@ -177,20 +179,20 @@ class Cheer extends React.Component{
 	render(){
 		return(
 		    <div>
-			      <IconButton aria-label="Delete" onClick={() => this.handleCheer('LargeSmile')}>
-			        <LargeSmile />
-			      </IconButton>
-			      <IconButton aria-label="Delete" onClick={() => this.handleCheer('Smile')}>
+			    <IconButton aria-label="Delete" onClick={() => this.handleCheer('LargeSmile')}>
+			    	<LargeSmile />
+			    </IconButton>
+			    <IconButton aria-label="Delete" onClick={() => this.handleCheer('Smile')}>
 			        <Smile />
-			      </IconButton>
-			      <IconButton aria-label="Delete" onClick={() => this.handleCheer('Like')}>
+			    </IconButton>
+			    <IconButton aria-label="Delete" onClick={() => this.handleCheer('Like')}>
 			        <Like />
-			      </IconButton>
-						<OverlayTrigger rootClose={true} trigger="click" placement="top" overlay={this.popover()}>
-							<IconButton aria-label="Delete">
-								<More />
-							</IconButton>
-						</OverlayTrigger>
+			    </IconButton>
+				<OverlayTrigger rootClose={true} trigger="click" placement="top" overlay={this.popover()}>
+					<IconButton aria-label="Delete">
+						<More />
+					</IconButton>
+				</OverlayTrigger>
 			   </div>
 	  	);
 	}
