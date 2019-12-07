@@ -4,6 +4,7 @@ import {StickerConsumer} from "../Context";
 import { Container, Row, Col } from 'react-bootstrap';
 import '../scss/Redeem.scss';
 
+
 export class Sticker extends Component {
 	render() {
 		const {id, title, img, price} = this.props.sticker;
@@ -16,7 +17,7 @@ export class Sticker extends Component {
 							value.handleDetail(id)
 							}
 						>
-							<Link className="product_link" to="/details" >
+							<Link className="sticker_link" to="/details" >
 
 								<div className='reward-wrap'>
 									<Row>
@@ -47,9 +48,11 @@ export class Sticker extends Component {
 						</div>
 					)}
 				</StickerConsumer>
+
 		);
 	}
 }
+
 
 
 export default Sticker;
