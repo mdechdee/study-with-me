@@ -1,6 +1,6 @@
 import React from 'react';
 import {db} from '../firebase/firebase.js';
-import {Container, Button, Col, Row, Form} from 'react-bootstrap';
+import {Container, Col, Row} from 'react-bootstrap';
 import '../scss/Profile.scss';
 
 class ShowInformation extends React.Component {
@@ -38,7 +38,7 @@ class ShowInformation extends React.Component {
 			if(snapshot.val().groupJoined === undefined){
 				this.setState({groupJoined: 1}, ()=>{
 					db.ref(`users/${this.props.uid}`).update({groupJoined:1})
-				})	
+				})
 			}
 
 			var _totalCheer = {}
@@ -56,56 +56,46 @@ class ShowInformation extends React.Component {
 	showInfo(){
 		var Info = []
 		Info.push(
-			<Row>
-				<Col>
-					Name:
-				</Col>
-				<Col>
-					{this.state.name} 
-				</Col>
-			</Row>
+			<Container>
+				<Row> <Col xs sm ={1}></Col>
+					<Col xs sm ={5} className="profile-label"> Name: </Col>
+					<Col className="profile-value"> {this.state.name} </Col>
+				</Row>
+			</Container>
 			)
 		Info.push(
-			<Row>
-				<Col>
-					Email:
-				</Col>
-				<Col>
-					{this.state.email} 
-				</Col>
-			</Row>
+			<Container>
+				<Row> <Col xs sm ={1}></Col>
+					<Col xs sm ={5} className="profile-label"> Email: </Col>
+					<Col className="profile-value"> {this.state.email} </Col>
+				</Row>
+			</Container>
 			)
 		Info.push(
-			<Row>
-				<Col>
-					Group joined: 
-				</Col>
-				<Col>
-					{this.state.groupJoined} 
-				</Col>
-			</Row>
+			<Container>
+				<Row> <Col xs sm ={1}></Col>
+					<Col xs sm ={5} className="profile-label"> Group joined: </Col>
+					<Col className="profile-value"> {this.state.groupJoined} </Col>
+				</Row>
+			</Container>
 			)
 		Info.push(
-			<Row>
-				<Col>
-					Group created:
-				</Col>
-				<Col>
-					{this.state.groupCreated} 
-				</Col>
-			</Row>
+			<Container>
+				<Row> <Col xs sm ={1}></Col>
+					<Col xs sm ={5} className="profile-label"> Group created: </Col>
+					<Col className="profile-value"> {this.state.groupCreated} </Col>
+				</Row>
+			</Container>
 			)
 		Info.push(
-			<Row>
-				<Col>
-					Total cheer:
-				</Col>
-				<Col>
-					{this.state.totalCheer.length} 
-				</Col>
-			</Row>
+			<Container>
+				<Row> <Col xs sm ={1}></Col>
+					<Col xs sm ={5} className="profile-label"> Total cheers: </Col>
+					<Col className="profile-value"> {this.state.totalCheer.length} </Col>
+				</Row>
+			</Container>
 			)
-		
+
 		return(Info)
 	}
 

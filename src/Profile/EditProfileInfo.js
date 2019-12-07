@@ -2,6 +2,7 @@ import React from 'react';
 import {db} from '../firebase/firebase.js';
 import {Form} from 'react-bootstrap';
 import {Container, Button, Col, Row} from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../scss/Profile.scss';
 
 class EditProfileInfo extends React.Component {
@@ -44,22 +45,36 @@ class EditProfileInfo extends React.Component {
 			<Container className="info">
 				<Form>
 					<Form.Group controlId="name">
-						<div>
+						<div className="content-center">
 							<Row>
-								<Form.Label column sm={2} className="form-font">Name</Form.Label>
-								<Col sm={9}>
-						    		<Form.Control className="form-font" type="name" placeholder={this.state.name||"Name"} onChange={this.handleChange}/>
-							    </Col>
-					    	</Row>
-							<div className="form-font name text-muted">
+								<Form.Label column sm={2}
+											className="form-font"
+											> Name </Form.Label>
+								<Col sm={10}>
+						    	<Form.Control className="form-font"
+											type="name"
+											placeholder={this.state.name||"Name"}
+											onChange={this.handleChange}/>
+							  </Col>
+					    </Row>
+				   </div>
+					 <div className="content-center">
+						 <Row className="form-label text-muted">
 									This name is displayed in public.
-							</div>
-				    	</div>
-			  		</Form.Group>
+						 </Row>
+					 </div>
 
-				  	<Button variant="success" type="submit" className="save-button" onClick={this.handleUpdate}>
-				    	Save changes
-				  	</Button>
+			  </Form.Group>
+
+						<div className="content-center">
+					  	<Button variant="success"
+										type="submit"
+										className="save-button"
+										onClick={this.handleUpdate}
+							> <FontAwesomeIcon icon='save'/>
+					    	Save changes
+					  	</Button>
+						</div>
 				</Form>
 			</Container>
 		);

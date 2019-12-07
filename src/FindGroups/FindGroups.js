@@ -50,7 +50,11 @@ class FindGroups extends React.Component {
 
 		return(
 			<React.Fragment>
-					<div className="find-title">Find group!</div>
+					<Container>
+						<Row className="row-wrap">
+							<div className="find-title">Find group!</div>
+						</Row>
+					</Container>
 
 						<Container className="find-title-wrap">
 							<Row className="row-line">

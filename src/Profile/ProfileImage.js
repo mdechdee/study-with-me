@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import {db} from '../firebase/firebase.js';
-import {ProgressBar} from 'react-bootstrap';
-import {Button} from 'react-bootstrap';
-import '../scss/UpdateProgress.scss';
+import '../scss/Profile.scss';
 
 class ProfileImage extends Component {
 
@@ -24,13 +22,13 @@ class ProfileImage extends Component {
       }
     })
   }
-  
+
   render(){
     return (
       <div className="profile-image">
           <img
             src={this.state.url}
-            alt="profile-image"
+            alt="profile"
             height="200"
             width="200"
           />

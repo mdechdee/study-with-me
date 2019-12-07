@@ -20,7 +20,6 @@ import withTimer from './WithTimer.js';
 import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import ReactNotification from 'react-notifications-component';
 import Notification from './Notification';
 import 'react-toastify/dist/ReactToastify.css';
 //import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -28,13 +27,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import {
   faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,
   faChevronCircleRight, faComment, faStar, faTimesCircle, faBell, faCircle,
-  faCheckCircle
+  faCheckCircle, faPencilAlt, faUpload, faSave
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faSearch, faUsers, faGift, faUserCircle, faChevronCircleLeft,
   faChevronCircleRight, faComment, faStar, faTimesCircle, faBell, faCircle,
-  faCheckCircle
+  faCheckCircle, faPencilAlt, faUpload, faSave
 );
 
 class App extends React.Component{
@@ -53,7 +52,7 @@ class App extends React.Component{
           }
           </AuthContext.Consumer>
         </Row>
-        <ToastContainer />
+        <ToastContainer toastClassName="custom-toast" />
       </Container>
     );
   }

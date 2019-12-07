@@ -8,7 +8,7 @@ import { Container, Modal, Row, Col, ProgressBar } from 'react-bootstrap';
 import '../scss/MyGroup.scss';
 import AllMember from './AllMember';
 import Scrollbars from 'react-scrollbars-custom';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 import FindGroups from '../FindGroups/FindGroups.js';
 
 class MyGroup extends React.Component {
@@ -136,13 +136,13 @@ class MyGroup extends React.Component {
 		this.checkIntervalChange()
 		var intervalNum = ""
 		var self = this;
-		if(this.state.intervalNum==1){
+		if(this.state.intervalNum===1){
 			intervalNum = "first"
 		}
-		else if(this.state.intervalNum==2){
+		else if(this.state.intervalNum===2){
 			intervalNum = "second"
 		}
-		else if(this.state.intervalNum==3){
+		else if(this.state.intervalNum===3){
 			intervalNum = "third"
 		}
 		else{

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import {storage,db} from '../firebase/firebase.js';
-import {ProgressBar} from 'react-bootstrap';
-import {Button} from 'react-bootstrap';
+import { Container, Button, ProgressBar } from 'react-bootstrap';
 import Avatar from 'react-avatar-edit';
-import '../scss/UpdateProgress.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../scss/Profile.scss';
 
 class EditProfileImage extends Component {
   constructor(props) {
@@ -65,7 +65,7 @@ class EditProfileImage extends Component {
       const image = e.target.files[0];
       console.log(image)
       this.setState(() => ({ image }));
-      
+
     }
   }
 
@@ -111,17 +111,19 @@ class EditProfileImage extends Component {
 
   render() {
     return (
-      <div className="image-upload">
+      <Container className="image-upload">
         <div className="align image">
-          <Avatar
-            width = {300}
-            height={300}
-            onCrop={this.onCrop}
-            onClose={this.onClose}
-            onBeforeFileLoad={this.onBeforeFileLoad}
-            src={this.state.urlUploadImg}
-          />
-          <img
+          <div className="content-center">
+            <Avatar
+              width={250}
+              height={250}
+              onCrop={this.onCrop}
+              onClose={this.onClose}
+              onBeforeFileLoad={this.onBeforeFileLoad}
+              src={this.state.urlUploadImg}
+            />
+          </div>
+          <img className="file-font"
             src={this.state.urlCroppedUploadImg}
             alt="Preview"
           />
@@ -129,16 +131,16 @@ class EditProfileImage extends Component {
         <div className="progress-bar">
           <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.show} />
         </div>
-        <div className="btn-zone">
+        <div className="content-center">
           <Button variant = "outline-info"
                 onClick={this.handleUpload}
-                className="upload-button waves-effect waves-light btn"
-          >
+                className="upload-button"
+          > <FontAwesomeIcon icon='upload'/>
             Upload
           </Button>
         </div>
 
-      </div>
+      </Container>
     );
   }
 }

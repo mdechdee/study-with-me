@@ -1,15 +1,11 @@
 //https://dev.to/clintdev/simple-firebase-image-uploader-display-with-reactjs-3aoo
 //https://stackoverflow.com/questions/13955813/how-to-store-and-view-images-on-firebase
 import React from 'react';
-import {Container, Modal, Button} from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProgressImage from './ProgressImage.js'
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import ProgressDescription from './ProgressDescription.js'
-import Scrollbars from 'react-scrollbars-custom';
 import '../scss/UpdateProgress.scss'
-import TimerContext from '../TimerContext.js';
-import MyGroup from './MyGroup.js';
 
 class UpdateProgress extends React.Component{
 	constructor(props){
@@ -54,7 +50,8 @@ class UpdateProgress extends React.Component{
 							uid = {this.props.uid}
 							intervalNum = {this.props.intervalNum}
 							groupName = {this.props.groupName}
-							setStatus = {this.handleClose}/>
+							setStatus = {this.handleClose}
+							handleClose = {this.handleClose}/>
 					</Modal.Body>
 				</Modal>
 			</React.Fragment>

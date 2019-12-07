@@ -37,14 +37,16 @@ These are for UpdateProgress.js
   position: absolute;
   right: 7%;
   top: 5%;
+  &:hover {
+		animation: 0.3s rotate90Clockwise;
+	}
 }
 
 /*--------------------------------------------------
 --------------------------------------------------
-These are for ProgressImage.js & ProfileImage.js
+These are for ProgressImage.js
 --------------------------------------------------
 --------------------------------------------------*/
-
 .image-upload{
   padding: 0 !important;
 }
@@ -74,6 +76,7 @@ These are for ProgressImage.js & ProfileImage.js
   margin: 0.5rem;
 }
 
+
 /*--------------------------------------------------
 --------------------------------------------------
 These are for ProgressDescription.js & ShowInformation.js
@@ -96,7 +99,6 @@ These are for ProgressDescription.js & ShowInformation.js
   margin: 5px 20px 20px; //top lr bottom
 
 }
-
 
 .save-button{
   font-family: $f3;

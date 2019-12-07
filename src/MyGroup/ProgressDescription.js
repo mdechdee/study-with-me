@@ -2,6 +2,7 @@
 //https://stackoverflow.com/questions/13955813/how-to-store-and-view-images-on-firebase
 import React from 'react';
 import {Button, Form} from 'react-bootstrap'
+import {toast} from 'react-toastify';
 import {db} from '../firebase/firebase.js';
 import '../scss/UpdateProgress.scss'
 
@@ -30,18 +31,24 @@ class ProgressDescription extends React.Component{
 	}
 
 	handleUpload(e){
-		e.preventDefault();
-		db.ref(`groups/${this.props.groupName}/people/`).child(`${this.props.uid}`).update({
-			goal: this.state.goal_description,
-			progress: this.state.progress_description,
-			status: "active"
-		})
-		var progressUpdateFlag = 0;
-		db.ref(`groups/${this.props.groupName}`).once('value',(snapshot) =>{progressUpdateFlag = snapshot.val().progressUpdateFlag})
-		db.ref(`groups/${this.props.groupName}/progressUpdateFlag`).set(progressUpdateFlag+1)
-		db.ref(`users/${this.props.uid}/task/updateTask/number`).set(1)
-		this.props.setStatus();
+		if(this.state.progress_description===""||this.state.goal_description==="") {
+			toast.error("Please fill all necessary information.");
+		}
+		else {
+			e.preventDefault();
+			db.ref(`groups/${this.props.groupName}/people/`).child(`${this.props.uid}`).update({
+				goal: this.state.goal_description,
+				progress: this.state.progress_description,
+				status: "active"
+			})
+			var progressUpdateFlag = 0;
+			db.ref(`groups/${this.props.groupName}`).once('value',(snapshot) =>{progressUpdateFlag = snapshot.val().progressUpdateFlag})
+			db.ref(`groups/${this.props.groupName}/progressUpdateFlag`).set(progressUpdateFlag+1)
+			db.ref(`users/${this.props.uid}/task/updateTask/number`).set(1)
+			this.props.setStatus();
+		}
 	}
+
 	render(){
 		return(
 			<div>

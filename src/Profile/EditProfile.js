@@ -1,12 +1,9 @@
 //https://dev.to/clintdev/simple-firebase-image-uploader-display-with-reactjs-3aoo
 //https://stackoverflow.com/questions/13955813/how-to-store-and-view-images-on-firebase
 import React from 'react';
-import {Container, Modal, Button} from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
-import Scrollbars from 'react-scrollbars-custom';
 import '../scss/UpdateProgress.scss'
-import TimerContext from '../TimerContext.js';
 import EditProfileImage from './EditProfileImage.js';
 import EditProfileInfo from './EditProfileInfo.js';
 
@@ -35,13 +32,13 @@ class EditProfile extends React.Component{
 				<Button variant = "warning"
 						onClick = {this.handleShow}
 						className="upload-button"
-				> Edit </Button>
+				> <FontAwesomeIcon icon='pencil-alt'/> Edit </Button>
 
 				<Modal size="sm" show={this.state.show} onHide={this.handleClose}>
 			          <Modal.Header>
 			            <Modal.Title>
 			              <div sm={10} className="update-title"> Edit Profile {this.props.popup_id} </div>
-			              <FontAwesomeIcon icon='times-circle'className='update-close-icon' onClick={this.handleClose}/>
+			              <FontAwesomeIcon icon='times-circle' className='update-close-icon' onClick={this.handleClose}/>
 			            </Modal.Title>
 			          </Modal.Header>
 					<Modal.Body>
