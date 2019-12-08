@@ -10,6 +10,7 @@ import LargeSmile from "@material-ui/icons/InsertEmoticon";
 import Like from "@material-ui/icons/ThumbUpAlt";
 // import Love from "@material-ui/icons/Favorite";
 import More from "@material-ui/icons/MoreHoriz"
+import {toast} from 'react-toastify';
 import '../scss/MyGroup.scss'
 
 class Cheer extends React.Component{
@@ -100,6 +101,19 @@ class Cheer extends React.Component{
 				CheerNumber = 0
 			}
 			console.log(CheerNumber)
+		})
+		db.ref(`users/${this.props.uid}/name`).once('value',(snapshot)=>{
+			let receiverName = snapshot.val()
+			if((cheerType ==='LargeSmile')||(cheerType==='Smile')||(cheerType==='Like')){
+				toast("You give "+ receiverName+" a "+cheerType , {
+				position: toast.POSITION.TOP_CENTER,
+			})
+			}
+			else{
+				toast("You give "+ receiverName+" a sticker: "+cheerType , {
+				position: toast.POSITION.TOP_CENTER,
+			})
+			}
 		})
 	}
 
