@@ -1,5 +1,6 @@
 import React from 'react';
 import {Row, Col, Form, Modal, Button} from 'react-bootstrap'
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {toast} from 'react-toastify';
 import { db } from '../firebase/firebase.js';
@@ -95,12 +96,12 @@ class JoinGroup extends React.Component {
                 Ex: I will finish mock exam within 3 hours.
                 You must update your progress each interval.</div>
               </Row>
-
+              <NavLink exact to='/my_group'>
               <Button variant="success"
                     className="join-button"
                     onClick={this.handleSubmit}
               > Join </Button>
-
+          </NavLink>
               <Button variant="danger"
                     className="cancel-button"
                     onClick = {this.props.handleClose}
