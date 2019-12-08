@@ -43,8 +43,6 @@ class MemberProgress extends React.Component {
           var _img = new Image();
           _img.src = url;
           _img.onload = function(){
-            console.log(this.width)
-            console.log(this.height)
             if(this.width>this.height) typePictureUrl[i]=2
             else typePictureUrl[i] = 1
           }
@@ -66,7 +64,7 @@ class MemberProgress extends React.Component {
       //Fetch username
        db.ref(`users/${peopleName[i]}`).once('value',(snapshot) =>{
           let val = snapshot.val()
-          _username.push(val.name)
+          _username[i] = val.name;
           this.setState({userName: _username}, () => {this.checkUserInfoLoaded()})
         })
     }
@@ -149,10 +147,12 @@ class MemberProgress extends React.Component {
   }
   showCheerAndReport(){
     if(this.state.isCurrentPersonViewLoaded){
-      return(<div>
-        <Cheer groupName={this.props.groupInfo.groupName} uid={this.state.currentPersonView} cheererUid={this.props.cheererUid} />
-        <Report uid = {this.state.currentPersonView}/>
-        </div>)
+      if(this.state.currentPersonView !== this.props.cheererUid){
+        return(<div>
+          <Cheer groupName={this.props.groupInfo.groupName} uid={this.state.currentPersonView} cheererUid={this.props.cheererUid} />
+          <Report uid = {this.state.currentPersonView}/>
+          </div>)
+      }
     }
     else {
       return(<React.Fragment/>)
