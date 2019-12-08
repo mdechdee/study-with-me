@@ -84,7 +84,7 @@ class Signup extends React.Component {
           <Form noValidate onSubmit={handleSubmit}>
             <Form.Group as = {Row}>
               <Form.Label column xs sm={4}> Username </Form.Label>
-              <Col xs sm={8}>
+              <Col className="form-label" xs sm={8}>
                 <Form.Control value={values.username} name="username" placeholder="Enter your username"
                   type="text" onChange={(e) => {this.handleChange(e); handleChange(e)}}
                   isInvalid={touched.username && !!errors.username}/>
@@ -93,7 +93,7 @@ class Signup extends React.Component {
             </Form.Group>
             <Form.Group as = {Row}>
               <Form.Label column xs sm={4}> Email </Form.Label>
-              <Col xs sm={8}>
+              <Col className="form-label" xs sm={8}>
                 <Form.Control value={values.email} name="email" placeholder="Enter your email"
                   type="email" onChange={(e) => {this.handleChange(e); handleChange(e)}}
                   isInvalid={touched.email && !!errors.email} />
@@ -102,7 +102,7 @@ class Signup extends React.Component {
             </Form.Group>
             <Form.Group as = {Row}>
               <Form.Label column xs sm={4}> Password </Form.Label>
-              <Col xs sm={8}>
+              <Col className="form-label" xs sm={8}>
                 <Form.Control value={values.password} name="password" placeholder="Enter your password"
                   type="password" onChange={(e) => {this.handleChange(e); handleChange(e)}}
                   isInvalid={touched.password && !!errors.password}/>
