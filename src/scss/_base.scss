@@ -200,11 +200,11 @@ body {
 }
 
 .custom-toast {
-  font-family: $f3;
+  font-family: $f2;
   font-size: 1.2pc;
   text-align: center;
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: #eeeeee;
 }
 
 @keyframes rotateClockwise {

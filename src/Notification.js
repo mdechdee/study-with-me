@@ -106,7 +106,7 @@ class Notification extends React.Component {
 			Object.keys(cheer).forEach((item)=>{
 				if((cheer[item].cheerType==='Smile')||(cheer[item].cheerType==='LargeSmile')||(cheer[item].cheerType==='Like')){
 				cheerList.push(
-					<div>
+					<div className="noti-label">
 						<Row>
 							<Col>
 								{cheer[item].cheererName} gave you a <span style={{color:'red'}}>{cheer[item].cheerType}</span>
@@ -128,12 +128,12 @@ class Notification extends React.Component {
 					)
 				}
 			})
-			cheerList.push(<div><p></p><Button onClick={this.ClearCheerList}>
+			cheerList.push(<div className="noti-label"><p></p><Button variant="danger" onClick={this.ClearCheerList}>
 				Clear your cheer list notification
 			</Button></div>)
 		}
 		else cheerList.push(
-			<div>
+			<div className="noti-label">
 				<Row>
 					<Col>
 						No cheer
@@ -179,7 +179,7 @@ class Notification extends React.Component {
 			if(voteTaskStatus===false){
 			//	this.setState({remainedTask:2})
 				return(
-					<div style={{
+					<div className="noti-label" style={{
 				      backgroundColor: 'white'
 				    }}>
 
@@ -205,7 +205,7 @@ class Notification extends React.Component {
 			else{
 			//	this.setState({remainedTask:1})
 				return(
-					<div style={{
+					<div className="noti-label" style={{
 				      backgroundColor: 'white'
 				    }}>
 
@@ -242,7 +242,7 @@ class Notification extends React.Component {
 			else{
 			//	this.setState({remainedTask:0})
 				return(
-					<div style={{
+					<div className="noti-label" style={{
 						backgroundColor: 'white'
 					}}>
 						No remain task
@@ -288,10 +288,12 @@ class Notification extends React.Component {
 		return(
 			<React.Fragment>
 				<OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-					<div style = {{width: '40px', height: '30px', margin: '15px'}}>
+					<div style = {{width: '60px', height: '45px', margin: '15px'}}>
 						<span className="fa-layers fa-fw icon-noti" align="right">
 							<FontAwesomeIcon icon="bell"/>
-							<span className="fa-layers-counter" style={{background:"Tomato"}}>{this.NotificationNumber()}</span>
+							<span className="fa-layers-counter" style={{background:"Tomato"}}>
+								{this.NotificationNumber()}
+							</span>
 						</span>
 					</div>
 				</OverlayTrigger>

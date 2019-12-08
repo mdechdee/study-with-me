@@ -2,6 +2,7 @@
 //https://stackoverflow.com/questions/13955813/how-to-store-and-view-images-on-firebase
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap'
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../scss/UpdateProgress.scss'
 import EditProfileImage from './EditProfileImage.js';
@@ -33,6 +34,15 @@ class EditProfile extends React.Component{
 						onClick = {this.handleShow}
 						className="upload-button"
 				> <FontAwesomeIcon icon='pencil-alt'/> Edit </Button>
+
+				<div className="divider" />
+
+				<NavLink exact to="/logout">
+					<Button variant = "secondary"
+							onClick = {this.handleShow}
+							className="upload-button"
+					> <FontAwesomeIcon icon='sign-out-alt'/> Logout </Button>
+				</NavLink>
 
 				<Modal size="sm" show={this.state.show} onHide={this.handleClose}>
 			          <Modal.Header>
