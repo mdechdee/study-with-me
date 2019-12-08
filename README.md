@@ -28,7 +28,7 @@ you can also find the list in `package.json` file
 - [react-modal](https://github.com/reactjs/react-modal)
 - [react-datetime-picker](https://www.npmjs.com/package/react-datetime-picker)
 - [react-custom-scrollbars](https://github.com/malte-wessel/react-custom-scrollbars)
-
+- [material-ui](https://material-ui.com)
 ### Assets
 - **Font used**: [Oswald](https://fonts.google.com/specimen/Oswald)
 
