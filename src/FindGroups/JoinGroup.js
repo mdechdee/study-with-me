@@ -46,19 +46,22 @@ class JoinGroup extends React.Component {
       this.fillAll();
       return
     }
+    var groupRef =  db.ref('groups/' + this.props.name);
     var peopleRef =  db.ref('groups/' + this.props.name + '/people');
     var newMemberRef = peopleRef.child(`${this.props.uid}`);
+    var _peopleNum = 1
+    groupRef.once('value', snapshot => {
+      _peopleNum = snapshot.val().peopleNum
+    })
+    groupRef.update({peopleNum: _peopleNum+1})
     newMemberRef.set({
       goal: this.state.goal,
       progress: '',
       numberCheer: '',
     });
-
-    alert('Goal: ' + this.state.goal);
     //event.preventDefault();
-
     this.updateUser()
-
+    this.props.handleClose()
   }
 
   fillAll() {

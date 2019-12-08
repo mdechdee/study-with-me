@@ -52,12 +52,12 @@ class Cheer extends React.Component{
 		})
 	}
 	handleCheer(cheerType){
-		console.log('HANDLE')
+		console.log(this.props.uid)
 		var Ref = db.ref(`groups/${this.props.groupName}/people`)
 		let _numberCheer = this.state.numberCheer
 		let _cheererUid = this.props.cheererUid
 
-		if(_numberCheer === undefined){
+		if(_numberCheer === undefined || _numberCheer === ''){
 			_numberCheer = {}
 			_numberCheer[cheerType] = 1
 		}

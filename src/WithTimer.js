@@ -86,6 +86,8 @@ const withTimer = (Component) =>
 
 		setPeopleStatus(){
 				var _people = this.state.people
+				if(_people === null)
+					return
 				Object.keys(_people).forEach((person) =>{
 					_people[person].status = 'inactive'
 				})

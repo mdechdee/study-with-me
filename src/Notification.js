@@ -106,7 +106,7 @@ class Notification extends React.Component {
 			Object.keys(cheer).forEach((item)=>{
 				if((cheer[item].cheerType==='Smile')||(cheer[item].cheerType==='LargeSmile')||(cheer[item].cheerType==='Like')){
 				cheerList.push(
-					<div className="noti-label">
+					<div className="noti-label" key = {item}>
 						<Row>
 							<Col>
 								{cheer[item].cheererName} gave you a <span style={{color:'red'}}>{cheer[item].cheerType}</span>
@@ -128,12 +128,12 @@ class Notification extends React.Component {
 					)
 				}
 			})
-			cheerList.push(<div className="noti-label"><p></p><Button variant="danger" onClick={this.ClearCheerList}>
+			cheerList.push(<div className="noti-label"><p></p><Button variant="danger" onClick={this.ClearCheerList} key={2}>
 				Clear your cheer list notification
 			</Button></div>)
 		}
 		else cheerList.push(
-			<div className="noti-label">
+			<div className="noti-label" key = {1}>
 				<Row>
 					<Col>
 						No cheer

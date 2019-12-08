@@ -28,6 +28,7 @@ class MyGroup extends React.Component {
 			showNoti:false,
 			clearGroup: false,
 			firstPassed: false,
+			progressUpdateFlag: 0,
 		};
 		this.handleIntervalChange = this.handleIntervalChange.bind(this);
 		this.handleCloseNoti = this.handleCloseNoti.bind(this);
@@ -38,7 +39,8 @@ class MyGroup extends React.Component {
 	collectPeople(){
 			this.setState({isGroupLoaded: false})
 			this.setState({
-				people: this.props.timer.people
+				people: this.props.timer.people,
+				progressUpdateFlag: this.props.timer.progressUpdateFlag
 				}, () => {
 					let num = 0;
 					let temp = {};
@@ -102,8 +104,13 @@ class MyGroup extends React.Component {
 		}
 	}
 	checkPeopleChange(){
-		if(this.props.timer.people !== this.state.people)
+		if(this.state.groupName === '')
+			return
+		if(this.props.timer.progressUpdateFlag !== this.state.progressUpdateFlag)
+		{
 			this.collectPeople()
+		}
+
 	}
 	checkEndTime(){
 		if(this.props.timer.currentTime > this.props.timer.baseStopTime){
@@ -130,10 +137,12 @@ class MyGroup extends React.Component {
 		})
 		this.setState({groupName: this.props.timer.groupName})
 		this.setState({uid: this.props.timer.uid})
-		this.collectPeople()
+		if(this.state.groupName !== '')
+			this.collectPeople()
 	}
 
 	render(){
+		var changePage;
 		var cur_time = this.props.timer.currentTime
 		var start_time = this.props.timer.startTime
 		var stop_time = this.props.timer.stopTime
@@ -153,19 +162,11 @@ class MyGroup extends React.Component {
 		else{
 			intervalNum = `${self.state.intervalNum}th`;
 		}
-
-		var changePage;
 		if(this.state.clearGroup){
-			changePage = <Switch>
-				    		<Redirect to='/find_group' render={(routeProps) => (<FindGroups uid = {this.props.timer.uid}{...routeProps} />)} />
-		        		</Switch>
+			return(<h3 className = 'no-group'> You don't have a group yet! Join one! </h3>)
 		}
-		if(!this.state.groupName){
-			return(
-				<Switch>
-				    <Redirect to='/find_group' render={(routeProps) => (<FindGroups uid = {this.props.timer.uid}{...routeProps} />)} />
-		        </Switch>
-		    )
+		if(this.state.groupName === ''){
+			return(<h3 className = 'no-group'> You don't have a group yet! Join one! </h3>)
 		}
 		else{
 			return(
@@ -199,10 +200,7 @@ class MyGroup extends React.Component {
 							It's time to update your {intervalNum} progress.
 						</Modal.Body>
 					</Modal>
-
 				    {this.showMemberProgress()}
-				    {changePage}
-
 					<div className="buttons-wrap">
 						<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>
 						<AllMember people={this.state.people} intervalNum={this.props.timer.intervalNum}/>

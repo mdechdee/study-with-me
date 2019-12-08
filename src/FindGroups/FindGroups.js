@@ -19,8 +19,13 @@ class FindGroups extends React.Component {
 	fetchGroupsData(){
 		db.ref(`groups`).once('value',(snapshot) => {
 			let val = snapshot.val();
+			console.log(val)
+			var i = 0;
 			Object.keys(val).forEach((item) => {
-				this.setState({groups: [...this.state.groups, val[item]]});
+				const {groups} = this.state;
+				groups[i] = val[item]
+				i++;
+				this.setState({groups: groups});
 			})
 		})
 	}
@@ -39,8 +44,9 @@ class FindGroups extends React.Component {
 	}
 
 	showAllGroups(){
+		console.log(this.state.groups)
 		let groupsComponent = []
-		for(let i=0; i<this.state.groups.length; i+=1){
+		for(let i=0; i < this.state.groups.length; i+=1){
 				groupsComponent.push(<MyComponent usergroup={this.state.usergroup} one={this.state.groups[i]} uid={this.props.uid} key={i}> </MyComponent>);
 		}
 		return groupsComponent
