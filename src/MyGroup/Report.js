@@ -25,7 +25,7 @@ class Report extends React.Component{
 		var Ref = db.ref(`users/${this.props.uid}`)
 		Ref.once('value', (snapshot) =>{
 			var val = snapshot.val()
-
+			if(val=== undefined) return
 			if(val.numberReport === undefined){
 				this.setState({numberReport: 0},() => {
 					this.setState({isLoaded: true})
