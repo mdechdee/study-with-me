@@ -33,8 +33,8 @@ export class StickerDetails extends Component {
 											<img src={img} className="img-fluid" alt="product"/>
 										</div>
 										{/*sticker text*/}
-										<div className="col-12 mx-auto col-md-12 my-3 text-capitalize">
-											<h2 className="sticker-title">{title}</h2>
+										<div className="col-12 mx-auto col-md-12 my-3">
+											<h2 className="sticker-title text-capitalize">{title}</h2>
 											<h4 className="text-title text-uppercase text-mutate mt-3 mb-2">
 												by : <span className="text-uppercase">{company}</span>
 											</h4>

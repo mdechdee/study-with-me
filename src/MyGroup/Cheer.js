@@ -126,9 +126,9 @@ class Cheer extends React.Component{
 
 	showMoreCheers(){
 		if(!this.state.isStickerLoaded)
-			return(<h3> Loading </h3>);
+			return(<h3 className="noti-text"> Loading </h3>);
 		if(this.state.sticker === {})
-			return(<div style={{textAlign:"center", height:'130px'}}> You have no special cheer yet, Do some tasks and redeem it :) </div>);
+			return(<div className="noti-text" style={{textAlign:"center", height:'130px'}}> You have no special cheers yet, Do some tasks and redeem it :) </div>);
 		var _moreCheers = []
 		var _stickers = this.state.sticker
 		var _stickerList = []
@@ -139,7 +139,7 @@ class Cheer extends React.Component{
 				_stickerList.push(sticker)
 		});
 		if(totalSticker === 0)
-			return(<div style={{textAlign:"center", height:'130px'}}> You have no special cheer yet, Do some tasks and redeem it :) </div>);
+			return(<div className="noti-text" style={{textAlign:"center", height:'130px'}}> You have no special cheers yet, Do some tasks and redeem it :) </div>);
 		for(let i=0; i < totalSticker;i+=2)
 		{
 			if(i+1 < totalSticker){
@@ -167,7 +167,7 @@ class Cheer extends React.Component{
 	popover(){
 		var _popover =
 			<Popover id="popover-basic" className = "more-cheers-popover">
-			<Popover.Title as="h3">Special Cheers!</Popover.Title>
+			<Popover.Title as="h2" className="noti-text">Special Cheers!</Popover.Title>
 				<Popover.Content className = "more-cheers-content">
 					<Scrollbars>
 						<Container>

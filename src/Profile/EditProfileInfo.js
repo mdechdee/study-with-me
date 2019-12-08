@@ -1,6 +1,7 @@
 import React from 'react';
 import {db} from '../firebase/firebase.js';
 import {Form} from 'react-bootstrap';
+import {toast} from 'react-toastify';
 import {Container, Button, Col, Row} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../scss/Profile.scss';
@@ -36,10 +37,19 @@ class EditProfileInfo extends React.Component {
 		this.setState({name:e.target.value});
 	}
 	handleUpdate(e){
-		e.preventDefault();
-		var nameRef = db.ref(`users/`);
-		nameRef.child(`${this.props.uid}`).update({name: this.state.name})
+		if(this.state.name==="") {
+			toast("Please fill out your new name.", {
+				position: toast.POSITION.TOP_CENTER
+			});
+		}
+		else {
+			e.preventDefault();
+			var nameRef = db.ref(`users/`);
+			nameRef.child(`${this.props.uid}`).update({name: this.state.name});
+			this.props.setStatus();
+		}
 	}
+
 	render(){
 		return(
 			<Container className="info">

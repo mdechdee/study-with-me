@@ -8,6 +8,7 @@ import Smile from "@material-ui/icons/SentimentSatisfiedAlt";
 import LargeSmile from "@material-ui/icons/InsertEmoticon";
 import Like from "@material-ui/icons/ThumbUpAlt";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {toast} from 'react-toastify';
 import 'animate.css';
 import './scss/Notification.scss';
 
@@ -36,7 +37,10 @@ class Notification extends React.Component {
 			let point = snapshot.val()
 			point = point+10
 			db.ref("users/"+this.props.uid+"/point").set(point)
-})
+		})
+		toast("You got 10 points :D", {
+			position: toast.POSITION.TOP_CENTER
+		});
 	}
 
 	handleUpdateReward(){
@@ -50,7 +54,10 @@ class Notification extends React.Component {
 			let point = snapshot.val()
 			point = point+25
 			db.ref("users/"+this.props.uid+"/point").set(point)
-})
+		})
+		toast("You got 25 points :D", {
+			position: toast.POSITION.TOP_CENTER
+		});
 	}
 
 	CheerReward(voteNum){
@@ -108,7 +115,7 @@ class Notification extends React.Component {
 				cheerList.push(
 					<div className="noti-label">
 						<Row>
-							<Col>
+							<Col className="noti-label">
 								{cheer[item].cheererName} gave you a <span style={{color:'red'}}>{cheer[item].cheerType}</span>
 							&nbsp;&nbsp;&nbsp;&nbsp;<span style={{color:'red'}}>{this.CheerPic(cheer[item].cheerType)}</span>
 							</Col>
@@ -184,18 +191,18 @@ class Notification extends React.Component {
 				    }}>
 
 						<Row>
-							<Col xs sm={8}>
+							<Col className="noti-label" xs sm={8}>
 								<p><span style={{color:'red'}}>Task:</span><br/>Update your progress<br/>Progress: {updateNum}/1</p>
 							</Col>
-							<Col xs sm={4}>
+							<Col className="noti-label" xs sm={4}>
 								{this.UpdateReward(updateNum)}
 							</Col>
 						</Row>
 						<Row>
-							<Col xs sm={8}>
+							<Col className="noti-label" xs sm={8}>
 								<p><span style={{color:'red'}}>Task:</span> Cheer others<br/>Progress: {voteNum}/3</p>
 							</Col>
-							<Col xs sm={4}>
+							<Col className="noti-label" xs sm={4}>
 								{this.CheerReward(voteNum)}
 							</Col>
 						</Row>

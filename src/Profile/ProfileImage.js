@@ -25,7 +25,7 @@ class ProfileImage extends Component {
 
   render(){
     return (
-      <div className="profile-image">
+      <div className="profile-image content-center">
           <img
             src={this.state.url}
             alt="profile"
