@@ -101,6 +101,10 @@ class MyGroup extends React.Component {
 			this.setState({firstPassed: true})
 		}
 	}
+	checkPeopleChange(){
+		if(this.props.timer.people !== this.state.people)
+			this.collectPeople()
+	}
 	checkEndTime(){
 		if(this.props.timer.currentTime > this.props.timer.baseStopTime){
 			this.setState({clearGroup: true})
@@ -134,6 +138,7 @@ class MyGroup extends React.Component {
 		var start_time = this.props.timer.startTime
 		var stop_time = this.props.timer.stopTime
 		this.checkIntervalChange()
+		this.checkPeopleChange()
 		var intervalNum = ""
 		var self = this;
 		if(this.state.intervalNum===1){
