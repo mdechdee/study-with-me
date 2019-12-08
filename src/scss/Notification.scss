@@ -398,3 +398,24 @@ $bg-nav-pills-active-color: #337ab7;
   font-size: 1pc;
   color: #black;
 }
+
+.fa-layers-counter{
+  background-color: #ff253a;
+  border-radius: 2em;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  height: 1.5em;
+  line-height: 1;
+  max-width: 4em;
+  min-width: 0.5em;
+  overflow: hidden;
+  padding: 0.15em;
+  right: -2px;
+  text-overflow: ellipsis;
+  top: 1px;
+  -webkit-transform: scale(0.25);
+  transform: scale(0.4);
+  -webkit-transform-origin: top right;
+  transform-origin: top right;
+}

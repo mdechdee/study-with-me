@@ -82,7 +82,6 @@ class Signup extends React.Component {
             isValid,
           }) => (
           <Form noValidate onSubmit={handleSubmit}>
-            <Form.Label className="form-font"> Sign up </Form.Label>
             <Form.Group as = {Row}>
               <Form.Label column xs sm={4}> Username </Form.Label>
               <Col xs sm={8}>
@@ -90,7 +89,7 @@ class Signup extends React.Component {
                   type="text" onChange={(e) => {this.handleChange(e); handleChange(e)}}
                   isInvalid={touched.username && !!errors.username}/>
                 <Form.Control.Feedback type='invalid'>{errors.username}</Form.Control.Feedback>
-              </Col>  
+              </Col>
             </Form.Group>
             <Form.Group as = {Row}>
               <Form.Label column xs sm={4}> Email </Form.Label>
