@@ -8,6 +8,8 @@ import Hamburger from './Hamburger.js';
 import Profile from './Profile/Profile.js';
 import FindGroups from './FindGroups/FindGroups.js';
 import MyGroup from './MyGroup/MyGroup.js';
+import ModalRedeem from './Redeem/ModalRedeem.js'
+import ModalCongrat from './Redeem/ModalCongrat.js'
 import Redeem from './Redeem/Redeem.js'
 import StickerDetails from './Redeem/StickerDetails';
 import AuthContext from './authentication/AuthContext.js';
@@ -71,6 +73,8 @@ const Page = (auth) => {
         </div>
         <div className='horizontal-div-mid' />
         <div className='div-content'>
+          <ModalRedeem/>
+          <ModalCongrat/>
         <Switch>
             <Route exact path='/' render = {() => (
                 <Redirect to='/find_group' />

@@ -48,7 +48,6 @@ class StickerProvider extends Component {
 		storeStickers.forEach(item =>{
 			const singleItem = {...item};
 			tempStickers = [...tempStickers, singleItem];
-
 		} );
 		this.setState(() => {
 			return {stickers: tempStickers}
