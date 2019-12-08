@@ -19,7 +19,6 @@ class JoinGroup extends React.Component {
 
   handleChange(event) {
     this.setState({goal: event.target.value});
-
   }
 
   updateUser(){
@@ -49,11 +48,13 @@ class JoinGroup extends React.Component {
     var groupRef =  db.ref('groups/' + this.props.name);
     var peopleRef =  db.ref('groups/' + this.props.name + '/people');
     var newMemberRef = peopleRef.child(`${this.props.uid}`);
-    var _peopleNum = 1
+    var _peopleNum = 1;
+    var _progressUpdateFlag = 1;
     groupRef.once('value', snapshot => {
       _peopleNum = snapshot.val().peopleNum
+      _progressUpdateFlag = snapshot.val().progressUpdateFlag
     })
-    groupRef.update({peopleNum: _peopleNum+1})
+    groupRef.update({peopleNum: _peopleNum+1, progressUpdateFlag: _progressUpdateFlag+1})
     newMemberRef.set({
       goal: this.state.goal,
       progress: '',

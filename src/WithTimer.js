@@ -29,6 +29,8 @@ const withTimer = (Component) =>
 			db.ref(`users/${this.state.uid}/group`).on('value', (snap) =>{
 				let _group = snap.val();
 				this.setState({groupName: _group})
+				if(_group === '')
+					return
 				db.ref(`groups/${_group}`).on('value', (snapshot) => {
 					let val = snapshot.val();
 					this.setState({

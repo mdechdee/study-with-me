@@ -16,6 +16,7 @@ class ProfileImage extends Component {
       var val = snapshot.val()
       if(val.CroppedImg !== undefined){
         this.setState({url:val.CroppedImg})
+        console.log(val.CroppedImg)
       }
       else{
         this.setState({url:"https://via.placeholder.com/300x200"})
