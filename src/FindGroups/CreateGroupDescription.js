@@ -156,6 +156,7 @@ class CreateGroupDescription extends React.Component{
 				'name': this.state.group_name,
 				'baseStartDate': this.state.group_start_date,
 				'baseStartTime': this.state.group_start_time,
+				'baseStartGroup': startTime,
 				'baseStopTime': startTime + totalTime,
 
 				'totalTime': this.state.group_total_time,
