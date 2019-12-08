@@ -43,8 +43,6 @@ class MemberProgress extends React.Component {
           var _img = new Image();
           _img.src = url;
           _img.onload = function(){
-            console.log(this.width)
-            console.log(this.height)
             if(this.width>this.height) typePictureUrl[i]=2
             else typePictureUrl[i] = 1
           }
@@ -66,7 +64,7 @@ class MemberProgress extends React.Component {
       //Fetch username
        db.ref(`users/${peopleName[i]}`).once('value',(snapshot) =>{
           let val = snapshot.val()
-          _username.push(val.name)
+          _username[i] = val.name;
           this.setState({userName: _username}, () => {this.checkUserInfoLoaded()})
         })
     }
@@ -149,10 +147,12 @@ class MemberProgress extends React.Component {
   }
   showCheerAndReport(){
     if(this.state.isCurrentPersonViewLoaded){
-      return(<div>
-        <Cheer groupName={this.props.groupInfo.groupName} uid={this.state.currentPersonView} cheererUid={this.props.cheererUid} />
-        <Report uid = {this.state.currentPersonView}/>
-        </div>)
+      if(this.state.currentPersonView !== this.props.cheererUid){
+        return(<div>
+          <Cheer groupName={this.props.groupInfo.groupName} uid={this.state.currentPersonView} cheererUid={this.props.cheererUid} />
+          <Report uid = {this.state.currentPersonView}/>
+          </div>)
+      }
     }
     else {
       return(<React.Fragment/>)
@@ -161,7 +161,11 @@ class MemberProgress extends React.Component {
   handlePicChange(event){
     this.setState({isCurrentPersonViewLoaded: false})
     this.setState({currentPersonView: this.props.groupInfo.mapPeopleWithNumber[event]},
-      ()=>{this.setState({isCurrentPersonViewLoaded: true})})
+      ()=>{
+        this.setState({isCurrentPersonViewLoaded: true})
+        this.props.handlePicChange(event)
+        console.log('from MemPro : '+event)
+      })
   }
   componentDidMount(){
     var _peopleName = []
@@ -179,7 +183,7 @@ class MemberProgress extends React.Component {
   render(){
     return(
       <React.Fragment>
-        <Carousel className='carousel-custom' interval={0} onSelect={this.handlePicChange}
+        <Carousel className='carousel-custom' interval={0} onSelect={this.handlePicChange} defaultActiveIndex={this.props.activeIndex}
           nextIcon={<div className="circle-button"><span aria-hidden="true" className="carousel-control-next-icon"/></div>}
           prevIcon={<div className="circle-button"><span aria-hidden="true" className="carousel-control-prev-icon" />	</div>}>
           {this.showAllProgress()}
