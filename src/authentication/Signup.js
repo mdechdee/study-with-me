@@ -68,6 +68,7 @@ class Signup extends React.Component {
 
     return(
       <div style = {{margin:"auto"}}>
+        <div className="form-title"> Sign up </div>
         <Formik
           initialValues={INITIAL_VALUE}
           validationSchema = {SCHEMA}
@@ -83,25 +84,27 @@ class Signup extends React.Component {
             isSubmitting,
           }) => (
           <Form onSubmit={handleSubmit}>
-            <Form.Label className="form-font"> Sign up </Form.Label>
             <Form.Group as = {Row}>
               <Form.Label column xs sm={4}> Username </Form.Label>
               <Col xs sm={8}>
-                <Form.Control value={values.username} name="username" placeholder="Enter your username"
+                <Form.Control value={values.username} name="username"
+                  className="form-label" placeholder="Enter your username"
                   type="text" onChange={(e) => {this.handleChange(e); handleChange(e)}}/>
               </Col>
             </Form.Group>
             <Form.Group as = {Row}>
               <Form.Label column xs sm={4}> Email </Form.Label>
               <Col xs sm={8}>
-                <Form.Control value={values.email} name="email" placeholder="Enter your email"
+                <Form.Control value={values.email} name="email"
+                  className="form-label" placeholder="Enter your email"
                   type="email" onChange={(e) => {this.handleChange(e); handleChange(e)}}/>
               </Col>
             </Form.Group>
             <Form.Group as = {Row}>
               <Form.Label column xs sm={4}> Password </Form.Label>
               <Col xs sm={8}>
-                <Form.Control value={values.password} name="password" placeholder="Enter your password"
+                <Form.Control value={values.password} name="password"
+                  className="form-label" placeholder="Enter your password"
                   type="password" onChange={(e) => {this.handleChange(e); handleChange(e)}}/>
               </Col>
             </Form.Group>
