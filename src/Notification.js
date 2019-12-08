@@ -159,12 +159,12 @@ class Notification extends React.Component {
 			let check = snapshot.val()
 		})
 		var taskRef = db.ref("users/"+this.props.uid+"/task")
-		var updateTaskStatus = false;
+		var updateTaskStatus = true;
 		var updateNum = 0;
 		var voteNum = 0;
 		var tempNameList = [];
 		var tempCheerTypeList = [];
-		var voteTaskStatus = false;
+		var voteTaskStatus = true;
 
 
 		taskRef.on("value",(snapshot)=>{
@@ -182,22 +182,7 @@ class Notification extends React.Component {
 				voteNum = task.voteTask.number
 			}
 		})
-		db.ref('users/'+this.props.uid+'/task/remainedTask').once('value',(snapshot)=>{
-			let TaskNumber = snapshot.val()
-			if(TaskNumber===null){
-				TaskNumber = 0
-
-			}
-			if(TaskNumber == 0){
-				return(					<div className="noti-label" style={{
-										backgroundColor: 'white'
-									}}>
-										No remaining tasks.
-										<p></p>
-									</div>
-								)
-			}
-		})
+		
 		if(updateTaskStatus===false){
 			if(voteTaskStatus===false){
 			//	this.setState({remainedTask:2})
