@@ -62,7 +62,7 @@ class Signup extends React.Component {
         .email("Please enter a valid email.")
         .required("Required"),
       password: Yup.string()
-        .length(6, "Password must be at least 6 characters long")
+        .min(6, "Password must be at least 6 characters long")
         .required("Required")
     });
     return(

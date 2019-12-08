@@ -161,7 +161,11 @@ class MemberProgress extends React.Component {
   handlePicChange(event){
     this.setState({isCurrentPersonViewLoaded: false})
     this.setState({currentPersonView: this.props.groupInfo.mapPeopleWithNumber[event]},
-      ()=>{this.setState({isCurrentPersonViewLoaded: true})})
+      ()=>{
+        this.setState({isCurrentPersonViewLoaded: true})
+        this.props.handlePicChange(event)
+        console.log('from MemPro : '+event)
+      })
   }
   componentDidMount(){
     var _peopleName = []
@@ -179,7 +183,7 @@ class MemberProgress extends React.Component {
   render(){
     return(
       <React.Fragment>
-        <Carousel className='carousel-custom' interval={0} onSelect={this.handlePicChange}
+        <Carousel className='carousel-custom' interval={0} onSelect={this.handlePicChange} defaultActiveIndex={this.props.activeIndex}
           nextIcon={<div className="circle-button"><span aria-hidden="true" className="carousel-control-next-icon"/></div>}
           prevIcon={<div className="circle-button"><span aria-hidden="true" className="carousel-control-prev-icon" />	</div>}>
           {this.showAllProgress()}

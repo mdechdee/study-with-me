@@ -29,10 +29,12 @@ class MyGroup extends React.Component {
 			clearGroup: false,
 			firstPassed: false,
 			progressUpdateFlag: 0,
+			activeIndex: 0,
 		};
 		this.handleIntervalChange = this.handleIntervalChange.bind(this);
 		this.handleCloseNoti = this.handleCloseNoti.bind(this);
 		this.handleCloseClearGroup = this.handleCloseClearGroup.bind(this);
+		this.handlePicChange = this.handlePicChange.bind(this);
 	}
 	// bring data from database
 
@@ -51,7 +53,7 @@ class MyGroup extends React.Component {
 					this.setState({
 						mapPeopleWithNumber:temp,
 						totalPeople:num,
-						isGroupLoaded:true
+						isGroupLoaded:true,
 					}, () => {
 						this.checkEndTime()
 					});
@@ -62,11 +64,18 @@ class MyGroup extends React.Component {
 	showMemberProgress(){
 		if(this.state.isGroupLoaded && !this.state.clearGroup)
 		{
-			return(<MemberProgress cheererUid={this.props.timer.uid} groupInfo={this.state} key={this.props.timer.progressUpdateFlag}/>)
+			return(<MemberProgress cheererUid={this.props.timer.uid} groupInfo={this.state}
+				key={this.props.timer.progressUpdateFlag} activeIndex={this.state.activeIndex}
+				handlePicChange={this.handlePicChange}/>)
 		}
 		else {
 			return(<React.Fragment/>)
 		}
+	}
+
+	handlePicChange(index){
+		console.log('from group: '+index)
+		this.setState({activeIndex: index})
 	}
 
 	handleIntervalChange(){
@@ -138,7 +147,10 @@ class MyGroup extends React.Component {
 		this.setState({groupName: this.props.timer.groupName})
 		this.setState({uid: this.props.timer.uid})
 		if(this.state.groupName !== '')
+		{
 			this.collectPeople()
+			this.setState({activeIndex: Math.floor(Math.random() * (this.state.totalPeople+1))})
+		}
 	}
 
 	render(){
