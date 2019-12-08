@@ -67,6 +67,7 @@ class Signup extends React.Component {
     });
     return(
       <div style = {{margin:"auto"}}>
+        <div className="form-title"> Sign up </div>
         <Formik
           initialValues={INITIAL_VALUE}
           validationSchema = {SCHEMA}

@@ -32,7 +32,9 @@ class ProgressDescription extends React.Component{
 
 	handleUpload(e){
 		if(this.state.progress_description===""||this.state.goal_description==="") {
-			toast.error("Please fill all necessary information.");
+			toast("Please fill out all necessary information.", {
+				position: toast.POSITION.TOP_CENTER
+			});
 		}
 		else {
 			e.preventDefault();

@@ -15,10 +15,23 @@
   display: inline-block;
 }
 
+.form-title {
+  font-family: $f4;
+  font-size: 2pc;
+  color: #db6c62;
+  margin-bottom: 20px;
+}
+
 .form-font {
   font-family: $f3;
   font-size: 1pc;
   width: 300px;
+  vertical-align: bottom;
+}
+
+.form-label {
+  @extend .form-font;
+  font-family: $f2;
 }
 
 .invalid-feedback{
