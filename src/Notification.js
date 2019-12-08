@@ -287,7 +287,7 @@ class Notification extends React.Component {
 
 		return(
 			<React.Fragment>
-				<OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+				<OverlayTrigger rootClose={true} trigger="click" placement="bottom" overlay={popover}>
 					<div style = {{width: '50px', height: '40px', margin: '13px'}}>
 						<span className="fa-layers fa-fw icon-noti" align="right">
 							<FontAwesomeIcon icon="bell"/>

@@ -64,11 +64,13 @@ class Signin extends React.Component {
               type="email" placeholder="email@example.com"
               name="email" value={email}
               onChange={this.handleChange}
+              style={{width: '300px'}}
             />
             <Form.Control
               type="password" placeholder="password"
               name="password" value={password}
               onChange={this.handleChange}
+              style={{width: '300px'}}
             />
           </Form.Group>
           <Form.Group as = {Row}>

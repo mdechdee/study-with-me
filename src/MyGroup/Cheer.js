@@ -127,8 +127,8 @@ class Cheer extends React.Component{
 	showMoreCheers(){
 		if(!this.state.isStickerLoaded)
 			return(<h3> Loading </h3>);
-		if(this.state.sticker === '')
-			return(<h3> You have no special cheer yet, Do some tasks and redeem it :) </h3>);
+		if(this.state.sticker === {})
+			return(<div style={{textAlign:"center", height:'130px'}}> You have no special cheer yet, Do some tasks and redeem it :) </div>);
 		var _moreCheers = []
 		var _stickers = this.state.sticker
 		var _stickerList = []
@@ -138,6 +138,8 @@ class Cheer extends React.Component{
 			for(var m = 0; m < _stickers[sticker] ; m++)
 				_stickerList.push(sticker)
 		});
+		if(totalSticker === 0)
+			return(<div style={{textAlign:"center", height:'130px'}}> You have no special cheer yet, Do some tasks and redeem it :) </div>);
 		for(let i=0; i < totalSticker;i+=2)
 		{
 			if(i+1 < totalSticker){

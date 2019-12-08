@@ -123,12 +123,8 @@ class EditProfileImage extends Component {
               src={this.state.urlUploadImg}
             />
           </div>
-          <img className="file-font"
-            src={this.state.urlCroppedUploadImg}
-            alt="Preview"
-          />
         </div>
-        <div className="progress-bar">
+        <div className="progress-custom">
           <ProgressBar animated now={this.state.progress} variant = {this.state.status} className="progress" label={this.state.show} />
         </div>
         <div className="content-center">

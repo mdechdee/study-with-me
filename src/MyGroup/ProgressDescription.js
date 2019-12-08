@@ -32,6 +32,7 @@ class ProgressDescription extends React.Component{
 
 	handleUpload(e){
 		if(this.state.progress_description===""||this.state.goal_description==="") {
+			e.preventDefault();
 			toast("Please fill out all necessary information.", {
 				position: toast.POSITION.TOP_CENTER
 			});
@@ -56,11 +57,11 @@ class ProgressDescription extends React.Component{
 			<div>
 				<Form>
 				  	<Form.Group controlId="form-progress-description">
-					    <Form.Label className="form-font">My progress</Form.Label>
+					    <Form.Label className="form-font-progress">My progress</Form.Label>
 					    <Form.Control placeholder="What you have done recently" className="form-placeholder" onChange={this.progress_description_change} />
 				  	</Form.Group>
 				  	<Form.Group controlId="form-progress-next">
-					    <Form.Label className="form-font">My next goal</Form.Label>
+					    <Form.Label className="form-font-progress">My next goal</Form.Label>
 					    <Form.Control placeholder="What you will do next" className="form-placeholder" onChange={this.goal_description_change}/>
 						</Form.Group>
 

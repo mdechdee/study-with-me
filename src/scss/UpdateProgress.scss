@@ -81,9 +81,10 @@ These are for ProgressImage.js
 These are for ProgressDescription.js
 --------------------------------------------------
 --------------------------------------------------*/
-.form-font {
+.form-font-progress {
 	font-family: $f3;
   font-size: 1.5pc;
+  width: auto !important;
 }
 
 .form-placeholder{
@@ -138,10 +139,6 @@ These are for ProgressDescription.js
   &:hover{
     cursor: pointer;
   };
-}
-
-.progress-custom{
-  background-color: yellow;
 }
 
 .modal-90w{
