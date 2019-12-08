@@ -138,9 +138,18 @@ class MyGroup extends React.Component {
 			  	});
 		}
 	}
+	showUpdateProgress = () => {
+		if(false){
+			return (<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>)
+		}
+		else{
+			return (<React.Fragment/>)
+		}
+	}
 
 	componentDidMount(){
 		console.log("MOUNT")
+		console.log(this.props.timer)
 		this.setState({intervalNum: this.props.timer.intervalNum}, () =>{
 			this.checkIntervalChange()
 		})
@@ -214,7 +223,7 @@ class MyGroup extends React.Component {
 					</Modal>
 				    {this.showMemberProgress()}
 					<div className="buttons-wrap">
-						<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>
+						{this.showUpdateProgress()}
 						<AllMember people={this.state.people} intervalNum={this.props.timer.intervalNum}/>
 					</div>
 				</Scrollbars>
