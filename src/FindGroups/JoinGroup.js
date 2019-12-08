@@ -60,6 +60,7 @@ class JoinGroup extends React.Component {
       goal: this.state.goal,
       progress: '',
       numberCheer: '',
+      lastInterval: 0,
     });
     //event.preventDefault();
     this.updateUser()

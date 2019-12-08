@@ -18,6 +18,7 @@ class MemberProgress extends React.Component {
       userProfilePic: [],
       userGoal: [],
       userProgress: [],
+      userStatus: [],
       userInfoLoaded: false,
       peopleUID: [],
       currentPersonView: '',
@@ -31,11 +32,13 @@ class MemberProgress extends React.Component {
     var _username = []
     var _userProfilePic = []
     var peopleName = this.state.peopleUID
+    let _people = this.props.groupInfo.people
+    console.log(_people)
     for(let i in peopleName)
     {
       //Fetch pictures
       storage.ref(`images/${peopleName[i]}`)
-      .child(`work${this.props.groupInfo.intervalNum}.jpg`).getDownloadURL()
+      .child(`work${_people[peopleName[i]].lastInterval}.jpg`).getDownloadURL()
         .then(url => {
           const {pictureUrl} = this.state;
           pictureUrl[i] = url
@@ -78,11 +81,13 @@ class MemberProgress extends React.Component {
     var ppl = this.props.groupInfo.people
     let _goal = []
     let _progress = []
+    let _status = []
     Object.keys(this.props.groupInfo.people).forEach(function (person){
         _goal.push(ppl[person].goal)
         _progress.push(ppl[person].progress)
+        _status.push(ppl[person].status)
     });
-    this.setState({userGoal: _goal, userProgress: _progress})
+    this.setState({userGoal: _goal, userProgress: _progress, userStatus: _status})
     ///
   }
 
@@ -104,11 +109,10 @@ class MemberProgress extends React.Component {
       var progress = []
       for(var i = 0;i < this.props.groupInfo.totalPeople;i++)
       {
-        if(this.state.typePictureUrl[i]===1){
+        if(this.state.userStatus[i]==='active'){
           progress.push(
             <Carousel.Item key={i}>
               <img
-                style = {{ objectFit: 'cover'}}
                 className="carousel-img-1"
                 src={this.state.pictureUrl[i]}
                 alt="First slide"
@@ -132,15 +136,22 @@ class MemberProgress extends React.Component {
           progress.push(
             <Carousel.Item key={i}>
               <img
-                style = {{ objectFit: 'cover'}}
                 className="carousel-img-2"
                 src={this.state.pictureUrl[i]}
                 alt="First slide"
               />
-              <Carousel.Caption key={this.props.groupInfo.totalPeople+i} style={{zIndex: '1'}}>
-                <div className="carousel-font">UserName: {this.state.userName[i]} </div>
-                <div className="carousel-font">Goal: {this.state.userGoal[i]}</div>
-              </Carousel.Caption>
+
+            <Container fluid className='caption' key={this.props.groupInfo.totalPeople+i} style={{zIndex: '1'}}>
+                <Row>
+                  <Col xs={3} className="d-flex justify-content-center p-0">
+                    <img src={this.state.userProfilePic[i]} className='profile-img'/>
+                  </Col>
+                  <Col xs={9} className="d-flex flex-column justify-content-center p-0">
+                    <div className='carousel-font'> {this.state.userName[i]}</div>
+                    <div className='carousel-font-small'> Progress: {this.state.userProgress[i]} </div>
+                  </Col>
+                </Row>
+              </Container>
             </Carousel.Item>
           )
         }
@@ -180,12 +191,10 @@ class MemberProgress extends React.Component {
       ()=>{
         this.setState({isCurrentPersonViewLoaded: true})
         this.props.handlePicChange(event)
-        console.log('from MemPro : '+event)
       })
   }
   componentDidMount(){
     var _peopleName = []
-    console.log(this.props.groupInfo)
     Object.keys(this.props.groupInfo.people).forEach(function (person){
       _peopleName.push(person)
     });

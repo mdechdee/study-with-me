@@ -173,7 +173,12 @@ class CreateGroupDescription extends React.Component{
 				'peopleNum': 1,
 				'people': people
 			}, () =>{
-				db.ref(`groups/${this.state.group_name}/people/${this.props.uid}`).set({goal: this.state.personal_goal})
+				db.ref(`groups/${this.state.group_name}/people/${this.props.uid}`).set({
+					goal: this.state.personal_goal,
+					lastInterval: 0,
+					progress: '',
+				   numberCheer: ''
+				 })
 			})
 			var userRef = db.ref(`users/${this.props.uid}`);
 			userRef.update({

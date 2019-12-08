@@ -25,14 +25,14 @@
 .carousel-font{
   font-family: $f3 !important;
   font-size: 1.6pc !important;
-  color: black;
+  color: white;
   text-align: left !important;
 }
 
 .carousel-font-small{
   font-family: $f2 !important;
   font-size: 0.8pc !important;
-  color: black;
+  color: whitesmoke;
   text-align: left !important;
 }
 
@@ -40,17 +40,27 @@
   height:100%;
   width: 100%;
   position: absolute;
+  object-fit: contain;
 }
 
 .carousel-img-2{
+  height:100%;
   width: 100%;
   position: absolute;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  object-fit: contain;
 }
 
 .profile-img{
-  width: 50px;
-  height: 50px;
-  margin: 10px;
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  border-radius: 50%;
+  border: solid;
+  border-width: thin;
+  border-color: black;
+  overflow: hidden;
 }
 
 .caption{
@@ -59,7 +69,8 @@
   height: 70px;
   width: inherit;
   padding-left: 10px;
-  background-color: rgba(102, 102, 102, 0.3);
+  background-color: rgba(102, 102, 102, 0.8);
+  border-radius: 0.8rem;
 }
 
 .carousel-indicators{
