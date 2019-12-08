@@ -33,6 +33,8 @@ const withTimer = (Component) =>
 					return
 				db.ref(`groups/${_group}`).on('value', (snapshot) => {
 					let val = snapshot.val();
+					if(val === null)
+						return
 					this.setState({
 						intervalTime: val.intervalTime,
 						intervalNum: val.intervalNum,

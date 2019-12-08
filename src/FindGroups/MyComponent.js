@@ -36,7 +36,7 @@ class MyComponent extends React.Component {
 				<Row className='group-row'>
 
 					<Col xs sm md lg xl={3}>
-						<Row><div className='group-name' onClick={this.handleShow}> {this.props.one.name} </div></Row>
+						<div className='group-name' onClick={this.handleShow}> {this.props.one.name} </div>
 					</Col>
 
 					<Col xs sm md lg xl={3} className="group-column">
