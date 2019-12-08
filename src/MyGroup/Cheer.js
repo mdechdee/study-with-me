@@ -33,6 +33,8 @@ class Cheer extends React.Component{
 		var Ref = db.ref(`groups/${this.props.groupName}/people/${this.props.uid}`)
 		Ref.once('value', (snapshot) =>{
 			var val = snapshot.val()
+			if(val === null)
+				return
 			this.setState({
 				numberCheer: val.numberCheer
 			}, () => {

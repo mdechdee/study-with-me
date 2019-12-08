@@ -19,22 +19,35 @@
 }
 
 .carousel-font{
-  background-color: rgba(white, 0.5);
   font-family: $f2;
-  text-align: center;
+  font-size: 1.2pc;
   color: black;
+  text-align: left !important;
+  position: relative;
+  width: 100%;
+}
+
+.carousel-font-small{
+  text-align: left !important;
 }
 
 .carousel-img-1{
   height:100%;
+  position: absolute;
 }
 
 .carousel-img-2{
   width:100%;
+  position: absolute;
 }
 
-.carousel-caption{
-  background-color: rgba($darkgray, 0.3);
+.caption{
+  position: absolute;
+  text-align: left;
+  left: 0px;
+  width: inherit;
+  padding-left: 10px;
+  background-color: rgba(102, 102, 102, 0.3);
 }
 
 .carousel-indicators{

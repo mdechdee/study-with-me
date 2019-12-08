@@ -1,6 +1,6 @@
 import React from 'react';
 import { db , storage} from '../firebase/firebase.js';
-import { Carousel } from 'react-bootstrap';
+import { Carousel , Row, Col, Container} from 'react-bootstrap';
 import '../scss/MemberProgress.scss'
 import Cheer from './Cheer.js'
 import Report from './Report.js'
@@ -15,7 +15,9 @@ class MemberProgress extends React.Component {
       pictureUrlLoaded: false,
       pictureNumLoaded: 0,
       userName: [],
+      userProfilePic: [],
       userGoal: [],
+      userProgress: [],
       userInfoLoaded: false,
       peopleUID: [],
       currentPersonView: '',
@@ -27,6 +29,7 @@ class MemberProgress extends React.Component {
 
   getData(){
     var _username = []
+    var _userProfilePic = []
     var peopleName = this.state.peopleUID
     for(let i in peopleName)
     {
@@ -65,16 +68,21 @@ class MemberProgress extends React.Component {
        db.ref(`users/${peopleName[i]}`).once('value',(snapshot) =>{
           let val = snapshot.val()
           _username[i] = val.name;
-          this.setState({userName: _username}, () => {this.checkUserInfoLoaded()})
+          _userProfilePic[i] = val.CroppedImg;
+          this.setState({userName: _username, userProfilePic:_userProfilePic},
+            () => {this.checkUserInfoLoaded()})
         })
+      //Fetch user profile pictures
     }
     //Fetch Goals
     var ppl = this.props.groupInfo.people
-    var _goal = []
+    let _goal = []
+    let _progress = []
     Object.keys(this.props.groupInfo.people).forEach(function (person){
         _goal.push(ppl[person].goal)
+        _progress.push(ppl[person].progress)
     });
-    this.setState({userGoal: _goal})
+    this.setState({userGoal: _goal, userProgress: _progress})
     ///
   }
 
@@ -105,10 +113,20 @@ class MemberProgress extends React.Component {
                 src={this.state.pictureUrl[i]}
                 alt="First slide"
               />
-              <Carousel.Caption key={this.props.groupInfo.totalPeople+i} style={{zIndex: '1'}}>
-                <div className="carousel-font">UserName: {this.state.userName[i]} </div>
-                <div className="carousel-font">Goal: {this.state.userGoal[i]}</div>
-              </Carousel.Caption>
+
+              <Container className='caption' key={this.props.groupInfo.totalPeople+i} style={{zIndex: '1'}}>
+                <Row>
+                  <Col xs={3}>
+                      <img src={this.state.userProfilePic[i]} style={{width:'100%'}}/>
+                  </Col>
+                  <Col xs={9}>
+                    <Container>
+                      <Row> {this.state.userName[i]}</Row>
+                      <Row> Progress: {this.state.userProgress[i]} </Row>
+                    </Container>
+                  </Col>
+                </Row>
+              </Container>
             </Carousel.Item>
           )
         }
