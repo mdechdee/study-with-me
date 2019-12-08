@@ -175,7 +175,7 @@ class MyGroup extends React.Component {
 						<Row className="row-wrap">
 							<Col className='flex-direction-column justify-content-center'>
 								<div className="my-group-title">
-									Group: {this.props.timer.groupName}
+									{this.props.timer.groupName}
 								</div>
 							</Col>
 
