@@ -1,5 +1,5 @@
 import React from 'react';
-import { db } from '../firebase/firebase.js';
+import { db,storage } from '../firebase/firebase.js';
 import TimerContext from '../TimerContext'
 import MemberProgress from './MemberProgress.js';
 import UpdateProgress from './UpdateProgress.js';
@@ -128,6 +128,9 @@ class MyGroup extends React.Component {
 			var _peopleName = []
 			Object.keys(this.state.people).forEach(function (person){
 		      	db.ref(`/users/`).child(`${person}`).update({group:""})
+		      	storage.ref(`/images/`).child(`${person}`).delete().then(()=>{
+		      		console.log("Remove"+person+" Images succeed")
+		      	})
 		    });
 			// delete the group
 			db.ref(`/groups/`).child(`${this.props.timer.groupName}`).remove().then(()=>{
@@ -136,11 +139,22 @@ class MyGroup extends React.Component {
 			 	.catch(function(error) {
 			 	   console.log("Remove failed: " + error.message)
 			  	});
+
+
+		}
+	}
+	showUpdateProgress = () => {
+		if(Date.now()>=this.props.timer.baseStartGroup){
+			return (<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>)
+		}
+		else{
+			return (<React.Fragment/>)
 		}
 	}
 
 	componentDidMount(){
 		console.log("MOUNT")
+		console.log(this.props.timer)
 		this.setState({intervalNum: this.props.timer.intervalNum}, () =>{
 			this.checkIntervalChange()
 		})
@@ -214,7 +228,7 @@ class MyGroup extends React.Component {
 					</Modal>
 				    {this.showMemberProgress()}
 					<div className="buttons-wrap">
-						<UpdateProgress uid={this.props.uid} groupName={this.props.timer.groupName} intervalNum={this.props.timer.intervalNum}/>
+						{this.showUpdateProgress()}
 						<AllMember people={this.state.people} intervalNum={this.props.timer.intervalNum}/>
 					</div>
 				</Scrollbars>

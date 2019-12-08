@@ -11,6 +11,7 @@ class CreateGroupDescription extends React.Component{
 	constructor(props){
 		super(props);
 		this.group_name_change=this.group_name_change.bind(this)
+		this.personal_goal_change = this.personal_goal_change.bind(this)
 		this.group_start_date_change=this.group_start_date_change.bind(this)
 		this.group_start_time_change=this.group_start_time_change.bind(this)
 		this.group_interval_change=this.group_interval_change.bind(this)
@@ -24,6 +25,7 @@ class CreateGroupDescription extends React.Component{
 		this.updateUser = this.updateUser.bind(this)
 		this.state = {
 			group_name:"",
+			personal_goal:"",
 			group_start_date:"",
 			group_start_time:"",
 			group_interval:"",
@@ -33,9 +35,12 @@ class CreateGroupDescription extends React.Component{
 		};
 	}
 
-
 	group_name_change(e){
 		this.setState({group_name: e.target.value})
+	}
+
+	personal_goal_change(e){
+		this.setState({personal_goal: e.target.value})
 	}
 
 	group_start_date_change(e){
@@ -151,6 +156,7 @@ class CreateGroupDescription extends React.Component{
 				'name': this.state.group_name,
 				'baseStartDate': this.state.group_start_date,
 				'baseStartTime': this.state.group_start_time,
+				'baseStartGroup': startTime,
 				'baseStopTime': startTime + totalTime,
 
 				'totalTime': this.state.group_total_time,
@@ -166,6 +172,8 @@ class CreateGroupDescription extends React.Component{
 				'intervalNum': 0,
 				'peopleNum': 1,
 				'people': people
+			}, () =>{
+				db.ref(`groups/${this.state.group_name}/people/${this.props.uid}`).set({goal: this.state.personal_goal})
 			})
 			var userRef = db.ref(`users/${this.props.uid}`);
 			userRef.update({
@@ -183,6 +191,17 @@ class CreateGroupDescription extends React.Component{
 						<Form>
 						  	<Form.Group controlId="group-name">
 							    <Form.Control className="form-font" onChange={this.group_name_change} />
+						  	</Form.Group>
+						</Form>
+					</Col>
+				</Row>
+
+				<Row>
+					<Col className="form-font" xs={3}> Goal: </Col>
+					<Col xs={8}>
+						<Form>
+						  	<Form.Group controlId="personal-goal">
+							    <Form.Control className="form-font" onChange={this.personal_goal_change} />
 						  	</Form.Group>
 						</Form>
 					</Col>
