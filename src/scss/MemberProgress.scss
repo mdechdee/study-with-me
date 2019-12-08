@@ -13,38 +13,50 @@
   margin: auto;
 }
 
+.carousel-item.active, .carousel-item-next, .carousel-item-prev{
+  display: flex !important;
+}
+
 .carousel-inner{
   width: 100%;
   height: 100%;
 }
 
 .carousel-font{
-  font-family: $f2;
-  font-size: 1.2pc;
+  font-family: $f3 !important;
+  font-size: 1.6pc !important;
   color: black;
   text-align: left !important;
-  position: relative;
-  width: 100%;
 }
 
 .carousel-font-small{
+  font-family: $f2 !important;
+  font-size: 0.8pc !important;
+  color: black;
   text-align: left !important;
 }
 
 .carousel-img-1{
   height:100%;
+  width: 100%;
   position: absolute;
 }
 
 .carousel-img-2{
-  width:100%;
+  width: 100%;
   position: absolute;
+}
+
+.profile-img{
+  width: 50px;
+  height: 50px;
+  margin: 10px;
 }
 
 .caption{
   position: absolute;
   text-align: left;
-  left: 0px;
+  height: 70px;
   width: inherit;
   padding-left: 10px;
   background-color: rgba(102, 102, 102, 0.3);

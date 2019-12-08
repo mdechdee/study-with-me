@@ -114,16 +114,14 @@ class MemberProgress extends React.Component {
                 alt="First slide"
               />
 
-              <Container className='caption' key={this.props.groupInfo.totalPeople+i} style={{zIndex: '1'}}>
+            <Container fluid className='caption' key={this.props.groupInfo.totalPeople+i} style={{zIndex: '1'}}>
                 <Row>
-                  <Col xs={3}>
-                      <img src={this.state.userProfilePic[i]} style={{width:'100%'}}/>
+                  <Col xs={3} className="d-flex justify-content-center p-0">
+                    <img src={this.state.userProfilePic[i]} className='profile-img'/>
                   </Col>
-                  <Col xs={9}>
-                    <Container>
-                      <Row> {this.state.userName[i]}</Row>
-                      <Row> Progress: {this.state.userProgress[i]} </Row>
-                    </Container>
+                  <Col xs={9} className="d-flex flex-column justify-content-center p-0">
+                    <div className='carousel-font'> {this.state.userName[i]}</div>
+                    <div className='carousel-font-small'> Progress: {this.state.userProgress[i]} </div>
                   </Col>
                 </Row>
               </Container>

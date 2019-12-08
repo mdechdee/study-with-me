@@ -115,25 +115,6 @@ These are for MyGroup.js
   justify-content: center;
 }
 
-/*--------------------------------------------------
---------------------------------------------------
-These are for Carousel.js
---------------------------------------------------
---------------------------------------------------*/
-.carousel-font{
-  font-family: $f4;
-  font-size: 1.2pc;
-  color: black;
-  text-align: center;
-  position: relative;
-  width: 100%;
-}
-
-.carousel-font-small{
-  @extend .carousel-font;
-  font-family: $f2 !important;
-  font-size: 0.8pc !important;
-}
 
 /*--------------------------------------------------
 --------------------------------------------------
