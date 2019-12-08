@@ -37,6 +37,7 @@ class Signup extends React.Component {
           })
           .then(() => {
             this.setState(() => ({ ...INITIAL_VALUE }));
+            this.props.history.push('/');
           })
           .catch(error => {
             alert(error)
@@ -50,7 +51,6 @@ class Signup extends React.Component {
   }
 
   handleChange = event => {
-    console.log(event.target.name)
     this.setState({ [event.target.name]: event.target.value });
   }
 
@@ -65,7 +65,6 @@ class Signup extends React.Component {
         .length(6, "Password must be at least 6 characters long")
         .required("Required")
     });
-
     return(
       <div style = {{margin:"auto"}}>
         <Formik
@@ -78,31 +77,36 @@ class Signup extends React.Component {
             errors,
             touched,
             handleChange,
-            handleBlur,
             handleSubmit,
-            isSubmitting,
+            isValid,
           }) => (
-          <Form onSubmit={handleSubmit}>
+          <Form noValidate onSubmit={handleSubmit}>
             <Form.Label className="form-font"> Sign up </Form.Label>
             <Form.Group as = {Row}>
               <Form.Label column xs sm={4}> Username </Form.Label>
               <Col xs sm={8}>
                 <Form.Control value={values.username} name="username" placeholder="Enter your username"
-                  type="text" onChange={(e) => {this.handleChange(e); handleChange(e)}}/>
-              </Col>
+                  type="text" onChange={(e) => {this.handleChange(e); handleChange(e)}}
+                  isInvalid={touched.username && !!errors.username}/>
+                <Form.Control.Feedback type='invalid'>{errors.username}</Form.Control.Feedback>
+              </Col>  
             </Form.Group>
             <Form.Group as = {Row}>
               <Form.Label column xs sm={4}> Email </Form.Label>
               <Col xs sm={8}>
                 <Form.Control value={values.email} name="email" placeholder="Enter your email"
-                  type="email" onChange={(e) => {this.handleChange(e); handleChange(e)}}/>
+                  type="email" onChange={(e) => {this.handleChange(e); handleChange(e)}}
+                  isInvalid={touched.email && !!errors.email} />
+                <Form.Control.Feedback type='invalid'>{errors.email}</Form.Control.Feedback>
               </Col>
             </Form.Group>
             <Form.Group as = {Row}>
               <Form.Label column xs sm={4}> Password </Form.Label>
               <Col xs sm={8}>
                 <Form.Control value={values.password} name="password" placeholder="Enter your password"
-                  type="password" onChange={(e) => {this.handleChange(e); handleChange(e)}}/>
+                  type="password" onChange={(e) => {this.handleChange(e); handleChange(e)}}
+                  isInvalid={touched.password && !!errors.password}/>
+                  <Form.Control.Feedback type='invalid'>{errors.password}</Form.Control.Feedback>
               </Col>
             </Form.Group>
 
