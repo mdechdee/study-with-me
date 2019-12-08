@@ -136,7 +136,7 @@ class Notification extends React.Component {
 			<div className="noti-label">
 				<Row>
 					<Col>
-						No cheer
+						No cheers.
 					</Col>
 				</Row>
 			</div>)
@@ -245,7 +245,7 @@ class Notification extends React.Component {
 					<div className="noti-label" style={{
 						backgroundColor: 'white'
 					}}>
-						No remain task
+						No remaining tasks.
 						<p></p>
 					</div>
 				)

@@ -166,12 +166,23 @@ These are for StickerDetails.js
 
 /*--------------------------------------------------
 --------------------------------------------------
-These are for StickerModal.js
+These are for ModalRedeem.js
 --------------------------------------------------
 --------------------------------------------------*/
 .confirm-title {
   @extend .redeem-title;
   height: 20px !important;
+  padding: 0px 0px 20px;
+  text-align: center;
+}
+
+.redeem-success{
+  font-family: $f3;
+  font-size: 28px;
+  text-align: center;
+  color: black;
+  margin: 10px;
+  vertical-align: bottom;
 }
 
 .custom-close-icon {
@@ -188,19 +199,4 @@ These are for StickerModal.js
   &:hover {
 		animation: 0.3s rotate90Clockwise;
 	}
-}
-
-.yes-button {
-  font-family: $f3;
-  font-size: 1.2pc !important;
-  text-align: center;
-  position: relative;
-  height: 10%;
-  width: 28%;
-  left: 20%;
-}
-
-.cancel-button {
-  @extend .yes-button;
-  left: 25%;
 }

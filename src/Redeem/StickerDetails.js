@@ -62,7 +62,7 @@ export class StickerDetails extends Component {
 
 													<div className='divider' />
 				    								<Link to='/redeem' className='redeem_link'>
-				    									<Button className='black-button sticker-detail' variant="info"><FontAwesomeIcon icon='times-circle'/> Go Back</Button>
+				    									<Button className='black-button sticker-detail' variant="secondary"><FontAwesomeIcon icon='times-circle'/> Go Back</Button>
 				    								</Link>
 				    							</div>
 											</div>

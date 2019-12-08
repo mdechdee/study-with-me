@@ -21,15 +21,15 @@ export default class ModalRedeem extends Component {
 
 						<ModalContainer>
 							<div className='row'>
-								<div id="modal" className="col-8 mx-auto col-md-6 col-lg-4 text-center text-capitalize p-5">
+								<div id="modal" className="col-8 mx-auto col-md-6 col-lg-4 text-center p-5">
 									<div>
 										<FontAwesomeIcon className="icon-check fa-3x"
 														 icon='check-circle'
 										/>
-										<h1>Success</h1>
-										<h6>Thank you for Redeem the reward.</h6>
+										<h1 className="redeem-success">Success</h1>
+										<h6 className="sticker-detail">Thank you for Redeeming the sticker.</h6>
 										<Link to='/redeem' className="redeem_link">
-										        <Button variant="black"
+										        <Button variant="secondary" className="sticker-detail"
 										        		onClick={()=>closeModalCongrat()}>
 										        	<FontAwesomeIcon icon='check-circle'/> Confirm
 										        </Button>

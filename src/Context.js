@@ -94,24 +94,30 @@ class StickerProvider extends Component {
 		},() => {console.log(this.state)})
 	}
 
-	closeModal = (remainPoints, price, title) => {
+	closeModal = (remainPoints, price, title, img) => {
 		db.ref("/users/"+this.state.user_id).update({ point: remainPoints });
 		var newKey = firebase.database().ref('/redeem_hist/').push()
+		var tempImg = img.split(".");
+
+		var tempNum = db.ref(`users/${this.state.user_id}/sticker/${tempImg[0]}`).once('value',(snapshot)=>{
+			let cheerNum = snapshot.val()
+			db.ref(`users/${this.state.user_id}/sticker/${tempImg[0]}`).set(cheerNum+1)
+		})
+
 		newKey.set({
-			point_used: price,
+			  point_used: price,
 		    rewardName: title,
 		    uid: this.state.user_id
 		  });
 		this.setState(() => {
 
-			return {modalOpen: false, user_point: remainPoints, modalOpenCongrat: true }
+			return {modalOpen: false, user_point: remainPoints, modalOpenCongrat: true  }
 		})
 	}
 	closeModalCongrat = (remainPoints, price, title) => {
-
 		this.setState(() => {
 
-			return {modalOpenCongrat: false }
+			return {modalOpenCongrat: false}
 		})
 	}
 	//this for click confirm in modal: should show the congratulation modal after
