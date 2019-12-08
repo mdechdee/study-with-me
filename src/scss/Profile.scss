@@ -6,7 +6,7 @@ These are for Profile.js
 --------------------------------------------------
 --------------------------------------------------*/
 .row-wrap {
-	border-bottom: 1px solid #ccc;
+	border-bottom: 3px solid red;
   margin: 10px 10px 10px;
 }
 
@@ -37,7 +37,7 @@ These are for ShowInformation.js
   font-family: $f3;
   color: black;
   height: 25px; /*requires explicit height*/
-  font-size: 1pc;
+  font-size: 0.9pc;
   text-align: left;
   position: relative;
 }

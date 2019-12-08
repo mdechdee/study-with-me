@@ -67,16 +67,16 @@ class AllMember extends React.Component {
         nameList.push(
           <div key={i} className="info-wrap">
             <Row>
-              <Col xs={3} className="info-title-font">Name: </Col>
-              <Col xs={9} className="info-font">{this.state.peopleName[i]}</Col>
+              <Col xs={4} className="info-title-font">Name: </Col>
+              <Col xs={7} className="info-font">{this.state.peopleName[i]}</Col>
             </Row>
             <Row>
-              <Col xs={3} className="info-title-font">Goal: </Col>
-              <Col xs={9} className="info-font">{this.state.goal[i]}</Col>
+              <Col xs={4} className="info-title-font">Goal: </Col>
+              <Col xs={7} className="info-font">{this.state.goal[i]}</Col>
             </Row>
             <Row>
-              <Col xs={3} className="info-title-font">Status: </Col>
-              <Col xs={9} className="info-font">{this.state.status[i]}</Col>
+              <Col xs={4} className="info-title-font">Status: </Col>
+              <Col xs={7} className="info-font">{this.state.status[i]}</Col>
             </Row>
           </div>);
     }
