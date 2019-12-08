@@ -33,8 +33,8 @@ export class StickerDetails extends Component {
 											<img src={img} className="img-fluid" alt="product"/>
 										</div>
 										{/*sticker text*/}
-										<div className="col-12 mx-auto col-md-12 my-3 text-capitalize">
-											<h2 className="sticker-title">{title}</h2>
+										<div className="col-12 mx-auto col-md-12 my-3">
+											<h2 className="sticker-title text-capitalize">{title}</h2>
 											<h4 className="text-title text-uppercase text-mutate mt-3 mb-2">
 												by : <span className="text-uppercase">{company}</span>
 											</h4>
@@ -61,7 +61,7 @@ export class StickerDetails extends Component {
 				    								</Button>
 													<div className='divider' />
 				    								<Link to='/redeem' className='redeem_link'>
-				    									<Button className='black-button sticker-detail' variant="info"><FontAwesomeIcon icon='times-circle'/> Go Back</Button>
+				    									<Button className='black-button sticker-detail' variant="secondary"><FontAwesomeIcon icon='times-circle'/> Go Back</Button>
 				    								</Link>
 				    							</div>
 											</div>

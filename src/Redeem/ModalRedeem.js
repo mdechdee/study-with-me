@@ -27,25 +27,26 @@ export default class ModalRedeem extends Component {
 							<ModalContainer>
 								<div className='row'>
 									<div id="modal" className="col-6 mx-auto col-md-4 col-lg-4 text-center text-capitalize p-5">
-										<h4 className="text-capitalize">Confirm</h4>
+										<h4 className="confirm-title text-capitalize">Confirm</h4>
 										<img src={img} className="img-fluid" alt="product"/>
-										<h4>{title}</h4>
-										<h6 className="text-muted">Available point : {user_point} points</h6>
-										<h6 className="text-muted">Price : {price} points</h6>
+										<h4 className="redeem-success">{title}</h4>
+										<h6 className="text-muted sticker-price">Available points : {user_point} points</h6>
+										<h6 className="text-muted sticker-price">Price : {price} points</h6>
 										<div style={{textAlign: 'center'}}>
 
-										        <Button variant="yellow"
-										        		cart onClick={()=>closeModal((user_point - price),price,title)}>
+										        <Button variant="success" className="sticker-detail"
+										        		cart onClick={()=>closeModal((user_point - price),price,title,img)}>
 										        	<FontAwesomeIcon icon='check-circle'/> Confirm
 										        </Button>
 
 											<div className='divider' />
+
 							        	<Link to='/details' className='redeem_link'>
-									        <Button variant="black"
+									        <Button variant="danger" className="sticker-detail"
 									        		onClick={()=>closeModal_cancel(user_point)}>
 									        	<FontAwesomeIcon icon='times-circle'/> Cancel
 									        </Button>
-									    </Link>
+										    </Link>
 
 									    </div>
 									</div>
