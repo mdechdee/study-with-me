@@ -126,7 +126,7 @@ class Notification extends React.Component {
 					cheerList.push(
 						<div>
 							<Row>
-								<Col>
+								<Col className="noti-label">
 									{cheer[item].cheererName} gave you a sticker
 								&nbsp;&nbsp;&nbsp;&nbsp;{this.CheerPic(cheer[item].cheerType)}
 								</Col>
@@ -140,9 +140,9 @@ class Notification extends React.Component {
 			</Button></div>)
 		}
 		else cheerList.push(
-			<div className="noti-label" key = {1}>
+			<div key = {1}>
 				<Row>
-					<Col>
+					<Col className="noti-label">
 						No cheers.
 					</Col>
 				</Row>
@@ -182,7 +182,7 @@ class Notification extends React.Component {
 				voteNum = task.voteTask.number
 			}
 		})
-		
+
 		if(updateTaskStatus===false){
 			if(voteTaskStatus===false){
 			//	this.setState({remainedTask:2})
@@ -218,10 +218,10 @@ class Notification extends React.Component {
 				    }}>
 
 						<Row>
-							<Col xs sm={8}>
+							<Col className="noti-label" xs sm={8}>
 								<p><span style={{color:'red'}}>Task:</span><br/>Update your progress<br/>Progress: {updateNum}/1</p>
 							</Col>
-							<Col xs sm={4}>
+							<Col className="noti-label" xs sm={4}>
 								{this.UpdateReward(updateNum)}
 							</Col>
 						</Row>
@@ -237,10 +237,10 @@ class Notification extends React.Component {
 						backgroundColor: 'white'
 					}}>
 						<Row>
-							<Col xs sm={8}>
+							<Col className="noti-label" xs sm={8}>
 								<p><span style={{color:'red'}}>Task:</span> Cheer others<br/>Progress: {voteNum}/3</p>
 							</Col>
-							<Col xs sm={4}>
+							<Col className="noti-label" xs sm={4}>
 								{this.CheerReward(voteNum)}
 							</Col>
 						</Row>
