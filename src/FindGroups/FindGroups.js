@@ -45,7 +45,6 @@ class FindGroups extends React.Component {
 	}
 
 	showAllGroups(){
-		console.log(this.state.groups)
 		let groupsComponent = []
 		for(let i=0; i < this.state.groups.length; i+=1){
 				groupsComponent.push(<MyComponent usergroup={this.state.usergroup} one={this.state.groups[i]} uid={this.props.uid} key={i}> </MyComponent>);
