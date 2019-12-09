@@ -1,6 +1,6 @@
 import React from 'react';
 import {Row, Col, Form, Modal, Button} from 'react-bootstrap'
-import { NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {toast} from 'react-toastify';
 import { db } from '../firebase/firebase.js';
@@ -14,7 +14,9 @@ class JoinGroup extends React.Component {
     this.fillAll = this.fillAll.bind(this);
     this.state = {
       goal:'',
-      peopleKey:''
+      peopleKey:'',
+      isGroupUpdated:'',
+      isUserUpdated:''
     };
   }
 
@@ -37,11 +39,13 @@ class JoinGroup extends React.Component {
         }
         userRef.update({
           groupJoined: groupJoined
+        }, () => {
+          this.setState({isUserUpdated: true})
         })
       }
     )
   }
-  handleSubmit(event) {
+  updateGroup(){
     if(this.state.goal==="") {
       this.fillAll();
       return
@@ -54,19 +58,34 @@ class JoinGroup extends React.Component {
     groupRef.once('value', snapshot => {
       _peopleNum = snapshot.val().peopleNum
       _progressUpdateFlag = snapshot.val().progressUpdateFlag
+    }, () => {
+      groupRef.update({peopleNum: _peopleNum+1, progressUpdateFlag: _progressUpdateFlag+1})
+      newMemberRef.update({
+        goal: this.state.goal,
+        progress: '',
+        numberCheer: '',
+        lastInterval: 0,
+      }, () =>{
+        this.setstate({isGroupUpdated: true})
+      });
     })
-    groupRef.update({peopleNum: _peopleNum+1, progressUpdateFlag: _progressUpdateFlag+1})
-    newMemberRef.set({
-      goal: this.state.goal,
-      progress: '',
-      numberCheer: '',
-      lastInterval: 0,
-    });
-    //event.preventDefault();
-    this.updateUser()
-    this.props.handleClose()
   }
 
+  handleSubmit(event) {
+    this.updateGroup()
+    //event.preventDefault();
+    this.updateUser()
+
+  }
+  redirect(){
+    if(this.state.isGroupUpdated && this.state.isUserUpdated)
+    {
+      return(<Redirect to='./my_group'/>)
+    }
+    else{
+      return(<React.Fragment/>)
+    }
+  }
   fillAll() {
 		toast.error("Please fill out all necessary information.");
 	}
@@ -99,12 +118,10 @@ class JoinGroup extends React.Component {
                 Ex: I will finish mock exam within 3 hours.
                 You must update your progress each interval.</div>
               </Row>
-              <NavLink exact to='/my_group'>
               <Button variant="success"
                     className="join-button"
                     onClick={this.handleSubmit}
               > Join </Button>
-          </NavLink>
               <Button variant="danger"
                     className="cancel-button"
                     onClick = {this.props.handleClose}
@@ -112,6 +129,7 @@ class JoinGroup extends React.Component {
 
             </Modal.Body>
           </Modal>
+          {this.redirect()}
       </div>
     );
   }
