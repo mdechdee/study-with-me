@@ -122,14 +122,23 @@ class MyGroup extends React.Component {
 
 	}
 	checkEndTime(){
-		if(this.props.timer.currentTime > this.props.timer.baseStopTime){
+		if((this.props.timer.currentTime > this.props.timer.baseStopTime) && this.state.firstPassed && this.state.people!==null){
 			this.setState({clearGroup: true})
 			// change everyone's group to ""
 			var _peopleName = []
+			console.log(this.state.people)
 			Object.keys(this.state.people).forEach(function (person){
+				
 		      	db.ref(`/users/`).child(`${person}`).update({group:""})
-		      	storage.ref(`/images/`).child(`${person}`).delete().then(()=>{
-		      		console.log("Remove"+person+" Images succeed")
+		      	console.log(person)
+		      	storage.ref(`/images/${person}`).listAll().then( (res)=>{
+		      		var items = res.items
+		      		for(let i in items){
+		      			if(items[i].authWrapper.name !== "profile.jpg"){
+		      				storage.ref(items[i].location.path).delete().then(()=>{
+		      				})
+		      			}
+		      		}
 		      	})
 		    });
 			// delete the group
@@ -168,33 +177,34 @@ class MyGroup extends React.Component {
 	}
 
 	render(){
-		var changePage;
-		var cur_time = this.props.timer.currentTime
-		var start_time = this.props.timer.startTime
-		var stop_time = this.props.timer.stopTime
-		this.checkIntervalChange()
-		this.checkPeopleChange()
-		var intervalNum = ""
-		var self = this;
-		if(this.state.intervalNum===1){
-			intervalNum = "first"
-		}
-		else if(this.state.intervalNum===2){
-			intervalNum = "second"
-		}
-		else if(this.state.intervalNum===3){
-			intervalNum = "third"
-		}
-		else{
-			intervalNum = `${self.state.intervalNum}th`;
-		}
 		if(this.state.clearGroup){
 			return(<h3 className = 'no-group'> You don't have a group yet! Join one! </h3>)
 		}
-		if(this.state.groupName === ''){
+		if(this.props.timer.groupName === ''){
 			return(<h3 className = 'no-group'> You don't have a group yet! Join one! </h3>)
 		}
 		else{
+			var changePage;
+			var cur_time = this.props.timer.currentTime
+			var start_time = this.props.timer.startTime
+			var stop_time = this.props.timer.stopTime
+			this.checkEndTime()
+			this.checkIntervalChange()
+			this.checkPeopleChange()
+			var intervalNum = ""
+			var self = this;
+			if(this.state.intervalNum===1){
+				intervalNum = "first"
+			}
+			else if(this.state.intervalNum===2){
+				intervalNum = "second"
+			}
+			else if(this.state.intervalNum===3){
+				intervalNum = "third"
+			}
+			else{
+				intervalNum = `${self.state.intervalNum}th`;
+			}
 			return(
 				<Scrollbars>
 					<Container>

@@ -45,7 +45,10 @@ class ProgressDescription extends React.Component{
 				status: "active"
 			})
 			var progressUpdateFlag = 0;
-			db.ref(`groups/${this.props.groupName}`).once('value',(snapshot) =>{progressUpdateFlag = snapshot.val().progressUpdateFlag})
+			db.ref(`groups/${this.props.groupName}`).once('value',(snapshot) =>{
+				if(snapshot.val()!==undefined && snapshot.val().progressUpdateFlag!==undefined)
+					progressUpdateFlag = snapshot.val().progressUpdateFlag
+			})
 			db.ref(`groups/${this.props.groupName}/progressUpdateFlag`).set(progressUpdateFlag+1)
 			db.ref(`groups/${this.props.groupName}/people/${this.props.uid}/lastInterval`).set(this.props.intervalNum)
 			db.ref(`users/${this.props.uid}/task/updateTask/number`).set(1)
