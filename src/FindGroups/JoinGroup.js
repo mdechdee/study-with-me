@@ -78,8 +78,10 @@ class JoinGroup extends React.Component {
 
             <Modal.Header>
               <Modal.Title>
-                <div sm={10} className="join-title"> Join Group {this.props.popup_id} </div>
-                <FontAwesomeIcon icon='times-circle' className='join-close-icon' onClick={this.props.handleClose}/>
+                <div sm={10} className="join-title"> Join Group {this.props.popup_id}
+                  <FontAwesomeIcon icon='times-circle' className='join-close-icon' onClick={this.props.handleClose}/>
+                </div>
+
               </Modal.Title>
             </Modal.Header>
 

@@ -185,6 +185,12 @@ These are for ModalRedeem.js
   vertical-align: bottom;
 }
 
+.divider-ver {
+  width: 5px;
+  height: auto;
+  display: inline-block;
+}
+
 .custom-close-icon {
   animation: 0.3s rotate90Counter;
   color: black;
@@ -194,8 +200,8 @@ These are for ModalRedeem.js
   background: white;
   border-radius: 100%;
   position: absolute;
-  right: 7%;
-  top: 5%;
+  right: 10px;
+  top: 10px;
   &:hover {
 		animation: 0.3s rotate90Clockwise;
 	}

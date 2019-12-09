@@ -57,9 +57,8 @@ class EditProfileInfo extends React.Component {
 					<Form.Group controlId="name">
 						<div className="content-center">
 							<Row>
-								<Form.Label column sm={2}
-											className="form-font"
-											> Name </Form.Label>
+								<Col sm={2} className="form-font"
+									> Name </Col>
 								<Col sm={10}>
 						    	<Form.Control className="form-font"
 											type="name"

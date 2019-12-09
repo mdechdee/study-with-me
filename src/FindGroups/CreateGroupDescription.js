@@ -1,6 +1,6 @@
 import React from 'react';
 import {Row, Col, Button} from 'react-bootstrap'
-import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -185,8 +185,7 @@ class CreateGroupDescription extends React.Component{
 			userRef.update({
 				'group': this.state.group_name
 			})
-			this.setState({isWrittenToDatabase: true}).then(() => (
-					<Redirect to='/find_group' />);
+
 	}
 
 	render(){

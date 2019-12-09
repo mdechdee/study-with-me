@@ -39,7 +39,7 @@ export default class ModalRedeem extends Component {
 										        	<FontAwesomeIcon icon='check-circle'/> Confirm
 										        </Button>
 
-											<div className='divider' />
+											<div className='divider-ver' />
 
 							        	<Link to='/details' className='redeem_link'>
 									        <Button variant="danger" className="sticker-detail"
