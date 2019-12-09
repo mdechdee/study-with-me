@@ -83,7 +83,7 @@ These are for MyComponent.js
   color: white;
   width: 100%;
   height: 90%;
-  font-size: calc(0.8pc + 1vw);
+  font-size: calc(1.0pc);
   text-align: center;
   background-color: #78909c;
   box-sizing: border-box;
@@ -98,7 +98,7 @@ These are for MyComponent.js
   font-family: $f3;
   color: black;
   height: 25px; /*requires explicit height*/
-  font-size: calc(0.8pc + 1vw);
+  font-size: calc(1.0pc);
   text-align: center;
   position: relative;
   width: 100%;
@@ -108,5 +108,5 @@ These are for MyComponent.js
   @extend .group-info;
   font-family: $f2;
   color: gray !important;
-  font-size: calc(0.7pc + 1vw) !important;
+  font-size: calc(1.0pc) !important;
 }
