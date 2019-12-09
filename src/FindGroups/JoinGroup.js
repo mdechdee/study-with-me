@@ -15,9 +15,10 @@ class JoinGroup extends React.Component {
     this.state = {
       goal:'',
       peopleKey:'',
-      isGroupUpdated:'',
-      isUserUpdated:''
+      isGroupUpdated:false,
+      isUserUpdated:false
     };
+    this.redirect = this.redirect.bind(this)
   }
 
   handleChange(event) {
