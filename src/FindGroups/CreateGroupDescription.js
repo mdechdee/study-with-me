@@ -32,7 +32,8 @@ class CreateGroupDescription extends React.Component{
 			group_total_time:"",
 			unit_interval:"minutes",
 			unit_total_time:"minutes",
-			isWrittenToDatabase: false
+			isWrittenToDatabase: false,
+			isUserUpdated: false
 		};
 	}
 
@@ -93,7 +94,9 @@ class CreateGroupDescription extends React.Component{
 			if(val.groupCreated !== undefined){
 				groupCreated = val.groupCreated+1
 			}
-			userRef.update({groupCreated: groupCreated})
+			userRef.update({groupCreated: groupCreated}, () =>{
+				this.setState({isUserUpdated: true})
+			})
 		})
 	}
 
@@ -102,7 +105,6 @@ class CreateGroupDescription extends React.Component{
 		else if(this.isCorrectFormat()) {
 			this.writeToDatabase();
 			this.updateUser();
-			this.props.handleClose();
 		}
 		else { this.fillTime()}
 	}
@@ -179,13 +181,24 @@ class CreateGroupDescription extends React.Component{
 					lastInterval: 0,
 					progress: '',
 				   numberCheer: ''
+				 }, () => {
+					 this.setState({isWrittenToDatabase: true})
 				 })
 			})
 			var userRef = db.ref(`users/${this.props.uid}`);
 			userRef.update({
 				'group': this.state.group_name
 			})
+	}
 
+	redirect(){
+		if(this.state.isUserUpdated && this.state.isWrittenToDatabase)
+		{
+			return(<Redirect to='./my_group' />);
+		}
+		else {
+			return(<React.Fragment/>)
+		}
 	}
 
 	render(){
@@ -288,12 +301,11 @@ class CreateGroupDescription extends React.Component{
 						</Form.Text>
 					</Col>
 				</Row>
-				<NavLink exact to='/my_group'>
-					<Button variant="success" offset={100} className="create-button"
-						onClick={this.handleClick}> Create </Button>
-				</NavLink>
+				<Button variant="success" offset={100} className="create-button"
+					onClick={this.handleClick}> Create </Button>
 				<Button variant="danger" offset={100} className="cancel-button"
 				onClick={this.props.handleClose}> Cancel </Button>
+				{this.redirect()}
 	  	</div>
 		);
 	}
