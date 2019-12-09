@@ -1,6 +1,6 @@
 import React from 'react';
 import {Row, Col, Button} from 'react-bootstrap'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -268,9 +268,8 @@ class CreateGroupDescription extends React.Component{
 
 				<Row>
 					<Col xs={{offset: 0}}>
-						<Form.Text className="mute-font">
-								*Time units can only be minutes, hours and days,
-								e.g. 1 minute, 10 days
+						<Form.Text className="mute-font padding-mute">
+								^^^System will remind you to update your progress every this period.
 						</Form.Text>
 					</Col>
 				</Row>
@@ -293,14 +292,6 @@ class CreateGroupDescription extends React.Component{
 					</Col>
 				</Row>
 
-				<Row>
-					<Col xs={{offset: 0}}>
-						<Form.Text className="mute-font">
-								*Time units can only be minutes, hours and days,
-								e.g. 1 minute, 10 days
-						</Form.Text>
-					</Col>
-				</Row>
 				<Button variant="success" offset={100} className="create-button"
 					onClick={this.handleClick}> Create </Button>
 				<Button variant="danger" offset={100} className="cancel-button"
