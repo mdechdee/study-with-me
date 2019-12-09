@@ -1,6 +1,6 @@
 import React from 'react';
 import {Row, Col, Button} from 'react-bootstrap'
-import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -190,6 +190,7 @@ class CreateGroupDescription extends React.Component{
 				'group': this.state.group_name
 			})
 	}
+
 	redirect(){
 		if(this.state.isUserUpdated && this.state.isWrittenToDatabase)
 		{
@@ -199,6 +200,7 @@ class CreateGroupDescription extends React.Component{
 			return(<React.Fragment/>)
 		}
 	}
+
 	render(){
 		return(
 			<div>

@@ -67,8 +67,8 @@ These are for ShowInformation.js
   background: white;
   border-radius: 100%;
   position: absolute;
-  right: 7%;
-  top: 5%;
+	right: 10px;
+	top: 10px;
 	&:hover {
 		animation: 0.3s rotate90Clockwise;
 	}
@@ -104,6 +104,7 @@ These are for EditProfileImage.js & EditProfileInfo.js
 .form-font {
 	font-family: $f3;
   font-size: 1.5pc;
+	text-align: bottom;
 }
 
 .form-label {
