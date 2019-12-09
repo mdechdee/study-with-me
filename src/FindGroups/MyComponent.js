@@ -33,23 +33,25 @@ class MyComponent extends React.Component {
 	render() {
 		return(
 			<Container fluid className="group-wrap">
-				<Row className='group-row'>
+				<Row className='group-row d-flex align-items-stretch'>
 
-					<Col xs sm md lg xl={3}>
-						<div className='group-name' onClick={this.handleShow}> {this.props.one.name} </div>
+					<Col xs={3}>
+						<div className='group-name' onClick={this.handleShow}>
+							<div style={{cursor: 'pointer'}}>{this.props.one.name}</div>
+						</div>
 					</Col>
 
-					<Col xs sm md lg xl={3} className="group-column">
+					<Col xs={3} className="group-column">
 						<Row><div className='group-info'> {this.props.one.baseStartDate} </div></Row>
 						<Row><div className='group-info'> {this.props.one.baseStartTime} </div></Row>
 					</Col>
 
-					<Col xs sm md lg xl={3} className="group-column">
+					<Col xs={3} className="group-column">
 						<Row><div className='group-info'> {this.props.one.totalTime} {this.props.one.totalTimeUnit} </div></Row>
 						<Row><div className='group-info-small'> ({this.props.one.interval} {this.props.one.intervalUnit} x {this.props.one.roundNum}) </div></Row>
 					</Col>
 
-					<Col xs sm md lg xl={3} className="group-column">
+					<Col xs={3} className="group-column">
 						<div className='group-info'> {this.props.one.peopleNum} </div>
 					</Col>
 
