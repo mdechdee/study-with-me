@@ -1,6 +1,6 @@
 import React from 'react';
 import {Row, Col, Button} from 'react-bootstrap'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

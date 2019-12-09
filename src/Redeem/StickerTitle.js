@@ -13,7 +13,7 @@ export default function StickerTitle({name, title}){
               <Col>
                 <div className="redeem-title">Redeem</div>
 							</Col>
-              <Col className="d-flex balance-container justify-content-end">
+              <Col className="balance-container justify-content-end">
                 <div className="balance-label">Balance:&nbsp;
                   <div className="balance"> {title} points</div>
                 </div>
