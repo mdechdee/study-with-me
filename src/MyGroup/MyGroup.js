@@ -148,8 +148,6 @@ class MyGroup extends React.Component {
 			 	.catch(function(error) {
 			 	   console.log("Remove failed: " + error.message)
 			  	});
-
-
 		}
 	}
 	showUpdateProgress = () => {
@@ -190,9 +188,15 @@ class MyGroup extends React.Component {
 			var stop_time = this.props.timer.stopTime
 			this.checkEndTime()
 			this.checkIntervalChange()
-			this.checkPeopleChange()
 			var intervalNum = ""
 			var self = this;
+			if(this.state.clearGroup){
+				return(<h3 className = 'no-group'> You don't have a group yet! Join one! </h3>)
+			}
+			if(this.props.timer.groupName === ''){
+				return(<h3 className = 'no-group'> You don't have a group yet! Join one! </h3>)
+			}
+			this.checkPeopleChange()
 			if(this.state.intervalNum===1){
 				intervalNum = "first"
 			}
