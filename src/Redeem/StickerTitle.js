@@ -9,11 +9,11 @@ export default function StickerTitle({name, title}){
 			{(value)=>{
 				return(
           <Container>
-            <Row className="row-wrap">
+            <Row className="row-wrap d-flex flex-row align-items-stretch">
               <Col>
                 <div className="redeem-title">Redeem</div>
 							</Col>
-              <Col className="balance-wrap">
+              <Col className="d-flex balance-container justify-content-end">
                 <div className="balance-label">Balance:&nbsp;
                   <div className="balance"> {title} points</div>
                 </div>

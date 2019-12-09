@@ -42,13 +42,21 @@ These are for StickerTitle.js
   vertical-align: bottom;
 }
 
+.balance-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .balance-label {
   display: inline-flex;
-  font-family: $f3;
-  font-size: 0.8pc;
+  font-family: $f2;
+  font-size: 1.2pc;
   color: black;
   line-height: 48px;
   vertical-align: bottom;
+  margin: auto;
+  margin-right: 0;
 }
 
 .balance{

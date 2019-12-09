@@ -192,18 +192,18 @@ class Notification extends React.Component {
 				    }}>
 
 						<Row>
-							<Col className="noti-label" xs sm={8}>
+							<Col className="noti-label" xs={8}>
 								<p><span style={{color:'red'}}>Task:</span><br/>Update your progress<br/>Progress: {updateNum}/1</p>
 							</Col>
-							<Col className="noti-label" xs sm={4}>
+							<Col className="noti-label" xs={4}>
 								{this.UpdateReward(updateNum)}
 							</Col>
 						</Row>
 						<Row>
-							<Col className="noti-label" xs sm={8}>
+							<Col className="noti-label" xs={8}>
 								<p><span style={{color:'red'}}>Task:</span> Cheer others<br/>Progress: {voteNum}/3</p>
 							</Col>
-							<Col className="noti-label" xs sm={4}>
+							<Col className="noti-label" xs={4}>
 								{this.CheerReward(voteNum)}
 							</Col>
 						</Row>
@@ -218,10 +218,10 @@ class Notification extends React.Component {
 				    }}>
 
 						<Row>
-							<Col className="noti-label" xs sm={8}>
+							<Col className="noti-label" xs={8}>
 								<p><span style={{color:'red'}}>Task:</span><br/>Update your progress<br/>Progress: {updateNum}/1</p>
 							</Col>
-							<Col className="noti-label" xs sm={4}>
+							<Col className="noti-label" xs={4}>
 								{this.UpdateReward(updateNum)}
 							</Col>
 						</Row>
@@ -237,10 +237,10 @@ class Notification extends React.Component {
 						backgroundColor: 'white'
 					}}>
 						<Row>
-							<Col className="noti-label" xs sm={8}>
+							<Col className="noti-label" xs={8}>
 								<p><span style={{color:'red'}}>Task:</span> Cheer others<br/>Progress: {voteNum}/3</p>
 							</Col>
-							<Col className="noti-label" xs sm={4}>
+							<Col className="noti-label" xs={4}>
 								{this.CheerReward(voteNum)}
 							</Col>
 						</Row>

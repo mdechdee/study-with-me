@@ -21,7 +21,7 @@ export class Sticker extends Component {
 
 								<div className='reward-wrap'>
 									<Row>
-										<Col xs sm={3}>
+										<Col xs={3} className='pr-0'>
 											<div
 												//this is for making the image bigger
 												className="img-container p-6"
@@ -31,7 +31,7 @@ export class Sticker extends Component {
 										</Col>
 										{/*card footer */}
 										{/*card-footer from bootstrap card*/}
-										<Col xs sm={9}>
+										<Col xs={9} className='px-0'>
 											<div className="card-footer d-flex justify-content-between ">
 												<p className="align-self-center text-capitalize mb-0 sticker-name">
 													{title}

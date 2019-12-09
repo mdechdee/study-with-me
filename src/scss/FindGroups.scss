@@ -55,7 +55,7 @@ These are for FindGroups.js
   font-size: 1pc;
   position: absolute;
   right: 5%;
-  bottom: 8%;
+  bottom: 13%;
   z-index: 2;
 }
 
@@ -79,16 +79,19 @@ These are for MyComponent.js
 }
 
 .group-name{
-  font-family: $f2;
+  font-family: "Oswald-Light";
   color: white;
   width: 100%;
-  height: 100%;
+  height: 90%;
   font-size: calc(0.8pc + 1vw);
-  text-align: middle;
+  text-align: center;
   background-color: #78909c;
   box-sizing: border-box;
   cursor: pointer;
-  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 6px;
 }
 
 .group-info{
