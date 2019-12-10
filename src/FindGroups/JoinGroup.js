@@ -66,8 +66,7 @@ class JoinGroup extends React.Component {
         progress: '',
         numberCheer: '',
         lastInterval: 0,
-      })
-      this.setState({isGroupUpdated: true})
+      }, () => this.setState({isGroupUpdated: true}))
     })
   }
 
