@@ -12,13 +12,15 @@ class JoinGroup extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.fillAll = this.fillAll.bind(this);
+    this.redirect = this.redirect.bind(this)
+    this.updateGroup = this.updateGroup.bind(this)
     this.state = {
       goal:'',
       peopleKey:'',
       isGroupUpdated:false,
       isUserUpdated:false
     };
-    this.redirect = this.redirect.bind(this)
+
   }
 
   handleChange(event) {
@@ -40,9 +42,8 @@ class JoinGroup extends React.Component {
         }
         userRef.update({
           groupJoined: groupJoined
-        }, () => {
-          this.setState({isUserUpdated: true})
         })
+        this.setState({isUserUpdated: true})
       }
     )
   }
@@ -56,31 +57,29 @@ class JoinGroup extends React.Component {
     var newMemberRef = peopleRef.child(`${this.props.uid}`);
     var _peopleNum = 1;
     var _progressUpdateFlag = 1;
-    groupRef.once('value', snapshot => {
+    groupRef.once('value').then( snapshot => {
       _peopleNum = snapshot.val().peopleNum
       _progressUpdateFlag = snapshot.val().progressUpdateFlag
-    }, () => {
       groupRef.update({peopleNum: _peopleNum+1, progressUpdateFlag: _progressUpdateFlag+1})
       newMemberRef.update({
         goal: this.state.goal,
         progress: '',
         numberCheer: '',
         lastInterval: 0,
-      }, () =>{
-        this.setstate({isGroupUpdated: true})
-      });
+      })
+      this.setState({isGroupUpdated: true})
     })
   }
 
-  handleSubmit(event) {
+  handleSubmit() {
     this.updateGroup()
-    //event.preventDefault();
     this.updateUser()
-
   }
+
   redirect(){
     if(this.state.isGroupUpdated && this.state.isUserUpdated)
     {
+      this.props.handleClose()
       return(<Redirect to='./my_group'/>)
     }
     else{
@@ -121,7 +120,7 @@ class JoinGroup extends React.Component {
               </Row>
               <Button variant="success"
                     className="join-button"
-                    onClick={this.handleSubmit}
+                    onClick={() => {this.handleSubmit()}}
               > Join </Button>
               <Button variant="danger"
                     className="cancel-button"
