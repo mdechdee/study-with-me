@@ -54,7 +54,7 @@ class Cheer extends React.Component{
 		})
 	}
 	handleCheer(cheerType){
-		console.log(this.props.uid)
+
 		var Ref = db.ref(`groups/${this.props.groupName}/people`)
 		let _numberCheer = this.state.numberCheer
 		let _cheererUid = this.props.cheererUid
@@ -92,7 +92,7 @@ class Cheer extends React.Component{
 		})
 		db.ref(`users/${this.props.cheererUid}/task/voteTask/number`).once('value',(snapshot)=>{
 				var cheerTaskNum = snapshot.val()
-				console.log(cheerTaskNum)
+
 				cheerTaskNum = cheerTaskNum+1
 				db.ref(`users/${this.props.cheererUid}/task/voteTask/number`).set(cheerTaskNum)
 		})
@@ -101,7 +101,7 @@ class Cheer extends React.Component{
 			if(CheerNumber===null){
 				CheerNumber = 0
 			}
-			console.log(CheerNumber)
+
 		})
 		db.ref(`users/${this.props.uid}/name`).once('value',(snapshot)=>{
 			let receiverName = snapshot.val()

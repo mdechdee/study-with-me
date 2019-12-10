@@ -45,7 +45,7 @@ class ShowInformation extends React.Component {
 			var num = 0
 			if (snapshot.val().cheer !== undefined){
 				this.setState({totalCheer: [snapshot.val().cheer]}, ()=>{
-				console.log(this.state.totalCheer.length)
+				
 				}
 			)}
 	  	});

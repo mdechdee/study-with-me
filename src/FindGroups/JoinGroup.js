@@ -81,6 +81,7 @@ class JoinGroup extends React.Component {
   redirect(){
     if(this.state.isGroupUpdated && this.state.isUserUpdated)
     {
+
       return(<Redirect to='./my_group'/>)
     }
     else{

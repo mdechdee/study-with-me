@@ -20,7 +20,7 @@ class Profile extends React.Component {
 				<Scrollbars>
 						<AuthContext.Consumer>{
 							auth => {
-								console.log(auth.email+""+auth.uid)
+								
 								return(
 									<React.Fragment>
 										<ProfileImage uid={auth.uid} />

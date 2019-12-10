@@ -29,7 +29,7 @@ class ProgressImage extends Component {
 
   handleUpload = () => {
     const { image } = this.state;
-    console.log("Update interval"+ this.props.intervalNum)
+    
     const uploadTask = storage.ref(`images/${this.props.uid}/`).child(`work${this.props.intervalNum}.jpg`).put(image);
     uploadTask.on(
       "state_changed",
@@ -46,7 +46,7 @@ class ProgressImage extends Component {
       },
       error => {
         // Error function ...
-        console.log(error);
+        
       },
       () => {
         // complete function ...
@@ -56,10 +56,10 @@ class ProgressImage extends Component {
           .getDownloadURL()
           .then(url => {
             this.setState({ url });
-            console.log("ProgressImage/snapshot")
-            console.log(url)
+            
+            
           }).catch( error =>{
-            console.log(error);
+            
           });
       }
     );

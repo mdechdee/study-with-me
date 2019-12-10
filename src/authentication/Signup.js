@@ -23,7 +23,7 @@ class Signup extends React.Component {
   handleSubmit = event => {
     auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(authUser => {
-        console.log(authUser)
+
           db.ref(`users/${authUser.user.uid}`).set({
             name: this.state.username,
             group: "",
