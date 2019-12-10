@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class ModalRedeem extends Component {
 	componentDidMount(){
-		
+		console.log("modal")
 	}
 	render() {
 		return (

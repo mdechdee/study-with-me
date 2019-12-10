@@ -36,7 +36,7 @@ class EditProfileImage extends Component {
   }
 
   onBeforeFileLoad(elem) {
-    
+    console.log(elem.target.files[0])
     this.setState({image: elem.target.files[0],status:"info",show:"0%"})
   }
 
@@ -63,7 +63,7 @@ class EditProfileImage extends Component {
   handleChange(e){
     if (e.target.files[0]) {
       const image = e.target.files[0];
-      
+      console.log(image)
       this.setState(() => ({ image }));
 
     }
@@ -87,7 +87,7 @@ class EditProfileImage extends Component {
       },
       error => {
         // Error function ...
-        
+        console.log(error);
       },
       () => {
         // complete function ...
@@ -98,7 +98,7 @@ class EditProfileImage extends Component {
           .then(url => {
             this.setState({ url });
           }).catch( error =>{
-            
+            console.log(error);
           });
       }
     );

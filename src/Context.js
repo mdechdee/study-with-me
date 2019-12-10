@@ -63,7 +63,7 @@ class StickerProvider extends Component {
 	//we would change the detailSticker according to the sticker that we want to show the detail
 	handleDetail = (id) =>{
 		const sticker = this.getItem(id);
-		
+		console.log("the previous detail sticker: ", this.detailSticker)
 		this.setState(() =>{
 			return {detailSticker: sticker}
 		})
@@ -72,7 +72,7 @@ class StickerProvider extends Component {
 	//we don't want to mutate the state first, then we use index
 	//we get the item change value and return in setState.
 	addToCart = (id) =>{
-		//
+		//console.log("hello from add to cart: ", id);
 		let tempStickers = [...this.state.stickers];
 		const index = tempStickers.indexOf(this.getItem(id))
 		const sticker = tempStickers[index]
@@ -84,14 +84,14 @@ class StickerProvider extends Component {
 		this.setState(() =>{
 			return {stickers: tempStickers,
 					cart: [...this.state.cart, sticker]}
-			},() => {
+			},() => {console.log(this.state)})
 	}
 
   openModal = id => {
 		const sticker = this.getItem(id);
 		this.setState(() => {
 			return {modalSticker: sticker, modalOpen: true}
-		},() => {
+		},() => {console.log(this.state)})
 	}
 
 	closeModal = (remainPoints, price, title, img) => {

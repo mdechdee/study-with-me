@@ -70,7 +70,7 @@ export default Redeem;
 				stickerFour: snapshot.val().stickerFour
 			}
 		}).catch((err)=> {
-
+			console.log("fetch user error",err);});
 	}
 
   handleClose(){

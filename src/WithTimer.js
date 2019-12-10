@@ -82,7 +82,7 @@ const withTimer = (Component) =>
 	        	stopTime: _stopTime,
 	        	intervalNum: _intervalNum
 	        }, () => {
-
+					console.log(this.state.startTime)
 					db.ref(`groups/${this.state.groupName}/startTime`).set(this.state.startTime)
 					db.ref(`groups/${this.state.groupName}/stopTime`).set(this.state.stopTime)
 					db.ref(`groups/${this.state.groupName}/intervalNum`).set(this.state.intervalNum)
@@ -97,7 +97,7 @@ const withTimer = (Component) =>
 				Object.keys(_people).forEach((person) =>{
 					_people[person].status = 'inactive'
 				})
-
+				console.log(_people)
 				this.setState({people: _people})
 				db.ref(`groups/${this.state.groupName}/people`).update(_people)
 				db.ref(`groups/${this.state.groupName}/progressUpdateFlag`).set(0)
@@ -106,12 +106,12 @@ const withTimer = (Component) =>
 		checkTimeUp(){
 			if(this.state.currentTime > this.state.stopTime){
 				this.pushNewStartTime()
-
+				console.log("Time's up!, "+this.state.intervalNum +" intervals passed")
 			}
 		}
 
 		setupTimer(){
-
+			console.log("Setting up timer, uid: "+this.state.uid)
 			//First, store current time to match server's time
 			this.fetchCurrentTime()
 			//Next, store start&stop time for the group

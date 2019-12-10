@@ -74,7 +74,7 @@ class MyGroup extends React.Component {
 	}
 
 	handlePicChange(index){
-
+		console.log('from group: '+index)
 		this.setState({activeIndex: index})
 	}
 
@@ -126,11 +126,11 @@ class MyGroup extends React.Component {
 			this.setState({clearGroup: true})
 			// change everyone's group to ""
 			var _peopleName = []
-
+			console.log(this.state.people)
 			Object.keys(this.state.people).forEach(function (person){
-
+				
 		      	db.ref(`/users/`).child(`${person}`).update({group:""})
-
+		      	console.log(person)
 		      	storage.ref(`/images/${person}`).listAll().then( (res)=>{
 		      		var items = res.items
 		      		for(let i in items){
@@ -143,10 +143,10 @@ class MyGroup extends React.Component {
 		    });
 			// delete the group
 			db.ref(`/groups/`).child(`${this.props.timer.groupName}`).remove().then(()=>{
-
+				console.log("Remove succeeded.")
 				  })
 			 	.catch(function(error) {
-
+			 	   console.log("Remove failed: " + error.message)
 			  	});
 		}
 	}
@@ -160,8 +160,8 @@ class MyGroup extends React.Component {
 	}
 
 	componentDidMount(){
-
-
+		console.log("MOUNT")
+		console.log(this.props.timer)
 		this.setState({intervalNum: this.props.timer.intervalNum}, () =>{
 			this.checkIntervalChange()
 		})

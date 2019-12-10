@@ -33,7 +33,7 @@ class MemberProgress extends React.Component {
     var _userProfilePic = []
     var peopleName = this.state.peopleUID
     let _people = this.props.groupInfo.people
-
+    console.log(_people)
     for(let i in peopleName)
     {
       //Fetch pictures
