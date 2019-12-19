@@ -174,7 +174,8 @@ class CreateGroupDescription extends React.Component{
 				'intervalTime': intervalTime,
 				'intervalNum': 0,
 				'peopleNum': 1,
-				'people': people
+				'people': people,
+				'progressUpdateFlag': 0
 			}, () =>{
 				db.ref(`groups/${this.state.group_name}/people/${this.props.uid}`).set({
 					goal: this.state.personal_goal,
